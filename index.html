@@ -21605,6 +21605,16 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
     });
     updateMusicToggle();
   }
+  function restartBackgroundMusicFromBeginning() {
+    if (!bgMusic) return;
+    try {
+      bgMusic.pause();
+      bgMusic.currentTime = 0;
+    } catch (e) {
+    }
+    if (started && musicEnabled && !document.hidden) playBackgroundMusic();
+    else updateMusicToggle();
+  }
   function stopStartHeroRobot() {
     if (startHeroRobot) {
       scene.remove(startHeroRobot);
@@ -24534,11 +24544,13 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
       playTone(220, 0.08, "triangle", 0.032);
       current = 0;
       loadLevel(0);
+      restartBackgroundMusicFromBeginning();
     });
   }
   restartBtn.addEventListener("click", () => {
     playTone(220, 0.08, "triangle", 0.032);
     loadLevel(current);
+    if (current === 0) restartBackgroundMusicFromBeginning();
   });
 
   const cheatBoard = document.getElementById("cheatBoard");
