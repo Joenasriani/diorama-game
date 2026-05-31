@@ -135,67 +135,22 @@ body.game-started #bottomHelp{opacity:0;display:none}
   pointer-events:none;
   transition:.22s ease;
 }
-#logoIntro.hide{display:none}
-#logoMark{
-  width:min(78vw,390px);
-  transform-origin:50% 72%;
-  animation:logoPopIn .72s cubic-bezier(.2,1.3,.2,1) both, logoHold .95s ease .75s both, logoPopAway .48s cubic-bezier(.55,-.22,.84,.25) 2.25s forwards;
-}
-#logoShadow{
-  transform-origin:50% 50%;
-  animation:shadowBreathe .9s ease-in-out .35s infinite alternate;
-}
-#robotPose{
-  transform-origin:50% 72%;
-  animation:robotHero .9s cubic-bezier(.2,1.2,.2,1) .2s both, robotIdle .8s ease-in-out 1.05s infinite alternate;
-}
-#titleLetters{
-  transform-origin:50% 50%;
-  animation:titleRise .55s cubic-bezier(.2,1.2,.2,1) .45s both;
-}
-#sparkA{animation:spark .7s ease .72s both}
-#sparkB{animation:spark .7s ease .82s both}
-#sparkC{animation:spark .7s ease .92s both}
-@keyframes logoPopIn{
-  0%{opacity:0;transform:translateY(24px) scale(.72) rotate(-5deg)}
-  64%{opacity:1;transform:translateY(-7px) scale(1.05) rotate(1deg)}
-  100%{opacity:1;transform:translateY(0) scale(1) rotate(0)}
-}
-@keyframes logoHold{
-  from{filter:drop-shadow(0 18px 22px rgba(44,42,39,.13))}
-  to{filter:drop-shadow(0 26px 34px rgba(44,42,39,.18))}
-}
-@keyframes logoPopAway{
-  0%{opacity:1;transform:scale(1)}
-  100%{opacity:0;transform:scale(1.18) translateY(-18px)}
-}
-@keyframes introFadeOut{
-  to{opacity:0;visibility:hidden}
-}
-@keyframes shadowBreathe{
-  from{transform:scaleX(.9);opacity:.18}
-  to{transform:scaleX(1.04);opacity:.26}
-}
-@keyframes robotHero{
-  0%{transform:translateY(36px) scale(.72) rotate(-8deg)}
-  70%{transform:translateY(-4px) scale(1.06) rotate(2deg)}
-  100%{transform:translateY(0) scale(1) rotate(0)}
-}
-@keyframes robotIdle{
-  from{transform:translateY(0) rotate(-.5deg)}
-  to{transform:translateY(-5px) rotate(.5deg)}
-}
-@keyframes titleRise{
-  from{opacity:0;transform:translateY(18px) scale(.92)}
-  to{opacity:1;transform:translateY(0) scale(1)}
-}
-@keyframes spark{
-  0%{opacity:0;transform:scale(.2)}
-  45%{opacity:1;transform:scale(1.18)}
-  100%{opacity:.9;transform:scale(1)}
-}
 @media (prefers-reduced-motion:reduce){
+  .startRobot,
+  .startShadow,
+  .spark,
+  .tutorialPulse{
+    animation:none !important;
   }
+  #logoSplash,
+  #startPage,
+  #titleCard,
+  #endPage,
+  #hud,
+  button{
+    transition-duration:.001ms !important;
+  }
+}
 
 @media (max-height:420px){
   #hud{top:max(8px,env(safe-area-inset-top));width:min(88vw,500px)}
@@ -217,7 +172,7 @@ body.game-started #bottomHelp{opacity:0;display:none}
   #hint{font-size:11px}
   #restart{width:44px;height:44px;border-radius:16px}
   #bottomHelp{font-size:11px;padding:9px 12px}
-  #logoMark{width:min(84vw,340px)}
+  
 }
 
 #tutorialPulse{
@@ -248,7 +203,6 @@ body.game-started #tutorialPulse.visible{opacity:0;display:none}
 @media (max-height:430px){
   #tutorialPulse{display:none}
 }
-
 
 :root{
   --game-font:"Amatic SC","Arial Narrow","Trebuchet MS",system-ui,sans-serif;
@@ -402,11 +356,7 @@ body{font-family:var(--game-font)}
   #restart{width:40px;height:40px;font-size:18px}
 }
 
-
-/* Premium in-scene UI pass: no cheap card/logo/text splash */
-#logoIntro{
-  display:none !important;
-}
+/* Premium in-scene UI pass: no cheap card/text splash */
 #toast{
   display:none !important;
 }
@@ -444,7 +394,6 @@ body.game-started #cinemaVignette{
   opacity:0;
 }
 
-
 @media (max-width:360px){
   #hud{width:96vw;gap:6px}
   #levelTitle{font-size:11px;padding-right:10px}
@@ -453,12 +402,10 @@ body.game-started #cinemaVignette{
   #bottomHelp span{font-size:9px;max-width:86vw}
 }
 
-
 @media (max-height:360px){
   #bottomHelp{display:none !important}
   #hud{top:max(6px,env(safe-area-inset-top))}
 }
-
 
 /* Ultra-minimal premium HUD pass */
 #hud{
@@ -506,8 +453,6 @@ body.game-started #cinemaVignette{
   font-family:"Amatic SC","Arial Narrow","Trebuchet MS",system-ui,sans-serif !important;
   font-weight:700 !important;
 }
-
-
 
 /* Start page: DIORAMA title plus the same Three.js robot model rendered above it */
 #startPage{
@@ -574,14 +519,12 @@ body.game-started #musicToggle{
   color:rgba(248,253,255,.54);
 }
 @media (max-width:520px){
-  #startTitle{font-size:clamp(58px,18vw,112px);margin-top:clamp(82px,15vh,138px)}
+  #startTitle{font-size:clamp(58px,18vw,112px);margin-top:0}
   #musicToggle{height:22px;min-width:64px;font-size:8px;right:max(9px,env(safe-area-inset-right));top:max(9px,env(safe-area-inset-top))}
 }
 @media (max-height:420px){
-  #startTitle{font-size:clamp(54px,13vw,112px);margin-top:clamp(42px,9vh,66px)}
+  #startTitle{font-size:clamp(54px,13vw,112px);margin-top:0}
 }
-
-
 
 /* Global Amatic SC typography pass - thin/tall hand-drawn UI */
 body,
@@ -612,8 +555,6 @@ button,
   font-weight:700 !important;
   letter-spacing:.08em !important;
 }
-
-
 
 /* Large transparent LEVEL label pass - no label background, safe top band */
 #hud{
@@ -720,8 +661,6 @@ button,
   }
 }
 
-
-
 /* Full responsive/adaptive layout pass - mobile, tablet, desktop, portrait, landscape */
 :root{
   --hud-top-safe: max(10px, env(safe-area-inset-top));
@@ -813,8 +752,6 @@ button,
   #hud{width:min(86vw,1180px) !important;}
   #levelTitle{font-size:clamp(52px,11vh,96px) !important;}
 }
-
-
 
 /* Width-first responsive typography + definitive local Amatic font pass */
 :root{
@@ -915,8 +852,6 @@ body{
   #startTitle{line-height:.70 !important;}
 }
 
-
-
 /* Start page robot visibility/final composition pass
    The Three.js start hero uses the exact same makeRobot(false) model as gameplay.
    Keep the overlay transparent so the real 3D robot is visible above DIORAMA. */
@@ -941,8 +876,6 @@ body{
 @media (orientation:landscape) and (max-height:520px){
   #startTitle{top:50% !important;}
 }
-
-
 
 /* Final LEVEL title safety pass - white text and safe top padding zone */
 :root{
@@ -971,8 +904,6 @@ body{
 @media (min-width:900px) and (min-height:650px){
   :root{--level-safe-top-pad:clamp(14px,2.1vh,30px);}
 }
-
-
 
 /* Final gameplay LEVEL title spacing/thin-font/no-overlap pass */
 :root{
@@ -1072,8 +1003,6 @@ body.game-started #musicToggle{
   body.game-started #titleCard{max-width:calc(100vw - 104px) !important;}
   body.game-started #levelTitle{font-size:clamp(36px, 11.8vw, 52px) !important;letter-spacing:.01em !important;}
 }
-
-
 
 /* Final no-text-shadow + no-overlap clickable UI pass */
 :root{
@@ -1251,8 +1180,6 @@ body.game-started #musicToggle{
   }
 }
 
-
-
 /* Final start-page robot/title adaptive spacing pass */
 #startTitle{
   top:50% !important;
@@ -1280,9 +1207,6 @@ body.game-started #musicToggle{
 #startTitle .scribbleGrain{
   display:none !important;
 }
-
-
-
 
 /* Final start-page title clipping + robot/title separation fix */
 #startTitle{
@@ -1316,8 +1240,6 @@ body.game-started #musicToggle{
     padding:.12em .07em .14em .07em !important;
   }
 }
-
-
 
 /* Final HUD icon pass: thin round symbol controls around the level number. */
 #fullscreenBtn{
@@ -1398,7 +1320,6 @@ body.game-started #levelTitle{
   }
 }
 
-
 /* Start page footer credits */
 #startFooter{
   position:fixed;
@@ -1435,8 +1356,6 @@ body.game-started #levelTitle{
     font-size:clamp(18px, 5.2vw, 24px);
   }
 }
-
-
 
 /* Hidden DIORAMA level cheat board. Revealed only by touchscreen gesture: UP UP DOWN DOWN LEFT LEFT RIGHT RIGHT. */
 #cheatBoard{
@@ -1524,8 +1443,6 @@ body.game-started #levelTitle{
   #cheatPanel{border-radius:28px;padding:18px;}
 }
 
-
-
 /* Final LEVEL title size request: make the gameplay LEVEL number about 50% larger while keeping icon-safe padding. */
 body.game-started #levelTitle{
   font-size:clamp(63px, min(13.2vw, 13.8vh), 156px) !important;
@@ -1555,7 +1472,6 @@ body.game-started #levelTitle{
     line-height:.70 !important;
   }
 }
-
 
 /* Final title clipping fix: preserve larger LEVEL label but give the Amatic glyphs breathing room. */
 body.game-started #hud{
@@ -1658,7 +1574,7 @@ body.game-ended.end-step-3 #endPanelThree{
   white-space:nowrap;
 }
 .endPanel .label{
-  font-size:1em;
+  font-size:.68em;
   line-height:1.02;
   letter-spacing:.075em;
 }
@@ -1703,14 +1619,177 @@ body.game-ended.end-step-3 #endPanelThree{
   #endRestart{font-size:clamp(38px,10vw,68px)}
 }
 
+
+
+/* DIORAMA startup asset gate - inline loading bar on the start page. */
+#startupLoader{
+  display:none !important;
+}
+#startupLoaderTitle,
+#startupLoaderText,
+#startupLoaderPercent{
+  position:absolute;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+  clip:rect(0 0 0 0);
+  white-space:nowrap;
+}
+#startupLoaderCard{
+  position:fixed;
+  left:50%;
+  top:var(--diorama-loader-y, 62%);
+  transform:translate(-50%, -50%);
+  z-index:13;
+  width:min(156px, calc(100vw - 184px));
+  margin:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  pointer-events:none;
+}
+#startupLoaderBarFrame{
+  position:relative;
+  width:100%;
+  height:clamp(14px, 2.2vw, 18px);
+  border-radius:999px;
+  background:rgba(255,255,255,.28);
+  border:2px solid rgba(255,255,255,.88);
+  overflow:hidden;
+  box-shadow:0 4px 10px rgba(4,45,91,.14);
+  opacity:1;
+  visibility:visible;
+  transform:scale(1);
+  transition:opacity .18s ease, transform .18s ease, visibility .18s ease;
+}
+#startupLoaderBar{
+  position:absolute;
+  left:2px;
+  top:2px;
+  bottom:2px;
+  width:0%;
+  min-width:0;
+  max-width:calc(100% - 4px);
+  border-radius:999px;
+  background:linear-gradient(180deg, rgba(255,255,255,.98), rgba(255,240,186,.98) 60%, rgba(255,219,118,.98));
+  box-shadow:none;
+  transition:width .16s linear;
+}
+#startupLoaderBarFrame::before,
+#startupLoaderBarFrame::after{
+  content:none;
+  display:none;
+}
+#startupStartPrompt{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%, -50%) scale(.96);
+  width:max-content;
+  opacity:0;
+  visibility:hidden;
+  color:rgba(255,255,255,.94);
+  font-family:"Amatic SC", cursive;
+  font-weight:700;
+  font-size:clamp(26px, 4.6vw, 42px);
+  line-height:1;
+  letter-spacing:.035em;
+  text-align:center;
+  text-shadow:0 3px 0 rgba(4,45,91,.18), 0 8px 18px rgba(4,45,91,.18);
+  pointer-events:none;
+  white-space:nowrap;
+  transition:opacity .24s ease .18s, transform .24s cubic-bezier(.2,1.15,.2,1) .18s, visibility .24s ease .18s;
+}
+body.diorama-assets-ready:not(.game-started) #startupLoaderBarFrame{
+  opacity:0;
+  visibility:hidden;
+  transform:scale(.96);
+}
+body.diorama-assets-ready:not(.game-started) #startupStartPrompt{
+  opacity:1;
+  visibility:visible;
+  transform:translate(-50%, -50%) scale(1);
+}
+body.game-started #startupLoaderCard{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+body:not(.diorama-assets-ready) #startPage{
+  opacity:1 !important;
+  visibility:visible !important;
+  pointer-events:none !important;
+}
+
+/* DIORAMA start-page loader geometric correction: bar is visually centered between title bottom and footer top. */
+#startPage{
+  display:block !important;
+  position:fixed !important;
+  --diorama-title-top:clamp(78px, 16vh, 148px);
+  --diorama-title-height:clamp(62px, 14.62vw, 181px);
+  --diorama-footer-clearance:clamp(70px, 12vh, 116px);
+  --diorama-bar-y:calc((var(--diorama-title-top) + var(--diorama-title-height) + (100vh - var(--diorama-footer-clearance))) / 2);
+}
+#startPage #startFooter{
+  position:absolute !important;
+  left:50% !important;
+  bottom:max(16px, env(safe-area-inset-bottom)) !important;
+  right:auto !important;
+  top:auto !important;
+  transform:translateX(-50%) !important;
+  margin:0 !important;
+}
+@media (max-width:520px){
+  #startPage{
+    --diorama-title-top:clamp(86px, 18vh, 132px);
+    --diorama-title-height:clamp(50px, 15.48vw, 97px);
+    --diorama-footer-clearance:clamp(76px, 13vh, 108px);
+  }
+}
+@media (min-width:521px) and (max-width:1024px){
+  #startPage{
+    --diorama-title-top:clamp(92px, 15vh, 146px);
+    --diorama-title-height:clamp(70px, 14.62vw, 150px);
+    --diorama-footer-clearance:clamp(78px, 11vh, 112px);
+  }
+}
+@media (max-height:520px){
+  #startPage{
+    --diorama-title-top:clamp(34px, 10vh, 52px);
+    --diorama-title-height:clamp(46px, 11.18vw, 96px);
+    --diorama-footer-clearance:clamp(48px, 13vh, 72px);
+  }
+  #startPage #startFooter{
+    bottom:max(8px, env(safe-area-inset-bottom)) !important;
+  }
+}
+
+
+/* Startup anti-flash gate: keep the start-screen title/bar/footer hidden until
+   JS has applied the final responsive title sizing and loader placement.
+   This prevents the first-frame tiny DIORAMA/title duplicate flash without
+   moving the title, robot, footer, loader, gameplay, music, or level logic. */
+body.diorama-booting:not(.game-started) #startTitle,
+body.diorama-booting:not(.game-started) #startupLoaderCard,
+body.diorama-booting:not(.game-started) #startFooter{
+  opacity:0 !important;
+  visibility:hidden !important;
+}
+body:not(.diorama-booting) #startTitle,
+body:not(.diorama-booting) #startupLoaderCard,
+body:not(.diorama-booting) #startFooter{
+  opacity:1;
+}
+
 </style>
 </head>
-<body>
+<body class="diorama-booting">
 <div id="stage"></div>
-<div id="startPage" role="button" tabindex="0" aria-label="Start game"><div id="startTitle">DIORAMA<span class="scribbleGrain" aria-hidden="true"></span></div><div id="startFooter" aria-label="Credits"><div>Dev ApexInnovate.ae</div><div>Music HitsLab</div></div></div>
+<div id="startupLoader" aria-hidden="true"></div>
+<div id="startPage" role="button" tabindex="0" aria-label="Start game"><div id="startTitle">DIORAMA<span class="scribbleGrain" aria-hidden="true"></span></div><div id="startupLoaderCard" aria-live="polite" aria-label="DIORAMA loading"><div id="startupLoaderTitle">DIORAMA</div><div id="startupLoaderText">Loading the toy world...</div><div id="startupLoaderBarFrame"><div id="startupLoaderBar"></div></div><div id="startupStartPrompt" aria-hidden="true">Click to Start!</div><div id="startupLoaderPercent">0%</div></div><div id="startFooter" aria-label="Credits"><div>Dev ApexInnovate.ae</div><div>Music HitsLab</div></div></div>
 <button id="musicToggle" class="hudIcon" type="button" aria-label="Toggle music" data-muted="false">♫</button>
 <button id="fullscreenBtn" class="hudIcon" type="button" aria-label="Toggle fullscreen" aria-pressed="false">⛶</button>
-<audio id="bgMusic" src="./assets/music/hitslab-game-gaming-music-295075.mp3" preload="auto" loop></audio>
+<audio id="bgMusic" src="./assets/music/hitslab-game-gaming-music-295075.mp3" preload="auto" loop playsinline></audio>
 <div id="cinemaVignette"></div>
 
 <div id="hud">
@@ -1744,7 +1823,7 @@ body.game-ended.end-step-3 #endPanelThree{
   <div id="endText" aria-live="polite">
     <div id="endPanelOne" class="endPanel">
       <span class="line">To be</span>
-      <span class="line">Continue...</span>
+      <span class="line">Continue</span>
     </div>
     <div id="endPanelTwo" class="endPanel">
       <span class="line label">DEV</span>
@@ -1783,8 +1862,10 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
 17. Robot facing rule: robot rotation.y is set directly to face the golden goal every frame, before render and during movement interpolation. No delayed body turn, no path-facing turn, and no camera-facing body turn.
 -->
 
-<script>
-(() => {
+<script defer>
+document.addEventListener('DOMContentLoaded', () => {
+  try {
+    (() => {
   // node_modules/three/build/three.module.js
   var REVISION = "160";
   var CullFaceNone = 0;
@@ -21149,6 +21230,50 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
   var musicToggle = document.getElementById("musicToggle");
   var fullscreenBtn = document.getElementById("fullscreenBtn");
   var bgMusic = document.getElementById("bgMusic");
+  var startupLoader = document.getElementById("startupLoader");
+  var startupLoaderCard = document.getElementById("startupLoaderCard");
+  var startupLoaderText = document.getElementById("startupLoaderText");
+  var startupLoaderBar = document.getElementById("startupLoaderBar");
+  var startupLoaderPercent = document.getElementById("startupLoaderPercent");
+  var startTitle = document.getElementById("startTitle");
+  var startFooter = document.getElementById("startFooter");
+  function updateStartupLoaderPlacement() {
+    if (!startupLoaderCard || !startTitle || !startFooter) return;
+    const titleRect = startTitle.getBoundingClientRect();
+    const footerRect = startFooter.getBoundingClientRect();
+    const barRect = startupLoaderCard.getBoundingClientRect();
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 0;
+    const availableTop = titleRect.bottom;
+    const availableBottom = footerRect.top;
+    const center = availableTop + Math.max(0, availableBottom - availableTop) * 0.5;
+    const halfBar = Math.max(4, barRect.height * 0.5 || 4);
+    const safeTop = availableTop + halfBar + 8;
+    const safeBottom = availableBottom - halfBar - 8;
+    const fallback = viewportHeight * 0.62;
+    const y = availableBottom > availableTop ? Math.min(Math.max(center, safeTop), safeBottom) : fallback;
+    document.documentElement.style.setProperty("--diorama-loader-y", y + "px");
+  }
+
+  function revealStableStartScreen() {
+    if (!document.body || !document.body.classList.contains("diorama-booting")) return;
+    updateResponsiveLayoutVars();
+    updateWidthAdaptiveTextSizing();
+    updateStartupLoaderPlacement();
+    requestAnimationFrame(() => {
+      updateStartupLoaderPlacement();
+      document.body.classList.remove("diorama-booting");
+    });
+  }
+  window.addEventListener("resize", updateStartupLoaderPlacement, { passive: true });
+  window.addEventListener("orientationchange", () => setTimeout(updateStartupLoaderPlacement, 80));
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(updateStartupLoaderPlacement).catch(() => {});
+  requestAnimationFrame(updateStartupLoaderPlacement);
+  var startupGateReady = false;
+  var startupProgressVisual = 0;
+  var startupProgressTarget = 0;
+  var startupProgressRaf = 0;
+  var musicPreloadReady = false;
+  var musicPreloadObjectUrl = "";
   var TILE_TOP_Y = 0.035;
   var ROBOT_FOOT_TO_ORIGIN = 0.02;
   var ROBOT_ON_TILE_Y = TILE_TOP_Y + ROBOT_FOOT_TO_ORIGIN;
@@ -21181,7 +21306,7 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
     fragile: 15899209,
     oneWay: 7985503
   };
-  var levels = [{"name":"1 - First Toy Step","puzzle":"Learn tap-to-move and read reachable surfaces.","hint":"Tap glow pads. Reach the golden crown.","start":[0,0,0],"goal":[3,0,1],"size":[4,2],"tiles":[[0,0,0],[1,0,0],[2,0,0],[2,0,1],[3,0,1]],"buttons":[],"liftBlocks":[],"movers":[],"danger":[],"keys":[],"keyLocks":[],"fragile":[],"oneWay":[],"weightedPlates":[],"foldingBridges":[],"turnstiles":[],"crates":[]},{"name":"2 - Soft Stair Climb","puzzle":"Learn one-height climbing through a clean single-row stair route.","hint":"Follow the one straight stair path to the crown.","start":[0,0,0],"goal":[5,2,0],"size":[6,1],"tiles":[[0,0,0],[1,0,0],[2,1,0],[3,1,0],[4,2,0],[5,2,0]],"buttons":[],"liftBlocks":[],"movers":[],"danger":[],"keys":[],"keyLocks":[],"fragile":[],"oneWay":[],"weightedPlates":[],"foldingBridges":[],"turnstiles":[],"crates":[]},{"name":"3 - Little Stair Lift","puzzle":"Press the red button on the single path to raise the grey stair brick.","hint":"Red stays solved. Step on red, then cross grey.","start":[0,0,0],"goal":[5,2,0],"size":[6,1],"tiles":[[0,0,0],[1,0,0],[2,0,0],[4,2,0],[5,2,0]],"buttons":[{"pos":[2,0,0],"activates":"liftA"}],"liftBlocks":[{"id":"liftA","pos":[3,0,0],"targetY":1}],"movers":[],"danger":[],"keys":[],"keyLocks":[],"fragile":[],"oneWay":[],"weightedPlates":[],"foldingBridges":[],"turnstiles":[],"crates":[]},{"name":"4 - Sliding Toy Bridge","puzzle":"Time entry onto a moving platform.","hint":"Wait, step on, and ride smoothly.","start":[0,0,1],"goal":[5,0,1],"size":[6,3],"tiles":[[0,0,1],[1,0,1],[4,0,1],[5,0,1]],"movers":[{"from":[2,0,1],"to":[3,0,1],"period":2.7}],"buttons":[],"liftBlocks":[],"danger":[],"keys":[],"keyLocks":[],"fragile":[],"oneWay":[],"weightedPlates":[],"foldingBridges":[],"turnstiles":[],"crates":[]},{"name":"5 - Clean Box Button","puzzle":"Stand behind the brown box, tap the box, slide it onto the blue button, then use the side bypass and raised stair brick to reach the crown.","hint":"Push the box onto blue. Then walk around the side route to the raised stair.","start":[0,0,1],"goal":[7,1,1],"size":[8,3],"tiles":[[0,0,1],[1,0,1],[2,0,1],[3,0,0],[3,0,1],[3,0,2],[4,0,0],[4,0,1],[5,0,0],[6,1,1],[7,1,1]],"buttons":[],"liftBlocks":[{"id":"liftBoxA","pos":[5,0,1],"targetY":0.5}],"crates":[{"id":"crateBoxA","pos":[3,0,1]}],"weightedPlates":[{"pos":[4,0,1],"activates":"liftBoxA"}],"movers":[],"danger":[],"keys":[],"keyLocks":[],"fragile":[],"oneWay":[],"foldingBridges":[],"turnstiles":[]},{"name":"6 - Blue Trigger Spikes","puzzle":"Collect the blue trigger on the side branch to retract the red spikes blocking the path.","hint":"Blue trigger drops the red spikes. Then cross.","start":[0,0,1],"goal":[7,0,1],"size":[8,3],"tiles":[[0,0,1],[1,0,1],[2,0,1],[2,0,0],[3,0,0],[3,0,1],[4,0,1],[5,0,1],[6,0,1],[7,0,1]],"keys":[{"id":"keyBlueA","pos":[3,0,0]}],"keyLocks":[{"pos":[3,0,1],"keyId":"keyBlueA","kind":"spikes"}],"buttons":[],"liftBlocks":[],"movers":[],"danger":[],"fragile":[],"oneWay":[],"weightedPlates":[],"foldingBridges":[],"turnstiles":[],"crates":[]},{"name":"7 - Fold-Out Bridge","puzzle":"Press the red latch to unfold a grey bridge across the gap, then cross the new top surface.","hint":"Red unfolds the bridge. Cross only after it settles.","start":[0,0,1],"goal":[8,0,1],"size":[9,3],"tiles":[[0,0,1],[1,0,1],[2,0,1],[2,0,0],[3,0,1],[5,0,1],[6,0,1],[7,0,1],[8,0,1]],"buttons":[{"pos":[2,0,0],"activates":"bridgeFoldA"}],"foldingBridges":[{"id":"bridgeFoldA","target":[4,0,1]}],"liftBlocks":[],"movers":[],"danger":[],"keys":[],"keyLocks":[],"fragile":[],"oneWay":[],"weightedPlates":[],"turnstiles":[],"crates":[]},{"name":"8 - One-Way Relay","puzzle":"Latch the bridge, commit through the one-way arrow, collect the blue trigger, then clear the spike gate and climb to the goal.","hint":"Red first. Arrow commits forward. Blue drops the spikes.","start":[0,0,1],"goal":[11,1,1],"size":[12,4],"tiles":[[0,0,1],[1,0,1],[2,0,1],[2,0,0],[4,0,1],[5,0,1],[6,0,1],[6,0,2],[7,0,1],[8,0,1],[9,0.5,1],[10,1,1],[11,1,1]],"buttons":[{"pos":[2,0,0],"activates":"bridgeFoldB"}],"foldingBridges":[{"id":"bridgeFoldB","target":[3,0,1]}],"keys":[{"id":"keyBlueB","pos":[6,0,2]}],"keyLocks":[{"pos":[7,0,1],"keyId":"keyBlueB","kind":"spikes"}],"oneWay":[{"pos":[5,0,1],"dir":[1,0,0]}],"liftBlocks":[],"movers":[],"danger":[],"fragile":[],"weightedPlates":[],"turnstiles":[],"crates":[]},{"name":"9 - Crate Keeps the Bridge","puzzle":"Use the crate to hold the blue plate so the folding bridge stays open while the robot crosses.","hint":"Box on blue. Bridge stays. Cross while it holds.","start":[0,0,2],"goal":[10,0,2],"size":[11,5],"tiles":[[0,0,2],[1,0,2],[2,0,2],[3,0,2],[5,0,2],[6,0,2],[7,0,2],[8,0,2],[9,0,2],[10,0,2],[1,0,3],[2,0,3],[3,0,3]],"crates":[{"id":"crateBridgeA","pos":[2,0,3]}],"weightedPlates":[{"pos":[3,0,3],"activates":"bridgeHoldA"}],"foldingBridges":[{"id":"bridgeHoldA","target":[4,0,2]}],"buttons":[],"liftBlocks":[],"movers":[],"danger":[],"keys":[],"keyLocks":[],"fragile":[],"oneWay":[],"turnstiles":[]},{"name":"10 - Triple Tier Elevator Lock","puzzle":"Use the up-down elevator as the only way onto the tier stack, then unlock the upper bridge before climbing a clean three-tier staircase.","hint":"Ride the grey elevator. Red opens the upper bridge. Then climb the stair tiers.","start":[0,0,2],"goal":[11,4,2],"size":[12,5],"tiles":[[0,0,2],[1,0,2],[2,0,2],[4,2.5,2],[5,2.5,2],[5,2.5,1],[7,2.5,2],[8,3,2],[9,3.5,2],[10,4,2],[11,4,2]],"movers":[{"from":[3,0,2],"to":[3,2.5,2],"period":3.2,"hideArrow":true,"hideRail":true,"plainTop":true}],"buttons":[{"pos":[5,2.5,1],"activates":"bridgeTier10A"}],"foldingBridges":[{"id":"bridgeTier10A","target":[6,2.5,2]}],"liftBlocks":[],"danger":[],"keys":[],"keyLocks":[],"fragile":[],"oneWay":[],"weightedPlates":[],"turnstiles":[],"crates":[],"slideBlocks":[],"gearBridges":[]}];
+  var levels = [{"name":"1 - First Toy Step","puzzle":"Learn tap-to-move and read reachable surfaces.","hint":"Tap glow pads. Reach the golden crown.","start":[0,0,0],"goal":[3,0,1],"size":[4,2],"tiles":[[0,0,0],[1,0,0],[2,0,0],[2,0,1],[3,0,1]],"buttons":[],"liftBlocks":[],"movers":[],"danger":[],"keys":[],"keyLocks":[],"fragile":[],"oneWay":[],"weightedPlates":[],"foldingBridges":[],"turnstiles":[],"crates":[]},{"name":"2 - Soft Stair Climb","puzzle":"Learn one-height climbing through a clean single-row stair route.","hint":"Follow the one straight stair path to the crown.","start":[0,0,0],"goal":[5,2,0],"size":[6,1],"tiles":[[0,0,0],[1,0,0],[2,1,0],[3,1,0],[4,2,0],[5,2,0]],"buttons":[],"liftBlocks":[],"movers":[],"danger":[],"keys":[],"keyLocks":[],"fragile":[],"oneWay":[],"weightedPlates":[],"foldingBridges":[],"turnstiles":[],"crates":[]},{"name":"3 - Little Stair Lift","puzzle":"Press the red button on the single path to raise the grey stair brick.","hint":"Red stays solved. Step on red, then cross grey.","start":[0,0,0],"goal":[5,2,0],"size":[6,1],"tiles":[[0,0,0],[1,0,0],[2,0,0],[4,2,0],[5,2,0]],"buttons":[{"pos":[2,0,0],"activates":"liftA"}],"liftBlocks":[{"id":"liftA","pos":[3,0,0],"targetY":1}],"movers":[],"danger":[],"keys":[],"keyLocks":[],"fragile":[],"oneWay":[],"weightedPlates":[],"foldingBridges":[],"turnstiles":[],"crates":[]},{"name":"4 - Sliding Toy Bridge","puzzle":"Time entry onto a moving platform.","hint":"Wait, step on, and ride smoothly.","start":[0,0,1],"goal":[5,0,1],"size":[6,3],"tiles":[[0,0,1],[1,0,1],[4,0,1],[5,0,1]],"movers":[{"from":[2,0,1],"to":[3,0,1],"period":2.7}],"buttons":[],"liftBlocks":[],"danger":[],"keys":[],"keyLocks":[],"fragile":[],"oneWay":[],"weightedPlates":[],"foldingBridges":[],"turnstiles":[],"crates":[]},{"name":"5 - Clean Box Button","puzzle":"Stand behind the brown box, tap the box, slide it onto the blue button, then use the side bypass and raised stair brick to reach the crown.","hint":"Push the box onto blue. Then walk around the side route to the raised stair.","start":[0,0,1],"goal":[7,1,1],"size":[8,3],"tiles":[[0,0,1],[1,0,1],[2,0,1],[3,0,0],[3,0,1],[3,0,2],[4,0,0],[4,0,1],[5,0,0],[6,1,1],[7,1,1]],"buttons":[],"liftBlocks":[{"id":"liftBoxA","pos":[5,0,1],"targetY":0.5}],"crates":[{"id":"crateBoxA","pos":[3,0,1]}],"weightedPlates":[{"pos":[4,0,1],"activates":"liftBoxA"}],"movers":[],"danger":[],"keys":[],"keyLocks":[],"fragile":[],"oneWay":[],"foldingBridges":[],"turnstiles":[]},{"name":"6 - Blue Trigger Spikes","puzzle":"Collect the blue trigger on the side branch to retract the red spikes blocking the path.","hint":"Blue trigger drops the red spikes. Then cross.","start":[0,0,1],"goal":[7,0,1],"size":[8,3],"tiles":[[0,0,1],[1,0,1],[2,0,1],[2,0,0],[3,0,0],[3,0,1],[4,0,1],[5,0,1],[6,0,1],[7,0,1]],"keys":[{"id":"keyBlueA","pos":[3,0,0]}],"keyLocks":[{"pos":[3,0,1],"keyId":"keyBlueA","kind":"spikes"}],"buttons":[],"liftBlocks":[],"movers":[],"danger":[],"fragile":[],"oneWay":[],"weightedPlates":[],"foldingBridges":[],"turnstiles":[],"crates":[]},{"name":"7 - Fold-Out Bridge","puzzle":"Press the red latch to unfold a grey bridge across the gap, then cross the new top surface.","hint":"Red unfolds the bridge. Cross only after it settles.","start":[0,0,1],"goal":[8,0,1],"size":[9,3],"tiles":[[0,0,1],[1,0,1],[2,0,1],[2,0,0],[3,0,1],[5,0,1],[6,0,1],[7,0,1],[8,0,1]],"buttons":[{"pos":[2,0,0],"activates":"bridgeFoldA"}],"foldingBridges":[{"id":"bridgeFoldA","target":[4,0,1]}],"liftBlocks":[],"movers":[],"danger":[],"keys":[],"keyLocks":[],"fragile":[],"oneWay":[],"weightedPlates":[],"turnstiles":[],"crates":[]},{"name":"8 - One-Way Relay","puzzle":"Latch the bridge, commit through the one-way arrow, collect the blue trigger, then clear the spike gate and climb to the goal.","hint":"Red first. Arrow commits forward. Blue drops the spikes.","start":[0,0,1],"goal":[11,1,1],"size":[12,4],"tiles":[[0,0,1],[1,0,1],[2,0,1],[2,0,0],[4,0,1],[5,0,1],[6,0,1],[6,0,2],[7,0,1],[8,0,1],[9,0.5,1],[10,1,1],[11,1,1]],"buttons":[{"pos":[2,0,0],"activates":"bridgeFoldB"}],"foldingBridges":[{"id":"bridgeFoldB","target":[3,0,1]}],"keys":[{"id":"keyBlueB","pos":[6,0,2]}],"keyLocks":[{"pos":[7,0,1],"keyId":"keyBlueB","kind":"spikes"}],"oneWay":[{"pos":[5,0,1],"dir":[1,0,0]}],"liftBlocks":[],"movers":[],"danger":[],"fragile":[],"weightedPlates":[],"turnstiles":[],"crates":[]},{"name":"9 - Crate Keeps the Bridge","puzzle":"Use the crate to hold the blue plate so the folding bridge stays open while the robot crosses.","hint":"Box on blue. Bridge stays. Cross while it holds.","start":[0,0,2],"goal":[10,0,2],"size":[11,5],"tiles":[[0,0,2],[1,0,2],[2,0,2],[3,0,2],[5,0,2],[6,0,2],[7,0,2],[8,0,2],[9,0,2],[10,0,2],[1,0,3],[2,0,3],[3,0,3]],"crates":[{"id":"crateBridgeA","pos":[2,0,3]}],"weightedPlates":[{"pos":[3,0,3],"activates":"bridgeHoldA"}],"foldingBridges":[{"id":"bridgeHoldA","target":[4,0,2]}],"buttons":[],"liftBlocks":[],"movers":[],"danger":[],"keys":[],"keyLocks":[],"fragile":[],"oneWay":[],"turnstiles":[]},{"name":"10 - Triple Tier Elevator Lock","puzzle":"Use the up-down elevator as the only way onto the tier stack, then unlock the upper bridge before climbing a clean three-tier staircase.","hint":"Ride the grey elevator. Red opens the upper bridge. Then climb the stair tiers.","start":[0,0,2],"goal":[11,4,2],"size":[12,5],"tiles":[[0,0,2],[1,0,2],[2,0,2],[4,2.5,2],[5,2.5,2],[5,2.5,1],[7,2.5,2],[8,3,2],[9,3.5,2],[10,4,2],[11,4,2]],"movers":[{"from":[3,0,2],"to":[3,2.5,2],"period":3.2,"hideArrow":true,"hideRail":true,"plainTop":true}],"buttons":[{"pos":[5,2.5,1],"activates":"bridgeTier10A"}],"foldingBridges":[{"id":"bridgeTier10A","target":[6,2.5,2]}],"liftBlocks":[],"danger":[],"keys":[],"keyLocks":[],"fragile":[],"oneWay":[],"weightedPlates":[],"turnstiles":[],"crates":[],"slideBlocks":[],"gearBridges":[]},{"name":"11 - Coral Lift-Door Splitter","puzzle":"Use the side coral splitter to choose the longer lower route. The upper door leads to a dead balcony, while the lower door continues to a short raised crown climb.","hint":"Stand beside the coral switch. Flip it so the lower suspended door opens, then follow the longer lower path and climb the final steps.","start":[0,0,2],"goal":[11,2,2],"size":[12,5],"tiles":[[0,0,2],[1,0,2],[2,0,2],[2,0,1],[3,0,2],[4,0,2],[4,0,1],[5,0,1],[6,0,1],[7,0,1],[4,0,3],[5,0,3],[6,0,3],[7,0,3],[8,0,3],[8,0,2],[9,1,2],[10,1,2],[11,2,2]],"splitPathLevers":[{"id":"splitPath11","pos":[2,0,1],"controlFrom":[2,0,2],"initial":"A","gates":[{"pos":[5,0,1],"path":"A","axis":"x","openSwing":-1},{"pos":[5,0,3],"path":"B","axis":"x","openSwing":1}]}],"buttons":[],"liftBlocks":[],"movers":[],"danger":[],"keys":[],"keyLocks":[],"fragile":[],"oneWay":[],"weightedPlates":[],"foldingBridges":[],"turnstiles":[],"crates":[],"slideBlocks":[],"gearBridges":[],"directionalGates":[],"routeCommitmentDoors":[],"resetFloorTiles":[],"bridgePolaritySwitches":[]},{"name":"12 - Half-Square Gatewalk","puzzle":"Cross the open half-square tower on one readable route: unlock the south path, open the bridge, then climb clear stair-step lifts toward the crown.","hint":"Follow the single visible route. Every grey Up/Down brick becomes the next stair-step, so each forward click stays clear after camera rotation.","start":[1,0,6],"goal":[3,6,2],"size":[10,8],"tiles":[[1,0,6],[2,0,6],[3,0,6],[4,0,6],[5,0,6],[7,2,6],[8,2,6],[8,2,4],[8,2,3],[8,2,2],[6,4,2],[5,4,2],[3,6,2]],"buttons":[{"pos":[5,0,6],"activates":"hsSouthStepLift"},{"pos":[8,2,6],"activates":"hsEastBridge"},{"pos":[8,2,2],"activates":"hsEastStepLift"},{"pos":[5,4,2],"activates":"hsFinalStepLift"}],"liftBlocks":[{"id":"hsSouthStepLift","pos":[6,0,6],"targetY":1},{"id":"hsEastStepLift","pos":[7,2,2],"targetY":3},{"id":"hsFinalStepLift","pos":[4,4,2],"targetY":5}],"movers":[],"danger":[],"keys":[{"id":"hsSouthKey","pos":[3,0,6]}],"keyLocks":[{"keyId":"hsSouthKey","pos":[4,0,6],"kind":"spikes"}],"fragile":[],"oneWay":[],"weightedPlates":[],"foldingBridges":[{"id":"hsEastBridge","target":[8,2,5]}],"turnstiles":[],"crates":[],"slideBlocks":[],"gearBridges":[],"directionalGates":[],"routeCommitmentDoors":[],"resetFloorTiles":[],"bridgePolaritySwitches":[]},{"name":"13 - Stepped Crown Courtyard","puzzle":"Climb one clear zigzag crown route. Use simple red buttons to raise stair-step bricks and open one bridge; every post-button step is visible and forward-facing.","hint":"Follow the single visible spine. After each red button, the next grey step is directly ahead or clearly beside the robot, never hidden around a cramped corner.","start":[0,0,5],"goal":[4,8,0],"size":[11,7],"tiles":[[0,0,5],[1,0,5],[2,0,5],[3,0,5],[4,0,5],[6,2,5],[6,2,4],[6,2,3],[5,2,3],[4,2,3],[3,2,3],[3,4,1],[4,4,1],[5,4,1],[7,4,1],[7,4,2],[9,6,2],[9,6,1],[9,6,0],[8,6,0],[7,6,0],[6,6,0],[4,8,0]],"buttons":[{"pos":[4,0,5],"activates":"scFirstStepLift"},{"pos":[3,2,3],"activates":"scSecondStepLift"},{"pos":[5,4,1],"activates":"scMidBridge"},{"pos":[7,4,2],"activates":"scThirdStepLift"},{"pos":[6,6,0],"activates":"scFinalStepLift"}],"liftBlocks":[{"id":"scFirstStepLift","pos":[5,0,5],"targetY":1},{"id":"scSecondStepLift","pos":[3,2,2],"targetY":3},{"id":"scThirdStepLift","pos":[8,4,2],"targetY":5},{"id":"scFinalStepLift","pos":[5,6,0],"targetY":7}],"movers":[],"danger":[],"keys":[{"id":"scSouthKey","pos":[2,0,5]},{"id":"scUpperKey","pos":[9,6,1]}],"keyLocks":[{"keyId":"scSouthKey","pos":[3,0,5],"kind":"spikes"},{"keyId":"scUpperKey","pos":[7,6,0],"kind":"spikes"}],"fragile":[],"oneWay":[],"weightedPlates":[],"foldingBridges":[{"id":"scMidBridge","target":[6,4,1]}],"turnstiles":[],"crates":[],"slideBlocks":[],"gearBridges":[],"directionalGates":[],"routeCommitmentDoors":[],"resetFloorTiles":[],"bridgePolaritySwitches":[]},{"name":"14 - Gear Loom Rise","puzzle":"Climb a visible diagonal gear-loom path. Open the gear bridge, slide the rail brick into the route, unlock the turnstile, then climb the final high steps to the crown.","hint":"Follow the single diagonal route. Each red button opens the next clear step directly ahead.","start":[0,0,4],"goal":[2,8,1],"size":[12,6],"tiles":[[0,0,4],[1,0,4],[2,0,4],[4,0,4],[6,2,4],[7,2,4],[9,2,4],[11,4,4],[11,4,3],[11,4,1],[9,4,1],[7,6,1],[6,6,1],[5,6,1],[4,6,1],[2,8,1]],"buttons":[{"pos":[2,0,4],"activates":"glFirstGear"},{"pos":[4,0,4],"activates":"glFirstStepLift"},{"pos":[7,2,4],"activates":"glSlideBlock"},{"pos":[9,2,4],"activates":"glSecondStepLift"},{"pos":[11,4,3],"activates":"glTurnstile"},{"pos":[11,4,1],"activates":"glSecondGear"},{"pos":[9,4,1],"activates":"glThirdStepLift"},{"pos":[4,6,1],"activates":"glFinalStepLift"}],"liftBlocks":[{"id":"glFirstStepLift","pos":[5,0,4],"targetY":1},{"id":"glSecondStepLift","pos":[10,2,4],"targetY":3},{"id":"glThirdStepLift","pos":[8,4,1],"targetY":5},{"id":"glFinalStepLift","pos":[3,6,1],"targetY":7}],"movers":[],"danger":[],"keys":[{"id":"glUpperKey","pos":[6,6,1]}],"keyLocks":[{"keyId":"glUpperKey","pos":[5,6,1],"kind":"spikes"}],"fragile":[],"oneWay":[],"weightedPlates":[],"foldingBridges":[],"turnstiles":[{"id":"glTurnstile","pos":[11,4,2],"open":false,"flipHandle":true}],"crates":[],"slideBlocks":[{"id":"glSlideBlock","from":[8,2,5],"target":[8,2,4]}],"gearBridges":[{"id":"glFirstGear","target":[3,0,4],"swing":"red","flipWheel":true},{"id":"glSecondGear","target":[10,4,1],"swing":"blue","flipWheel":true}],"directionalGates":[],"routeCommitmentDoors":[],"resetFloorTiles":[],"bridgePolaritySwitches":[]},{"name":"15 - Three-Way False Summit","puzzle":"Choose between three serious-looking summit routes. The wrong routes travel far and fail only near their apparent finish; the prepared route is the only one that truly reaches the golden brick.","hint":"Do not trust the first glance. Study what each branch is missing near its end, then return and choose the prepared route.","start":[6,0,10],"goal":[4,8,0],"size":[13,11],"tiles":[[6,0,10],[6,0,9],[6,0,8],[5,0,8],[4,0,8],[3,0,8],[1,2,8],[1,2,7],[1,2,6],[2,4,5],[3,4,5],[4,4,5],[4,4,4],[4,4,3],[4,4,2],[6,0,7],[6,0,6],[5,1,5],[4,2,5],[4,2,4],[4,2,3],[3,4,2],[2,4,2],[2,4,1],[2,4,0],[7,0,8],[8,0,8],[10,2,8],[10,2,7],[10,2,6],[10,2,5],[10,2,4],[8,2,4],[6,4,4],[6,4,3],[6,4,2],[6,4,0],[4,8,0],[4,6,0],[4,7,1]],"buttons":[{"pos":[3,0,8],"activates":"fsLeftStepLift"},{"pos":[1,2,6],"activates":"fsLeftHighStepLift"},{"pos":[6,0,6],"activates":"fsMiddleBridge"},{"pos":[4,2,3],"activates":"fsMiddleStepLift"},{"pos":[8,0,8],"activates":"fsFirstStepLift"},{"pos":[10,2,4],"activates":"fsGearBridge"},{"pos":[8,2,4],"activates":"fsSecondStepLift"},{"pos":[6,4,2],"activates":"fsTurnstile"},{"pos":[6,4,0],"activates":"fsFinalStepLift"}],"liftBlocks":[{"id":"fsLeftStepLift","pos":[2,0,8],"targetY":1},{"id":"fsLeftHighStepLift","pos":[1,2,5],"targetY":3},{"id":"fsMiddleStepLift","pos":[4,2,2],"targetY":3},{"id":"fsFirstStepLift","pos":[9,0,8],"targetY":1},{"id":"fsSecondStepLift","pos":[7,2,4],"targetY":3},{"id":"fsFinalStepLift","pos":[5,4,0],"targetY":5}],"movers":[],"danger":[],"keys":[{"id":"fsTruthKey","pos":[10,2,6]}],"keyLocks":[{"keyId":"fsTruthKey","pos":[4,4,3],"kind":"spikes"},{"keyId":"fsTruthKey","pos":[2,4,1],"kind":"spikes"},{"keyId":"fsTruthKey","pos":[10,2,5],"kind":"spikes"}],"fragile":[],"oneWay":[],"weightedPlates":[],"foldingBridges":[{"id":"fsMiddleBridge","target":[6,0,5]}],"turnstiles":[{"id":"fsTurnstile","pos":[6,4,1],"open":false,"flipHandle":true}],"crates":[],"slideBlocks":[],"gearBridges":[{"id":"fsGearBridge","target":[9,2,4],"swing":"green","flipWheel":true}],"directionalGates":[],"routeCommitmentDoors":[],"resetFloorTiles":[],"bridgePolaritySwitches":[]},{"name":"16 - Coupler Clockwork Spine","puzzle":"Use two step-block couplers to raise only the next stair-step, then commit through the one-way lift and finish the high clockwork spine.","hint":"Step on each copper coupler once. It raises the next grey step. Do not fight the path; every next tile is forward and visible.","start":[1,0,8],"goal":[4,8,2],"size":[11,10],"tiles":[[1,0,8],[2,0,8],[4,2,8],[5,2,8],[7,2,8],[8,4,7],[8,4,6],[8,4,5],[8,4,4],[6,6,4],[6,8,2],[5,8,2],[4,8,2]],"buttons":[{"pos":[5,2,8],"activates":"ccGearBridge"},{"pos":[8,4,4],"activates":"ccMidStepLift"},{"pos":[6,6,4],"activates":"ccOneWayLift"}],"stepBlockCouplers":[{"pos":[2,0,8],"toggles":"ccFirstCouplerLift"},{"pos":[7,2,8],"toggles":"ccSecondCouplerLift"}],"liftBlocks":[{"id":"ccFirstCouplerLift","pos":[3,0,8],"targetY":1},{"id":"ccSecondCouplerLift","pos":[8,2,8],"targetY":3},{"id":"ccMidStepLift","pos":[7,4,4],"targetY":5},{"id":"ccOneWayLift","pos":[6,6,3],"targetY":7,"oneWayExit":[0,0,-1]}],"movers":[],"danger":[],"keys":[{"id":"ccCrownKey","pos":[8,4,6]}],"keyLocks":[{"keyId":"ccCrownKey","pos":[8,4,5],"kind":"spikes"}],"fragile":[],"oneWay":[],"weightedPlates":[],"foldingBridges":[],"turnstiles":[],"crates":[],"slideBlocks":[],"gearBridges":[{"id":"ccGearBridge","target":[6,2,8],"swing":"green","flipWheel":true}],"directionalGates":[],"routeCommitmentDoors":[],"resetFloorTiles":[],"bridgePolaritySwitches":[]},{"name":"17 - Reciprocating Lift Atelier","puzzle":"Use paired counter-lifts: each red button raises the route lift while its twin lowers elsewhere. Read the mechanical exchange, then follow the single high courtyard path to the crown.","hint":"Each paired lift trades height with its twin. Press the button, then take the clear raised stair-step directly ahead.","start":[1,0,7],"goal":[7,8,5],"size":[10,9],"tiles":[[1,0,7],[2,0,7],[4,2,7],[5,2,7],[7,2,7],[7,2,6],[7,2,5],[7,2,4],[7,4,2],[6,4,2],[4,4,2],[2,6,2],[2,6,3],[2,6,5],[3,6,5],[4,6,5],[6,8,5],[7,8,5]],"buttons":[{"pos":[2,0,7],"activates":"rtTwinA"},{"pos":[5,2,7],"activates":"rtGearBridge"},{"pos":[7,2,4],"activates":"rtTwinB"},{"pos":[6,4,2],"activates":"rtTurnstile"},{"pos":[4,4,2],"activates":"rtTwinC"},{"pos":[2,6,3],"activates":"rtFoldingBridge"},{"pos":[4,6,5],"activates":"rtTwinD"}],"liftBlocks":[{"id":"rtLiftA1","pos":[3,0,7],"targetY":1},{"id":"rtLiftB1","pos":[3,0,5],"targetY":1,"initialActive":true},{"id":"rtLiftA2","pos":[7,2,3],"targetY":3},{"id":"rtLiftB2","pos":[9,2,3],"targetY":3,"initialActive":true},{"id":"rtLiftA3","pos":[3,4,2],"targetY":5},{"id":"rtLiftB3","pos":[3,4,0],"targetY":5,"initialActive":true},{"id":"rtLiftA4","pos":[5,6,5],"targetY":7},{"id":"rtLiftB4","pos":[5,6,7],"targetY":7,"initialActive":true}],"reciprocatingLiftTwins":[{"id":"rtTwinA","liftA":"rtLiftA1","liftB":"rtLiftB1","initial":"B"},{"id":"rtTwinB","liftA":"rtLiftA2","liftB":"rtLiftB2","initial":"B"},{"id":"rtTwinC","liftA":"rtLiftA3","liftB":"rtLiftB3","initial":"B"},{"id":"rtTwinD","liftA":"rtLiftA4","liftB":"rtLiftB4","initial":"B"}],"movers":[],"danger":[],"keys":[{"id":"rtLowerKey","pos":[7,2,6]},{"id":"rtUpperKey","pos":[2,6,5]}],"keyLocks":[{"keyId":"rtLowerKey","pos":[7,2,5],"kind":"spikes"},{"keyId":"rtUpperKey","pos":[3,6,5],"kind":"spikes"}],"fragile":[],"oneWay":[],"weightedPlates":[],"foldingBridges":[{"id":"rtFoldingBridge","target":[2,6,4]}],"turnstiles":[{"id":"rtTurnstile","pos":[5,4,2],"open":false,"flipHandle":true}],"crates":[],"slideBlocks":[],"gearBridges":[{"id":"rtGearBridge","target":[6,2,7],"swing":"blue","flipWheel":true}],"directionalGates":[],"routeCommitmentDoors":[],"resetFloorTiles":[],"bridgePolaritySwitches":[]},{"name":"18 - Transfer Pad Foundry","puzzle":"Use paired mechanical transfer pads as real supported route joints: prepare each segment, step onto the bronze pad, and continue from its linked landing pad toward the crown.","hint":"Every bronze pad has a matching landing pad. The route still has one spine: unlock, climb, transfer, open the mechanism, transfer again, then reach the crown.","start":[0,0,7],"goal":[4,8,1],"size":[11,9],"tiles":[[0,0,7],[1,0,7],[2,0,7],[3,0,7],[4,0,7],[6,2,7],[6,2,6],[6,2,5],[6,2,4],[2,4,4],[3,4,4],[4,4,4],[6,4,4],[7,4,4],[8,4,4],[9,4,4],[9,6,3],[8,6,3],[7,6,3],[5,6,3],[5,8,1],[4,8,1]],"buttons":[{"pos":[4,0,7],"activates":"tpFirstStepLift"},{"pos":[4,4,4],"activates":"tpGearBridge"},{"pos":[9,4,4],"activates":"tpSecondStepLift"},{"pos":[7,6,3],"activates":"tpTurnstile"}],"liftBlocks":[{"id":"tpFirstStepLift","pos":[5,0,7],"targetY":1},{"id":"tpSecondStepLift","pos":[9,4,3],"targetY":5}],"transferPads":[{"id":"tpFoundryPadA","from":[6,2,4],"to":[2,4,4]},{"id":"tpFoundryPadB","from":[5,6,3],"to":[5,8,1]}],"movers":[],"danger":[],"keys":[{"id":"tpLowerKey","pos":[2,0,7]},{"id":"tpUpperKey","pos":[7,4,4]}],"keyLocks":[{"keyId":"tpLowerKey","pos":[3,0,7],"kind":"spikes"},{"keyId":"tpUpperKey","pos":[8,4,4],"kind":"spikes"}],"fragile":[],"oneWay":[],"weightedPlates":[],"foldingBridges":[],"turnstiles":[{"id":"tpTurnstile","pos":[6,6,3],"open":false,"flipHandle":true}],"crates":[],"slideBlocks":[],"gearBridges":[{"id":"tpGearBridge","target":[5,4,4],"swing":"green","flipWheel":true}],"directionalGates":[],"routeCommitmentDoors":[],"resetFloorTiles":[],"bridgePolaritySwitches":[],"stepBlockCouplers":[],"reciprocatingLiftTwins":[]},{"name":"19 - Magnetic Rail Orchard","puzzle":"Use a visible rail magnet to pull the blocking crate sideways, then climb the high orchard spine through keys, bridgework, and stair-step lifts.","hint":"The crate is not for pushing here. Press the magnet button, watch the rail pull it off the path, then keep climbing the single route.","start":[0,0,8],"goal":[8,8,0],"size":[12,9],"tiles":[[0,0,8],[1,0,8],[2,0,8],[3,0,8],[4,0,8],[4,0,7],[6,2,8],[7,2,8],[8,2,8],[8,2,7],[8,2,5],[8,4,3],[7,4,3],[6,4,3],[4,4,3],[2,6,3],[2,6,2],[2,6,1],[3,6,1],[5,8,1],[6,8,1],[7,8,1],[8,8,1],[8,8,0]],"buttons":[{"pos":[3,0,8],"activates":"magRailA"},{"pos":[4,0,8],"activates":"magLiftA"},{"pos":[8,2,7],"activates":"magGearA"},{"pos":[8,2,5],"activates":"magLiftB"},{"pos":[6,4,3],"activates":"magTurnA"},{"pos":[4,4,3],"activates":"magLiftC"},{"pos":[3,6,1],"activates":"magLiftD"}],"liftBlocks":[{"id":"magLiftA","pos":[5,0,8],"targetY":1},{"id":"magLiftB","pos":[8,2,4],"targetY":3},{"id":"magLiftC","pos":[3,4,3],"targetY":5},{"id":"magLiftD","pos":[4,6,1],"targetY":7}],"magneticPullArrays":[{"id":"magRailA","crateId":"magCrateA","direction":[0,0,-1],"target":[4,0,7],"track":[[4,0,8],[4,0,7]]}],"crates":[{"id":"magCrateA","pos":[4,0,8]}],"gearBridges":[{"id":"magGearA","target":[8,2,6],"swing":"green","flipWheel":true}],"turnstiles":[{"id":"magTurnA","pos":[5,4,3],"open":false,"flipHandle":true}],"keys":[{"id":"magKeyA","pos":[7,2,8]},{"id":"magKeyB","pos":[2,6,2]}],"keyLocks":[{"keyId":"magKeyA","pos":[8,2,8],"kind":"spikes"},{"keyId":"magKeyB","pos":[2,6,1],"kind":"spikes"}],"movers":[],"danger":[],"fragile":[],"oneWay":[],"weightedPlates":[],"foldingBridges":[],"slideBlocks":[],"splitPathLevers":[],"bridgePolaritySwitches":[],"directionalGates":[],"routeCommitmentDoors":[],"resetFloorTiles":[],"stepBlockCouplers":[],"reciprocatingLiftTwins":[],"transferPads":[]},{"name":"20 - Delayed Lift Observatory","puzzle":"Press a delayed-lift button, step into position, and let the next stair-step rise one move later. The route is visible, but the timing is move-order thinking, not reflex timing.","hint":"A delayed lift rises after your next move. Press, step to the waiting tile, then climb the new stair-step.","start":[0,0,3],"goal":[5,8,0],"size":[12,8],"tiles":[[0,0,3],[1,0,3],[2,0,3],[3,0,3],[5,2,3],[6,2,3],[7,2,3],[8,2,3],[10,2,3],[10,2,2],[9,4,1],[8,4,1],[6,4,1],[5,4,1],[3,6,1],[2,6,1],[1,6,1],[1,6,0],[2,6,0],[4,8,0],[5,8,0]],"buttons":[{"pos":[2,0,3],"activates":"delayedLift:delayA"},{"pos":[8,2,3],"activates":"delayGearA"},{"pos":[10,2,3],"activates":"delayedLift:delayB"},{"pos":[8,4,1],"activates":"delayTurnA"},{"pos":[6,4,1],"activates":"delayedLift:delayC"},{"pos":[2,6,0],"activates":"delayedLift:delayD"}],"delayedLiftTriggers":[{"id":"delayA","liftId":"delayLiftA","delayMoves":1},{"id":"delayB","liftId":"delayLiftB","delayMoves":1},{"id":"delayC","liftId":"delayLiftC","delayMoves":1},{"id":"delayD","liftId":"delayLiftD","delayMoves":1}],"liftBlocks":[{"id":"delayLiftA","pos":[4,0,3],"targetY":1},{"id":"delayLiftB","pos":[10,2,1],"targetY":3},{"id":"delayLiftC","pos":[4,4,1],"targetY":5},{"id":"delayLiftD","pos":[3,6,0],"targetY":7}],"gearBridges":[{"id":"delayGearA","target":[9,2,3],"swing":"green","flipWheel":true}],"turnstiles":[{"id":"delayTurnA","pos":[7,4,1],"open":false,"flipHandle":true}],"keys":[{"id":"delayKeyA","pos":[6,2,3]},{"id":"delayKeyB","pos":[2,6,1]}],"keyLocks":[{"keyId":"delayKeyA","pos":[7,2,3],"kind":"spikes"},{"keyId":"delayKeyB","pos":[1,6,1],"kind":"spikes"}],"movers":[],"danger":[],"fragile":[],"oneWay":[],"weightedPlates":[],"foldingBridges":[],"crates":[],"slideBlocks":[],"splitPathLevers":[],"bridgePolaritySwitches":[],"directionalGates":[],"routeCommitmentDoors":[],"resetFloorTiles":[],"stepBlockCouplers":[],"reciprocatingLiftTwins":[],"transferPads":[],"magneticPullArrays":[]}];
   var LEVEL_CAMERA_STARTS = [
     { label: "centered straight read", yaw: 0, pitch: -0.58, distance: null },
     { label: "centered soft front angle", yaw: Math.PI / 8, pitch: -0.62, distance: null },
@@ -21194,7 +21319,8 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
     { label: "centered one-way relay read", yaw: -Math.PI / 11, pitch: -0.64, distance: 14.4 },
     { label: "centered weighted bridge read", yaw: Math.PI / 9, pitch: -0.62, distance: 14 },
     { label: "centered elevator switchback read", yaw: -Math.PI / 8, pitch: -0.7, distance: 15.6 },
-    { label: "centered rail switch bridge read", yaw: Math.PI / 9, pitch: -0.68, distance: 16.4 },
+    { label: "centered half-square gatewalk read", yaw: Math.PI / 9, pitch: -0.78, distance: 18.8 },
+    { label: "centered tall square puzzle box read", yaw: Math.PI / 8, pitch: -0.82, distance: 22.5 },
     { label: "centered crumble commitment read", yaw: Math.PI / 12, pitch: -0.68, distance: 15.2 },
     { label: "centered turnstile gate read", yaw: -Math.PI / 9, pitch: -0.66, distance: 15.6 },
     { label: "centered gearlock switchback read", yaw: -Math.PI / 10, pitch: -0.7, distance: 17.6 },
@@ -21311,9 +21437,237 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
       ...(lev.slideBlocks || []).flatMap((sb) => [sb.from[1] || 0, sb.target[1] || 0]),
       ...(lev.crates || []).map((c) => c.pos[1] || 0)
     );
-    return new Vector3(0, Math.min(1.1, Math.max(0.22, maxHeight * 0.28)), 0);
+    return new Vector3(0, Math.min(1.8, Math.max(0.22, maxHeight * 0.28)), 0);
   }
-  var renderer = new WebGLRenderer({ antialias: true, alpha: false, powerPreference: "high-performance" });
+  function showStartupFailure(message, detail) {
+    try {
+      console.error(message, detail || "");
+      const card = document.getElementById("titleCard") || document.getElementById("startPage") || document.body;
+      let note = document.getElementById("startupFailureNote");
+      if (!note) {
+        note = document.createElement("div");
+        note.id = "startupFailureNote";
+        note.style.cssText = "margin-top:14px;padding:10px 14px;border-radius:16px;background:rgba(80,31,24,.78);color:#fff;font:700 16px/1.25 system-ui,sans-serif;max-width:min(520px,88vw);box-shadow:0 12px 28px rgba(0,0,0,.18)";
+        card.appendChild(note);
+      }
+      note.textContent = message;
+    } catch (e) {
+      console.error("DIORAMA startup failure display failed", e);
+    }
+  }
+  function createDioramaRenderer() {
+    if (location.protocol === 'file:') {
+      showStartupFailure(
+        'DIORAMA must be served over HTTP. ' +
+        'Open a terminal in this folder and run: npx serve . ' +
+        'Then visit http://localhost:3000 in your browser.'
+      );
+      throw new Error('file:// origin blocks WebGL');
+    }
+    const attempts = [
+      { antialias: true, alpha: false, powerPreference: "high-performance" },
+      { antialias: false, alpha: false, powerPreference: "high-performance" },
+      { antialias: false, alpha: false, powerPreference: "default" },
+      { antialias: false, alpha: false }
+    ];
+    let lastError = null;
+    for (const options of attempts) {
+      try {
+        const candidate = new WebGLRenderer(options);
+        candidate.domElement.setAttribute("data-diorama-renderer-options", JSON.stringify(options));
+        return candidate;
+      } catch (err) {
+        lastError = err;
+        console.warn("DIORAMA renderer creation attempt failed", options, err);
+      }
+    }
+    showStartupFailure("DIORAMA could not start because WebGL could not be created on this browser/device.", lastError);
+    throw lastError || new Error("WebGLRenderer creation failed");
+  }
+  function renderStartupLoadingProgress() {
+    startupProgressRaf = 0;
+    const diff = startupProgressTarget - startupProgressVisual;
+    if (Math.abs(diff) <= 0.12) {
+      startupProgressVisual = startupProgressTarget;
+    } else {
+      const step = Math.max(0.18, Math.abs(diff) * 0.055);
+      startupProgressVisual += Math.sign(diff) * Math.min(Math.abs(diff), step);
+    }
+    const visualPct = Math.max(0, Math.min(100, startupProgressVisual));
+    if (startupLoaderBar) startupLoaderBar.style.width = visualPct.toFixed(2) + "%";
+    if (startupLoaderPercent) startupLoaderPercent.textContent = Math.round(visualPct) + "%";
+    if (Math.abs(startupProgressTarget - startupProgressVisual) > 0.12) {
+      startupProgressRaf = requestAnimationFrame(renderStartupLoadingProgress);
+    }
+  }
+  function setStartupLoadingProgress(value, label) {
+    startupProgressTarget = Math.max(0, Math.min(100, Number(value) || 0));
+    if (label && startupLoaderText) startupLoaderText.textContent = label;
+    if (!startupProgressRaf) startupProgressRaf = requestAnimationFrame(renderStartupLoadingProgress);
+    updateStartupLoaderPlacement();
+  }
+  function waitForStartupProgressVisualComplete() {
+    return new Promise((resolve) => {
+      const check = () => {
+        if (startupProgressTarget >= 99.8 && startupProgressVisual >= 99.4) {
+          startupProgressVisual = 100;
+          if (startupLoaderBar) startupLoaderBar.style.width = "100%";
+          if (startupLoaderPercent) startupLoaderPercent.textContent = "100%";
+          resolve(true);
+          return;
+        }
+        requestAnimationFrame(check);
+      };
+      check();
+    });
+  }
+  function waitForStartupTimeout(promise, ms, fallbackLabel) {
+    return Promise.race([
+      promise,
+      new Promise((resolve) => setTimeout(() => {
+        if (fallbackLabel) console.warn(fallbackLabel);
+        resolve(false);
+      }, ms))
+    ]);
+  }
+  function waitForDioramaFonts() {
+    if (!document.fonts || !document.fonts.ready) return Promise.resolve(false);
+    const loads = [];
+    if (document.fonts.load) {
+      loads.push(document.fonts.load('700 64px "Amatic SC"'));
+      loads.push(document.fonts.load('400 32px "Amatic SC"'));
+    }
+    loads.push(document.fonts.ready);
+    return Promise.all(loads).then(() => true);
+  }
+  function waitUntilMusicCanPlay() {
+    return new Promise((resolve) => {
+      if (!bgMusic) {
+        resolve(false);
+        return;
+      }
+      let done = false;
+      const finish = (ok) => {
+        if (done) return;
+        done = true;
+        bgMusic.removeEventListener("canplaythrough", onReady);
+        bgMusic.removeEventListener("canplay", onReady);
+        bgMusic.removeEventListener("loadeddata", onReady);
+        bgMusic.removeEventListener("error", onError);
+        musicPreloadReady = !!ok;
+        resolve(ok);
+      };
+      const onReady = () => finish(true);
+      const onError = () => finish(false);
+      if (bgMusic.readyState >= 3) {
+        finish(true);
+        return;
+      }
+      bgMusic.preload = "auto";
+      bgMusic.addEventListener("canplaythrough", onReady, { once: true });
+      bgMusic.addEventListener("canplay", onReady, { once: true });
+      bgMusic.addEventListener("loadeddata", onReady, { once: true });
+      bgMusic.addEventListener("error", onError, { once: true });
+      try {
+        bgMusic.load();
+      } catch (err) {
+        console.warn("DIORAMA music decode readiness could not start", err);
+        finish(false);
+      }
+    });
+  }
+  function preloadDioramaMusic() {
+    return new Promise((resolve) => {
+      if (!bgMusic) {
+        resolve(false);
+        return;
+      }
+      const sourceUrl = bgMusic.currentSrc || bgMusic.getAttribute("src") || "./assets/music/hitslab-game-gaming-music-295075.mp3";
+      const absoluteUrl = new URL(sourceUrl, window.location.href).href;
+      if (!/^https?:/i.test(absoluteUrl)) {
+        waitUntilMusicCanPlay().then(resolve);
+        return;
+      }
+      let done = false;
+      const finish = (ok) => {
+        if (done) return;
+        done = true;
+        musicPreloadReady = !!ok;
+        resolve(ok);
+      };
+      try {
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", absoluteUrl, true);
+        xhr.responseType = "blob";
+        xhr.onprogress = (event) => {
+          if (!event.lengthComputable || !event.total) return;
+          const musicPct = Math.max(0, Math.min(1, event.loaded / event.total));
+          setStartupLoadingProgress(42 + musicPct * 30, "Preloading music...");
+        };
+        xhr.onerror = () => {
+          console.warn("DIORAMA music XHR preload failed; falling back to audio preload.");
+          waitUntilMusicCanPlay().then(finish);
+        };
+        xhr.onload = () => {
+          if (xhr.status && (xhr.status < 200 || xhr.status >= 300)) {
+            console.warn("DIORAMA music XHR preload returned status", xhr.status);
+            waitUntilMusicCanPlay().then(finish);
+            return;
+          }
+          try {
+            if (musicPreloadObjectUrl) URL.revokeObjectURL(musicPreloadObjectUrl);
+            musicPreloadObjectUrl = URL.createObjectURL(xhr.response);
+            bgMusic.src = musicPreloadObjectUrl;
+            bgMusic.preload = "auto";
+            setStartupLoadingProgress(74, "Music ready...");
+            waitUntilMusicCanPlay().then(finish);
+          } catch (err) {
+            console.warn("DIORAMA music blob preload could not attach", err);
+            waitUntilMusicCanPlay().then(finish);
+          }
+        };
+        xhr.send();
+      } catch (err) {
+        console.warn("DIORAMA music XHR preload could not start", err);
+        waitUntilMusicCanPlay().then(finish);
+      }
+    });
+  }
+  function waitForFirstDioramaRender() {
+    return new Promise((resolve) => {
+      requestAnimationFrame(() => {
+        try {
+          updateCameraRig();
+          renderer.render(scene, camera);
+          resolve(true);
+        } catch (err) {
+          console.warn("DIORAMA first render check failed", err);
+          resolve(false);
+        }
+      });
+    });
+  }
+  async function runStartupAssetGate() {
+    const gateStartedAt = performance.now();
+    setStartupLoadingProgress(8, "Loading...");
+    await new Promise((resolve) => requestAnimationFrame(resolve));
+    setStartupLoadingProgress(22, "Loading fonts...");
+    await waitForStartupTimeout(waitForDioramaFonts(), 4500, "DIORAMA font preload timed out; continuing with browser fallback.");
+    setStartupLoadingProgress(42, "Preloading music...");
+    await waitForStartupTimeout(preloadDioramaMusic(), 9000, "DIORAMA music preload timed out; playback will retry after user gesture.");
+    setStartupLoadingProgress(78, "Preparing scene...");
+    await waitForStartupTimeout(waitForFirstDioramaRender(), 2500, "DIORAMA first render wait timed out; showing start page.");
+    setStartupLoadingProgress(100, "Loading...");
+    const remainingGateTime = 2000 - (performance.now() - gateStartedAt);
+    await Promise.all([
+      remainingGateTime > 0 ? new Promise((resolve) => setTimeout(resolve, remainingGateTime)) : Promise.resolve(true),
+      waitForStartupProgressVisualComplete()
+    ]);
+    startupGateReady = true;
+    document.body.classList.add("diorama-assets-ready");
+    if (startPage) startPage.focus({ preventScroll: true });
+  }
+  var renderer = createDioramaRenderer();
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
   renderer.setSize(innerWidth, innerHeight);
   renderer.outputColorSpace = SRGBColorSpace;
@@ -21464,6 +21818,16 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
     glassCrack: new MeshBasicMaterial({ color: 0xeaf8ff, transparent: true, opacity: 0.0, depthWrite: false }),
     hinge: new MeshToonMaterial({ color: 7300704 }),
     turnstile: new MeshToonMaterial({ color: 11112310 }),
+    splitLever: new MeshToonMaterial({ color: 0xf07a4a, emissive: 0xb85f32, emissiveIntensity: 0.08 }),
+    splitGateClosed: new MeshToonMaterial({ color: 0xf07a4a, emissive: 0xb85f32, emissiveIntensity: 0.08 }),
+    splitGateOpen: new MeshToonMaterial({ color: 0xffe0ce, transparent: true, opacity: 0.52 }),
+    bridgePolarity: new MeshToonMaterial({ color: 0x7fcfd8, emissive: 0x3f8f9d, emissiveIntensity: 0.08 }),
+    bridgePolaritySwitch: new MeshToonMaterial({ color: 0x7fcfd8, emissive: 0x3f8f9d, emissiveIntensity: 0.1 }),
+    bridgePolarityInactive: new MeshToonMaterial({ color: 0xc8e8ec, transparent: true, opacity: 0.45 }),
+    directionalGate: new MeshToonMaterial({ color: 0x79c7a2, emissive: 0x2f8a62, emissiveIntensity: 0.08 }),
+    directionalGateArrow: new MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.72 }),
+    resetFloor: new MeshToonMaterial({ color: 0xffb184, emissive: 0xc95f38, emissiveIntensity: 0.08 }),
+    resetFloorMark: new MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.72 }),
     pressure: new MeshToonMaterial({ color: 15161165 }),
     pressureBlue: new MeshToonMaterial({ color: 3116287, emissive: 667494, emissiveIntensity: 0.16 }),
     dangerMark: new MeshToonMaterial({ color: 8072231 }),
@@ -21514,6 +21878,16 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
   var reachableMarkers = [];
   var selectedMarker = null;
   var liftMeshes = /* @__PURE__ */ new Map();
+  var reciprocatingLiftTwinPairs = /* @__PURE__ */ new Map();
+  var transferPadPairs = /* @__PURE__ */ new Map();
+  var transferPadMeshes = [];
+  var magneticPullArrays = /* @__PURE__ */ new Map();
+  var magneticRailMeshes = [];
+  var delayedLiftTriggers = /* @__PURE__ */ new Map();
+  var pendingDelayedLiftActivations = [];
+  var activeRouteStamp = null;
+  var routeStampMeshes = [];
+  var routeStampGateMeshes = [];
   var buttonState = /* @__PURE__ */ new Map();
   var moverMeshes = [];
   var foldedBridgeMeshes = /* @__PURE__ */ new Map();
@@ -21522,6 +21896,12 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
   var activatedSlideBlocks = /* @__PURE__ */ new Set();
   var turnstileMeshes = /* @__PURE__ */ new Map();
   var activatedTurnstiles = /* @__PURE__ */ new Set();
+  var splitPathLeverMeshes = /* @__PURE__ */ new Map();
+  var splitPathLeverStates = /* @__PURE__ */ new Map();
+  var bridgePolaritySwitchMeshes = /* @__PURE__ */ new Map();
+  var bridgePolaritySwitchStates = /* @__PURE__ */ new Map();
+  var routeCommitmentDoorMeshes = /* @__PURE__ */ new Map();
+  var closedRouteCommitmentDoors = /* @__PURE__ */ new Set();
   var gearBridgeMeshes = /* @__PURE__ */ new Map();
   var activatedGearBridges = /* @__PURE__ */ new Set();
   var crateMeshes = /* @__PURE__ */ new Map();
@@ -21541,8 +21921,12 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
   var robot = null;
   var robotCell = null;
   var moveQueue = [];
+  var lastRobotStepFromCell = null;
   var moving = false;
   var pendingCratePushId = null;
+  var pendingSplitPathLeverId = null;
+  var pendingAfterSplitMoveCell = null;
+  var pendingBridgePolaritySwitchId = null;
   var moveFrom = new Vector3();
   var moveTo = new Vector3();
   var movingStepMover = null;
@@ -21563,6 +21947,7 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
   var goalPulse = 0;
   var musicEnabled = true;
   var musicPausedByPageHidden = false;
+  var musicStartPending = false;
   var startHeroRobot = null;
   var introRevealActive = false;
   var introRevealT = 0;
@@ -21597,13 +21982,59 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
     musicToggle.title = musicEnabled ? "Music on" : "Music muted";
     musicToggle.setAttribute("aria-pressed", musicEnabled ? "true" : "false");
   }
-  function playBackgroundMusic() {
-    if (!bgMusic || !musicEnabled || document.hidden) return;
-    bgMusic.volume = 0.16;
-    const attempt = bgMusic.play();
-    if (attempt && typeof attempt.catch === "function") attempt.catch(() => {
-    });
+  function requestBackgroundMusicPlayback(reason = "music") {
+    if (!bgMusic || !musicEnabled || document.hidden) {
+      updateMusicToggle();
+      return false;
+    }
+    bgMusic.muted = false;
+    bgMusic.volume = 0.18;
+    bgMusic.preload = "auto";
+    let attempt = null;
+    try {
+      attempt = bgMusic.play();
+      musicStartPending = false;
+    } catch (err) {
+      musicStartPending = true;
+      console.warn("DIORAMA music playback could not start from " + reason + ".", err);
+      updateMusicToggle();
+      return false;
+    }
+    if (attempt && typeof attempt.then === "function") {
+      attempt.then(() => {
+        musicStartPending = false;
+        updateMusicToggle();
+      }).catch((err) => {
+        musicStartPending = true;
+        console.warn("DIORAMA music playback was blocked or failed from " + reason + "; retrying on the next user gesture.", err);
+        updateMusicToggle();
+      });
+    }
     updateMusicToggle();
+    return true;
+  }
+  function playBackgroundMusic() {
+    return requestBackgroundMusicPlayback("resume");
+  }
+  function startBackgroundMusicWithLevelOne() {
+    if (!bgMusic || !musicEnabled || document.hidden) {
+      updateMusicToggle();
+      return false;
+    }
+    try {
+      bgMusic.muted = false;
+      bgMusic.volume = 0.18;
+      bgMusic.preload = "auto";
+      if (bgMusic.readyState < 2) bgMusic.load();
+      bgMusic.pause();
+      bgMusic.currentTime = 0;
+    } catch (e) {
+    }
+    return requestBackgroundMusicPlayback("level 1 start");
+  }
+  function retryLevelOneMusicFromUserGesture() {
+    if (!started || !musicStartPending || !musicEnabled || !bgMusic || document.hidden) return;
+    requestBackgroundMusicPlayback("follow-up start gesture");
   }
   function restartBackgroundMusicFromBeginning() {
     if (!bgMusic) return;
@@ -21623,6 +22054,11 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
   }
   function startGame() {
     if (started) return;
+    if (!startupGateReady) {
+      setStartupLoadingProgress(96, "Almost ready...");
+      return;
+    }
+    startBackgroundMusicWithLevelOne();
     started = true;
     document.body.classList.add("game-started");
     introRevealActive = false;
@@ -21630,7 +22066,6 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
     stopStartHeroRobot();
     world.visible = true;
     loadLevel(current || 0);
-    playBackgroundMusic();
   }
   updateMusicToggle();
   function showInvalidTap(x = innerWidth / 2, y = innerHeight / 2) {
@@ -21765,6 +22200,16 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
     reachableMarkers = [];
     selectedMarker = null;
     liftMeshes.clear();
+    reciprocatingLiftTwinPairs.clear();
+    transferPadPairs.clear();
+    transferPadMeshes = [];
+    magneticPullArrays.clear();
+    magneticRailMeshes = [];
+    delayedLiftTriggers.clear();
+    pendingDelayedLiftActivations = [];
+    activeRouteStamp = null;
+    routeStampMeshes = [];
+    routeStampGateMeshes = [];
     buttonState.clear();
     activatedLifts.clear();
     foldedBridgeMeshes.clear();
@@ -21773,6 +22218,12 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
     activatedSlideBlocks.clear();
     turnstileMeshes.clear();
     activatedTurnstiles.clear();
+    splitPathLeverMeshes.clear();
+    splitPathLeverStates.clear();
+    bridgePolaritySwitchMeshes.clear();
+    bridgePolaritySwitchStates.clear();
+    routeCommitmentDoorMeshes.clear();
+    closedRouteCommitmentDoors.clear();
     gearBridgeMeshes.clear();
     activatedGearBridges.clear();
     moverMeshes = [];
@@ -21786,8 +22237,12 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
     fragileUsed.clear();
     oneWayTiles.clear();
     moveQueue = [];
+    lastRobotStepFromCell = null;
     moving = false;
     pendingCratePushId = null;
+    pendingSplitPathLeverId = null;
+    pendingAfterSplitMoveCell = null;
+    pendingBridgePolaritySwitchId = null;
   }
   function addTinyTileDetails(group, type, cell) {
     // Decorative green grass/herb puffs intentionally disabled.
@@ -21926,6 +22381,230 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
     baseInfo.buttonGlow = glow;
     buttonState.set(def.activates, false);
   }
+  function makeMagneticPullArray(def) {
+    if (!def || !def.id || !def.crateId || !def.direction) return false;
+    magneticPullArrays.set(def.id, Object.assign({}, def));
+    const track = def.track || [];
+    for (const cell of track) {
+      const tileInfo = tileMap.get(keyOf(cell));
+      if (!tileInfo || !tileInfo.mesh) continue;
+      const rail = new Group();
+      rail.userData.type = "magneticPullRail";
+      const bar = new Mesh(new BoxGeometry(0.72, 0.035, 0.075), mats.bridgePolaritySwitch);
+      const pulse = new Mesh(new CylinderGeometry(0.09, 0.11, 0.035, 18), mats.keyBlue);
+      bar.position.y = 0.17;
+      pulse.position.y = 0.195;
+      if (Math.abs(def.direction[2] || 0) > Math.abs(def.direction[0] || 0)) bar.rotation.y = Math.PI / 2;
+      rail.add(bar, pulse);
+      rail.position.set(cell[0], cell[1], cell[2]);
+      world.add(rail);
+      magneticRailMeshes.push(rail);
+    }
+    return true;
+  }
+  function activateMagneticPullArray(id) {
+    const def = magneticPullArrays.get(id);
+    if (!def || !def.crateId || !crateCells.has(def.crateId)) return false;
+    const current = crateCells.get(def.crateId);
+    const dx = def.direction[0] || 0;
+    const dy = def.direction[1] || 0;
+    const dz = def.direction[2] || 0;
+    let target = def.target ? [...def.target] : null;
+    if (!target) {
+      target = [...current];
+      for (let i = 0; i < 8; i++) {
+        const next = [target[0] + dx, target[1] + dy, target[2] + dz];
+        if (!tileMap.has(keyOf(next)) || crateAt(next)) break;
+        target = next;
+      }
+    }
+    if (same(current, target)) return false;
+    if (!tileMap.has(keyOf(target)) || crateAt(target)) return false;
+    const mesh = crateMeshes.get(def.crateId);
+    crateCells.set(def.crateId, [...target]);
+    if (mesh) {
+      mesh.userData.cell = [...target];
+      mesh.userData.slideAnim = { from: mesh.position.clone(), to: new Vector3(target[0], target[1] + 0.38, target[2]), t: 0 };
+    }
+    buttonState.set(id, true);
+    refreshInteractionState();
+    playLiftSfx();
+    return true;
+  }
+  function registerDelayedLiftTrigger(def) {
+    if (!def || !def.id || !def.liftId) return false;
+    delayedLiftTriggers.set(def.id, Object.assign({ delayMoves: 1 }, def));
+    buttonState.set(`delayedLift:${def.id}`, false);
+    return true;
+  }
+  function activateDelayedLiftTrigger(encodedId) {
+    const id = String(encodedId || "").replace(/^delayedLift:/, "");
+    const def = delayedLiftTriggers.get(id);
+    if (!def || !def.liftId || activatedLifts.has(def.liftId)) return false;
+    if (pendingDelayedLiftActivations.some((p) => p && p.id === id)) return false;
+    pendingDelayedLiftActivations.push({ id, liftId: def.liftId, steps: Math.max(1, def.delayMoves || 1) });
+    buttonState.set(`delayedLift:${id}`, true);
+    playLiftSfx();
+    return true;
+  }
+  function processDelayedLiftActivations() {
+    if (!pendingDelayedLiftActivations.length) return;
+    const remaining = [];
+    for (const p of pendingDelayedLiftActivations) {
+      p.steps -= 1;
+      if (p.steps <= 0) {
+        if (liftMeshes.has(p.liftId) && !activatedLifts.has(p.liftId)) {
+          activateMechanism(p.liftId);
+        }
+      } else remaining.push(p);
+    }
+    pendingDelayedLiftActivations = remaining;
+  }
+  function makeTransferPad(def) {
+    if (!def || !def.id || !def.from || !def.to) return false;
+    transferPadPairs.set(keyOf(def.from), { id: def.id, from: [...def.from], to: [...def.to] });
+    const makePadMarker = (cell, isSource) => {
+      const tileInfo = tileMap.get(keyOf(cell));
+      if (!tileInfo) return null;
+      const g = new Group();
+      const ring = new Mesh(new TorusGeometry(0.25, 0.035, 10, 28), isSource ? mats.bridgePolaritySwitch : mats.keyBlue);
+      ring.rotation.x = Math.PI / 2;
+      ring.position.y = 0.165;
+      ring.castShadow = true;
+      const core = new Mesh(new CylinderGeometry(0.13, 0.13, 0.035, 24), isSource ? mats.hinge : mats.bridgePolarity);
+      core.position.y = 0.17;
+      core.castShadow = true;
+      const bar = new Mesh(new BoxGeometry(0.38, 0.035, 0.055), mats.directionalGateArrow);
+      bar.position.y = 0.205;
+      bar.rotation.y = Math.atan2(def.to[2] - def.from[2], def.to[0] - def.from[0]);
+      g.add(ring, core);
+      if (isSource) g.add(bar);
+      g.position.set(cell[0], cell[1], cell[2]);
+      g.userData.cell = cell;
+      g.userData.type = isSource ? "transferPadSource" : "transferPadLanding";
+      world.add(g);
+      transferPadMeshes.push(g);
+      if (isSource) tileInfo.transferPad = { id: def.id, to: [...def.to] };
+      else tileInfo.transferPadLanding = { id: def.id };
+      return g;
+    };
+    makePadMarker(def.from, true);
+    makePadMarker(def.to, false);
+    return true;
+  }
+  function routeStampMaterialForTone(tone) {
+    return tone === "blue" ? mats.keyBlue : tone === "red" ? mats.button : mats.bridgePolaritySwitch;
+  }
+  function makeRouteStampTile(def) {
+    const info = tileMap.get(keyOf(def.pos));
+    if (!info || !def.id) return false;
+    const marker = new Group();
+    marker.userData.type = "routeStampTile";
+    marker.userData.stampId = def.id;
+    const mat = routeStampMaterialForTone(def.tone);
+    const base = new Mesh(new CylinderGeometry(0.28, 0.32, 0.05, 32), mat);
+    base.position.y = 0.165;
+    base.castShadow = true;
+    const ring = new Mesh(new TorusGeometry(0.22, 0.026, 8, 28), mats.selected);
+    ring.position.y = 0.205;
+    ring.rotation.x = Math.PI / 2;
+    ring.castShadow = true;
+    const stamp = new Mesh(new BoxGeometry(0.32, 0.045, 0.075), mat);
+    stamp.position.y = 0.225;
+    stamp.castShadow = true;
+    marker.add(base, ring, stamp);
+    info.mesh.add(marker);
+    info.routeStamp = { id: def.id, tone: def.tone || "brass" };
+    routeStampMeshes.push(marker);
+    return true;
+  }
+  function makeRouteStampGate(def) {
+    const info = tileMap.get(keyOf(def.pos));
+    if (!info || !def.stampId) return false;
+    info.requiredStamp = def.stampId;
+    info.routeStampGate = { id: def.id || def.stampId, stampId: def.stampId, tone: def.tone || "brass" };
+    const g = new Group();
+    g.userData.type = "routeStampGate";
+    g.userData.cell = [...def.pos];
+    const mat = routeStampMaterialForTone(def.tone);
+    const railA = new Mesh(new BoxGeometry(0.72, 0.05, 0.08), mat);
+    const railB = new Mesh(new BoxGeometry(0.72, 0.05, 0.08), mat);
+    railA.position.set(0, 0.24, -0.28);
+    railB.position.set(0, 0.24, 0.28);
+    railA.castShadow = railB.castShadow = true;
+    const lock = new Mesh(new TorusGeometry(0.18, 0.035, 8, 24), mats.hinge);
+    lock.position.y = 0.29;
+    lock.rotation.x = Math.PI / 2;
+    lock.castShadow = true;
+    g.add(railA, railB, lock);
+    g.position.set(def.pos[0], def.pos[1], def.pos[2]);
+    world.add(g);
+    routeStampGateMeshes.push(g);
+    return true;
+  }
+  function setActiveRouteStamp(def) {
+    if (!def || !def.id) return false;
+    activeRouteStamp = def.id;
+    if (robot) {
+      let badge = robot.userData.routeStampBadge;
+      if (!badge) {
+        badge = new Group();
+        const disk = new Mesh(new CylinderGeometry(0.105, 0.12, 0.025, 18), routeStampMaterialForTone(def.tone));
+        disk.rotation.x = Math.PI / 2;
+        disk.position.set(0, 0.34, -0.18);
+        disk.castShadow = true;
+        badge.add(disk);
+        badge.userData.disk = disk;
+        robot.add(badge);
+        robot.userData.routeStampBadge = badge;
+      }
+      if (badge.userData.disk) badge.userData.disk.material = routeStampMaterialForTone(def.tone);
+      badge.visible = true;
+    }
+    playStepSfx();
+    updateReachableMarkers();
+    return true;
+  }
+  function makeStepBlockCoupler(def) {
+    const info = tileMap.get(keyOf(def.pos));
+    if (!info || !def.toggles) return;
+    const marker = new Group();
+    marker.userData.type = "stepBlockCoupler";
+    const base = new Mesh(new CylinderGeometry(0.27, 0.32, 0.055, 32), mats.bridgePolaritySwitch);
+    base.position.y = 0.158;
+    base.castShadow = true;
+    const ring = new Mesh(new TorusGeometry(0.21, 0.025, 8, 24), mats.button);
+    ring.position.y = 0.195;
+    ring.rotation.x = Math.PI / 2;
+    ring.castShadow = true;
+    const tick = new Mesh(new BoxGeometry(0.3, 0.035, 0.055), mats.button);
+    tick.position.y = 0.205;
+    tick.castShadow = true;
+    marker.add(base, ring, tick);
+    info.mesh.add(marker);
+    info.stepBlockCoupler = def;
+  }
+  function toggleCoupledLift(id) {
+    if (!id || !liftMeshes.has(id)) return false;
+    if (activatedLifts.has(id)) {
+      activatedLifts.delete(id);
+      buttonState.set(id, false);
+    } else {
+      activatedLifts.add(id);
+      buttonState.set(id, true);
+    }
+    const mesh = liftMeshes.get(id);
+    if (mesh) {
+      mesh.userData.activated = activatedLifts.has(id);
+      mesh.userData.liftT = 0;
+    }
+    refreshLiftLogicalCells();
+    refreshInteractionState();
+    startMechanismFeedback(id);
+    playLiftSfx();
+    updateReachableMarkers();
+    return true;
+  }
   function makeLiftBlock(def) {
     const mesh = makeTile(def.pos, "lift");
     mesh.userData.liftId = def.id;
@@ -21933,6 +22612,10 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
     mesh.userData.targetY = def.targetY;
     mesh.userData.visualY = def.pos[1];
     mesh.userData.activated = false;
+    if (def.oneWayExit) {
+      mesh.userData.oneWayExit = [...def.oneWayExit];
+      attachLiftOneWayMarker(mesh, def.oneWayExit);
+    }
     liftMeshes.set(def.id, mesh);
     const info = tileMap.get(keyOf(def.pos));
     if (info) {
@@ -21940,9 +22623,40 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
       info.liftId = def.id;
       info.baseCell = [...def.pos];
       info.targetCell = [def.pos[0], def.targetY, def.pos[2]];
+      if (def.oneWayExit) info.oneWay = [...def.oneWayExit];
       info.blocked = true;
     }
+    if (def.initialActive) {
+      activatedLifts.add(def.id);
+      buttonState.set(def.id, true);
+      mesh.userData.activated = true;
+      mesh.userData.visualY = def.targetY;
+      mesh.position.y = def.targetY;
+      mesh.userData.cell = [def.pos[0], def.targetY, def.pos[2]];
+      if (info) {
+        tileMap.delete(keyOf(def.pos));
+        info.cell = [def.pos[0], def.targetY, def.pos[2]];
+        info.blocked = false;
+        tileMap.set(keyOf(info.cell), info);
+      }
+    }
     return mesh;
+  }
+  function attachLiftOneWayMarker(mesh, dir) {
+    if (!mesh || !dir) return;
+    const dx = dir[0] || 0;
+    const dz = dir[2] || 0;
+    if (!dx && !dz) return;
+    const marker = new Group();
+    marker.userData.type = "oneWayLiftMarker";
+    const shaft = new Mesh(new BoxGeometry(0.42, 0.026, 0.055), mats.directionalGateArrow);
+    const head = new Mesh(new ConeGeometry(0.08, 0.18, 3), mats.directionalGateArrow);
+    head.rotation.z = -Math.PI / 2;
+    head.position.x = 0.29;
+    marker.add(shaft, head);
+    marker.position.y = 0.19;
+    marker.rotation.y = Math.atan2(dz, dx);
+    mesh.add(marker);
   }
   function makeKey(def) {
     const key = new Group();
@@ -22001,6 +22715,162 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
       info.fragileGlass = true;
     }
     return mesh;
+  }
+  function resetLinkedMechanism(id) {
+    if (!id) return false;
+    if (bridgePolaritySwitchMeshes.has(id)) {
+      const record = bridgePolaritySwitchMeshes.get(id);
+      const initial = record && record.def && record.def.initial === "B" ? "B" : "A";
+      const currentState = bridgePolaritySwitchStates.get(id) === "B" ? "B" : "A";
+      if (currentState === initial) return false;
+      applyBridgePolaritySwitchState(id, initial, true);
+      playLiftSfx();
+      startMechanismFeedback(id);
+      updateReachableMarkers();
+      return true;
+    }
+    if (splitPathLeverMeshes.has(id)) {
+      const record = splitPathLeverMeshes.get(id);
+      const initial = record && record.def && record.def.initial === "B" ? "B" : "A";
+      const currentState = splitPathLeverStates.get(id) === "B" ? "B" : "A";
+      if (currentState === initial) return false;
+      applySplitPathLeverState(id, initial, true);
+      playLiftSfx();
+      startMechanismFeedback(id);
+      updateReachableMarkers();
+      return true;
+    }
+    if (foldedBridgeMeshes.has(id)) {
+      if (!activatedBridges.has(id)) return false;
+      activatedBridges.delete(id);
+      buttonState.set(id, false);
+      setFoldingBridgeState(id, false);
+      playLiftSfx();
+      startMechanismFeedback(id);
+      refreshInteractionState();
+      return true;
+    }
+    return false;
+  }
+  function makeRouteCommitmentDoor(def) {
+    const info = tileMap.get(keyOf(def.pos));
+    if (!info || !info.mesh) return;
+    info.routeCommitmentDoor = def;
+    info.routeCommitmentDoorId = def.id;
+    info.type = "routeCommitmentDoor";
+    info.blocked = false;
+    const gate = new Group();
+    gate.userData.type = "routeCommitmentDoor";
+    gate.userData.cell = def.pos;
+    const hingeA = new Mesh(new BoxGeometry(0.08, 0.46, 0.08), mats.gate);
+    const hingeB = new Mesh(new BoxGeometry(0.08, 0.46, 0.08), mats.gate);
+    hingeA.position.set(-0.32, 0.37, 0.33);
+    hingeB.position.set(0.32, 0.37, 0.33);
+    hingeA.castShadow = true;
+    hingeB.castShadow = true;
+    const bar = new Mesh(new BoxGeometry(0.72, 0.08, 0.08), mats.resetFloor);
+    bar.position.set(0, 0.58, 0.33);
+    bar.castShadow = true;
+    const openMark = new Mesh(new BoxGeometry(0.5, 0.035, 0.08), mats.directionalGateArrow);
+    openMark.position.set(0, 0.21, 0.33);
+    gate.add(hingeA, hingeB, bar, openMark);
+    gate.userData.bar = bar;
+    gate.userData.openMark = openMark;
+    gate.userData.closedY = 0.22;
+    gate.userData.openY = 0.58;
+    info.mesh.add(gate);
+    routeCommitmentDoorMeshes.set(def.id, { def, group: gate, info });
+  }
+  function closeRouteCommitmentDoor(id) {
+    const record = routeCommitmentDoorMeshes.get(id);
+    if (!record || closedRouteCommitmentDoors.has(id)) return false;
+    if (robotCell && same(robotCell, record.def.pos)) return false;
+    closedRouteCommitmentDoors.add(id);
+    record.info.blocked = true;
+    record.info.closedRouteCommitmentDoor = true;
+    if (record.group && record.group.userData.bar) record.group.userData.bar.position.y = record.group.userData.closedY;
+    if (record.group && record.group.userData.openMark) record.group.userData.openMark.visible = false;
+    playLiftSfx();
+    startMechanismFeedback(id);
+    updateReachableMarkers();
+    return true;
+  }
+  function resolveRouteCommitmentDoors() {
+    if (!level || !level.routeCommitmentDoors || !robotCell) return;
+    for (const def of level.routeCommitmentDoors || []) {
+      if (!def || !def.id || closedRouteCommitmentDoors.has(def.id)) continue;
+      if (def.closesWhen && same(robotCell, def.closesWhen)) closeRouteCommitmentDoor(def.id);
+    }
+  }
+  function makeResetFloorTile(def) {
+    const info = tileMap.get(keyOf(def.pos));
+    if (!info || !info.mesh) return;
+    info.resetFloor = def;
+    info.type = "resetFloor";
+    const marker = new Group();
+    marker.userData.type = "resetFloor";
+    marker.userData.cell = def.pos;
+    const plate = new Mesh(new CylinderGeometry(0.32, 0.36, 0.055, 32), mats.resetFloor);
+    plate.position.y = 0.15;
+    plate.castShadow = true;
+    const arrowA = new Mesh(new BoxGeometry(0.36, 0.028, 0.055), mats.resetFloorMark);
+    arrowA.position.set(0, 0.195, -0.03);
+    arrowA.rotation.y = Math.PI * 0.18;
+    const arrowB = new Mesh(new ConeGeometry(0.08, 0.16, 3), mats.resetFloorMark);
+    arrowB.position.set(0.19, 0.195, 0.08);
+    arrowB.rotation.z = -Math.PI / 2;
+    arrowB.rotation.y = Math.PI * 0.18;
+    const arrowC = arrowA.clone();
+    arrowC.position.set(0, 0.205, 0.04);
+    arrowC.rotation.y = Math.PI * 1.18;
+    const arrowD = arrowB.clone();
+    arrowD.position.set(-0.19, 0.205, -0.08);
+    arrowD.rotation.y = Math.PI * 1.18;
+    marker.add(plate, arrowA, arrowB, arrowC, arrowD);
+    info.mesh.add(marker);
+  }
+  function directionalGateDir(def) {
+    if (!def) return [0, 0];
+    if (Array.isArray(def.enterDir)) return [def.enterDir[0] || 0, def.enterDir[1] || 0];
+    const side = String(def.enterFrom || "").toLowerCase();
+    if (side === "west") return [1, 0];
+    if (side === "east") return [-1, 0];
+    if (side === "north") return [0, 1];
+    if (side === "south") return [0, -1];
+    return [0, 0];
+  }
+  function makeDirectionalGate(def) {
+    const info = tileMap.get(keyOf(def.pos));
+    if (!info || !info.mesh) return;
+    const dir = directionalGateDir(def);
+    info.directionalGate = def;
+    info.directionalGateDir = dir;
+    info.type = "directionalGate";
+    const gate = new Group();
+    gate.userData.type = "directionalGate";
+    gate.userData.cell = def.pos;
+    const postGeo = new BoxGeometry(0.08, 0.62, 0.08);
+    const postA = new Mesh(postGeo, mats.directionalGate);
+    const postB = new Mesh(postGeo, mats.directionalGate);
+    postA.position.set(-0.34, 0.48, 0);
+    postB.position.set(0.34, 0.48, 0);
+    postA.castShadow = true;
+    postB.castShadow = true;
+    const beam = new Mesh(new BoxGeometry(0.78, 0.09, 0.09), mats.directionalGate);
+    beam.position.y = 0.82;
+    beam.castShadow = true;
+    const arrow = new Group();
+    const shaft = new Mesh(new BoxGeometry(0.42, 0.026, 0.055), mats.directionalGateArrow);
+    const head = new Mesh(new ConeGeometry(0.08, 0.18, 3), mats.directionalGateArrow);
+    head.rotation.z = -Math.PI / 2;
+    head.position.x = 0.29;
+    arrow.add(shaft, head);
+    arrow.position.y = 0.22;
+    arrow.rotation.y = Math.atan2(dir[1], dir[0]);
+    gate.add(postA, postB, beam, arrow);
+    // Rotate the arch itself to face the accepted entry direction.
+    if (Math.abs(dir[1]) > Math.abs(dir[0])) gate.rotation.y = Math.PI / 2;
+    info.mesh.add(gate);
   }
   function makeOneWay(def) {
     const mesh = makeTile(def.pos, "oneWay");
@@ -22268,7 +23138,7 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
     g.userData.gearT = 0;
     g.userData.gear = gear;
     g.userData.flipper = flipper;
-    g.userData.flipWheel = !!def.flipWheel;
+    g.userData.flipWheel = def.flipWheel !== false;
     g.userData.flipT = 0;
     g.userData.closedTilt = -Math.PI / 2;
     g.rotation.z = g.userData.closedTilt;
@@ -22394,6 +23264,15 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
   }
   function activateMechanism(id) {
     if (!id) return false;
+    if (String(id).startsWith("delayedLift:")) {
+      return activateDelayedLiftTrigger(id);
+    }
+    if (magneticPullArrays.has(id)) {
+      return activateMagneticPullArray(id);
+    }
+    if (reciprocatingLiftTwinPairs.has(id)) {
+      return activateReciprocatingLiftTwin(id);
+    }
     if (liftMeshes.has(id)) {
       if (!activatedLifts.has(id)) {
         buttonState.set(id, true);
@@ -22489,7 +23368,7 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
     g.userData.cell = cell;
     g.userData.id = def.id;
     g.userData.turnT = def.open ? 1 : 0;
-    g.userData.flipHandle = !!def.flipHandle;
+    g.userData.flipHandle = def.flipHandle !== false;
     g.userData.flipT = def.open ? 1 : 0;
     g.userData.handlePost = post;
     g.userData.handleArmA = armA;
@@ -22502,6 +23381,304 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
     buttonState.set(def.id, !!def.open);
     if (def.open) activatedTurnstiles.add(def.id);
     tileMap.set(keyOf(cell), { cell, type: "turnstile", mesh: g, blocked: !def.open, turnstileId: def.id });
+  }
+  function makeBridgePolaritySwitch(def) {
+    const baseInfo = tileMap.get(keyOf(def.pos));
+    if (!baseInfo) return;
+    const state = def.initial === "B" ? "B" : "A";
+    bridgePolaritySwitchStates.set(def.id, state);
+    baseInfo.bridgePolaritySwitchId = def.id;
+    baseInfo.bridgePolaritySwitch = def;
+    baseInfo.blocked = true;
+    const group = new Group();
+    group.userData.type = "bridgePolaritySwitch";
+    group.userData.id = def.id;
+    group.userData.cell = def.pos;
+    const base = new Mesh(new CylinderGeometry(0.28, 0.34, 0.08, 32), mats.bridgePolaritySwitch);
+    base.position.y = 0.16;
+    base.castShadow = true;
+    const stem = new Mesh(new CylinderGeometry(0.055, 0.055, 0.30, 16), mats.hinge);
+    stem.position.y = 0.34;
+    stem.rotation.z = state === "A" ? -0.48 : 0.48;
+    stem.castShadow = true;
+    const cap = new Mesh(new BoxGeometry(0.24, 0.12, 0.18), mats.bridgePolaritySwitch);
+    cap.position.set(state === "A" ? 0.11 : -0.11, 0.50, 0);
+    cap.castShadow = true;
+    const labelA = new Mesh(new BoxGeometry(0.24, 0.035, 0.08), mats.bridgePolarity);
+    labelA.position.set(-0.18, 0.235, -0.18);
+    labelA.rotation.y = Math.PI / 4;
+    const labelB = new Mesh(new BoxGeometry(0.24, 0.035, 0.08), mats.bridgePolarity);
+    labelB.position.set(0.18, 0.235, 0.18);
+    labelB.rotation.y = Math.PI / 4;
+    group.add(base, stem, cap, labelA, labelB);
+    baseInfo.mesh.add(group);
+    const bridges = [];
+    for (const bridge of def.bridges || []) {
+      const cell = bridge.pos;
+      const g = new Group();
+      g.userData.type = "bridgePolarityBridge";
+      g.userData.id = def.id;
+      g.userData.cell = cell;
+      const deck = new Mesh(blockGeo, mats.bridgePolarity);
+      deck.position.y = -0.21;
+      deck.castShadow = true;
+      deck.receiveShadow = true;
+      const top = new Mesh(topGeo, mats.bridgePolarity);
+      top.position.y = TILE_TOP_Y;
+      top.castShadow = true;
+      top.receiveShadow = true;
+      const stripe = new Mesh(new BoxGeometry(0.72, 0.035, 0.1), mats.hinge);
+      stripe.position.y = 0.16;
+      stripe.rotation.y = (bridge.axis === "z" ? Math.PI / 2 : 0);
+      g.add(deck, top, stripe);
+      g.position.set(cell[0], cell[1], cell[2]);
+      attachCellHitProxy(g, cell, "bridge");
+      world.add(g);
+      tileMeshes.push(g);
+      const path = bridge.path === "B" ? "B" : "A";
+      tileMap.set(keyOf(cell), { cell, type: "bridgePolarity", mesh: g, blocked: path !== state, bridgePolarityId: def.id, bridgePolarityPath: path });
+      bridges.push({ cell, path, mesh: g, activeT: path === state ? 1 : 0, targetActiveT: path === state ? 1 : 0 });
+    }
+    bridgePolaritySwitchMeshes.set(def.id, { def, group, stem, cap, bridges });
+    applyBridgePolaritySwitchState(def.id, state, false);
+  }
+  function applyBridgePolaritySwitchState(id, state, animateHandle = true) {
+    const record = bridgePolaritySwitchMeshes.get(id);
+    if (!record) return false;
+    bridgePolaritySwitchStates.set(id, state === "B" ? "B" : "A");
+    const activeState = bridgePolaritySwitchStates.get(id);
+    for (const bridge of record.bridges || []) {
+      const active = bridge.path === activeState;
+      bridge.targetActiveT = active ? 1 : 0;
+      const info = tileMap.get(keyOf(bridge.cell));
+      if (info) {
+        info.blocked = !active;
+        info.type = "bridgePolarity";
+      }
+      if (!animateHandle) {
+        bridge.activeT = bridge.targetActiveT;
+        if (bridge.mesh) {
+          bridge.mesh.visible = true;
+          bridge.mesh.position.y = bridge.cell[1] + (active ? 0 : -0.38);
+          bridge.mesh.rotation.z = active ? 0 : -Math.PI / 2;
+        }
+      }
+    }
+    if (record.stem && record.cap) {
+      record.stem.rotation.z = activeState === "A" ? -0.48 : 0.48;
+      record.cap.position.x = activeState === "A" ? 0.11 : -0.11;
+    }
+    refreshInteractionState();
+    return true;
+  }
+  function toggleBridgePolaritySwitch(id) {
+    const currentState = bridgePolaritySwitchStates.get(id) === "B" ? "B" : "A";
+    const nextState = currentState === "A" ? "B" : "A";
+    if (applyBridgePolaritySwitchState(id, nextState, true)) {
+      playLiftSfx();
+      startMechanismFeedback(id);
+      updateReachableMarkers();
+      return true;
+    }
+    return false;
+  }
+  function canOperateBridgePolaritySwitch(def) {
+    if (!def || !robotCell || moving || isWon) return false;
+    if (def.controlFrom && same(robotCell, def.controlFrom)) return true;
+    return manhattan2D(robotCell, def.pos) === 1 && Math.abs(robotCell[1] - def.pos[1]) < 1e-4;
+  }
+  function bridgePolaritySwitchCanBeReachedForAutoUse(def) {
+    if (!def || !def.controlFrom || !robotCell) return false;
+    if (same(robotCell, def.controlFrom)) return true;
+    return !!findPathToCell(robotCell, def.controlFrom);
+  }
+  function requestOperateBridgePolaritySwitch(id) {
+    const record = bridgePolaritySwitchMeshes.get(id);
+    if (!record || moving || isWon) return false;
+    if (canOperateBridgePolaritySwitch(record.def)) return toggleBridgePolaritySwitch(id);
+    if (current !== 12 || !record.def.controlFrom) return false;
+    const path = findPathToCell(robotCell, record.def.controlFrom);
+    if (!path || path.length === 0) return false;
+    pendingBridgePolaritySwitchId = id;
+    moveQueue = path.map((c) => [...c]);
+    startNextStep();
+    return true;
+  }
+  function bridgePolarityTapIntentTarget(x, y, radius) {
+    if (!level || !level.bridgePolaritySwitches || moving || isWon) return null;
+    for (const def of level.bridgePolaritySwitches || []) {
+      if (!canOperateBridgePolaritySwitch(def) && !(current === 12 && bridgePolaritySwitchCanBeReachedForAutoUse(def))) continue;
+      const center = screenPointForCell(def.pos, 0.68);
+      const d = center ? Math.hypot(center.x - x, center.y - y) : Infinity;
+      // Tight center-only hit zone: movement taps around the switch must remain movement taps.
+      const r = isSmallScreen() ? Math.max(radius * 0.55, 30) : Math.max(radius * 0.42, 18);
+      if (d <= r) return { type: "bridgePolaritySwitch", id: def.id };
+    }
+    return null;
+  }
+  function updateBridgePolaritySwitches(dt) {
+    for (const record of bridgePolaritySwitchMeshes.values()) {
+      if (!record) continue;
+      for (const bridge of record.bridges || []) {
+        const target = Number.isFinite(bridge.targetActiveT) ? bridge.targetActiveT : 0;
+        bridge.activeT += (target - (bridge.activeT || 0)) * Math.min(1, dt * 7.5);
+        const t = Math.max(0, Math.min(1, bridge.activeT || 0));
+        const eased = t * t * (3 - 2 * t);
+        if (bridge.mesh) {
+          bridge.mesh.visible = true;
+          bridge.mesh.position.y = bridge.cell[1] - (1 - eased) * 0.38;
+          bridge.mesh.rotation.z = -(1 - eased) * Math.PI / 2;
+        }
+      }
+    }
+  }
+  function makeSplitPathLever(def) {
+    const baseInfo = tileMap.get(keyOf(def.pos));
+    if (!baseInfo) return;
+    const state = def.initial === "B" ? "B" : "A";
+    splitPathLeverStates.set(def.id, state);
+    baseInfo.splitPathLeverId = def.id;
+    baseInfo.splitPathLever = def;
+    // The switch is a side control object, not part of the route.
+    // The robot operates it only from the adjacent control brick.
+    baseInfo.blocked = true;
+    const group = new Group();
+    group.userData.type = "splitPathLever";
+    group.userData.id = def.id;
+    group.userData.cell = def.pos;
+    const base = new Mesh(new CylinderGeometry(0.31, 0.36, 0.09, 32), mats.splitLever);
+    base.position.y = 0.16;
+    base.castShadow = true;
+    const stem = new Mesh(new CylinderGeometry(0.055, 0.055, 0.34, 16), mats.hinge);
+    stem.position.y = 0.36;
+    stem.rotation.z = -0.55;
+    stem.castShadow = true;
+    const cap = new Mesh(new SphereGeometry(0.105, 16, 12), mats.splitLever);
+    cap.position.set(0.13, 0.52, 0);
+    cap.castShadow = true;
+    const cueA = new Mesh(new BoxGeometry(0.42, 0.035, 0.085), mats.splitGateOpen);
+    cueA.position.set(-0.18, 0.235, -0.18);
+    cueA.rotation.y = Math.PI / 4;
+    const cueB = new Mesh(new BoxGeometry(0.42, 0.035, 0.085), mats.splitGateOpen);
+    cueB.position.set(0.18, 0.235, 0.18);
+    cueB.rotation.y = Math.PI / 4;
+    group.add(base, stem, cap, cueA, cueB);
+    baseInfo.mesh.add(group);
+    const gateVisuals = [];
+    for (const gate of def.gates || []) {
+      const gateInfo = tileMap.get(keyOf(gate.pos));
+      if (!gateInfo) continue;
+      gateInfo.splitPathLeverId = def.id;
+      gateInfo.splitPathGatePath = gate.path === "B" ? "B" : "A";
+      const axis = gate.axis === "x" ? "x" : "z";
+      const swing = Number.isFinite(gate.openSwing) ? gate.openSwing : 1;
+      const frame = new Group();
+      const pivot = new Group();
+      pivot.userData.type = "splitPathDoor";
+      pivot.userData.id = def.id;
+      pivot.userData.cell = gate.pos;
+      pivot.position.y = 0.04;
+      // Framed vertical lift-door: two grey support posts and a top housing hold the coral panel.
+      // Closed state drops the panel low enough to clearly block the route.
+      const postGeo = axis === "x" ? new BoxGeometry(0.1, 1.02, 0.1) : new BoxGeometry(0.1, 1.02, 0.1);
+      const postA = new Mesh(postGeo, mats.hinge);
+      const postB = new Mesh(postGeo, mats.hinge);
+      if (axis === "x") {
+        postA.position.set(0, 0.53, -0.39);
+        postB.position.set(0, 0.53, 0.39);
+      } else {
+        postA.position.set(-0.39, 0.53, 0);
+        postB.position.set(0.39, 0.53, 0);
+      }
+      postA.castShadow = false;
+      postA.receiveShadow = false;
+      postB.castShadow = false;
+      postB.receiveShadow = false;
+      const topBeamGeo = axis === "x" ? new BoxGeometry(0.18, 0.1, 0.92) : new BoxGeometry(0.92, 0.1, 0.18);
+      const topBeam = new Mesh(topBeamGeo, mats.hinge);
+      topBeam.position.y = 1.03;
+      topBeam.castShadow = false;
+      topBeam.receiveShadow = false;
+      const housingGeo = axis === "x" ? new BoxGeometry(0.24, 0.14, 1.02) : new BoxGeometry(1.02, 0.14, 0.24);
+      const housing = new Mesh(housingGeo, mats.hinge);
+      housing.position.y = 1.16;
+      housing.castShadow = false;
+      housing.receiveShadow = false;
+      frame.add(postA, postB, topBeam, housing);
+      const panelGeo = axis === "x" ? new BoxGeometry(0.14, 0.78, 0.82) : new BoxGeometry(0.82, 0.78, 0.14);
+      const panel = new Mesh(panelGeo, mats.splitGateClosed);
+      panel.position.y = 0.44;
+      // Disable split-door shadows: the moving gate is very close to the tile top,
+      // and its shadow projection caused shadow-map shimmer on the brick surface below.
+      panel.castShadow = false;
+      panel.receiveShadow = false;
+      const guideGeo = axis === "x" ? new BoxGeometry(0.05, 0.86, 0.08) : new BoxGeometry(0.08, 0.86, 0.05);
+      const guideA = new Mesh(guideGeo, mats.hinge);
+      const guideB = new Mesh(guideGeo, mats.hinge);
+      if (axis === "x") {
+        guideA.position.set(0, 0.54, -0.31);
+        guideB.position.set(0, 0.54, 0.31);
+      } else {
+        guideA.position.set(-0.31, 0.54, 0);
+        guideB.position.set(0.31, 0.54, 0);
+      }
+      guideA.castShadow = false;
+      guideA.receiveShadow = false;
+      guideB.castShadow = false;
+      guideB.receiveShadow = false;
+      pivot.add(panel, guideA, guideB);
+      // No floor/base marker is added on the brick top under the door.
+      // The previous transparent marker created flicker/shimmer on both door bricks
+      // because it competed visually with the tile surface and shadow map while the robot/camera moved.
+      const openMark = null;
+      gateInfo.mesh.add(frame);
+      gateInfo.mesh.add(pivot);
+      gateVisuals.push({ info: gateInfo, frame, pivot, panel, guideA, guideB, topBeam, housing, openMark, path: gateInfo.splitPathGatePath, axis, swing, openT: 0, targetOpenT: 0 });
+    }
+    splitPathLeverMeshes.set(def.id, { def, group, stem, cap, cueA, cueB, gateVisuals });
+    applySplitPathLeverState(def.id, state, false);
+  }
+  function applySplitPathLeverState(id, state, animateHandle = true) {
+    const record = splitPathLeverMeshes.get(id);
+    if (!record) return false;
+    splitPathLeverStates.set(id, state);
+    for (const gate of record.gateVisuals || []) {
+      const open = gate.path === state;
+      gate.info.blocked = !open;
+      gate.targetOpenT = open ? 1 : 0;
+      if (gate.openMark) gate.openMark.visible = open;
+      if (!animateHandle) {
+        gate.openT = gate.targetOpenT;
+        const swing = gate.swing || 1;
+        if (gate.pivot) {
+          gate.pivot.rotation.y = 0;
+          gate.pivot.position.y = 0.04 + 0.72 * gate.openT;
+        }
+        if (gate.panel) gate.panel.material.opacity = open ? 0.9 : 1;
+      }
+    }
+    if (animateHandle && record.stem && record.cap) {
+      const z = state === "A" ? -0.55 : 0.55;
+      record.stem.rotation.z = z;
+      record.cap.position.x = state === "A" ? 0.13 : -0.13;
+    } else if (!animateHandle && record.stem && record.cap) {
+      record.stem.rotation.z = state === "A" ? -0.55 : 0.55;
+      record.cap.position.x = state === "A" ? 0.13 : -0.13;
+    }
+    if (animateHandle && record.def && record.def.activates && (!record.def.activateState || record.def.activateState === state)) {
+      activateMechanism(record.def.activates);
+    }
+    return true;
+  }
+  function toggleSplitPathLever(id) {
+    const currentState = splitPathLeverStates.get(id) === "B" ? "B" : "A";
+    const nextState = currentState === "A" ? "B" : "A";
+    if (applySplitPathLeverState(id, nextState, true)) {
+      playLiftSfx();
+      refreshInteractionState();
+      return true;
+    }
+    return false;
   }
   function moverPathCells(def) {
     const cells = [];
@@ -22712,6 +23889,7 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
     updateCameraRig();
     applyStartHeroLayout();
     requestAnimationFrame(applyStartHeroLayout);
+    revealStableStartScreen();
   }
   function updateStartScreenRobot(dt) {
     if (!startHeroRobot || started) return;
@@ -22738,10 +23916,12 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
     return Math.atan2(goalPos.x - pos.x, goalPos.z - pos.z);
   }
   function forceGoalFacing(obj) {
-    if (!obj) return;
-    if (isWon) return;
-    if (level && level.goal && robotCell && same(robotCell, level.goal)) return;
-    obj.rotation.y = yawTowardGoalFrom(obj.position);
+    // Movement-facing fix: do not force the robot to stare at the goal.
+    // The robot should keep the direction of its current/last movement, especially on bent tier paths.
+    return;
+  }
+  function yawTowardWorldPoint(from, to) {
+    return Math.atan2(to.x - from.x, to.z - from.z);
   }
   function setRobotArms(leftX, rightX, lift = 0, sideSway = 0) {
     if (!robotArmL || !robotArmR) return;
@@ -22841,6 +24021,7 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
     for (const mesh of gearBridgeMeshes.values()) setSpiralObjectVisible(mesh, isAllowed(mesh.userData.cell));
     for (const mesh of slideBlockMeshes.values()) setSpiralObjectVisible(mesh, isAllowed(mesh.userData.cell));
     for (const mesh of turnstileMeshes.values()) setSpiralObjectVisible(mesh, isAllowed(mesh.userData.cell));
+    for (const record of splitPathLeverMeshes.values()) if (record && record.group) setSpiralObjectVisible(record.group, true);
     for (const marker of reachableMarkers) setSpiralObjectVisible(marker, isAllowed(marker.userData.cell));
     if (selectedMarker) setSpiralObjectVisible(selectedMarker, isAllowed(selectedMarker.userData.cell));
   }
@@ -22943,6 +24124,9 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
     }
     for (const f of level.fragile || []) makeFragile(f);
     for (const o of level.oneWay || []) makeOneWay(o);
+    for (const rf of level.resetFloorTiles || []) makeResetFloorTile(rf);
+    for (const dg of level.directionalGates || []) makeDirectionalGate(dg);
+    for (const cd of level.routeCommitmentDoors || []) makeRouteCommitmentDoor(cd);
     for (const k of level.keys || []) makeKey(k);
     applyKeyLocks();
     for (const c of level.crates || []) makeCrate(c);
@@ -22951,9 +24135,19 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
     for (const gb of level.gearBridges || []) makeGearBridge(gb);
     for (const sb of level.slideBlocks || []) makeSlideBlock(sb);
     for (const t of level.turnstiles || []) makeTurnstile(t);
+    for (const spl of level.splitPathLevers || []) makeSplitPathLever(spl);
+    for (const bps of level.bridgePolaritySwitches || []) makeBridgePolaritySwitch(bps);
     for (const m of level.movers) makeMover(m);
     for (const g of level.liftBlocks || []) makeLiftBlock(g);
+    for (const pair of level.reciprocatingLiftTwins || []) registerReciprocatingLiftTwin(pair);
+    for (const pair of level.reciprocatingLiftTwins || []) makeReciprocatingLiftTwinVisual(pair);
     for (const b of level.buttons) makeButton(b);
+    for (const cpl of level.stepBlockCouplers || []) makeStepBlockCoupler(cpl);
+    for (const tp of level.transferPads || []) makeTransferPad(tp);
+    for (const rs of level.routeStampTiles || []) makeRouteStampTile(rs);
+    for (const rg of level.routeStampGates || []) makeRouteStampGate(rg);
+    for (const ma of level.magneticPullArrays || []) makeMagneticPullArray(ma);
+    for (const dl of level.delayedLiftTriggers || []) registerDelayedLiftTrigger(dl);
     robotCell = [...level.start];
     robot = makeRobot();
     snapRobotToCell(robotCell);
@@ -23020,6 +24214,7 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
     const info = tileMap.get(keyOf(cell));
     if (!info) return false;
     if (info.requiredKey && !collectedKeys.has(info.requiredKey)) return false;
+    if (info.requiredStamp && activeRouteStamp !== info.requiredStamp) return false;
     if (info.fragile) {
       const unavailableFragile = !!(info.mesh && (info.mesh.userData.collapsingFragile || info.mesh.userData.shattered || info.mesh.visible === false));
       if (unavailableFragile && !same(info.cell, robotCell)) return false;
@@ -23028,6 +24223,7 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
     if (info.type === "slideBlock") return activatedSlideBlocks.has(info.slideBlockId) && !info.blocked && isTopmostSurface(cell);
     if (info.type === "gearBridge") return activatedGearBridges.has(info.gearBridgeId) && !info.blocked && isTopmostSurface(cell);
     if (info.type === "turnstile") return activatedTurnstiles.has(info.turnstileId) && !info.blocked && isTopmostSurface(cell);
+    if (info.type === "bridgePolarity") return !info.blocked && isTopmostSurface(cell);
     if (info.mover) {
       const mover = moverForCell(cell);
       return !!mover && (moverAlignedAtCell(mover, cell) || robotIsRidingMover(mover)) && !info.blocked && isTopmostSurface(cell);
@@ -23058,6 +24254,12 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
       const dx = to[0] - from[0];
       const dz = to[2] - from[2];
       if (dx !== fromInfo.oneWay[0] || dz !== fromInfo.oneWay[2]) return false;
+    }
+    const toInfo = tileMap.get(keyOf(to));
+    if (toInfo && toInfo.directionalGateDir) {
+      const dx = to[0] - from[0];
+      const dz = to[2] - from[2];
+      if (dx !== toInfo.directionalGateDir[0] || dz !== toInfo.directionalGateDir[1]) return false;
     }
     return true;
   }
@@ -23091,11 +24293,198 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
   function reachableNow() {
     return neighbors(robotCell);
   }
+  function isLevel15ThreeWayFalseSummit() {
+    return !!(level && typeof level.name === "string" && level.name.startsWith("15 - Three-Way False Summit"));
+  }
+  function level15CellInList(cell, list) {
+    return !!(cell && list.some((c) => same(cell, c)));
+  }
+  function level15MiddleForkTapTarget(x, y, radius) {
+    if (!isLevel15ThreeWayFalseSummit() || !robotCell || moving || isWon) return null;
+    refreshLiftLogicalCells();
+
+    // Level 15 has overlapping projected tiers in portrait/mobile views. The middle
+    // fork sits visually under/near the left fork from several camera angles, so a
+    // generic nearest-screen-footprint resolver can accidentally choose the upper
+    // left fork even when the player taps the middle route brick. This resolver is
+    // deliberately route-local: once the robot is on the middle fork entry/path, a
+    // tap on or near any pathable middle-fork brick resolves to that middle-fork
+    // brick first, before global plane/raycast selection can steal it.
+    const middleRoute = [
+      [6,0,7], [6,0,6], [6,0,5], [5,1,5], [4,2,5], [4,2,4], [4,2,3], [4,2,2], [3,4,2], [2,4,2], [2,4,1], [2,4,0]
+    ];
+    if (!level15CellInList(robotCell, middleRoute)) return null;
+
+    const robotIndex = middleRoute.findIndex((c) => same(c, robotCell));
+    const boostedRadius = Math.max(radius * (isSmallScreen() ? 3.05 : 2.38), isSmallScreen() ? 224 : 128);
+    const candidates = [];
+
+    for (const cell of middleRoute) {
+      if (!cell || same(cell, robotCell) || !isTopSurfaceDestination(cell)) continue;
+      const path = findPathToCell(robotCell, cell);
+      if (!path || !path.length) continue;
+      const metric = screenDistanceToCellFootprint(x, y, cell);
+      if (!metric || !Number.isFinite(metric.d)) continue;
+
+      const center = metric.point || screenPointForCell(cell, 0.34);
+      if (!center) continue;
+      const targetIndex = middleRoute.findIndex((c) => same(c, cell));
+      const forward = targetIndex > robotIndex;
+      const backwardPenalty = forward ? 0 : 70;
+      const pathLengthPenalty = Math.max(0, path.length - 1) * 8;
+      const insideBonus = metric.inside ? -92 : 0;
+      const forwardBonus = forward ? -46 : 0;
+
+      // In portrait, a user often taps slightly below/around a raised brick because
+      // the projected face is visually short. Accept a wider screen-radius only for
+      // this middle-route list; this cannot create a new path because every target
+      // still requires a real path from the robot's current cell.
+      if (!metric.inside && metric.d > boostedRadius) continue;
+      candidates.push({
+        cell: [...cell],
+        d: metric.d,
+        score: metric.d + backwardPenalty + pathLengthPenalty + insideBonus + forwardBonus,
+        inside: metric.inside,
+        pathLength: path.length
+      });
+    }
+
+    if (!candidates.length) return null;
+    candidates.sort((a, b) => a.score - b.score || a.d - b.d || a.pathLength - b.pathLength);
+    return { type: "cell", cell: candidates[0].cell, level15MiddleForkAssist: true };
+  }
+  function isOpenPassiveTurnstileCell(info) {
+    return !!(info && info.type === "turnstile" && info.turnstileId && activatedTurnstiles.has(info.turnstileId) && !info.blocked);
+  }
+  function isAutoWalkPauseAfterCell(cell) {
+    if (!cell || !level) return true;
+    const info = tileMap.get(keyOf(cell));
+    if (!info) return true;
+    // Passive progress cells should not add extra taps on linear routes.
+    // Keys, locks, stamp gates, open bridges, stable lifts, open turnstiles, and the goal can be entered automatically.
+    if (info.keyId || info.requiredKey || info.lockKind || info.routeStampGate) return false;
+    if (same(cell, level.goal)) return false;
+    if (info.type === "lift" || info.type === "foldingBridge" || info.type === "gearBridge") return false;
+    if (isOpenPassiveTurnstileCell(info)) return false;
+    // Intentional action/decision cells still pause after arrival so the player can read the state change.
+    if (info.button || info.routeStamp || info.stepBlockCoupler) return true;
+    if (info.transferPad || info.transferPadLanding || info.resetFloor) return true;
+    if (info.splitPathLeverId || info.bridgePolaritySwitchId) return true;
+    if (info.oneWay || info.directionalGateDir) return true;
+    if (info.type === "danger" || info.type === "mover") return true;
+    if (info.type === "slideBlock" || info.type === "turnstile" || info.type === "bridgePolarity" || info.type === "resetFloor") return true;
+    if (info.mover) return true;
+    return false;
+  }
+  function isAutoWalkHardStopBeforeCell(cell) {
+    if (!cell || !level) return true;
+    const info = tileMap.get(keyOf(cell));
+    if (!info) return true;
+    // Do not auto-enter mechanics where timing, transfer, commitment, or deliberate action matters.
+    // Already-open turnstiles are treated as plain pass-through cells so the robot does not need redundant taps.
+    if (isOpenPassiveTurnstileCell(info)) return false;
+    if (info.transferPad || info.transferPadLanding || info.stepBlockCoupler || info.resetFloor) return true;
+    if (info.splitPathLeverId || info.bridgePolaritySwitchId) return true;
+    if (info.oneWay || info.directionalGateDir) return true;
+    if (info.type === "danger" || info.type === "mover") return true;
+    if (info.type === "slideBlock" || info.type === "turnstile" || info.type === "bridgePolarity" || info.type === "resetFloor") return true;
+    if (info.mover) return true;
+    return false;
+  }
+  function safeAutoWalkContinuation(from, previous) {
+    if (!from || !previous || isAutoWalkPauseAfterCell(from)) return null;
+    refreshLiftLogicalCells();
+    const options = neighbors(from).filter((c) => !same(c, previous));
+    const plainOptions = options.filter((c) => !isAutoWalkHardStopBeforeCell(c));
+    // A clear corridor may sit beside a hard-stop mechanism. Continue only when exactly one plain,
+    // safe continuation exists. Still stop when two or more walkable/decision routes are available.
+    if (plainOptions.length !== 1) return null;
+    return plainOptions[0];
+  }
+  function tryQueueSafeAutoWalk() {
+    if (!started || moving || isWon || !robotCell || !lastRobotStepFromCell) return false;
+    const next = safeAutoWalkContinuation(robotCell, lastRobotStepFromCell);
+    if (!next) return false;
+    moveQueue = [[...next]];
+    startNextStep();
+    return true;
+  }
   function findCrateFromHitObject(obj) {
     let o = obj;
     while (o) {
       if (o.userData && o.userData.type === "crate") return o.userData.id;
       o = o.parent;
+    }
+    return null;
+  }
+  function findSplitPathLeverFromHitObject(obj) {
+    let o = obj;
+    while (o) {
+      if (o.userData && o.userData.type === "splitPathLever") return o.userData.id;
+      if (o.userData && o.userData.splitPathLeverClickable) return o.userData.id;
+      o = o.parent;
+    }
+    return null;
+  }
+  function canOperateSplitPathLever(def) {
+    if (!def || !robotCell || moving || isWon) return false;
+    if (def.controlFrom && same(robotCell, def.controlFrom)) return true;
+    return manhattan2D(robotCell, def.pos) === 1 && Math.abs(robotCell[1] - def.pos[1]) < 1e-4;
+  }
+  function operateSplitPathLever(id) {
+    const record = splitPathLeverMeshes.get(id);
+    if (!record || !canOperateSplitPathLever(record.def)) return false;
+    return toggleSplitPathLever(id);
+  }
+  function isLevel11SplitPathHelperActive() {
+    return (current === 10 || current === 11 || current === 12) && level && level.splitPathLevers && level.splitPathLevers.length === 1;
+  }
+  function splitPathLeverCanBeReachedForAutoUse(def) {
+    if (!def || !def.controlFrom || !robotCell) return false;
+    if (same(robotCell, def.controlFrom)) return true;
+    return !!findPathToCell(robotCell, def.controlFrom);
+  }
+  function requestOperateSplitPathLever(id, afterCell = null) {
+    const record = splitPathLeverMeshes.get(id);
+    if (!record || moving || isWon) return false;
+    if (canOperateSplitPathLever(record.def)) {
+      const ok = toggleSplitPathLever(id);
+      if (ok && afterCell) requestMoveTo(afterCell);
+      return ok;
+    }
+    if (!isLevel11SplitPathHelperActive() || !record.def.controlFrom) return false;
+    const path = findPathToCell(robotCell, record.def.controlFrom);
+    if (!path || path.length === 0) return false;
+    pendingSplitPathLeverId = id;
+    pendingAfterSplitMoveCell = afterCell ? [...afterCell] : null;
+    moveQueue = path.map((c) => [...c]);
+    startNextStep();
+    return true;
+  }
+  function level11SplitCanOpenPathTo(cell) {
+    if (!isLevel11SplitPathHelperActive() || !cell) return null;
+    const def = level.splitPathLevers[0];
+    if (!def || !def.controlFrom || !splitPathLeverCanBeReachedForAutoUse(def)) return null;
+    const currentState = splitPathLeverStates.get(def.id) === "B" ? "B" : "A";
+    const nextState = currentState === "A" ? "B" : "A";
+    const before = currentState;
+    applySplitPathLeverState(def.id, nextState, false);
+    refreshLiftLogicalCells();
+    const pathAfterToggle = findPathToCell(def.controlFrom, cell);
+    applySplitPathLeverState(def.id, before, false);
+    refreshLiftLogicalCells();
+    return pathAfterToggle && pathAfterToggle.length >= 0 ? def.id : null;
+  }
+  function splitPathLeverTapIntentTarget(x, y, radius) {
+    if (!level || !level.splitPathLevers || moving || isWon) return null;
+    for (const def of level.splitPathLevers || []) {
+      if (!canOperateSplitPathLever(def) && !(isLevel11SplitPathHelperActive() && splitPathLeverCanBeReachedForAutoUse(def))) continue;
+      const center = screenPointForCell(def.pos, 0.72);
+      const d = center ? Math.hypot(center.x - x, center.y - y) : Infinity;
+      // Keep this intentionally tight so the side switch never steals path/goal taps.
+      // Previous versions used the whole tile footprint, which made the robot feel stuck after switching.
+      const r = isSmallScreen() ? Math.max(radius * 0.55, 30) : Math.max(radius * 0.42, 18);
+      if (d <= r) return { type: "splitPathLever", id: def.id };
     }
     return null;
   }
@@ -23111,6 +24500,8 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
     for (const mesh of gearBridgeMeshes.values()) set.add(mesh);
     for (const mesh of slideBlockMeshes.values()) set.add(mesh);
     for (const mesh of turnstileMeshes.values()) set.add(mesh);
+    for (const record of splitPathLeverMeshes.values()) if (record && record.group) set.add(record.group);
+    for (const record of bridgePolaritySwitchMeshes.values()) if (record && record.group) set.add(record.group);
     return Array.from(set);
   }
   function updateReachableMarkers() {
@@ -23221,10 +24612,17 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
   }
   function requestMoveTo(cell) {
     pendingCratePushId = null;
+    pendingSplitPathLeverId = null;
+    pendingAfterSplitMoveCell = null;
+    pendingBridgePolaritySwitchId = null;
     if (!robotCell || moving || isWon) return false;
     if (crateAt(cell)) return false;
     refreshInteractionState();
     let path = findPathToCell(robotCell, cell);
+    if ((!path || path.length === 0) && isLevel11SplitPathHelperActive()) {
+      const splitId = level11SplitCanOpenPathTo(cell);
+      if (splitId && requestOperateSplitPathLever(splitId, cell)) return true;
+    }
     if (!path || path.length === 0) {
       path = bestReachablePathToward(robotCell, cell);
     }
@@ -23303,8 +24701,32 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
         updateReachableMarkers();
         return;
       }
+      const splitToOperate = pendingSplitPathLeverId;
+      const afterSplitCell = pendingAfterSplitMoveCell ? [...pendingAfterSplitMoveCell] : null;
+      pendingSplitPathLeverId = null;
+      pendingAfterSplitMoveCell = null;
+      if (splitToOperate && operateSplitPathLever(splitToOperate)) {
+        updateButtons();
+        checkGoal();
+        updateReachableMarkers();
+        if (afterSplitCell) requestMoveTo(afterSplitCell);
+        return;
+      }
+      const bridgePolarityToOperate = pendingBridgePolaritySwitchId;
+      pendingBridgePolaritySwitchId = null;
+      if (bridgePolarityToOperate && requestOperateBridgePolaritySwitch(bridgePolarityToOperate)) {
+        updateButtons();
+        checkGoal();
+        updateReachableMarkers();
+        return;
+      }
       updateButtons();
       checkGoal();
+      if (isWon || levelTransitioning) {
+        updateReachableMarkers();
+        return;
+      }
+      if (tryQueueSafeAutoWalk()) return;
       updateReachableMarkers();
       return;
     }
@@ -23317,15 +24739,20 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
       moveQueue = [];
       moving = false;
       pendingCratePushId = null;
+      pendingSplitPathLeverId = null;
+      pendingAfterSplitMoveCell = null;
+      pendingBridgePolaritySwitchId = null;
       invalidShake = 0.25;
       showInvalidTap(lastInvalidPoint.x, lastInvalidPoint.y);
       playInvalidSfx();
       updateReachableMarkers();
       return;
     }
+    lastRobotStepFromCell = robotCell ? [...robotCell] : null;
     moveFrom.copy(robot.position);
     movingStepMover = moverTarget || null;
     moveTo.copy(movingStepMover ? movingStepMover.mesh.position.clone().add(new Vector3(0, ROBOT_ON_TILE_Y, 0)) : cellToPos(next));
+    if (robot) robot.rotation.y = yawTowardWorldPoint(moveFrom, moveTo);
     moveT = 0;
     robot.userData.idleLookReady = false;
     robotIdleTimer = 0;
@@ -23342,6 +24769,7 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
     if (movingStepMover && movingStepMover.mesh) {
       moveTo.copy(movingStepMover.mesh.position).add(new Vector3(0, ROBOT_ON_TILE_Y, 0));
     }
+    if (robot && moveFrom.distanceToSquared(moveTo) > 1e-6) robot.rotation.y = yawTowardWorldPoint(moveFrom, moveTo);
     robot.position.lerpVectors(moveFrom, moveTo, ease);
     robot.position.y += Math.sin(t * Math.PI) * STEP_ARC;
     requestShadowUpdate();
@@ -23361,14 +24789,22 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
       movingStepMover = null;
       robot.scale.set(1, 1, 1);
       setRobotArms(0, 0, 0, 0);
-      if (!(level && level.goal && robotCell && same(robotCell, level.goal))) forceGoalFacing(robot);
+      // Keep robot facing the last movement direction instead of forcing it to stare at the goal.
       robot.userData.idleLookReady = true;
       robotIdleTimer = 0;
       resolveTileMechanics();
       applySpiralRevealCamera(false);
-      updateButtons();
+      const immediateButtonActivated = updateButtons();
       checkHazard();
       if (!moving) return;
+      if (immediateButtonActivated) {
+        // Red button feedback should read while the robot is standing on the button.
+        // Stop any queued corridor/auto-walk continuation so lifts, bridges, gears, and turnstiles animate before the robot leaves.
+        moveQueue = [];
+        moving = false;
+        updateReachableMarkers();
+        return;
+      }
       startNextStep();
     }
   }
@@ -23497,8 +24933,10 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
   }
   function resolveTileMechanics() {
     collapseFragileTilesAfterRobotLeaves();
+    processDelayedLiftActivations();
     const info = tileMap.get(keyOf(robotCell));
     if (!info) return;
+    resolveRouteCommitmentDoors();
     if (info.keyId && !collectedKeys.has(info.keyId)) {
       collectedKeys.add(info.keyId);
       const mesh = keyMeshes.get(info.keyId);
@@ -23521,21 +24959,55 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
       activatedTurnstiles.add(info.turnstileId);
       playStepSfx();
     }
+    if (info.resetFloor && info.resetFloor.resets) {
+      resetLinkedMechanism(info.resetFloor.resets);
+    }
+    if (info.routeStamp && info.routeStamp.id && activeRouteStamp !== info.routeStamp.id) {
+      setActiveRouteStamp(info.routeStamp);
+    }
+    if (info.stepBlockCoupler && info.stepBlockCoupler.toggles) {
+      toggleCoupledLift(info.stepBlockCoupler.toggles);
+    }
+    if (info.transferPad && info.transferPad.to) {
+      const dest = [...info.transferPad.to];
+      const destInfo = tileMap.get(keyOf(dest));
+      if (destInfo && isWalkable(dest) && !crateAt(dest)) {
+        const fromPos = robot ? robot.position.clone() : cellToPos(robotCell);
+        robotCell = dest;
+        if (robot) {
+          const toPos = cellToPos(dest);
+          robot.rotation.y = yawTowardWorldPoint(fromPos, toPos);
+          robot.position.copy(toPos);
+          robot.userData.idleLookReady = true;
+        }
+        playLiftSfx();
+        updateReachableMarkers();
+      }
+    }
+    // Split path levers are operated deliberately by tapping/clicking the coral splitter from an adjacent control brick.
+    // They do not auto-fire just because the robot walks onto the tile.
+    if (info.splitPathLeverId && false) {
+      toggleSplitPathLever(info.splitPathLeverId);
+    }
   }
   function updateButtons() {
     let changed = false;
+    let immediateVisualChange = false;
     for (const info of tileMap.values()) {
       if (info.button && info.button.weighted) continue;
       if (info.button && same(info.cell, robotCell)) {
         const id = info.button.activates;
+        const delayedTrigger = String(id || "").startsWith("delayedLift:");
         if (activateMechanism(id)) {
           changed = true;
+          if (!delayedTrigger) immediateVisualChange = true;
           playLiftSfx();
         }
       }
     }
     refreshLiftLogicalCells();
     if (changed) refreshInteractionState();
+    return immediateVisualChange;
   }
   function checkHazard() {
     const info = tileMap.get(keyOf(robotCell));
@@ -23654,6 +25126,111 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
     }
     mesh.userData.cell = [...logicalCell];
   }
+  function setLiftActiveState(id, active) {
+    if (!id || !liftMeshes.has(id)) return false;
+    if (active) {
+      activatedLifts.add(id);
+      buttonState.set(id, true);
+    } else {
+      activatedLifts.delete(id);
+      buttonState.set(id, false);
+    }
+    const mesh = liftMeshes.get(id);
+    if (mesh) {
+      mesh.userData.activated = !!active;
+      mesh.userData.liftT = 0;
+    }
+    forceLiftVisualState(id, !!active);
+    return true;
+  }
+  function registerReciprocatingLiftTwin(def) {
+    if (!def || !def.id || !def.liftA || !def.liftB) return false;
+    const state = def.initial === "A" ? "A" : "B";
+    reciprocatingLiftTwinPairs.set(def.id, { def, state });
+    setLiftActiveState(def.liftA, state === "A");
+    setLiftActiveState(def.liftB, state === "B");
+    buttonState.set(def.id, state === "A");
+    return true;
+  }
+  function makeReciprocatingLiftTwinVisual(def) {
+    if (!def || !def.liftA || !def.liftB) return false;
+    const liftA = liftMeshes.get(def.liftA);
+    const liftB = liftMeshes.get(def.liftB);
+    if (!liftA || !liftB) return false;
+    const color = 0x808080;
+    const topA = Math.max(
+      typeof liftA.userData.baseY === "number" ? liftA.userData.baseY : liftA.position.y,
+      typeof liftA.userData.targetY === "number" ? liftA.userData.targetY : liftA.position.y,
+      liftA.position.y
+    );
+    const topB = Math.max(
+      typeof liftB.userData.baseY === "number" ? liftB.userData.baseY : liftB.position.y,
+      typeof liftB.userData.targetY === "number" ? liftB.userData.targetY : liftB.position.y,
+      liftB.position.y
+    );
+    const start = new Vector3(liftA.position.x, topA + 0.46, liftA.position.z);
+    const end = new Vector3(liftB.position.x, topB + 0.46, liftB.position.z);
+    const points = [];
+    const segments = 12;
+    const arcHeight = Math.max(0.32, start.distanceTo(end) * 0.08);
+    for (let i = 0; i <= segments; i++) {
+      const t = i / segments;
+      const p = start.clone().lerp(end, t);
+      p.y += Math.sin(Math.PI * t) * arcHeight;
+      points.push(p);
+    }
+    const group = new Group();
+    group.userData.type = "reciprocatingLiftTwinVisual";
+    group.userData.decorative = true;
+    group.userData.id = def.id;
+    if (typeof Line !== "undefined" && typeof LineDashedMaterial !== "undefined") {
+      const geometry = new BufferGeometry().setFromPoints(points);
+      const material = new LineDashedMaterial({
+        color,
+        dashSize: 0.18,
+        gapSize: 0.12,
+        transparent: true,
+        opacity: 0.72,
+        depthWrite: false
+      });
+      const line = new Line(geometry, material);
+      line.computeLineDistances();
+      line.userData.decorative = true;
+      group.add(line);
+    } else {
+      const material = new MeshBasicMaterial({ color, transparent: true, opacity: 0.72, depthWrite: false });
+      for (let i = 0; i < points.length - 1; i += 2) {
+        const a = points[i];
+        const b = points[i + 1];
+        const dx = b.x - a.x;
+        const dz = b.z - a.z;
+        const dy = b.y - a.y;
+        const length = Math.max(0.05, Math.sqrt(dx * dx + dy * dy + dz * dz));
+        const dash = new Mesh(new BoxGeometry(length, 0.035, 0.035), material);
+        dash.position.set((a.x + b.x) * 0.5, (a.y + b.y) * 0.5, (a.z + b.z) * 0.5);
+        dash.rotation.y = -Math.atan2(dz, dx);
+        dash.rotation.z = Math.atan2(dy, Math.sqrt(dx * dx + dz * dz));
+        dash.userData.decorative = true;
+        group.add(dash);
+      }
+    }
+    world.add(group);
+    return true;
+  }
+  function activateReciprocatingLiftTwin(id) {
+    const record = reciprocatingLiftTwinPairs.get(id);
+    if (!record || !record.def) return false;
+    const next = record.state === "A" ? "B" : "A";
+    record.state = next;
+    setLiftActiveState(record.def.liftA, next === "A");
+    setLiftActiveState(record.def.liftB, next === "B");
+    buttonState.set(id, next === "A");
+    refreshLiftLogicalCells();
+    refreshInteractionState();
+    updateReachableMarkers();
+    playLiftSfx();
+    return true;
+  }
   function syncWeightedMechanismState(id, active) {
     if (!id) return;
     if (liftMeshes.has(id)) {
@@ -23748,10 +25325,27 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
       if (Math.abs(target - (mesh.userData.turnT || 0)) > 0.0001 || mesh.userData.flipHandle) requestShadowUpdate();
     }
   }
+  function updateSplitPathLevers(dt) {
+    for (const record of splitPathLeverMeshes.values()) {
+      if (!record) continue;
+      for (const gate of record.gateVisuals || []) {
+        const target = Number.isFinite(gate.targetOpenT) ? gate.targetOpenT : 0;
+        gate.openT += (target - (gate.openT || 0)) * Math.min(1, dt * 8.5);
+        const t = Math.max(0, Math.min(1, gate.openT || 0));
+        const eased = t * t * (3 - 2 * t);
+        if (gate.pivot) {
+          gate.pivot.rotation.y = 0;
+          gate.pivot.position.y = 0.04 + eased * 0.72;
+        }
+        if (gate.panel) gate.panel.material.opacity = 1 - eased * 0.10;
+        if (gate.openMark) gate.openMark.visible = t > 0.55;
+      }
+    }
+  }
   function updateButtonVisuals(dt) {
     for (const info of tileMap.values()) {
       if (!info.buttonMesh) continue;
-      const active = activatedLifts.has(info.button.activates) || activatedBridges.has(info.button.activates) || activatedTurnstiles.has(info.button.activates) || activatedGearBridges.has(info.button.activates);
+      const active = activatedLifts.has(info.button.activates) || activatedBridges.has(info.button.activates) || activatedTurnstiles.has(info.button.activates) || activatedGearBridges.has(info.button.activates) || (reciprocatingLiftTwinPairs.has(info.button.activates) && buttonState.get(info.button.activates) === true) || magneticPullArrays.has(info.button.activates) || String(info.button.activates || "").startsWith("delayedLift:");
       const targetY = active ? 0.105 : 0.16;
       const beforeY = info.buttonMesh.position.y;
       info.buttonMesh.position.y += (targetY - info.buttonMesh.position.y) * Math.min(1, dt * 8);
@@ -23795,6 +25389,7 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
         info.cell = [...logicalCell];
         info.type = "lift";
         info.blocked = !active;
+        if (mesh.userData.oneWayExit) info.oneWay = [...mesh.userData.oneWayExit];
         tileMap.set(newKey, info);
       }
       mesh.userData.cell = [...logicalCell];
@@ -23834,6 +25429,8 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
           info.cell = [...logicalCell];
           info.blocked = !active;
           info.type = "lift";
+          if (mesh.userData.oneWayExit) info.oneWay = [...mesh.userData.oneWayExit];
+          if (mesh.userData.oneWayExit) info.oneWay = [...mesh.userData.oneWayExit];
           tileMap.set(newKey, info);
         }
         mesh.userData.cell = [...logicalCell];
@@ -23950,6 +25547,27 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
     if (center) d = Math.min(d, Math.hypot(center.x - x, center.y - y));
     return { d, point: center || footprint[0], inside: false };
   }
+  function nearestReachableBrickTapTarget(x, y, radius) {
+    if (!robotCell || moving || isWon) return null;
+    refreshLiftLogicalCells();
+    const reachables = reachableNow();
+    if (!reachables || !reachables.length) return null;
+    const level15Boost = isLevel15ThreeWayFalseSummit() ? (isSmallScreen() ? 1.45 : 1.32) : 1;
+    const forgivingRadius = Math.max(isSmallScreen() ? 112 : 76, radius * (isSmallScreen() ? 1.7 : 1.45)) * level15Boost;
+    const candidates = [];
+    for (const cell of reachables) {
+      if (!cell || !isTopSurfaceDestination(cell)) continue;
+      const metric = screenDistanceToCellFootprint(x, y, cell);
+      if (!metric || !Number.isFinite(metric.d)) continue;
+      if (!metric.inside && metric.d > forgivingRadius) continue;
+      const priority = cellTapPriority(cell);
+      const priorityBonus = priority === 1 ? -34 : priority === 2 ? -10 : priority === 3 ? -6 : 0;
+      candidates.push({ cell: [...cell], d: metric.d, score: metric.d + priorityBonus + (metric.inside ? -28 : 0) });
+    }
+    if (!candidates.length) return null;
+    candidates.sort((a, b) => a.score - b.score || a.d - b.d);
+    return { type: "cell", cell: candidates[0].cell, nearReachableBrickAssist: true };
+  }
   function screenPointForObject(obj) {
     const rect = canvasRect();
     const v = new Vector3();
@@ -23998,9 +25616,12 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
       const cz = cell[2] + world.position.z;
       const dx = Math.abs(hit.x - cx);
       const dz = Math.abs(hit.z - cz);
-      const inGridFootprint = dx <= 0.68 && dz <= 0.68;
+      const level15Assist = isLevel15ThreeWayFalseSummit();
+      const footprintHalf = level15Assist ? 0.82 : 0.68;
+      const screenMultiplier = level15Assist ? 2.05 : 1.45;
+      const inGridFootprint = dx <= footprintHalf && dz <= footprintHalf;
       const screenMetric = screenDistanceToCellFootprint(x, y, cell);
-      const screenOk = screenMetric.inside || screenMetric.d <= radius * 1.45;
+      const screenOk = screenMetric.inside || screenMetric.d <= radius * screenMultiplier;
       if (!inGridFootprint && !screenOk) return;
       const gridScore = Math.hypot(Math.max(0, dx - 0.58), Math.max(0, dz - 0.58)) * 88;
       const screenScore = Number.isFinite(screenMetric.d) ? screenMetric.d : 999;
@@ -24212,18 +25833,20 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
       }
     };
     addCrateApproachAndPushCandidates(candidates, x, y, radius);
+    const level15Assist = isLevel15ThreeWayFalseSummit();
     if (level && level.goal && isTopSurfaceDestination(level.goal)) {
       const metric = screenDistanceToCellFootprint(x, y, level.goal);
-      if (metric.point && (metric.d <= radius * 4.8 || metric.inside)) {
+      const goalRadius = level15Assist ? radius * 6.2 : radius * 4.8;
+      if (metric.point && (metric.d <= goalRadius || metric.inside)) {
         candidates.push({ target: { type: "cell", cell: [...level.goal] }, priority: 1, d: metric.d, bonus: -42 + (metric.inside ? -24 : 0), point: metric.point, footprintHit: !!metric.inside });
       }
     }
     for (const c of reachableNow()) {
-      addPathCandidate({ type: "cell", cell: [...c] }, screenPointForCell(c, 0.26), 2, radius * 1.7);
+      addPathCandidate({ type: "cell", cell: [...c] }, screenPointForCell(c, 0.26), 2, radius * (level15Assist ? 2.35 : 1.7));
     }
     for (const info of tileMap.values()) {
       if (info && info.cell && isTopSurfaceDestination(info.cell)) {
-        addPathCandidate({ type: "cell", cell: [...info.cell] }, screenPointForCell(info.cell, 0.24), 3, radius * 1.55);
+        addPathCandidate({ type: "cell", cell: [...info.cell] }, screenPointForCell(info.cell, 0.24), 3, radius * (level15Assist ? 2.05 : 1.55));
       }
     }
     return chooseBestTapCandidate(candidates);
@@ -24257,6 +25880,16 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
     const effectiveRadius = assistRadius || tapAssistRadiusForPointer({ pointerType: "touch" });
     const level5EarlyBoxIntent = level5BoxIntentTarget(x, y, effectiveRadius);
     if (level5EarlyBoxIntent && level5EarlyBoxIntent.type === "crate") return level5EarlyBoxIntent;
+    const splitIntent = splitPathLeverTapIntentTarget(x, y, effectiveRadius);
+    if (splitIntent) return splitIntent;
+    const bridgePolarityIntent = bridgePolarityTapIntentTarget(x, y, effectiveRadius);
+    if (bridgePolarityIntent) return bridgePolarityIntent;
+    const cratePushIntent = cratePushTapIntentTarget(x, y, effectiveRadius);
+    if (cratePushIntent) return cratePushIntent;
+    const level15MiddleForkIntent = level15MiddleForkTapTarget(x, y, effectiveRadius);
+    if (level15MiddleForkIntent) return level15MiddleForkIntent;
+    const nearestReachableBrickIntent = nearestReachableBrickTapTarget(x, y, effectiveRadius);
+    if (nearestReachableBrickIntent) return nearestReachableBrickIntent;
     const planeIntent = planeGridIntentTarget(x, y, effectiveRadius);
 
     // If a valid green/yellow tile was tapped while standing on a blue plate,
@@ -24265,8 +25898,6 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
       return planeIntent;
     }
 
-    const cratePushIntent = cratePushTapIntentTarget(x, y, effectiveRadius);
-    if (cratePushIntent) return cratePushIntent;
     if (planeIntent) return planeIntent;
     const level5BoxIntent = level5BoxIntentTarget(x, y, effectiveRadius);
     if (level5BoxIntent && level5BoxIntent.type === "crate") return level5BoxIntent;
@@ -24284,6 +25915,23 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
     }
     const hits = raycaster.intersectObjects(getClickableObjects(), true);
     for (const h of hits) {
+      const splitLeverId = findSplitPathLeverFromHitObject(h.object);
+      if (splitLeverId) {
+        const record = splitPathLeverMeshes.get(splitLeverId);
+        if (record && (canOperateSplitPathLever(record.def) || (isLevel11SplitPathHelperActive() && splitPathLeverCanBeReachedForAutoUse(record.def)))) exactCandidates.push({ target: { type: "splitPathLever", id: splitLeverId }, priority: 0, distance: h.distance, d: 0 });
+        continue;
+      }
+      let bpObj = h.object;
+      while (bpObj) {
+        if (bpObj.userData && bpObj.userData.type === "bridgePolaritySwitch") {
+          const record = bridgePolaritySwitchMeshes.get(bpObj.userData.id);
+          if (record && (canOperateBridgePolaritySwitch(record.def) || (current === 12 && bridgePolaritySwitchCanBeReachedForAutoUse(record.def)))) {
+            exactCandidates.push({ target: { type: "bridgePolaritySwitch", id: bpObj.userData.id }, priority: 0, distance: h.distance, d: 0 });
+          }
+          break;
+        }
+        bpObj = bpObj.parent;
+      }
       const crateId = findCrateFromHitObject(h.object);
       if (crateId) {
         // Do not use 3D object ray hits to decide box interaction. Box pushes
@@ -24356,7 +26004,19 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
     if (!drag.moved && total <= tapSlopForPointer(e) && dur < 520) {
       lastInvalidPoint = { x: e.clientX, y: e.clientY };
       const target = hitTarget(e.clientX, e.clientY, tapAssistRadiusForPointer(e)) || drag.startTarget;
-      if (target && target.type === "crate") {
+      if (target && target.type === "splitPathLever") {
+        if (!requestOperateSplitPathLever(target.id)) {
+          invalidShake = 0.18;
+          showInvalidTap(e.clientX, e.clientY);
+          playInvalidSfx();
+        }
+      } else if (target && target.type === "bridgePolaritySwitch") {
+        if (!requestOperateBridgePolaritySwitch(target.id)) {
+          invalidShake = 0.18;
+          showInvalidTap(e.clientX, e.clientY);
+          playInvalidSfx();
+        }
+      } else if (target && target.type === "crate") {
         if (!tryPushClickedCrate(target.crateId)) {
           invalidShake = 0.18;
           showInvalidTap(e.clientX, e.clientY);
@@ -24487,13 +26147,33 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
   }, { passive: false });
 
   if (startPage) {
-    startPage.addEventListener("pointerup", (e) => {
-      e.preventDefault();
+    startPage.setAttribute("tabindex", "0");
+    startPage.setAttribute("role", "button");
+    startPage.setAttribute("aria-label", "Start DIORAMA");
+    const startFromIntro = (e) => {
+      if (started) {
+        retryLevelOneMusicFromUserGesture();
+        return;
+      }
+      if (e) e.preventDefault();
+      if (!startupGateReady) {
+        setStartupLoadingProgress(96, "Almost ready...");
+        return;
+      }
       startGame();
-    });
-    startPage.addEventListener("keydown", (e) => {
+    };
+    startPage.addEventListener("pointerdown", startFromIntro, { passive: false });
+    startPage.addEventListener("pointerup", startFromIntro, { passive: false });
+    startPage.addEventListener("click", startFromIntro, { passive: false });
+    startPage.addEventListener("touchend", startFromIntro, { passive: false });
+    document.addEventListener("keydown", (e) => {
+      if (started) return;
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
+        if (!startupGateReady) {
+          setStartupLoadingProgress(96, "Almost ready...");
+          return;
+        }
         startGame();
       }
     });
@@ -24509,6 +26189,10 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
       updateMusicToggle();
     });
   }
+  document.addEventListener("pointerup", retryLevelOneMusicFromUserGesture, { passive: true, capture: true });
+  document.addEventListener("click", retryLevelOneMusicFromUserGesture, { passive: true, capture: true });
+  document.addEventListener("touchend", retryLevelOneMusicFromUserGesture, { passive: true, capture: true });
+  document.addEventListener("keydown", retryLevelOneMusicFromUserGesture, true);
   function updateFullscreenButton() {
     if (!fullscreenBtn) return;
     const isFull = !!document.fullscreenElement;
@@ -24692,6 +26376,8 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
     updateFoldingBridges(dt);
     updateGearBridges(dt);
     updateTurnstiles(dt);
+    updateSplitPathLevers(dt);
+    updateBridgePolaritySwitches(dt);
     updateButtonVisuals(dt);
     updateKeyLockVisuals(dt);
     updateRobot(dt);
@@ -24735,7 +26421,7 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
       const b = Math.max(0, robot.userData.successBounce);
       robot.scale.set(1 + Math.sin(b * Math.PI) * 0.08, 1 + Math.sin(b * Math.PI) * 0.12, 1 + Math.sin(b * Math.PI) * 0.08);
     }
-    if (!(isWon || level && level.goal && robotCell && same(robotCell, level.goal))) forceGoalFacing(robot);
+    // Keep robot facing the path/movement direction during idle; do not force goal-facing.
     if (robot && !moving) enforceRobotOnBrick();
     updateStartScreenRobot(dt);
     updateCameraRig();
@@ -24744,6 +26430,10 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
   loadLevel(0);
   setupStartScreen();
   requestAnimationFrame(animate);
+  runStartupAssetGate().catch((err) => {
+    showStartupFailure("DIORAMA startup asset gate failed.", err);
+    throw err;
+  });
   function auditSolvability() {
     const dirs = [[1, 0, 0], [-1, 0, 0], [0, 0, 1], [0, 0, -1]];
     const arr = (v) => Array.isArray(v) ? v : [];
@@ -24779,10 +26469,15 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
       arr(lev.keyLocks).forEach((k) => addCell(map, k.pos, "unlocked-gate", `keylock:${k.keyId}`));
       arr(lev.keys).forEach((k) => addCell(map, k.pos, "key", `key:${k.id}`));
       arr(lev.buttons).forEach((b) => addCell(map, b.pos, "red-button", `button:${b.activates}`));
+      arr(lev.stepBlockCouplers).forEach((c) => addCell(map, c.pos, "step-coupler", `coupler:${c.toggles}`));
       arr(lev.weightedPlates).forEach((w) => addCell(map, w.pos, "blue-button", `weighted:${w.activates}`));
       arr(lev.crates).forEach((c) => addCell(map, c.pos, "crate-start", `crate:${c.id}`));
       arr(lev.fragile).forEach((f) => addCell(map, f.pos, "fragile", "fragile"));
       arr(lev.oneWay).forEach((o) => addCell(map, o.pos, "one-way", "one-way"));
+      arr(lev.directionalGates).forEach((g) => addCell(map, g.pos, "directional-gate", "directional-gate"));
+      arr(lev.routeCommitmentDoors).forEach((d) => addCell(map, d.pos, "route-commitment-door", `commit-door:${d.id}`));
+      arr(lev.routeStampTiles).forEach((s) => addCell(map, s.pos, "route-stamp", `stamp:${s.id}`));
+      arr(lev.routeStampGates).forEach((g) => addCell(map, g.pos, "route-stamp-gate", `stamp-gate:${g.stampId}`));
       return map;
     };
     const neighbors2 = (cell, surfaceMap) => {
@@ -24923,6 +26618,11 @@ FUTURE GAME UPDATE RULES - DO NOT BREAK
     window.__DIORAMA_CLICKABILITY_AUDIT__ = auditClickabilitySurfaces;
   }
 })();
+  } catch (err) {
+    document.body.innerHTML = '<div style="color:#fff;background:#c0392b;padding:32px;font:700 18px/1.5 system-ui,sans-serif;position:fixed;inset:0;display:flex;align-items:center;justify-content:center;text-align:center">DIORAMA failed to start.<br><small style="font-weight:400;opacity:.8">' + (err && err.message ? err.message : String(err)) + '</small></div>';
+    console.error('DIORAMA fatal startup error:', err);
+  }
+});
 /*! Bundled license information:
 
 three/build/three.module.js:
