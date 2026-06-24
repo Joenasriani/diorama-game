@@ -21738,8 +21738,67 @@ document.addEventListener('DOMContentLoaded', () => {
     { label: "19 compound route read", yaw: Math.PI / 12, pitch: -0.76, distance: 20.0 },
     { label: "20 reciprocating atelier", yaw: -Math.PI / 10, pitch: -0.76, distance: 20.6 },
     { label: "21 false summit finale", yaw: Math.PI / 9, pitch: -0.82, distance: 23.4 }
-  ];  function baseCameraDistanceForLevel(lev) {
-    return Math.min(22, Math.max(12.3, Math.max(lev.size[0], lev.size[1]) * 1.25));
+  ];  function levelCameraBoundsForLevel(lev) {
+    const cells = [];
+    const pushCell = (c) => {
+      if (Array.isArray(c) && c.length >= 3) cells.push(c);
+    };
+    const pushMany = (arr, getter) => {
+      if (!Array.isArray(arr)) return;
+      for (const item of arr) {
+        if (getter) {
+          const value = getter(item);
+          if (Array.isArray(value) && Array.isArray(value[0])) value.forEach(pushCell);
+          else pushCell(value);
+        } else pushCell(item);
+      }
+    };
+    pushMany(lev.tiles);
+    pushCell(lev.start);
+    pushCell(lev.goal);
+    pushMany(lev.foldingBridges, (b) => b.target);
+    pushMany(lev.gearBridges, (b) => b.target);
+    pushMany(lev.slideBlocks, (b) => [b.from, b.target]);
+    pushMany(lev.liftBlocks, (l) => [l.pos, [l.pos[0], l.targetY != null ? l.targetY : l.pos[1], l.pos[2]]]);
+    pushMany(lev.movers, (m) => [m.from, m.to]);
+    pushMany(lev.transferPads, (tp) => [tp.from, tp.to]);
+    pushMany(lev.crates, (c) => c.pos);
+    pushMany(lev.weightedPlates, (p) => p.pos);
+    pushMany(lev.keys, (k) => k.pos);
+    pushMany(lev.keyLocks, (k) => k.pos);
+    pushMany(lev.routeStampTiles, (r) => r.pos);
+    pushMany(lev.routeStampGates, (r) => r.pos);
+    pushMany(lev.buttons, (b) => b.pos);
+    pushMany(lev.bridgePolaritySwitches, (sw) => {
+      const out = [sw.pos, sw.controlFrom];
+      if (Array.isArray(sw.bridges)) for (const br of sw.bridges) out.push(br.pos);
+      return out;
+    });
+    pushMany(lev.magneticPullArrays, (ma) => [ma.target].concat(Array.isArray(ma.track) ? ma.track : []));
+    pushMany(lev.stepBlockCouplers, (c) => c.pos);
+    if (!cells.length) return { spanX: Math.max(1, lev.size[0] || 1), spanZ: Math.max(1, lev.size[1] || 1), maxY: 0 };
+    let minX = Infinity, maxX = -Infinity, minZ = Infinity, maxZ = -Infinity, maxY = 0;
+    for (const c of cells) {
+      minX = Math.min(minX, c[0]);
+      maxX = Math.max(maxX, c[0]);
+      maxY = Math.max(maxY, c[1] || 0);
+      minZ = Math.min(minZ, c[2]);
+      maxZ = Math.max(maxZ, c[2]);
+    }
+    return {
+      spanX: Math.max(1, maxX - minX + 1),
+      spanZ: Math.max(1, maxZ - minZ + 1),
+      maxY
+    };
+  }
+  function baseCameraDistanceForLevel(lev) {
+    const b = levelCameraBoundsForLevel(lev);
+    const longSpan = Math.max(b.spanX, b.spanZ, lev.size[0] || 1, lev.size[1] || 1);
+    const diagonal = Math.sqrt(b.spanX * b.spanX + b.spanZ * b.spanZ);
+    // Late DIORAMA levels are long vertical/diagonal layouts. The old camera capped
+    // at 22 and then reused early close-up presets after Level 21, cutting off the board.
+    // This fit distance is deliberately bound-based so every full puzzle remains readable.
+    return Math.min(46, Math.max(12.3, longSpan * 1.48, diagonal * 0.98 + b.maxY * 0.72));
   }
   function responsiveProfile() {
     const vv = window.visualViewport;
@@ -21839,13 +21898,16 @@ document.addEventListener('DOMContentLoaded', () => {
     root.style.setProperty("--start-title-size", `${Math.round(startSize)}px`);
   }
   function cameraStartForLevel(index, lev) {
-    const preset = LEVEL_CAMERA_STARTS[index % LEVEL_CAMERA_STARTS.length] || LEVEL_CAMERA_STARTS[0];
-    const baseDistance = preset.distance || baseCameraDistanceForLevel(lev);
+    const presetIndex = Math.min(index, LEVEL_CAMERA_STARTS.length - 1);
+    const preset = LEVEL_CAMERA_STARTS[presetIndex] || LEVEL_CAMERA_STARTS[0];
+    const boundDistance = baseCameraDistanceForLevel(lev);
+    const lateLevelBoost = index >= 20 ? 1.08 : 1;
+    const baseDistance = Math.max(preset.distance || 0, boundDistance) * lateLevelBoost;
     return {
       yaw: preset.yaw,
       pitch: responsiveCameraPitch(preset.pitch),
       distance: responsiveCameraDistance(baseDistance, lev),
-      label: preset.label
+      label: `${preset.label} + full-board fit`
     };
   }
   function playgroundCenterTargetForLevel(lev) {
@@ -22646,7 +22708,7 @@ document.addEventListener('DOMContentLoaded', () => {
     currentMechanicsLine.textContent = `${label}: ${names.join(" + ")}`;
   }
 
-  var SAVE_KEY = "diorama.save.v25.noRotorMarkers.final25";
+  var SAVE_KEY = "diorama.save.v25.noRotorMarkers.final25.cameraFit";
   var LEGACY_SAVE_KEY = "diorama.save.no_migrate.final25";
   function clampLevelIndex(index) {
     const n = Number.isFinite(Number(index)) ? Math.floor(Number(index)) : 0;
