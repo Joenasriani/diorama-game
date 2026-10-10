@@ -10,9 +10,7 @@
 
 Explore compact isometric structures, operate bridges, lifts, gates, and switches, and guide a robot through routes whose connectivity changes as the puzzle responds.
 
-**Interested in the project?** Star the repository to bookmark its development. Developers can inspect and extend the MIT-licensed original game code, subject to the separate rights applying to bundled third-party assets. Level submissions and external changes do not yet have a documented acceptance workflow; contributor tooling is proposed for a later phase.
-
-> **Licensing:** Original code and documentation licensed by the copyright holder are provided under the [MIT License](LICENSE). This does **not** relicense the bundled fonts, Three.js runtime, music, or other third-party materials. See [third-party notices](THIRD_PARTY_LICENSES.md); music redistribution and asset provenance require separate review before redistributing a complete game package.
+**Interested in the project?** Star the repository to bookmark its development. Developers can explore the game code and contribute improvements. Level submissions and external changes do not yet have a documented acceptance workflow; contributor tooling is proposed for a later phase.
 
 
 ## Gameplay screenshots
@@ -54,19 +52,6 @@ The [itch.io game page](https://joenasr.itch.io/diorama) provides the current pu
 - **Propose improvements** with clear gameplay rationale and enough details for review.
 
 Formal contribution, code-of-conduct, issue template, and release workflows are planned but are not represented here as already implemented. The browser game remains playable independently of these repository improvements.
-
-## Licensing and third-party assets
-
-DIORAMA currently includes two Amatic SC font files and an MP3 named for HitsLab's *Game Gaming Music*. External source records identify Amatic SC as licensed under the SIL Open Font License 1.1 and the HitsLab track as distributed on Pixabay under the Pixabay Content License. These are **different licenses** and should not be treated as part of a future game-code license.
-
-- **Amatic SC:** the font family is offered under OFL-1.1. The exact checked-in binaries have not been matched to an upstream release; retain the applicable notices when redistributing.
-- **HitsLab music:** the identifiable original track is listed under Pixabay's Content License. Its terms require separate review for redistributing a game source package that includes the MP3; a license for the game code does not automatically grant additional music rights.
-- **Bundled Three.js runtime:** the checked-in `index.html` was inspected via the Git blob API and includes a bundled notice identifying Three.js authors and SPDX-License-Identifier: MIT. The notice should remain intact.
-- **Original game code and artwork:** permission to publish and license all parts of the project has not been established by repository visibility alone.
-
-The original-code MIT license is provided in [`LICENSE`](LICENSE). The bundled materials remain subject to separate terms and unresolved provenance or redistribution checks documented in [`THIRD_PARTY_LICENSES.md`](THIRD_PARTY_LICENSES.md).
-
-Sources: [Amatic SC upstream metadata](https://github.com/google/fonts/blob/main/ofl/amaticsc/METADATA.pb) · [Amatic SC license](https://github.com/googlefonts/AmaticSC/blob/main/OFL.txt) · [HitsLab track](https://pixabay.com/music/happy-childrens-tunes-game-gaming-music-295075/).
 
 ## Repository scope
 
@@ -318,3 +303,16 @@ Using an HTTP server is preferred over opening the page directly with `file://`,
 The repository demonstrates implemented pathfinding, mechanism state transitions, persistence, responsive input assistance, and 25 level definitions.
 
 Those implementation facts do not by themselves establish exhaustive cross-browser compatibility, accessibility conformance, performance targets, or device-store certification.
+
+## License and third-party assets
+
+DIORAMA currently includes two Amatic SC font files and an MP3 named for HitsLab's *Game Gaming Music*. External source records identify Amatic SC as licensed under the SIL Open Font License 1.1 and the HitsLab track as distributed on Pixabay under the Pixabay Content License. These are **different licenses** and should not be treated as part of a future game-code license.
+
+- **Amatic SC:** the font family is offered under OFL-1.1. The exact checked-in binaries have not been matched to an upstream release; retain the applicable notices when redistributing.
+- **HitsLab music:** the identifiable original track is listed under Pixabay's Content License. Its terms require separate review for redistributing a game source package that includes the MP3; a license for the game code does not automatically grant additional music rights.
+- **Bundled Three.js runtime:** the checked-in `index.html` was inspected via the Git blob API and includes a bundled notice identifying Three.js authors and SPDX-License-Identifier: MIT. The notice should remain intact.
+- **Original game code and artwork:** permission to publish and license all parts of the project has not been established by repository visibility alone.
+
+The original-code MIT license is provided in [`LICENSE`](LICENSE). The bundled materials remain subject to separate terms and unresolved provenance or redistribution checks documented in [`THIRD_PARTY_LICENSES.md`](THIRD_PARTY_LICENSES.md).
+
+Sources: [Amatic SC upstream metadata](https://github.com/google/fonts/blob/main/ofl/amaticsc/METADATA.pb) · [Amatic SC license](https://github.com/googlefonts/AmaticSC/blob/main/OFL.txt) · [HitsLab track](https://pixabay.com/music/happy-childrens-tunes-game-gaming-music-295075/).
