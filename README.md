@@ -23,11 +23,11 @@ The existing level data describes tile layouts, start and goal cells, hints, dif
 
 The current distribution keeps the level definitions and engine logic together in `index.html`. There is **not yet** a separate level-file format, published level-authoring template, or verified automated solvability test suite. Please do not assume that adding a level is plug-and-play.
 
-**Checked-in level count:** The `main` branch `index.html` was inspected using GitHub's blob API and contains 25 named level definitions, numbered 01 through 25. Earlier development work discussed additional levels, but those builds are not represented by the checked-in set verified here. This check does not establish which version is live at either deployment URL.
+**Version distinction (verified 10 October 2026):** The repository's `main` branch `index.html` contains **25** named level definitions, numbered 01 through 25. The [itch.io game page](https://joenasr.itch.io/diorama) describes a **50-level** current version (page updated 4 October 2026). This repository therefore does **not** document the same advertised level count as the itch.io release. The version hosted on Vercel was not independently verified. Do not submit changes under the assumption that this repository represents the latest public game build.
 
 ## Screenshots and gameplay footage
 
-An accurate gameplay preview has not yet been committed to this documentation. The playable links above provide the current visual demonstration; any future preview should be captured from the actual game rather than generated or reconstructed.
+The [itch.io game page](https://joenasr.itch.io/diorama) provides the current public gameplay presentation. A verified gameplay screenshot or animation has not yet been committed to this repository; any future preview should be captured from an actual build rather than generated or reconstructed.
 
 ## GitHub participation
 
