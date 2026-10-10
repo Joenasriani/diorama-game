@@ -23,7 +23,7 @@ The existing level data describes tile layouts, start and goal cells, hints, dif
 
 The current distribution keeps the level definitions and engine logic together in `index.html`. There is **not yet** a separate level-file format, published level-authoring template, or verified automated solvability test suite. Please do not assume that adding a level is plug-and-play.
 
-**Level count verification pending:** This README documents 25 levels. Other development builds have been discussed with additional levels. The checked-in `index.html` could not be independently counted in this documentation review, so **25 is the documented count, not a newly validated runtime count**.
+**Checked-in level count:** The `main` branch `index.html` was inspected using GitHub's blob API and contains 25 named level definitions, numbered 01 through 25. Earlier development work discussed additional levels, but those builds are not represented by the checked-in set verified here. This check does not establish which version is live at either deployment URL.
 
 ## Screenshots and gameplay footage
 
@@ -44,7 +44,7 @@ DIORAMA currently includes two Amatic SC font files and an MP3 named for HitsLab
 
 - **Amatic SC:** the font family is offered under OFL-1.1. The exact checked-in binaries have not been matched to an upstream release; retain the applicable notices when redistributing.
 - **HitsLab music:** the identifiable original track is listed under Pixabay's Content License. Its terms require separate review for redistributing a game source package that includes the MP3; a license for the game code does not automatically grant additional music rights.
-- **Bundled Three.js runtime:** the embedded runtime and its required copyright/license notices still need inspection because the large `index.html` file could not be fully fetched in this audit.
+- **Bundled Three.js runtime:** the checked-in `index.html` was inspected via the Git blob API and includes a bundled notice identifying Three.js authors and SPDX-License-Identifier: MIT. The notice should remain intact.
 - **Original game code and artwork:** permission to publish and license all parts of the project has not been established by repository visibility alone.
 
 No root `LICENSE` file has been added. Any final game-code license and bundled-asset redistribution policy require an explicit owner decision.
