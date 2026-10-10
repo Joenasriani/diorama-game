@@ -2267,13 +2267,38 @@ body.game-started #versionPill{
   #startInstruction{display:none;}
 }
 
+
+/* Start-page-only tagline: separate from the title and loading bar. */
+#startPage #startInstruction {
+  position:fixed !important;
+  left:50% !important;
+  top:calc(50% + clamp(100px, 14vh, 175px)) !important;
+  bottom:auto !important;
+  transform:translateX(-50%) !important;
+  width:min(88vw, 550px) !important;
+  margin:0 !important;
+  font-size:clamp(19px, 2.7vw, 29px) !important;
+  line-height:1.15 !important;
+  white-space:normal !important;
+  letter-spacing:.045em !important;
+  font-weight:400 !important;
+}
+@media (orientation:portrait) and (max-width:620px) {
+  #startPage #startInstruction {
+    top:calc(50% + clamp(90px, 11vh, 150px)) !important;
+    font-size:clamp(17px, 5.2vw, 23px) !important;
+  }
+}
+@media (max-height:520px) {
+  #startPage #startInstruction { display:none !important; }
+}
 </style>
 </head>
 <body class="diorama-booting">
 <div id="stage"></div>
 <div id="dioramaVignette" aria-hidden="true"></div>
 <div id="startupLoader" aria-hidden="true"></div>
-<div id="startPage" role="button" tabindex="0" aria-label="Start game"><div id="startTitle">DIORAMA<span class="scribbleGrain" aria-hidden="true"></span></div><div id="startInstruction">Read the machine before you move.<span class="small">Tap reachable tiles. Buttons prepare the path.</span></div><div id="startupLoaderCard" aria-live="polite" aria-label="DIORAMA loading"><div id="startupLoaderTitle">DIORAMA</div><div id="startupLoaderText">Loading the toy world...</div><div id="startupLoaderBarFrame"><div id="startupLoaderBar"></div></div><div id="startupStartPrompt" aria-hidden="true">Click to Start!</div><div id="startupLoaderPercent">0%</div></div><div id="startFooter" aria-label="Credits"><div>Dev&nbsp;&nbsp;ApexInnovate.ae</div><div>Music&nbsp;&nbsp;HitLabs</div><div>DIORAMA&nbsp;&nbsp;v1.0</div></div><div id="versionPill">v1.0</div></div>
+<div id="startPage" role="button" tabindex="0" aria-label="Start game"><div id="startTitle">DIORAMA<span class="scribbleGrain" aria-hidden="true"></span></div><div id="startInstruction">A little world. A big puzzle.</div><div id="startupLoaderCard" aria-live="polite" aria-label="DIORAMA loading"><div id="startupLoaderTitle">DIORAMA</div><div id="startupLoaderText">Loading the toy world...</div><div id="startupLoaderBarFrame"><div id="startupLoaderBar"></div></div><div id="startupStartPrompt" aria-hidden="true">Click to Start!</div><div id="startupLoaderPercent">0%</div></div><div id="startFooter" aria-label="Credits"><div>Dev&nbsp;&nbsp;Joe Nasr</div><div>Music&nbsp;&nbsp;HitLabs</div><div>DIORAMA&nbsp;&nbsp;v1.0</div></div><div id="versionPill">v1.0</div></div>
 <button id="musicToggle" class="hudIcon" type="button" aria-label="Toggle music" data-muted="false">♫</button>
 <button id="fullscreenBtn" class="hudIcon" type="button" aria-label="Toggle fullscreen" aria-pressed="false">⛶</button>
 <audio id="bgMusic" src="./assets/music/hitslab-game-gaming-music-295075.mp3" preload="auto" loop playsinline></audio>
