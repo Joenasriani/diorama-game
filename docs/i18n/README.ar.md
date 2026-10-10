@@ -1,5 +1,3 @@
-<div dir="rtl">
-
 [English](../../README.md) · [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [Español](README.es.md) · [Português (Brasil)](README.pt-BR.md) · [Deutsch](README.de.md) · [Français](README.fr.md) · [العربية](README.ar.md) · [繁體中文](README.zh-TW.md)
 
 # DIORAMA – دليل باللغة العربية
@@ -25,5 +23,3 @@ python3 -m http.server 8080
 تخضع الشيفرة والوثائق الأصلية التي يملك صاحب الحقوق صلاحية ترخيصها إلى [رخصة MIT](../../LICENSE). وتبقى للمكتبات والخطوط والموسيقى شروط تراخيص منفصلة، وما زال بعض حقوق إعادة التوزيع بحاجة إلى التحقق. راجع [إشعارات الطرف الثالث](../../THIRD_PARTY_LICENSES.md).
 
 [ملف README بالإنجليزية](../../README.md) هو المرجع التقني الكامل. هذه صفحة تعريفية مترجمة وليست ترجمة كاملة للوثائق التقنية.
-
-</div>
