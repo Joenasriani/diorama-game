@@ -10,7 +10,7 @@
 
 Explore compact isometric structures, operate bridges, lifts, gates, and switches, and guide a robot through routes whose connectivity changes as the puzzle responds.
 
-**Interested in the project?** Star the repository to bookmark its development. Developers can explore the game code and contribute improvements. Level submissions and external changes do not yet have a documented acceptance workflow; contributor tooling is proposed for a later phase.
+**Interested in the project?** Star the repository to bookmark its development. Developers can explore the game code and contribute improvements. Contribution guidelines, issue templates, a pull request checklist, and a structural level validator are available. See [CONTRIBUTING.md](CONTRIBUTING.md) before proposing a change.
 
 
 ## Gameplay screenshots
@@ -29,20 +29,20 @@ Explore compact isometric structures, operate bridges, lifts, gates, and switche
 
 The existing level data describes tile layouts, start and goal cells, hints, difficulty bands, and collections of puzzle mechanisms. These are useful starting points for studying how DIORAMA puzzles work.
 
-**Possible areas for future contributions** (not yet a promise of an accepted PR workflow):
+**Possible areas for contributions** (reviewed through issues and pull requests):
 
 - Design and test additional levels using existing mechanics.
 - Propose new mechanisms and puzzle interactions.
 - Identify unreachable tiles, invalid mechanism states, visual overlaps, or touch-control problems.
 - Improve mobile input, accessibility, and documentation.
 
-The current distribution keeps the level definitions and engine logic together in `index.html`. There is **not yet** a separate level-file format, published level-authoring template, or verified automated solvability test suite. Please do not assume that adding a level is plug-and-play.
+The current distribution keeps the level definitions and engine logic together in `index.html`. There is **not yet** a separate level-file format or automated solvability test suite. A [level-authoring reference](docs/LEVEL_AUTHORING.md) and a read-only [structural validator](scripts/validate-levels.cjs) are available. Please do not assume that adding a level is plug-and-play.
 
-**Version distinction (verified 10 October 2026):** The repository's `main` branch `index.html` contains **25** named level definitions, numbered 01 through 25. The [itch.io game page](https://joenasr.itch.io/diorama) describes a **50-level** current version (page updated 4 October 2026). This repository therefore does **not** document the same advertised level count as the itch.io release. The version hosted on Vercel was not independently verified. Do not submit changes under the assumption that this repository represents the latest public game build.
+**Version distinction (verified 10 October 2026):** The repository's `main` branch `index.html` contains **25** named level definitions, numbered 01 through 25. The [itch.io game page](https://joenasr.itch.io/diorama) describes a **50-level** current version (page updated 4 October 2026). This repository therefore does **not** document the same advertised level count as the itch.io release. The Vercel deployment was previously verified against a GitHub commit, but the live alias and game-version parity have not been rechecked for this README update. Do not submit changes under the assumption that this repository represents the latest public game build.
 
 ## Screenshots and gameplay footage
 
-The [itch.io game page](https://joenasr.itch.io/diorama) provides the current public gameplay presentation. A verified gameplay screenshot or animation has not yet been committed to this repository; any future preview should be captured from an actual build rather than generated or reconstructed.
+The [itch.io game page](https://joenasr.itch.io/diorama) provides the current public gameplay presentation. Five actual gameplay screenshots are available in the [gallery above](#gameplay-screenshots), along with a [social-preview asset](docs/screenshots/social-preview.png).
 
 ## GitHub participation
 
@@ -51,7 +51,7 @@ The [itch.io game page](https://joenasr.itch.io/diorama) provides the current pu
 - **Report reproducible bugs** with level number, device/browser, reproduction steps, expected outcome, and actual outcome.
 - **Propose improvements** with clear gameplay rationale and enough details for review.
 
-Formal contribution, code-of-conduct, issue template, and release workflows are planned but are not represented here as already implemented. The browser game remains playable independently of these repository improvements.
+Contribution guidelines, issue/PR templates, [release procedures](docs/RELEASE_PROCESS.md), and structural CI checks have been added. A code of conduct and automated gameplay-solvability checks have not been verified as implemented. The browser game remains playable independently of these repository improvements.
 
 ## Repository scope
 
