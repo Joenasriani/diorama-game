@@ -10,6 +10,22 @@
 <meta name="theme-color" content="#4faeff" />
 <!-- DIORAMA_V1_READY: root index.html + relative runtime assets only. -->
 <style>
+/* Load local display font before any styles that reference "Amatic SC". */
+@font-face {
+  font-family: "Amatic SC";
+  src: url("./assets/fonts/AmaticSC-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Amatic SC";
+  src: url("./assets/fonts/AmaticSC-Bold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
 :root{
   --bg1:#bfe8ff;
   --bg2:#4faeff;
