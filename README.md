@@ -1,11 +1,55 @@
 # DIORAMA
 
-Single-page 3D mechanical puzzle game built around compact isometric structures, route planning, interactive mechanisms, and constrained click/tap movement.
+**A playable 3D mechanical puzzle game built around route planning, moving architecture, and interactive mechanisms.**
 
-## Links
+[**Play DIORAMA on itch.io**](https://joenasr.itch.io/diorama) · [**Play the browser deployment**](https://diorama-game.vercel.app)
 
-- Play: https://joenasr.itch.io/diorama
-- Deployment: https://diorama-game.vercel.app
+Explore compact isometric structures, operate bridges, lifts, gates, and switches, and guide a robot through routes whose connectivity changes as the puzzle responds.
+
+**Interested in the project?** Star the repository to bookmark its development. Developers can inspect the public code; redistribution and other reuse require appropriate permissions until licensing is clarified. Level submissions and external changes do not yet have a documented acceptance workflow; contributor tooling is proposed for a later phase.
+
+> **Source availability and licensing:** The repository is public, but a root open-source license has not yet been established. Public visibility alone does not grant broad reuse or redistribution rights. Check the rights to the game code and bundled third-party assets before redistributing modified builds.
+
+## Exploring and extending DIORAMA
+
+The existing level data describes tile layouts, start and goal cells, hints, difficulty bands, and collections of puzzle mechanisms. These are useful starting points for studying how DIORAMA puzzles work.
+
+**Possible areas for future contributions** (not yet a promise of an accepted PR workflow):
+
+- Design and test additional levels using existing mechanics.
+- Propose new mechanisms and puzzle interactions.
+- Identify unreachable tiles, invalid mechanism states, visual overlaps, or touch-control problems.
+- Improve mobile input, accessibility, and documentation.
+
+The current distribution keeps the level definitions and engine logic together in `index.html`. There is **not yet** a separate level-file format, published level-authoring template, or verified automated solvability test suite. Please do not assume that adding a level is plug-and-play.
+
+**Version distinction (verified 10 October 2026):** The repository's `main` branch `index.html` contains **25** named level definitions, numbered 01 through 25. The [itch.io game page](https://joenasr.itch.io/diorama) describes a **50-level** current version (page updated 4 October 2026). This repository therefore does **not** document the same advertised level count as the itch.io release. The version hosted on Vercel was not independently verified. Do not submit changes under the assumption that this repository represents the latest public game build.
+
+## Screenshots and gameplay footage
+
+The [itch.io game page](https://joenasr.itch.io/diorama) provides the current public gameplay presentation. A verified gameplay screenshot or animation has not yet been committed to this repository; any future preview should be captured from an actual build rather than generated or reconstructed.
+
+## GitHub participation
+
+- **Star** if you find the project or its mechanical puzzle implementation useful.
+- **Fork** through GitHub to explore the code, respecting the licensing restrictions that apply to downstream use.
+- **Report reproducible bugs** with level number, device/browser, reproduction steps, expected outcome, and actual outcome.
+- **Propose improvements** with clear gameplay rationale and enough details for review.
+
+Formal contribution, code-of-conduct, issue template, and release workflows are planned but are not represented here as already implemented. The browser game remains playable independently of these repository improvements.
+
+## Third-party assets and rights status
+
+DIORAMA currently includes two Amatic SC font files and an MP3 named for HitsLab's *Game Gaming Music*. External source records identify Amatic SC as licensed under the SIL Open Font License 1.1 and the HitsLab track as distributed on Pixabay under the Pixabay Content License. These are **different licenses** and should not be treated as part of a future game-code license.
+
+- **Amatic SC:** the font family is offered under OFL-1.1. The exact checked-in binaries have not been matched to an upstream release; retain the applicable notices when redistributing.
+- **HitsLab music:** the identifiable original track is listed under Pixabay's Content License. Its terms require separate review for redistributing a game source package that includes the MP3; a license for the game code does not automatically grant additional music rights.
+- **Bundled Three.js runtime:** the checked-in `index.html` was inspected via the Git blob API and includes a bundled notice identifying Three.js authors and SPDX-License-Identifier: MIT. The notice should remain intact.
+- **Original game code and artwork:** permission to publish and license all parts of the project has not been established by repository visibility alone.
+
+No root `LICENSE` file has been added. Any final game-code license and bundled-asset redistribution policy require an explicit owner decision.
+
+Sources: [Amatic SC upstream metadata](https://github.com/google/fonts/blob/main/ofl/amaticsc/METADATA.pb) · [Amatic SC license](https://github.com/googlefonts/AmaticSC/blob/main/OFL.txt) · [HitsLab track](https://pixabay.com/music/happy-childrens-tunes-game-gaming-music-295075/).
 
 ## Repository scope
 
