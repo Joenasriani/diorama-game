@@ -6,7 +6,7 @@
 
 Explore compact isometric structures, operate bridges, lifts, gates, and switches, and guide a robot through routes whose connectivity changes as the puzzle responds.
 
-**Interested in the project?** Star the repository to bookmark its development, or fork it to study the puzzle logic and experiment with modifications. Level submissions and external changes do not yet have a documented acceptance workflow; contributor tooling is proposed for a later phase.
+**Interested in the project?** Star the repository to bookmark its development. Developers can inspect the public code; redistribution and other reuse require appropriate permissions until licensing is clarified. Level submissions and external changes do not yet have a documented acceptance workflow; contributor tooling is proposed for a later phase.
 
 > **Source availability and licensing:** The repository is public, but a root open-source license has not yet been established. Public visibility alone does not grant broad reuse or redistribution rights. Check the rights to the game code and bundled third-party assets before redistributing modified builds.
 
@@ -23,12 +23,16 @@ The existing level data describes tile layouts, start and goal cells, hints, dif
 
 The current distribution keeps the level definitions and engine logic together in `index.html`. There is **not yet** a separate level-file format, published level-authoring template, or verified automated solvability test suite. Please do not assume that adding a level is plug-and-play.
 
-**Development status:** This README documents 25 levels. Historical development discussed builds with additional levels; the deployed and checked-in runtime counts should be verified before changing the published count.
+**Level count verification pending:** This README documents 25 levels. Other development builds have been discussed with additional levels. The checked-in `index.html` could not be independently counted in this documentation review, so **25 is the documented count, not a newly validated runtime count**.
+
+## Screenshots and gameplay footage
+
+An accurate gameplay preview has not yet been committed to this documentation. The playable links above provide the current visual demonstration; any future preview should be captured from the actual game rather than generated or reconstructed.
 
 ## GitHub participation
 
 - **Star** if you find the project or its mechanical puzzle implementation useful.
-- **Fork** to inspect or experiment with the implementation, subject to the applicable licensing rights.
+- **Fork** through GitHub to explore the code, respecting the licensing restrictions that apply to downstream use.
 - **Report reproducible bugs** with level number, device/browser, reproduction steps, expected outcome, and actual outcome.
 - **Propose improvements** with clear gameplay rationale and enough details for review.
 
