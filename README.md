@@ -38,6 +38,19 @@ An accurate gameplay preview has not yet been committed to this documentation. T
 
 Formal contribution, code-of-conduct, issue template, and release workflows are planned but are not represented here as already implemented. The browser game remains playable independently of these repository improvements.
 
+## Third-party assets and rights status
+
+DIORAMA currently includes two Amatic SC font files and an MP3 named for HitsLab's *Game Gaming Music*. External source records identify Amatic SC as licensed under the SIL Open Font License 1.1 and the HitsLab track as distributed on Pixabay under the Pixabay Content License. These are **different licenses** and should not be treated as part of a future game-code license.
+
+- **Amatic SC:** the font family is offered under OFL-1.1. The exact checked-in binaries have not been matched to an upstream release; retain the applicable notices when redistributing.
+- **HitsLab music:** the identifiable original track is listed under Pixabay's Content License. Its terms require separate review for redistributing a game source package that includes the MP3; a license for the game code does not automatically grant additional music rights.
+- **Bundled Three.js runtime:** the embedded runtime and its required copyright/license notices still need inspection because the large `index.html` file could not be fully fetched in this audit.
+- **Original game code and artwork:** permission to publish and license all parts of the project has not been established by repository visibility alone.
+
+No root `LICENSE` file has been added. Any final game-code license and bundled-asset redistribution policy require an explicit owner decision.
+
+Sources: [Amatic SC upstream metadata](https://github.com/google/fonts/blob/main/ofl/amaticsc/METADATA.pb) · [Amatic SC license](https://github.com/googlefonts/AmaticSC/blob/main/OFL.txt) · [HitsLab track](https://pixabay.com/music/happy-childrens-tunes-game-gaming-music-295075/).
+
 ## Repository scope
 
 The current repository is a self-contained browser distribution:
