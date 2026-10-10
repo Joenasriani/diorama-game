@@ -1,4 +1,4 @@
-<p align="left"><img src="docs/screenshots/logo.png" width="130" alt="DIORAMA logo"></p>
+<p align="center"><img src="docs/screenshots/logo.png" width="130" alt="DIORAMA logo"></p>
 
 # DIORAMA
 
