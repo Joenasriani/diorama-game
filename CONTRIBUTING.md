@@ -12,6 +12,7 @@ Thank you for helping improve DIORAMA. The checked-in game currently has **25 le
 - Propose a level design with its intended unique solution.
 - Improve documentation, test coverage, or accessibility.
 - Suggest new mechanics in an issue before implementing them.
+- Musicians may propose tracks using the [music contribution guide](MUSIC_CONTRIBUTING.md); Joe Nasr must explicitly approve creative fit and rights before any soundtrack changes.
 
 ## Current development setup
 
