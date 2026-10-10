@@ -309,7 +309,7 @@ Those implementation facts do not by themselves establish exhaustive cross-brows
 DIORAMA currently includes two Amatic SC font files and an MP3 named for HitsLab's *Game Gaming Music*. External source records identify Amatic SC as licensed under the SIL Open Font License 1.1 and the HitsLab track as distributed on Pixabay under the Pixabay Content License. These are **different licenses** and should not be treated as part of a future game-code license.
 
 - **Amatic SC:** the font family is offered under OFL-1.1. The exact checked-in binaries have not been matched to an upstream release; retain the applicable notices when redistributing.
-- **HitsLab music:** the identifiable original track is listed under Pixabay's Content License. Its terms require separate review for redistributing a game source package that includes the MP3; a license for the game code does not automatically grant additional music rights.
+- **HitsLab music:** the Pixabay Content License permits the track's use within creative projects such as DIORAMA, subject to its terms; the game credits **Music HitLabs**. The track is not MIT-licensed. Separate redistribution of the original MP3 from the public source repository remains a distinct rights question, as explained in the [third-party notices](THIRD_PARTY_LICENSES.md).
 - **Bundled Three.js runtime:** the checked-in `index.html` was inspected via the Git blob API and includes a bundled notice identifying Three.js authors and SPDX-License-Identifier: MIT. The notice should remain intact.
 - **Original game code and artwork:** permission to publish and license all parts of the project has not been established by repository visibility alone.
 

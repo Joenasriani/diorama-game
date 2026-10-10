@@ -26,7 +26,8 @@ DIORAMA's root [MIT LICENSE](LICENSE) applies to original code and documentation
 - **Attribution/source listing:** https://pixabay.com/music/happy-childrens-tunes-game-gaming-music-295075/
 - **License described by source:** Pixabay Content License (not MIT)
 - **License summary:** https://pixabay.com/service/license-summary/
-- **Boundary:** The Pixabay Content License restricts standalone redistribution of unmodified content. A public source repository exposing the original MP3 as a separately downloadable file may raise licensing questions. **Do not treat this file as MIT-licensed or separately reusable.** Confirm the permitted redistribution arrangement with the relevant rights holder or obtain an alternative authorized asset/license before representing the entire repository as freely redistributable.
+- **Use in DIORAMA:** Pixabay's content terms permit incorporating music in creative projects, including games, subject to their conditions. DIORAMA credits the creator in-game as **Music HitLabs**; attribution does not replace license compliance.
+- **Separate redistribution boundary:** The track is **not MIT-licensed**, and the Pixabay terms restrict standalone distribution of substantially unchanged content. Because the repository exposes the original MP3 as an individual file, permission for that mode of redistribution remains unconfirmed. Do not offer the track as a reusable standalone asset. No change to the game's music is required.
 
 ## Game identity, branding and other materials
 
