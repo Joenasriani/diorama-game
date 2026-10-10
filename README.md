@@ -10,6 +10,20 @@ Explore compact isometric structures, operate bridges, lifts, gates, and switche
 
 > **Licensing:** Original code and documentation licensed by the copyright holder are provided under the [MIT License](LICENSE). This does **not** relicense the bundled fonts, Three.js runtime, music, or other third-party materials. See [third-party notices](THIRD_PARTY_LICENSES.md); music redistribution and asset provenance require separate review before redistributing a complete game package.
 
+
+## Gameplay screenshots
+
+Screenshots captured from the running DIORAMA browser game.
+
+| Level 01 | Level 03 |
+| --- | --- |
+| ![DIORAMA Level 01 – First Toy Step](docs/screenshots/level-01.jpg) | ![DIORAMA Level 03 – Fold Out Bridge](docs/screenshots/level-03.jpg) |
+
+| Level 04 | Level 06 | Level 10 |
+| --- | --- | --- |
+| ![DIORAMA Level 04](docs/screenshots/level-04.jpg) | ![DIORAMA Level 06](docs/screenshots/level-06.jpg) | ![DIORAMA Level 10](docs/screenshots/level-10.jpg) |
+
+
 ## Exploring and extending DIORAMA
 
 The existing level data describes tile layouts, start and goal cells, hints, difficulty bands, and collections of puzzle mechanisms. These are useful starting points for studying how DIORAMA puzzles work.
