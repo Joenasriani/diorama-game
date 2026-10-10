@@ -1,3 +1,5 @@
+<p align="center"><img src="docs/screenshots/logo.png" width="130" alt="DIORAMA logo"></p>
+
 # DIORAMA
 
 **A playable 3D mechanical puzzle game built around route planning, moving architecture, and interactive mechanisms.**
@@ -13,16 +15,15 @@ Explore compact isometric structures, operate bridges, lifts, gates, and switche
 
 ## Gameplay screenshots
 
-Screenshots captured from the running DIORAMA browser game.
+<p align="center">
+  <a href="docs/screenshots/level-01.jpg"><img src="docs/screenshots/level-01.jpg" width="125" alt="DIORAMA Level 01"></a>
+  <a href="docs/screenshots/level-03.jpg"><img src="docs/screenshots/level-03.jpg" width="125" alt="DIORAMA Level 03"></a>
+  <a href="docs/screenshots/level-04.jpg"><img src="docs/screenshots/level-04.jpg" width="125" alt="DIORAMA Level 04"></a>
+  <a href="docs/screenshots/level-06.jpg"><img src="docs/screenshots/level-06.jpg" width="125" alt="DIORAMA Level 06"></a>
+  <a href="docs/screenshots/level-10.jpg"><img src="docs/screenshots/level-10.jpg" width="125" alt="DIORAMA Level 10"></a>
+</p>
 
-| Level 01 | Level 03 |
-| --- | --- |
-| ![DIORAMA Level 01 – First Toy Step](docs/screenshots/level-01.jpg) | ![DIORAMA Level 03 – Fold Out Bridge](docs/screenshots/level-03.jpg) |
-
-| Level 04 | Level 06 | Level 10 |
-| --- | --- | --- |
-| ![DIORAMA Level 04](docs/screenshots/level-04.jpg) | ![DIORAMA Level 06](docs/screenshots/level-06.jpg) | ![DIORAMA Level 10](docs/screenshots/level-10.jpg) |
-
+<sub>Actual browser-game captures. Select a thumbnail to view the full image.</sub>
 
 ## Exploring and extending DIORAMA
 
