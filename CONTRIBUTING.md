@@ -4,7 +4,7 @@ Thank you for helping improve DIORAMA. The checked-in game currently has **25 le
 
 ## Before contributing
 
-**License status:** This public repository has not yet declared a root code license, and bundled music and fonts have separate rights. Do not assume that public source grants permission to redistribute the code, assets, or modified builds. Until the maintainer clarifies the license, discuss substantial adaptations or redistribution before proceeding.
+**License status:** Original code and documentation for which the copyright holder has authority are licensed under the repository's [MIT License](LICENSE). Bundled fonts, music and the Three.js runtime retain separate rights, summarized in [THIRD_PARTY_LICENSES.md](THIRD_PARTY_LICENSES.md). The music's redistribution status in a source package and some asset provenance remain unverified; do not assume the entire playable package is MIT-licensed.
 
 ### Good ways to help
 
