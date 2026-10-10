@@ -1,11 +1,38 @@
 # DIORAMA
 
-Single-page 3D mechanical puzzle game built around compact isometric structures, route planning, interactive mechanisms, and constrained click/tap movement.
+**A playable 3D mechanical puzzle game built around route planning, moving architecture, and interactive mechanisms.**
 
-## Links
+[**Play DIORAMA on itch.io**](https://joenasr.itch.io/diorama) · [**Play the browser deployment**](https://diorama-game.vercel.app)
 
-- Play: https://joenasr.itch.io/diorama
-- Deployment: https://diorama-game.vercel.app
+Explore compact isometric structures, operate bridges, lifts, gates, and switches, and guide a robot through routes whose connectivity changes as the puzzle responds.
+
+**Interested in the project?** Star the repository to bookmark its development, or fork it to study the puzzle logic and experiment with modifications. Level submissions and external changes do not yet have a documented acceptance workflow; contributor tooling is proposed for a later phase.
+
+> **Source availability and licensing:** The repository is public, but a root open-source license has not yet been established. Public visibility alone does not grant broad reuse or redistribution rights. Check the rights to the game code and bundled third-party assets before redistributing modified builds.
+
+## Exploring and extending DIORAMA
+
+The existing level data describes tile layouts, start and goal cells, hints, difficulty bands, and collections of puzzle mechanisms. These are useful starting points for studying how DIORAMA puzzles work.
+
+**Possible areas for future contributions** (not yet a promise of an accepted PR workflow):
+
+- Design and test additional levels using existing mechanics.
+- Propose new mechanisms and puzzle interactions.
+- Identify unreachable tiles, invalid mechanism states, visual overlaps, or touch-control problems.
+- Improve mobile input, accessibility, and documentation.
+
+The current distribution keeps the level definitions and engine logic together in `index.html`. There is **not yet** a separate level-file format, published level-authoring template, or verified automated solvability test suite. Please do not assume that adding a level is plug-and-play.
+
+**Development status:** This README documents 25 levels. Historical development discussed builds with additional levels; the deployed and checked-in runtime counts should be verified before changing the published count.
+
+## GitHub participation
+
+- **Star** if you find the project or its mechanical puzzle implementation useful.
+- **Fork** to inspect or experiment with the implementation, subject to the applicable licensing rights.
+- **Report reproducible bugs** with level number, device/browser, reproduction steps, expected outcome, and actual outcome.
+- **Propose improvements** with clear gameplay rationale and enough details for review.
+
+Formal contribution, code-of-conduct, issue template, and release workflows are planned but are not represented here as already implemented. The browser game remains playable independently of these repository improvements.
 
 ## Repository scope
 
