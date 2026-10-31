@@ -49,5 +49,5 @@ This register is the approval gate for gameplay revisions. Only one item may be 
 
 - Static syntax check: passed.
 - Structural level validation: passed for all 25 level definitions, including the new one-way vector contract.
-- Live deployment: pending.
+- Live deployment: passed; the deployed build contains the corrected `[-1, 0, 0]` vector.
 - Player preview/approval: pending.
