@@ -1,0 +1,33 @@
+name: Level 25 safe route fix
+on:
+  push:
+    paths:
+      - .github/workflows/level25-safe-fix.yml
+permissions:
+  contents: write
+jobs:
+  patch-level-25:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add missing polarity switch host tile
+        shell: bash
+        run: |
+          set -euo pipefail
+          before=$(wc -c < index.html)
+          test "$before" -gt 1200000
+          test "$(grep -o '\[13,0,13\],\[13,0,11\]' index.html | wc -l)" -eq 1
+          perl -0pi -e 's/\[13,0,13\],\[13,0,11\]/[13,0,13],[12,0,13],[13,0,11]/' index.html
+          test "$(grep -o '\[13,0,13\],\[12,0,13\],\[13,0,11\]' index.html | wc -l)" -eq 1
+          after=$(wc -c < index.html)
+          test "$after" -gt 1200000
+          test "$(tail -c 8 index.html)" = $'html>\n'
+          if LC_ALL=C grep -q $'\0' index.html; then exit 1; fi
+      - name: Commit exact correction
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Restore Level 25 polarity switch route"
+          git push
