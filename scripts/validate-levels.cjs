@@ -42,6 +42,17 @@ for (const [index, level] of levels.entries()) {
   if (!Array.isArray(level.size) || level.size.length !== 2 || !level.size.every(n => Number.isFinite(n) && n > 0)) errors.push(id + ': invalid size');
   if (typeof level.puzzle !== 'string' || typeof level.hint !== 'string') errors.push(id + ': missing puzzle or hint text');
   if (typeof level.difficultyBand !== 'string') errors.push(id + ': missing difficulty band');
+  for (const [oneWayIndex, oneWay] of (level.oneWay || []).entries()) {
+    if (!oneWay || !cell(oneWay.pos)) errors.push(id + ': oneWay[' + oneWayIndex + '] has an invalid position');
+    if (!oneWay || !cell(oneWay.dir)) {
+      errors.push(id + ': oneWay[' + oneWayIndex + '] direction must be a three-component [x,y,z] vector');
+      continue;
+    }
+    const [x, y, z] = oneWay.dir;
+    if (y !== 0 || Math.abs(x) + Math.abs(z) !== 1) {
+      errors.push(id + ': oneWay[' + oneWayIndex + '] direction must be one horizontal cardinal step');
+    }
+  }
 }
 if (errors.length) {
   console.error('DIORAMA structural check FAILED (' + errors.length + '):\\n' + errors.join('\\n'));
