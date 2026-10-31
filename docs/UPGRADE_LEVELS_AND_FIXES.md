@@ -51,5 +51,5 @@ This register is the approval gate for gameplay revisions. Only one item may be 
 
 - Static syntax check: passed.
 - Structural level validation: passed for all 25 levels, including the Level 25 polarity-switch host-tile contract.
-- Live deployment: pending.
+- Live deployment: passed; the published game file exactly matches the verified repository blob.
 - Player preview/approval: pending.
