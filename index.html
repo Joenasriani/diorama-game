@@ -22788,7 +22788,6 @@ document.addEventListener('DOMContentLoaded', () => {
   var levelCameraEaseActive = false;
   var levelCameraEaseT = 0;
   var LEVEL_CAMERA_EASE_DURATION = 1.35;
-  var spiralRevealStep = -1;
   var robotIdleTimer = 0;
   var robotIdleLookSequence = { active: false, t: 0, baseYaw: 0, targetYaw: 0, playedFirstBlink: false, playedSecondBlink: false };
   var ROBOT_IDLE_LOOK_DELAY = 2.0;
@@ -25667,112 +25666,11 @@ document.addEventListener('DOMContentLoaded', () => {
       setRobotArms(idleSwing, -idleSwing, 0, sequenceActive ? Math.sin(t * 4.5) * 0.012 : 0);
     }
   }
-  function isSpiralRevealLevel() {
-    return level && /Spiral|Helix|Tower/i.test(level.name || "");
-  }
-  function tileOrderIndex(cell) {
-    if (!level || !cell || !Array.isArray(level.tiles)) return -1;
-    for (let i = 0; i < level.tiles.length; i++) {
-      if (same(level.tiles[i], cell)) return i;
-    }
-    return -1;
-  }
-  function averageCellsTarget(cells) {
-    if (!cells || !cells.length || !level) return responsiveCameraTargetForLevel(level);
-    let sx = 0, sy = 0, sz = 0;
-    for (const c of cells) {
-      sx += c[0];
-      sy += c[1] || 0;
-      sz += c[2];
-    }
-    const n = cells.length;
-    return new Vector3(
-      sx / n + world.position.x,
-      Math.min(2.2, Math.max(0.35, sy / n * 0.42 + 0.42)),
-      sz / n + world.position.z
-    );
-  }
-  function spiralRevealSegmentForIndex(idx) {
-    if (!level || !Array.isArray(level.tiles) || idx < 0) return 0;
-    const count = Math.max(1, level.tiles.length - 1);
-    return Math.max(0, Math.min(3, Math.floor(idx / Math.max(1, Math.ceil(count / 4)))));
-  }
-  function spiralRevealAllowedEndIndex(step) {
-    if (!level || !Array.isArray(level.tiles)) return -1;
-    const count = Math.max(1, level.tiles.length - 1);
-    // Reveal the current quarter plus a small preview lip so the player sees where the next 90-degree turn begins,
-    // but not the entire tower. This keeps the spiral feeling like a discovery instead of a fully exposed staircase.
-    return Math.min(level.tiles.length - 1, Math.ceil(count * (step + 1) / 4) + 1);
-  }
-  function spiralRevealCellAllowed(cell) {
-    if (!isSpiralRevealLevel() || !cell) return true;
-    const idx = tileOrderIndex(cell);
-    if (idx < 0) return true;
-    return idx <= spiralRevealAllowedEndIndex(Math.max(0, spiralRevealStep));
-  }
-  function setSpiralObjectVisible(obj, visible) {
-    if (!obj) return;
-    obj.visible = visible;
-    obj.traverse?.((child) => {
-      if (child && child !== obj) child.visible = visible;
-    });
-  }
-  function updateSpiralRevealVisibility() {
-    if (!level) return;
-    const active = isSpiralRevealLevel();
-    const isAllowed = (cell) => !active || spiralRevealCellAllowed(cell);
-    for (const info of tileMap.values()) {
-      if (info && info.mesh && info.cell) setSpiralObjectVisible(info.mesh, isAllowed(info.cell));
-    }
-    for (const key of keyMeshes.values()) {
-      setSpiralObjectVisible(key, isAllowed(key.userData.cell));
-    }
-    for (const mesh of crateMeshes.values()) {
-      setSpiralObjectVisible(mesh, isAllowed(mesh.userData.cell));
-    }
-    for (const m of moverMeshes) {
-      if (!m || !m.mesh) continue;
-      const fromAllowed = isAllowed((m.def && m.def.from) || m.fromCell || m.from || m.currentCell);
-      const toAllowed = isAllowed((m.def && m.def.to) || m.toCell || m.to || m.currentCell);
-      setSpiralObjectVisible(m.mesh, fromAllowed || toAllowed || isAllowed(m.currentCell));
-      if (m.rail) setSpiralObjectVisible(m.rail, fromAllowed || toAllowed);
-    }
-    for (const mesh of foldedBridgeMeshes.values()) setSpiralObjectVisible(mesh, isAllowed(mesh.userData.cell));
-    for (const mesh of gearBridgeMeshes.values()) setSpiralObjectVisible(mesh, isAllowed(mesh.userData.cell));
-    for (const mesh of slideBlockMeshes.values()) setSpiralObjectVisible(mesh, isAllowed(mesh.userData.cell));
-    for (const mesh of turnstileMeshes.values()) setSpiralObjectVisible(mesh, isAllowed(mesh.userData.cell));
-    for (const record of splitPathLeverMeshes.values()) if (record && record.group) setSpiralObjectVisible(record.group, true);
-    for (const marker of reachableMarkers) setSpiralObjectVisible(marker, isAllowed(marker.userData.cell));
-    if (selectedMarker) setSpiralObjectVisible(selectedMarker, isAllowed(selectedMarker.userData.cell));
-  }
-  function applySpiralRevealCamera(force = false) {
-    if (!isSpiralRevealLevel()) {
-      updateSpiralRevealVisibility();
-      return;
-    }
-    const idx = tileOrderIndex(robotCell);
-    if (idx < 0) return;
-    const nextStep = spiralRevealSegmentForIndex(idx);
-    if (!force && nextStep === spiralRevealStep) {
-      updateSpiralRevealVisibility();
-      return;
-    }
-    spiralRevealStep = nextStep;
-    const count = Math.max(1, (level.tiles || []).length - 1);
-    const startIndex = Math.max(0, Math.floor(count * nextStep / 4) - 1);
-    const endIndex = Math.min(level.tiles.length, spiralRevealAllowedEndIndex(nextStep) + 1);
-    const focusCells = level.tiles.slice(startIndex, endIndex);
-    const base = cameraStartForLevel(current, level);
-    const p = responsiveProfile();
-    targetYaw = base.yaw + nextStep * Math.PI / 2;
-    targetPitch = p.portrait ? Math.max(-1.22, base.pitch - 0.08) : base.pitch;
-    // Pull closer than the full-tower view: only the current straight/turn section is framed.
-    targetDistance = Math.max(p.portrait ? 10.2 : 8.2, Math.min(base.distance * (p.portrait ? 0.88 : 0.74), p.portrait ? 22 : 18));
-    targetCameraTarget.copy(averageCellsTarget(focusCells));
-    updateSpiralRevealVisibility();
-    levelCameraEaseActive = true;
-    levelCameraEaseT = 0;
-  }
+  // Level 12 now remains fully visible and uses the standard player-controlled camera.
+  // These compatibility hooks stay intentionally empty because movement and marker updates
+  // call them generically across every level.
+  function updateSpiralRevealVisibility() {}
+  function applySpiralRevealCamera() {}
   function updateCameraRig() {
     targetPitch = Math.max(-1.32, Math.min(-0.1, targetPitch));
     targetDistance = Math.max(3.8, Math.min(48, targetDistance));
@@ -25900,7 +25798,6 @@ document.addEventListener('DOMContentLoaded', () => {
     rig.position.copy(cameraTarget);
     levelCameraEaseActive = true;
     levelCameraEaseT = 0;
-    spiralRevealStep = -1;
     applySpiralRevealCamera(true);
     level.cameraStart = `${cameraStart.label} + soft ease-in`;
     updateCameraRig();
