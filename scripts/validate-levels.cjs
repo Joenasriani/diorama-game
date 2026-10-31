@@ -53,6 +53,14 @@ for (const [index, level] of levels.entries()) {
       errors.push(id + ': oneWay[' + oneWayIndex + '] direction must be one horizontal cardinal step');
     }
   }
+  if (index === 24) {
+    for (const polaritySwitch of (level.bridgePolaritySwitches || [])) {
+      const hasHostTile = level.tiles.some(tile => tile.every((value, axis) => value === polaritySwitch.pos[axis]));
+      if (!hasHostTile) {
+        errors.push(id + ': polarity switch ' + polaritySwitch.id + ' has no host tile at [' + polaritySwitch.pos.join(',') + ']');
+      }
+    }
+  }
 }
 if (errors.length) {
   console.error('DIORAMA structural check FAILED (' + errors.length + '):\\n' + errors.join('\\n'));

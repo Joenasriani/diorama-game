@@ -13,7 +13,7 @@ This register is the approval gate for gameplay revisions. Only one item may be 
 
 | Order | Scope | Status | Intended revision |
 |---:|---|---|---|
-| 1 | Level 25 one-way vector | **In review** | Correct the malformed direction vector and add regression validation. No design changes. |
+| 1 | Level 25 route completion | **In review** | Correct the malformed one-way vector and restore the missing polarity-switch host tile. |
 | 2 | Level 7 polarity/stamp | Queued | Separate the automatic combined actions into meaningful, readable decisions. |
 | 3 | Level 8 twin lift/polarity | Queued | Convert automatic polarity B into a deliberate state choice. |
 | 4 | Level 9 mechanic load | Queued | Review whether portal, directional gate and delay should remain combined. |
@@ -33,21 +33,23 @@ This register is the approval gate for gameplay revisions. Only one item may be 
 | 18 | Level 25 finale redesign | Queued | After the correctness fix is approved, rebuild the finale around a coherent subset of rules. |
 | 19 | Full progression review | Queued | Reassess Levels 1–25 as one teaching and difficulty sequence. |
 
-## Revision 1 – Level 25 one-way vector
+## Revision 1 – Level 25 route completion
 
 ### Changed
 
 - Corrected the Level 25 one-way direction from the invalid two-component `[-1, 0]` to the westward three-component vector `[-1, 0, 0]` expected by the runtime.
 - Extended the structural validator to reject malformed one-way positions, non-three-component direction vectors and non-cardinal horizontal directions.
+- Added the missing host tile at `[12, 0, 13]` for `final_polarity_switch`. Without it, the runtime skipped switch creation and neither polarity bridge existed, permanently blocking the route to the transfer portal.
+- Added a regression check that rejects any Level 25 polarity switch whose position lacks a real host tile.
 
 ### Protected
 
-- No Level 25 coordinates, mechanisms, hint text, camera behavior, artwork or balance were changed.
+- No Level 25 mechanics, hint text, camera behavior, artwork or balance were changed beyond the single missing switch-support tile.
 - No other level definition was changed.
 
 ### Verification
 
 - Static syntax check: passed.
-- Structural level validation: passed for all 25 level definitions, including the new one-way vector contract.
-- Live deployment: passed; the deployed build contains the corrected `[-1, 0, 0]` vector.
+- Structural level validation: passed for all 25 levels, including the Level 25 polarity-switch host-tile contract.
+- Live deployment: pending.
 - Player preview/approval: pending.
