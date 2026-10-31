@@ -24074,7 +24074,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const destinationPosition = cellToPos(destination);
     transferAnimation = {
       elapsed: 0,
-      duration: 0.78,
+      duration: 1.18,
       switched: false,
       origin,
       destination: [...destination],
@@ -24099,17 +24099,21 @@ document.addEventListener('DOMContentLoaded', () => {
     state.elapsed += dt;
     const p = Math.min(1, state.elapsed / state.duration);
     const split = 0.46;
-    const sourceP = Math.min(1, p / split);
-    const destinationP = Math.max(0, Math.min(1, (p - split + 0.08) / (1 - split + 0.08)));
-    animateTransferEnergy(state.sourceEnergy, sourceP, dt);
-    if (p >= split - 0.08) animateTransferEnergy(state.destinationEnergy, destinationP, dt);
-    if (state.sourcePad) state.sourcePad.scale.setScalar(1 + Math.sin(sourceP * Math.PI) * 0.12);
-    if (state.destinationPad && p >= split - 0.08) state.destinationPad.scale.setScalar(1 + Math.sin(destinationP * Math.PI) * 0.12);
+    // Readable portal beats: electricity gathers around the intact robot, the robot
+    // dissolves, the destination arcs wake, and the rebuilt robot waits for them to settle.
+    const sourceEnergyP = Math.min(1, p / 0.44);
+    const sourceDissolveP = Math.max(0, Math.min(1, (p - 0.12) / 0.30));
+    const destinationEnergyP = Math.max(0, Math.min(1, (p - 0.40) / 0.60));
+    const destinationAppearP = Math.max(0, Math.min(1, (p - 0.52) / 0.30));
+    animateTransferEnergy(state.sourceEnergy, sourceEnergyP, dt);
+    if (p >= 0.40) animateTransferEnergy(state.destinationEnergy, destinationEnergyP, dt);
+    if (state.sourcePad) state.sourcePad.scale.setScalar(1 + Math.sin(sourceEnergyP * Math.PI) * 0.12);
+    if (state.destinationPad && p >= 0.40) state.destinationPad.scale.setScalar(1 + Math.sin(destinationEnergyP * Math.PI) * 0.12);
     if (p < split) {
-      const vanish = 1 - sourceP * sourceP;
+      const vanish = 1 - sourceDissolveP * sourceDissolveP;
       robot.position.copy(state.originPosition);
       robot.scale.set(vanish * 0.96 + 0.04, Math.max(0.035, vanish), vanish * 0.96 + 0.04);
-      robot.rotation.y += dt * (1.4 + sourceP * 4.2);
+      if (sourceDissolveP > 0) robot.rotation.y += dt * (1.4 + sourceDissolveP * 4.2);
     } else {
       if (!state.switched) {
         state.switched = true;
@@ -24118,7 +24122,7 @@ document.addEventListener('DOMContentLoaded', () => {
         robot.rotation.y = yawTowardWorldPoint(state.originPosition, state.destinationPosition);
         updateReachableMarkers();
       }
-      const appear = destinationP * destinationP * (3 - 2 * destinationP);
+      const appear = destinationAppearP * destinationAppearP * (3 - 2 * destinationAppearP);
       robot.position.copy(state.destinationPosition);
       robot.scale.set(Math.max(0.04, appear), Math.max(0.035, appear), Math.max(0.04, appear));
     }
