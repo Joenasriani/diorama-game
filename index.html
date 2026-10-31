@@ -23194,8 +23194,47 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => playTone(115, 0.060, "sine", 0.014), 44);
   }
   function playTransferSfx() {
-    playTone(520, 0.060, "sine", 0.024);
-    setTimeout(() => playTone(780, 0.090, "sine", 0.020), 58);
+    if (!started) return;
+    try {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      if (audioCtx.state === "suspended" && audioCtx.resume) audioCtx.resume().catch(() => {});
+      const now = audioCtx.currentTime;
+      const master = audioCtx.createGain();
+      master.gain.setValueAtTime(1e-4, now);
+      master.gain.exponentialRampToValueAtTime(0.026, now + 0.055);
+      master.gain.exponentialRampToValueAtTime(0.017, now + 0.56);
+      master.gain.exponentialRampToValueAtTime(1e-4, now + 1.16);
+      const lower = audioCtx.createOscillator();
+      lower.type = "triangle";
+      lower.frequency.setValueAtTime(310, now);
+      lower.frequency.exponentialRampToValueAtTime(940, now + 0.48);
+      lower.frequency.exponentialRampToValueAtTime(420, now + 1.14);
+      const upper = audioCtx.createOscillator();
+      upper.type = "sine";
+      upper.frequency.setValueAtTime(760, now);
+      upper.frequency.exponentialRampToValueAtTime(1380, now + 0.52);
+      upper.frequency.exponentialRampToValueAtTime(690, now + 1.14);
+      const upperGain = audioCtx.createGain();
+      upperGain.gain.setValueAtTime(0.34, now);
+      const shimmer = audioCtx.createOscillator();
+      shimmer.type = "sine";
+      shimmer.frequency.setValueAtTime(17, now);
+      const shimmerDepth = audioCtx.createGain();
+      shimmerDepth.gain.setValueAtTime(0.0038, now);
+      shimmer.connect(shimmerDepth);
+      shimmerDepth.connect(master.gain);
+      lower.connect(master);
+      upper.connect(upperGain);
+      upperGain.connect(master);
+      master.connect(audioCtx.destination);
+      lower.start(now);
+      upper.start(now);
+      shimmer.start(now);
+      lower.stop(now + 1.2);
+      upper.stop(now + 1.2);
+      shimmer.stop(now + 1.2);
+    } catch (e) {
+    }
   }
   function playMagnetSfx() {
     playTone(210, 0.080, "sawtooth", 0.012);
@@ -23388,7 +23427,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   function decorateSemanticTile(group, type) {
     if (type === "danger") {
-      for (let i = 0; i < 4; i++) {
+      for (let i = 0; i < 6; i++) {
         const spike = new Mesh(tinySpikeGeo, mats.dangerMark);
         const ox = i % 2 ? 0.22 : -0.22;
         const oz = i > 1 ? 0.22 : -0.22;
@@ -23992,7 +24031,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         const arc = new Line(new BufferGeometry(), arcMaterial);
         arc.userData.phase = i * 1.71 + (arriving ? 0.83 : 0);
-        arc.userData.radius = 0.18 + i * 0.045;
+        arc.userData.radius = 0.30 + i * 0.055;
         arc.userData.twist = i % 2 ? 1 : -1;
         electricalArcs.push(arc);
         group.add(arc);
@@ -24050,17 +24089,17 @@ document.addEventListener('DOMContentLoaded', () => {
       for (let j = 0; j <= 7; j++) {
         const vertical = j / 7;
         const angle = arc.userData.phase + vertical * Math.PI * 1.3 * arc.userData.twist;
-        const jag = Math.sin(pulse * 3.7 + j * 4.31 + i * 2.2) * 0.07;
+        const jag = Math.sin(pulse * 3.7 + j * 4.31 + i * 2.2) * 0.115;
         const radius = arc.userData.radius + jag;
         points.push(new Vector3(
           Math.cos(angle) * radius,
-          0.11 + vertical * 1.02,
+          0.04 + vertical * 1.34,
           Math.sin(angle) * radius
         ));
       }
       arc.geometry.setFromPoints(points);
       const flicker = 0.58 + 0.42 * Math.sin(pulse * 8.4 + i * 2.7);
-      arc.material.opacity = strength * Math.max(0.16, flicker) * (i < 2 ? 0.96 : 0.64);
+      arc.material.opacity = strength * Math.max(0.2, flicker) * (i < 3 ? 1 : 0.76);
       arc.visible = strength > 0.08 && flicker > 0.05;
     }
     group.userData.particleMaterial.opacity = 0.18 + strength * 0.82;
