@@ -73,5 +73,5 @@ This register is the approval gate for gameplay revisions. Only one item may be 
 
 - Static syntax check: passed.
 - Structural level validation: passed for all 25 levels, including every arrow-driving direction source.
-- Live deployment: pending.
+- Live deployment: passed; GitHub Pages published the Revision 1A build.
 - Player preview/approval: pending.
