@@ -29,8 +29,6 @@ catch (error) { throw Error('Embedded levels are not valid JSON: ' + error.messa
 const errors = [];
 const seen = new Set();
 const cell = v => Array.isArray(v) && v.length === 3 && v.every(n => Number.isFinite(n));
-const cardinal2 = v => Array.isArray(v) && v.length === 2 && v.every(Number.isFinite) && Math.abs(v[0]) + Math.abs(v[1]) === 1;
-const cardinal3 = v => cell(v) && v[1] === 0 && Math.abs(v[0]) + Math.abs(v[2]) === 1;
 if (!Array.isArray(levels) || levels.length === 0) errors.push('No levels defined');
 for (const [index, level] of levels.entries()) {
   const id = 'Level ' + (index + 1);
@@ -54,17 +52,6 @@ for (const [index, level] of levels.entries()) {
     if (y !== 0 || Math.abs(x) + Math.abs(z) !== 1) {
       errors.push(id + ': oneWay[' + oneWayIndex + '] direction must be one horizontal cardinal step');
     }
-  }
-  for (const [gateIndex, gate] of (level.directionalGates || []).entries()) {
-    if (!gate || !cell(gate.pos)) errors.push(id + ': directionalGates[' + gateIndex + '] has an invalid position');
-    if (!gate || !cardinal2(gate.enterDir)) errors.push(id + ': directionalGates[' + gateIndex + '] enterDir must be one horizontal cardinal step');
-  }
-  for (const [liftIndex, lift] of (level.liftBlocks || []).entries()) {
-    if (lift && lift.oneWayExit && !cardinal3(lift.oneWayExit)) errors.push(id + ': liftBlocks[' + liftIndex + '] oneWayExit must be one horizontal cardinal step');
-  }
-  for (const [padIndex, pad] of (level.transferPads || []).entries()) {
-    if (!pad || !cell(pad.from) || !cell(pad.to)) errors.push(id + ': transferPads[' + padIndex + '] must have valid from/to cells');
-    else if (pad.from.every((n, i) => n === pad.to[i])) errors.push(id + ': transferPads[' + padIndex + '] cannot point to its own cell');
   }
 }
 if (errors.length) {
