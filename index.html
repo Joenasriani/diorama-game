@@ -23981,10 +23981,28 @@ document.addEventListener('DOMContentLoaded', () => {
       particles.push(particle);
       group.add(particle);
     }
+    const electricalArcs = [];
+    if (typeof Line !== "undefined" && typeof LineBasicMaterial !== "undefined") {
+      for (let i = 0; i < 4; i++) {
+        const arcMaterial = new LineBasicMaterial({
+          color: i % 2 ? 0xe6ffff : 0x7becef,
+          transparent: true,
+          opacity: 0,
+          depthWrite: false
+        });
+        const arc = new Line(new BufferGeometry(), arcMaterial);
+        arc.userData.phase = i * 1.71 + (arriving ? 0.83 : 0);
+        arc.userData.radius = 0.18 + i * 0.045;
+        arc.userData.twist = i % 2 ? 1 : -1;
+        electricalArcs.push(arc);
+        group.add(arc);
+      }
+    }
     group.position.set(cell[0], cell[1], cell[2]);
     group.visible = !arriving;
     group.userData.ring = ring;
     group.userData.particles = particles;
+    group.userData.electricalArcs = electricalArcs;
     group.userData.particleMaterial = particleMaterial;
     group.userData.ringMaterial = ringMaterial;
     group.userData.arriving = arriving;
@@ -23995,6 +24013,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!group) return;
     world.remove(group);
     if (group.userData.ring && group.userData.ring.geometry) group.userData.ring.geometry.dispose();
+    for (const arc of group.userData.electricalArcs || []) {
+      if (arc.geometry) arc.geometry.dispose();
+      if (arc.material) arc.material.dispose();
+    }
     if (group.userData.particleMaterial) group.userData.particleMaterial.dispose();
     if (group.userData.ringMaterial) group.userData.ringMaterial.dispose();
   }
@@ -24019,6 +24041,27 @@ document.addEventListener('DOMContentLoaded', () => {
         Math.sin(angle) * radius
       );
       particle.scale.setScalar((0.34 + strength * 0.7) * (0.72 + i % 3 * 0.12));
+    }
+    const electricalArcs = group.userData.electricalArcs || [];
+    for (let i = 0; i < electricalArcs.length; i++) {
+      const arc = electricalArcs[i];
+      const points = [];
+      const pulse = progress * 9.5 + arc.userData.phase;
+      for (let j = 0; j <= 7; j++) {
+        const vertical = j / 7;
+        const angle = arc.userData.phase + vertical * Math.PI * 1.3 * arc.userData.twist;
+        const jag = Math.sin(pulse * 3.7 + j * 4.31 + i * 2.2) * 0.07;
+        const radius = arc.userData.radius + jag;
+        points.push(new Vector3(
+          Math.cos(angle) * radius,
+          0.11 + vertical * 1.02,
+          Math.sin(angle) * radius
+        ));
+      }
+      arc.geometry.setFromPoints(points);
+      const flicker = 0.58 + 0.42 * Math.sin(pulse * 8.4 + i * 2.7);
+      arc.material.opacity = strength * Math.max(0.16, flicker) * (i < 2 ? 0.96 : 0.64);
+      arc.visible = strength > 0.08 && flicker > 0.05;
     }
     group.userData.particleMaterial.opacity = 0.18 + strength * 0.82;
   }
