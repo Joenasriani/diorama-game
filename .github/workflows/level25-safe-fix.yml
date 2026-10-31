@@ -21,8 +21,8 @@ jobs:
           test "$(grep -o '\[13,0,13\],\[12,0,13\],\[13,0,11\]' index.html | wc -l)" -eq 1
           after=$(wc -c < index.html)
           test "$after" -gt 1200000
-          test "$(tail -c 8 index.html)" = $'html>\n'
-          if LC_ALL=C grep -q $'\0' index.html; then exit 1; fi
+          test "$(tail -c 8 index.html)" = '</html>'
+          test "$(LC_ALL=C tr -cd '\000' < index.html | wc -c)" -eq 0
       - name: Commit exact correction
         shell: bash
         run: |
