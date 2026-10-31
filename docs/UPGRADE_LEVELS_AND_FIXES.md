@@ -13,7 +13,8 @@ This register is the approval gate for gameplay revisions. Only one item may be 
 
 | Order | Scope | Status | Intended revision |
 |---:|---|---|---|
-| 1 | Level 25 one-way vector | **In review** | Correct the malformed direction vector and add regression validation. No design changes. |
+| 1 | Level 25 one-way vector | Awaiting confirmation | Correct the malformed direction vector and add regression validation. No design changes. |
+| 1A | Global route-arrow clarity | **In review** | Remove the freestanding gate sign and reserve arrows for the robot's actual travel direction. |
 | 2 | Level 7 polarity/stamp | Queued | Separate the automatic combined actions into meaningful, readable decisions. |
 | 3 | Level 8 twin lift/polarity | Queued | Convert automatic polarity B into a deliberate state choice. |
 | 4 | Level 9 mechanic load | Queued | Review whether portal, directional gate and delay should remain combined. |
@@ -50,4 +51,27 @@ This register is the approval gate for gameplay revisions. Only one item may be 
 - Static syntax check: passed.
 - Structural level validation: passed for all 25 level definitions, including the new one-way vector contract.
 - Live deployment: passed; the deployed build contains the corrected `[-1, 0, 0]` vector.
+- Player preview/approval: pending.
+
+## Revision 1A – Global route-arrow clarity
+
+### Changed
+
+- Removed the freestanding rectangular directional-gate frame shown in Level 25; the tile now carries a clean floor arrow only.
+- Fixed the north/south gate-arrow double rotation and the pure north/south one-way-arrow angle fallback.
+- Kept directional-gate, one-way tile, one-way lift and transfer-source arrows tied directly to the robot's permitted or resulting travel direction.
+- Removed arrows from sliding and moving machinery because those described machine motion rather than where the robot should go.
+- Replaced non-route arrow icons on commitment/reset/transfer controls with neutral symbols.
+- Extended structural validation to cover directional-gate, one-way-lift and transfer direction sources.
+
+### Protected
+
+- No level coordinates, solutions, mechanic logic, hint text, camera behavior or balance were changed.
+- Portal electrical animation, pauses and sound remain unchanged.
+
+### Verification
+
+- Static syntax check: passed.
+- Structural level validation: passed for all 25 levels, including every arrow-driving direction source.
+- Live deployment: pending.
 - Player preview/approval: pending.
