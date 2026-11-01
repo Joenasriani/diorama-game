@@ -1,5 +1,13 @@
 # DIORAMA level authoring – current format
 
+## Mandatory mobile ascent check
+
+For every new or revised level, test each upward transition in a portrait touch viewport. A connected route is not sufficient when its elevated block is too small or visually overlaps another tier. The shared input resolver must select an immediate reachable upward neighbor before broader scene geometry. Never solve touch ambiguity by allowing jumps, bypassing a lock or accepting a cell outside the live movement graph.
+
+## Folding-bridge stem direction
+
+Every `foldingBridges` entry must define a cardinal `stemDir: [x,0,z]`. It points from the grey bridge target toward the adjacent route brick that physically anchors or feeds the bridge. The structural validator rejects missing, diagonal or empty-space directions. Do not use the stem as decoration or leave it at a default orientation.
+
 ## Scope
 
 This document describes the **existing embedded level data**, not a stable level-plugin interface. The production source remains the self-contained `index.html`; no standalone level files or level importer exist yet.
