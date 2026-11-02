@@ -6,8 +6,11 @@ This is a **proposal and prioritization guide**, not a promise of release dates.
 
 - Investigate reproducible bugs using the issue templates.
 - Maintain 25-level compatibility, existing movement semantics, camera, sound, and saves.
-- Build a regression checklist from real defects before changing any mechanics.
+- Continue the one-level-at-a-time audit from Level 16 onward, with player preview and approval before advancing.
+- Extend the regression checklist from real defects before changing any mechanics. Current guards cover revised route contracts, elevated touch targets, crown stacking and folding-bridge stem alignment.
 - Document browser and touch-device coverage using observed results, not assumptions.
+
+Completed in the 2 November 2026 revision batch: focused revisions for Levels 7–15 where selected, Level 25 route-integrity protection, two-finger touch-camera translation, global upward-step touch assistance and route-aligned folding-bridge stems. The frozen ending sequence remains deliberately deferred until the gameplay audit is complete.
 
 ## Track B – Make contributions easier (priority)
 

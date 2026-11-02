@@ -38,7 +38,21 @@ The existing level data describes tile layouts, start and goal cells, hints, dif
 
 The current distribution keeps the level definitions and engine logic together in `index.html`. There is **not yet** a separate level-file format or automated solvability test suite. A [level-authoring reference](docs/LEVEL_AUTHORING.md) and a read-only [structural validator](scripts/validate-levels.cjs) are available. Please do not assume that adding a level is plug-and-play.
 
-**Version distinction (verified 10 October 2026):** The repository's `main` branch `index.html` contains **25** named level definitions, numbered 01 through 25. The [itch.io game page](https://joenasr.itch.io/diorama) describes a **50-level** current version (page updated 4 October 2026). This repository therefore does **not** document the same advertised level count as the itch.io release. The Vercel deployment was previously verified against a GitHub commit, but the live alias and game-version parity have not been rechecked for this README update. Do not submit changes under the assumption that this repository represents the latest public game build.
+**Version distinction (verified 2 November 2026):** The repository's `main` branch `index.html` contains **25** named level definitions, numbered 01 through 25. The gameplay and mobile-usability revision batch is merged at [`e8bdb44`](https://github.com/Joenasriani/diorama-game/commit/e8bdb44a609350d0bdcb50729fab0b9e68b43368). The [itch.io game page](https://joenasr.itch.io/diorama) has advertised a **50-level** version, so this repository should not be assumed to match that separate edition. The Vercel production alias was intentionally not redeployed during this revision batch; its parity with `main` remains unverified.
+
+## Current revision state
+
+The 2 November 2026 repository revision includes:
+
+- corrected and simplified routes for Levels 7, 8, 9, 12, 13, 14 and 15;
+- restored Level 25 route integrity checks;
+- visible route-stamp/gate unlock feedback;
+- portal disappearance/reappearance timing with enlarged electrical strikes and transition audio;
+- two-finger touch-camera tracking and pedestal movement while preserving pinch zoom;
+- global reachable-upward-step assistance for small elevated mobile targets;
+- route-aligned folding-bridge stems with structural validation for every bridge.
+
+The detailed approval register is maintained in [`docs/UPGRADE_LEVELS_AND_FIXES.md`](docs/UPGRADE_LEVELS_AND_FIXES.md). Structural validation does not replace manual playthroughs; remaining level audits continue separately.
 
 ## Screenshots and gameplay footage
 
@@ -66,6 +80,11 @@ The current repository is a self-contained browser distribution:
 │   │   └── AmaticSC-Regular.ttf
 │   └── music/
 │       └── hitslab-game-gaming-music-295075.mp3
+├── docs/
+│   ├── LEVEL_AUTHORING.md
+│   └── UPGRADE_LEVELS_AND_FIXES.md
+├── scripts/
+│   └── validate-levels.cjs
 └── README.md
 ```
 
@@ -175,6 +194,8 @@ delayedLiftTriggers
 underpassCells
 ```
 
+Folding-bridge entries also define a cardinal `stemDir` so the visible hinge/stem points toward the bridge's real adjacent route anchor. The validator rejects missing, diagonal, or empty-space stem directions.
+
 Unused mechanism arrays remain empty for levels that do not require them.
 
 ## Interaction and tap assistance
@@ -195,6 +216,8 @@ Touch assistance receives an additional small-screen adjustment.
 When a tap does not land cleanly on the intended traversable surface, the runtime can resolve an assisted target using reachable-path and mechanism-aware logic rather than moving to an arbitrary nearby tile.
 
 Specialized assistance exists for high-tier and multi-branch situations where projected surfaces can overlap visually.
+
+Immediate reachable upward neighbors receive priority before broader scene hit-testing on small touch screens. This enlarges the practical target without allowing tier jumps, lock bypasses, or movement outside the live route graph.
 
 Reachable helper meshes are used as interaction proxies but are intentionally rendered invisible in the current build.
 
@@ -222,6 +245,9 @@ The runtime contains:
 - camera-start definitions;
 - camera easing during level transitions;
 - additional camera handling for specific reveal sequences;
+- one-finger orbit control;
+- two-finger horizontal tracking and vertical pedestal movement on touch screens;
+- pinch-distance zoom that remains independent of two-finger camera translation;
 - fullscreen support.
 
 Camera rotation is part of inspection and navigation, while movement remains constrained by puzzle connectivity.

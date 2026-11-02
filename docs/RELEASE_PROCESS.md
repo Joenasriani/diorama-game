@@ -6,7 +6,7 @@ This is a **future release checklist** and does not claim that a release was shi
 2. Record the exact commit, release scope and level count. Do not merge a newer distribution simply to synchronize counts.
 3. Review the diff for gameplay, level, dependency, and asset changes.
 4. Run GitHub Actions structural validation and record the run URL.
-5. In a real browser, play every changed level from start to goal; verify alternate mechanism states, blocked routes, mobile tap targets, and camera behavior.
+5. In a real browser, play every changed level from start to goal; verify alternate mechanism states, blocked routes, mobile tap targets, elevated-step selection, folding-bridge stem direction, one-finger orbit, two-finger tracking/pedestal movement, pinch zoom, and camera framing.
 6. Regression-test old levels potentially affected by shared code; preserve saved progression and audio.
 7. Check code and third-party asset licenses before redistributing the package.
 8. Draft release notes: improvements, fixes, compatibility, known issues, credits.
