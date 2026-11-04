@@ -31,14 +31,23 @@
     #skipEnding{display:none}body.embedded-ending #skipEnding{display:inline-block}
     @media(prefers-reduced-motion:reduce){#controls{background:rgba(30,65,74,.68)}}
     #diagnostic{display:none;position:fixed;z-index:20;inset:18px 18px auto;padding:16px 18px;border-radius:18px;background:rgba(116,42,42,.94);color:#fff;font:700 20px/1.2 system-ui,sans-serif;white-space:pre-wrap;box-shadow:0 12px 32px rgba(0,0,0,.2)}
-  /* Hide intermediate geometry until the first fully composed WebGL frame. */
-  html:not(.diorama-scene-ready) body::after{content:"";position:fixed;inset:0;z-index:2147483647;pointer-events:auto;background:#58afe8}
-  html.pitch-header:not(.diorama-scene-ready) body::after{background:#5b777d}
+  /* Movie loading screen: game-original slim white rim and warm ivory/gold fill.
+     It also covers HTML parse and WebGL initialization, before JavaScript runs. */
+  #movieLoading{position:fixed;inset:0;z-index:2147483647;display:grid;place-items:center;background:#58afe8;pointer-events:auto}
+  #movieLoading[hidden]{display:none!important}
+  #movieLoadingBarFrame{position:relative;width:min(156px,calc(100vw - 48px));height:clamp(14px,2.2vw,18px);border:2px solid rgba(255,255,255,.88);border-radius:999px;background:rgba(255,255,255,.28);overflow:hidden;box-shadow:0 4px 10px rgba(4,45,91,.14)}
+  #movieLoadingBar{position:absolute;left:2px;top:2px;bottom:2px;width:35%;border-radius:999px;background:linear-gradient(180deg,rgba(255,255,255,.98),rgba(255,240,186,.98) 60%,rgba(255,219,118,.98));animation:dioramaMovieLoad 1.1s ease-in-out infinite alternate}
+  @keyframes dioramaMovieLoad{from{transform:translateX(-110%)}to{transform:translateX(280%)}}
+  @media(prefers-reduced-motion:reduce){#movieLoadingBar{animation:none;width:60%;transform:none}}
+  html.pitch-header #movieLoading{background:#5b777d}
+  html.pitch-header #movieLoadingBarFrame{display:none}
+  html.diorama-scene-ready #movieLoading{display:none}
   html.pitch-header,body.pitch-header{background:#5b777d}body.pitch-header #vignette{display:none}
   body.pitch-header #controls,body.pitch-header #finalActions,body.pitch-header #shotLabel{display:none!important}
 </style>
 </head>
 <body>
+  <div id="movieLoading" role="status" aria-label="Loading the DIORAMA cinematic"><div id="movieLoadingBarFrame" aria-hidden="true"><div id="movieLoadingBar"></div></div></div>
   <audio id="score" preload="auto" playsinline src="./audio/hero-score-bed.mp3"></audio>
   <div id="stage"></div><div id="vignette"></div><div id="shotTransition" aria-hidden="true"></div><div id="shotLabel" aria-live="polite"></div><div id="diagnostic" role="alert"></div>
   <div id="card"><div class="small">THE JOURNEY CONTINUES</div><div class="title">DIORAMA 2</div><div class="soon">COMING SOON</div><div id="finalActions"><button id="restart" type="button" aria-label="Play DIORAMA again from Level 1">Replay Diorama</button><button id="invest" type="button" aria-describedby="investorStatus">INVEST IN DIORAMA 2</button><div id="investorStatus" aria-live="polite"></div></div></div>
@@ -19959,6 +19968,23 @@
   document.querySelectorAll('[data-time]').forEach(b=>b.addEventListener('click',()=>{timeline=Number(b.dataset.time);setPlaying(false);update(timeline);}));
   if(!embedded)addEventListener('keydown',e=>{if(e.code==='Space'){e.preventDefault();setPlaying(!playing);}if(e.key==='ArrowRight'){timeline=clamp(timeline+.1,0,ENDING_DURATION);setPlaying(false);}if(e.key==='ArrowLeft'){timeline=clamp(timeline-.1,0,ENDING_DURATION);setPlaying(false);}});
   addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);renderer.setPixelRatio(pixelRatio());});
+  // Prevent partially composed geometry, fonts and the first WebGL frame from being shown.
+  // The film's timeline remains at 0 until the loading screen is removed.
+  function revealMovieWhenReady(){
+    const fontsReady = document.fonts && document.fonts.ready ? document.fonts.ready.catch(()=>{}) : Promise.resolve();
+    fontsReady.then(()=>{
+      requestAnimationFrame(()=>{
+        document.documentElement.classList.add('diorama-scene-ready');
+        const loading=document.getElementById('movieLoading');
+        if(loading)loading.hidden=true;
+        if(embedded)window.parent.postMessage({type:'diorama-ending-scene-ready'},location.origin);
+        if(!pitchHeader){
+          last=performance.now();
+          requestAnimationFrame(frame);
+        }
+      });
+    });
+  }
   // Construct the complete opening scene before revealing the canvas.
   update(timeline); if(pitchHeader){
     // Investor header only: retain the original Three.js castle and all DOM title text.
@@ -19994,19 +20020,11 @@
     }
     renderSymmetricPitchHeader();
     addEventListener('resize',()=>{update(timeline);renderSymmetricPitchHeader();});
-    requestAnimationFrame(()=>{
-      document.documentElement.classList.add('diorama-scene-ready');
-      if(embedded)window.parent.postMessage({type:'diorama-ending-scene-ready'},location.origin);
-    });
+    revealMovieWhenReady();
   }else{
-    // Render once behind the curtain without advancing the film's timeline.
+    // Render time-zero first behind the loading screen, with no timeline advancement.
     renderer.render(scene,camera);
-    requestAnimationFrame(()=>{
-      document.documentElement.classList.add('diorama-scene-ready');
-      if(embedded)window.parent.postMessage({type:'diorama-ending-scene-ready'},location.origin);
-      last=performance.now();
-      requestAnimationFrame(frame);
-    });
+    revealMovieWhenReady();
   }
   window.__DIORAMA_ENDING_PREVIEW__={duration:ENDING_DURATION,setTime(v){timeline=clamp(Number(v)||0,0,ENDING_DURATION);setPlaying(false);update(timeline);},play(){setPlaying(true);},pause(){setPlaying(false);}};
 })();
