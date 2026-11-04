@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#5b777d">
+  <meta name="theme-color" content="#27ade3">
   <title>DIORAMA 2 – Coming Soon</title>
   <style>
     @font-face{font-family:"Amatic SC";src:url("../assets/fonts/AmaticSC-Regular.ttf") format("truetype");font-weight:400;font-display:swap}
     @font-face{font-family:"Amatic SC";src:url("../assets/fonts/AmaticSC-Bold.ttf") format("truetype");font-weight:700;font-display:swap}
-    :root{color-scheme:dark;--sky:#5b777d;--blue:#31afe0;--blue-deep:#168dbd;--gold:#ffe064;--paper:#f7f2df}
+    :root{color-scheme:dark;--sky:#27ade3;--blue:#31afe0;--blue-deep:#168dbd;--gold:#ffe064;--paper:#f7f2df}
     *{box-sizing:border-box}
     html{background:var(--sky);scroll-behavior:smooth}
     body{margin:0;min-height:100vh;background:var(--sky);color:white;font-family:"Amatic SC",sans-serif;letter-spacing:.055em}
@@ -35,12 +35,16 @@
     .feature span{display:block;margin-top:8px;color:var(--paper);font-family:system-ui,-apple-system,sans-serif;font-size:13px;line-height:1.35;letter-spacing:0}
     .support{margin-top:32px;padding-top:25px;border-top:1px solid rgba(255,255,255,.18)}
     .support-title{color:var(--gold);font-size:clamp(35px,5vw,52px);font-weight:700}
-    .paypal-link{display:inline-flex;align-items:center;justify-content:center;min-height:58px;margin-top:11px;padding:10px 28px;border:1px solid rgba(255,255,255,.36);border-radius:999px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.72);font-size:clamp(25px,4vw,34px);cursor:pointer;text-decoration:none}
+    .paypal-link{display:inline-flex;align-items:center;justify-content:center;min-height:58px;margin-top:11px;padding:10px 28px;border:2px solid #ffe064;border-radius:999px;background:#ffe064;color:#153e50;font-size:clamp(30px,4.5vw,40px);font-weight:700;cursor:pointer;text-decoration:none;box-shadow:0 6px 0 #b99125,0 12px 26px rgba(15,58,76,.25);transition:transform .15s,box-shadow .15s}
+    .paypal-link:hover{background:#ffeb91;transform:translateY(-2px)}
+    .paypal-link:active{transform:translateY(3px);box-shadow:0 3px 0 #b99125}
+    .paypal-link:focus-visible{outline:3px solid #153e50;outline-offset:5px}
+    @media(prefers-reduced-motion:reduce){.paypal-link{transition:none}}
     .back{display:inline-block;margin-top:25px;color:white;font-size:27px;text-underline-offset:5px}
     footer{margin-top:42px;font-size:22px;color:rgba(255,255,255,.7)}
     @media(max-width:650px){.hero{min-height:620px}.castle{height:520px}.lockup{padding-top:190px}.features{grid-template-columns:1fr}.story{margin-top:-28px}.eyebrow{letter-spacing:.11em}}
     @media(max-height:650px) and (orientation:landscape){.hero{min-height:500px}.castle{height:460px}.lockup{padding-top:135px}h1{font-size:120px}.story{margin-top:-20px}}
-  .hero{height: min(85vh,800px);min-height:520px;padding:0}.ending-hero{width:100%;height:100%;border:0;pointer-events:none}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+  .hero{height:min(56vh,530px);min-height:350px;padding:0;overflow:hidden}.ending-hero{position:absolute;top:0;left:0;width:100%;height:max(520px,min(85vh,800px));border:0;pointer-events:none}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
 </style>
 <link rel="preload" href="../assets/fonts/AmaticSC-Regular.ttf" as="font" type="font/ttf" crossorigin>
 <link rel="preload" href="../assets/fonts/AmaticSC-Bold.ttf" as="font" type="font/ttf" crossorigin>
