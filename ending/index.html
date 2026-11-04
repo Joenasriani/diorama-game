@@ -31,6 +31,9 @@
     #skipEnding{display:none}body.embedded-ending #skipEnding{display:inline-block}
     @media(prefers-reduced-motion:reduce){#controls{background:rgba(30,65,74,.68)}}
     #diagnostic{display:none;position:fixed;z-index:20;inset:18px 18px auto;padding:16px 18px;border-radius:18px;background:rgba(116,42,42,.94);color:#fff;font:700 20px/1.2 system-ui,sans-serif;white-space:pre-wrap;box-shadow:0 12px 32px rgba(0,0,0,.2)}
+  /* Hide intermediate geometry until the first fully composed WebGL frame. */
+  html:not(.diorama-scene-ready) body::after{content:"";position:fixed;inset:0;z-index:2147483647;pointer-events:auto;background:#58afe8}
+  html.pitch-header:not(.diorama-scene-ready) body::after{background:#5b777d}
   html.pitch-header,body.pitch-header{background:#5b777d}body.pitch-header #vignette{display:none}
   body.pitch-header #controls,body.pitch-header #finalActions,body.pitch-header #shotLabel{display:none!important}
 </style>
@@ -19956,6 +19959,7 @@
   document.querySelectorAll('[data-time]').forEach(b=>b.addEventListener('click',()=>{timeline=Number(b.dataset.time);setPlaying(false);update(timeline);}));
   if(!embedded)addEventListener('keydown',e=>{if(e.code==='Space'){e.preventDefault();setPlaying(!playing);}if(e.key==='ArrowRight'){timeline=clamp(timeline+.1,0,ENDING_DURATION);setPlaying(false);}if(e.key==='ArrowLeft'){timeline=clamp(timeline-.1,0,ENDING_DURATION);setPlaying(false);}});
   addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);renderer.setPixelRatio(pixelRatio());});
+  // Construct the complete opening scene before revealing the canvas.
   update(timeline); if(pitchHeader){
     // Investor header only: retain the original Three.js castle and all DOM title text.
     // Composite the left rendered silhouette onto the right for exact screen-space symmetry.
@@ -19990,7 +19994,20 @@
     }
     renderSymmetricPitchHeader();
     addEventListener('resize',()=>{update(timeline);renderSymmetricPitchHeader();});
-  }else requestAnimationFrame(frame);
+    requestAnimationFrame(()=>{
+      document.documentElement.classList.add('diorama-scene-ready');
+      if(embedded)window.parent.postMessage({type:'diorama-ending-scene-ready'},location.origin);
+    });
+  }else{
+    // Render once behind the curtain without advancing the film's timeline.
+    renderer.render(scene,camera);
+    requestAnimationFrame(()=>{
+      document.documentElement.classList.add('diorama-scene-ready');
+      if(embedded)window.parent.postMessage({type:'diorama-ending-scene-ready'},location.origin);
+      last=performance.now();
+      requestAnimationFrame(frame);
+    });
+  }
   window.__DIORAMA_ENDING_PREVIEW__={duration:ENDING_DURATION,setTime(v){timeline=clamp(Number(v)||0,0,ENDING_DURATION);setPlaying(false);update(timeline);},play(){setPlaying(true);},pause(){setPlaying(false);}};
 })();
 
