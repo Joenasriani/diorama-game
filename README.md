@@ -21,7 +21,12 @@ Explore compact isometric structures, operate bridges, lifts, gates, and switche
   </a>
 </p>
 
-<p align="center"><strong><a href="https://diorama-game.vercel.app/ending/">WATCH THE ENDING CINEMATIC</a></strong> · <strong><a href="https://diorama-game.vercel.app/invest/">EXPLORE DIORAMA 2 & SUPPORT ITS DEVELOPMENT</a></strong></p>
+> [!IMPORTANT]
+> **THE JOURNEY CONTINUES**
+>
+> **[WATCH THE DIORAMA ENDING CINEMATIC](https://diorama-game.vercel.app/ending/)** – Watch the full 60-second Three.js finale, with a loading screen before playback. **Spoiler:** reveals the ending of Level 25.
+>
+> **[EXPLORE DIORAMA 2 · SUPPORT THE NEXT CHAPTER](https://diorama-game.vercel.app/invest/)** – Discover the sequel plans and optional supporter backing tiers. Contributions are not equity investments.
 
 The 60-second ending is an interactive Three.js experience with its original camera choreography and soundtrack. GitHub READMEs cannot execute the scene inline, so the preview opens the hosted cinematic. **Spoiler:** this reveals the game's finale without completing Level 25. The DIORAMA 2 page introduces the sequel and its optional, non-equity supporter tiers.
 
