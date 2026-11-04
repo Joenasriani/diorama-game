@@ -2,6 +2,11 @@
 
 This file records **verified repository changes**. Older game-release history is not reconstructed or invented.
 
+## Music credit correction – 4 November 2026
+
+- Added NastelBom alongside HitsLab in the game music credits.
+- Identified the ending score as *Hero Heroic Patriotic*, Pixabay track 436876, with its source and separate license in README and third-party notices. Audio files and playback are unchanged.
+
 ## Deployed release documentation – 4 November 2026
 
 - Release source `956d01cef6423877bd114936f0fc3e974c503db9` corresponds to Sites version 82, source `da14ef41b3bc54b0841c76a37173414d5b499215`.

@@ -32,7 +32,11 @@ DIORAMA's root [MIT LICENSE](LICENSE) applies to original code and documentation
 ## Ending cinematic audio
 
 - **Location:** `ending/audio/`
-- **Score bed:** `hero-score-bed.mp3`, prepared from the user-supplied `nastelbom-hero-heroic-patriotic-436876.mp3` source.
+- **Score bed:** `hero-score-bed.mp3`, adapted for the ending from **Hero Heroic Patriotic** by **NastelBom**, Pixabay track **436876**. The supplied source filename was `nastelbom-hero-heroic-patriotic-436876.mp3`.
+- **Track source:** https://pixabay.com/music/main-title-hero-heroic-patriotic-436876/
+- **Source license:** Pixabay Content License, as stated on the track page; not the game’s MIT license. License summary: https://pixabay.com/service/license-summary/
+- **Credit:** Ending music: “Hero Heroic Patriotic” by NastelBom, via Pixabay. The in-game music credit lists HitsLab and NastelBom; this notice distinguishes their tracks.
+- **Source matching:** The track ID matches the recorded supplied filename; no hash comparison against the original downloaded MP3 has been performed.
 - **Princess call:** `princess-call.mp3`, prepared from the user-supplied Runway-generated distress-call source.
 - **Sound effects:** wind, door, wings, dragon vocal, landing, stomp, doom and boom assets supplied or generated during production of the ending cinematic.
 - **Boundary:** These audio files are bundled only for playback inside DIORAMA. They are not relicensed by the game's original-code license and must not be represented as reusable standalone assets.
