@@ -1,6 +1,6 @@
 # DIORAMA release procedure
 
-This is a **future release checklist** and does not claim that a release was shipped.
+This is the repeatable release checklist. The 4 November 2026 release is recorded in README.md and CHANGELOG.md; completing deployment does not imply every manual QA item below has passed.
 
 1. Confirm which source edition is being released: the checked-in 25-level game or a separately maintained newer edition.
 2. Record the exact commit, release scope and level count. Do not merge a newer distribution simply to synchronize counts.
@@ -20,3 +20,9 @@ No semantic-version contract or backward-compatible community-level format is ye
 ## Publishing boundary
 
 No GitHub Action in this repository automatically publishes a release or deploys a new game build as part of this documentation change.
+
+## Static deployment contents
+
+Publish `index.html`, `assets/`, `ending/` and `invest/` together, retaining relative paths. No package install or build is required. For Sites, map these runtime files into the configured static directory and preserve its hosting manifest. Keep host-specific identity and credentials out of the public repository.
+
+Verify startup font loading (cold cache and failed request), normal level transitions, final-goal completion, game-music suppression, muted/unmuted ending entry, Pause/Play, Skip, Play Again and sequel-page navigation. Record source SHA and deployment version separately; v1.0 is currently the visible game label.

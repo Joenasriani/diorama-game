@@ -6,7 +6,8 @@ labels: bug
 assignees: ""
 ---
 
-**Build / URL:** 
+**Build / public URL (omit private links):**
+**Source commit / deployment version, if known:** 
 **Level number:** 
 **Device, browser and OS:** 
 

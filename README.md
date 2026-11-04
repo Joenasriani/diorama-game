@@ -23,7 +23,7 @@ Explore compact isometric structures, operate bridges, lifts, gates, and switche
   <a href="docs/screenshots/level-10.jpg"><img src="docs/screenshots/level-10.jpg" width="125" alt="DIORAMA Level 10"></a>
 </p>
 
-<sub>Actual browser-game captures. Select a thumbnail to view the full image.</sub>
+<sub>Existing gameplay captures, not newly captured for the 4 November release. Select a thumbnail to view the full image.</sub>
 
 ## Exploring and extending DIORAMA
 
@@ -40,11 +40,18 @@ The current distribution keeps the level definitions and engine logic together i
 
 After verified completion of Level 25, the current repository build launches a locally bundled 60-second ending cinematic. The ending preserves the recorded final win, pauses the underlying game renderer and background music, and provides clear routes to play again from Level 1 or view the DIORAMA 2 project page. See [ENDING_INTEGRATION_NOTES.md](ENDING_INTEGRATION_NOTES.md) for the integration boundary and validation record.
 
-**Version distinction (verified 2 November 2026):** The repository's `main` branch `index.html` contains **25** named level definitions, numbered 01 through 25. The gameplay and mobile-usability revision batch is merged at [`e8bdb44`](https://github.com/Joenasriani/diorama-game/commit/e8bdb44a609350d0bdcb50729fab0b9e68b43368). The [itch.io game page](https://joenasr.itch.io/diorama) has advertised a **50-level** version, so this repository should not be assumed to match that separate edition. The Vercel production alias was intentionally not redeployed during this revision batch; its parity with `main` remains unverified.
+**Current deployed release (4 November 2026):** 25 levels plus the integrated ending and DIORAMA 2 page. GitHub release source: `956d01cef6423877bd114936f0fc3e974c503db9`. The owner-private Sites deployment is version **82**, built from Sites source commit `da14ef41b3bc54b0841c76a37173414d5b499215`; its three HTML pages match the GitHub release by Git blob hash. The in-game label remains **v1.0**; the deployment number is not a semantic game version. Private deployment URLs are intentionally omitted here. The public itch.io and Vercel links above are separate destinations whose parity with this release has not been verified.
 
 ## Current revision state
 
-The 2 November 2026 repository revision includes:
+The 4 November 2026 release adds:
+
+- a final-level cinematic with Pause, Sound, Skip ending, and Play Again controls;
+- game-music watchdog isolation during the ending, with the game's music preference passed to the cinematic;
+- a DIORAMA 2 coming-soon page; PayPal support is not yet active;
+- regular/bold font preloads and bounded readiness gates for startup lettering and the sequel page.
+
+The earlier 2 November gameplay revision includes:
 
 - corrected and simplified routes for Levels 7, 8, 9, 12, 13, 14 and 15;
 - restored Level 25 route integrity checks;
@@ -307,6 +314,13 @@ The current build includes:
 - progress reset;
 - move/best-move tracking.
 
+## Controls
+
+- Click/tap a reachable tile to move; click/tap mechanisms to interact.
+- Drag with one finger to orbit; use two fingers to track/pedestal and pinch to zoom.
+- Use the on-screen level selector, help, music and fullscreen controls.
+- During the ending, Pause/Play and Sound control playback; Skip ending reveals the final actions. Play Again returns to Level 1 while retaining completion records.
+
 ## Running locally
 
 No build step is required.
@@ -325,6 +339,12 @@ http://localhost:8080/
 
 Using an HTTP server is preferred over opening the page directly with `file://`, especially for local asset loading and browser security behavior.
 
+## Deploying
+
+Publish the repository's `index.html`, `assets/`, `ending/` and `invest/` together on a static HTTP(S) host, preserving their relative paths. No dependency installation or build command is required. Uploading only `index.html` omits required fonts, audio and ending pages.
+
+Run `node scripts/validate-levels.cjs` before publication, then follow [the release checklist](docs/RELEASE_PROCESS.md). The existing GitHub workflow validates level structure; it does not deploy. Verify the actual hosted files against the release commit before claiming parity.
+
 ## Technical characteristics
 
 - Static deployment: no backend is required.
@@ -339,16 +359,19 @@ Using an HTTP server is preferred over opening the page directly with `file://`,
 
 The repository demonstrates implemented pathfinding, mechanism state transitions, persistence, responsive input assistance, and 25 level definitions.
 
+For the 4 November release, syntax, focused audio/control/font checks and level structure passed. The coming-soon page rendered in the test browser. Gameplay and cinematic browser testing remained blocked by a WebGL-context creation failure in that browser; cold-load font transition and real-device audio remain unverified.
+
 Those implementation facts do not by themselves establish exhaustive cross-browser compatibility, accessibility conformance, performance targets, or device-store certification.
 
 ## License and third-party assets
 
-DIORAMA currently includes two Amatic SC font files and an MP3 named for HitsLab's *Game Gaming Music*. External source records identify Amatic SC as licensed under the SIL Open Font License 1.1 and the HitsLab track as distributed on Pixabay under the Pixabay Content License. These are **different licenses** and should not be treated as part of a future game-code license.
+DIORAMA currently includes two Amatic SC font files and an MP3 named for HitsLab's *Game Gaming Music*. External source records identify Amatic SC as licensed under the SIL Open Font License 1.1 and the HitsLab track as distributed on Pixabay under the Pixabay Content License. These are **different licenses** and are not covered by the original-code MIT license.
 
 - **Amatic SC:** the font family is offered under OFL-1.1. The exact checked-in binaries have not been matched to an upstream release; retain the applicable notices when redistributing.
 - **HitsLab music:** the Pixabay Content License permits the track's use within creative projects such as DIORAMA, subject to its terms; the game credits **Music HitLabs**. The track is not MIT-licensed. Separate redistribution of the original MP3 from the public source repository remains a distinct rights question, as explained in the [third-party notices](THIRD_PARTY_LICENSES.md).
 - **Bundled Three.js runtime:** the checked-in `index.html` was inspected via the Git blob API and includes a bundled notice identifying Three.js authors and SPDX-License-Identifier: MIT. The notice should remain intact.
-- **Original game code and artwork:** permission to publish and license all parts of the project has not been established by repository visibility alone.
+- **Original game code:** MIT, copyright 2026 Joe Nasr, as recorded in `LICENSE`. Artwork, branding and third-party asset boundaries remain documented separately.
+- **Ending audio:** bundled score and effects have separate provenance and redistribution checks; see the ending-audio section of `THIRD_PARTY_LICENSES.md`.
 
 The original-code MIT license is provided in [`LICENSE`](LICENSE). The bundled materials remain subject to separate terms and unresolved provenance or redistribution checks documented in [`THIRD_PARTY_LICENSES.md`](THIRD_PARTY_LICENSES.md).
 

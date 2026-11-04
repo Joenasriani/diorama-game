@@ -10,7 +10,7 @@ This is a **proposal and prioritization guide**, not a promise of release dates.
 - Extend the regression checklist from real defects before changing any mechanics. Current guards cover revised route contracts, elevated touch targets, crown stacking and folding-bridge stem alignment.
 - Document browser and touch-device coverage using observed results, not assumptions.
 
-Completed in the 2 November 2026 revision batch: focused revisions for Levels 7–15 where selected, Level 25 route-integrity protection, two-finger touch-camera translation, global upward-step touch assistance and route-aligned folding-bridge stems. The frozen ending sequence remains deliberately deferred until the gameplay audit is complete.
+Completed in the 2 November 2026 revision batch: focused revisions for Levels 7–15 where selected, Level 25 route-integrity protection, two-finger touch-camera translation, global upward-step touch assistance and route-aligned folding-bridge stems. Completed on 4 November 2026: the integrated 60-second ending, sequel information page, audio isolation/preference fixes, player playback controls and startup font-loading gates. Remaining real-device verification is tracked in README.md.
 
 ## Track B – Make contributions easier (priority)
 

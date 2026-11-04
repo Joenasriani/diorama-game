@@ -2,10 +2,18 @@
 
 This file records **verified repository changes**. Older game-release history is not reconstructed or invented.
 
+## Deployed release documentation – 4 November 2026
+
+- Release source `956d01cef6423877bd114936f0fc3e974c503db9` corresponds to Sites version 82, source `da14ef41b3bc54b0841c76a37173414d5b499215`.
+- Blocked game-music watchdog recovery during the cinematic; preserved the music preference and prevented gesture-driven forced unmuting.
+- Exposed Pause, Sound and Skip ending controls in the embedded cinematic.
+- Added regular/bold font preloading and bounded readiness gates for the game startup and DIORAMA 2 page.
+- Syntax, focused behavior checks and structural validation passed; live gameplay/audio validation remains outstanding because the test browser could not create a WebGL context.
+
 ## Integrated final-level ending – 4 November 2026
 
 - Added the locally bundled 60-second DIORAMA ending cinematic, invoked only after the verified Level 25 completion branch.
-- Added isolated ending audio, automatic score start with browser gesture fallback, and a clean production presentation without preview transport controls.
+- Added isolated ending audio, automatic score start with browser gesture fallback, and a production presentation subsequently updated with player playback controls.
 - Added the DIORAMA 2 coming-soon and project-support information page.
 - Added an explicit `PLAY AGAIN FROM LEVEL 1` action that preserves completion records and best-move data.
 - Preserved existing non-final progression, save behavior, game music restoration, and the parent game render-loop pause during the cinematic.

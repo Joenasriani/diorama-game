@@ -1,5 +1,7 @@
 # DIORAMA – Upgrade Levels and Fixes
 
+> Release status, 4 November 2026: this register preserves historical per-revision notes. Its frozen-ending and pending-deployment statements describe those earlier checkpoints, not the current build. The ending and subsequent audio/font fixes are deployed in Sites version 82; see README.md and CHANGELOG.md for current status. Historical player-approval notes are not retroactively marked verified.
+
 This register is the approval gate for gameplay revisions. Revisions are implemented and verified locally one at a time. Joe will preview and approve the selected batch after a single final deployment.
 
 ## Protected baseline

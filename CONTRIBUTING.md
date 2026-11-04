@@ -16,7 +16,7 @@ Thank you for helping improve DIORAMA. The checked-in game currently has **25 le
 
 ## Current development setup
 
-The distributable game is `index.html`, with fonts and music under `assets/`. It has no required build step. From the repository root:
+The distributable game includes `index.html`, fonts and gameplay music under `assets/`, the cinematic and audio under `ending/`, and the sequel information page under `invest/`. It has no required build step. From the repository root:
 
 ```sh
 python3 -m http.server 8080
