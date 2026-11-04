@@ -19952,7 +19952,32 @@
   document.querySelectorAll('[data-time]').forEach(b=>b.addEventListener('click',()=>{timeline=Number(b.dataset.time);setPlaying(false);update(timeline);}));
   if(!embedded)addEventListener('keydown',e=>{if(e.code==='Space'){e.preventDefault();setPlaying(!playing);}if(e.key==='ArrowRight'){timeline=clamp(timeline+.1,0,ENDING_DURATION);setPlaying(false);}if(e.key==='ArrowLeft'){timeline=clamp(timeline-.1,0,ENDING_DURATION);setPlaying(false);}});
   addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);renderer.setPixelRatio(pixelRatio());});
-  update(timeline); if(pitchHeader){scene.background=null;renderer.setClearColor(0x000000,0);renderer.render(scene,camera);addEventListener('resize',()=>{update(timeline);scene.background=null;renderer.render(scene,camera);});}else requestAnimationFrame(frame);
+  update(timeline); if(pitchHeader){
+    // Investor header only: retain the original Three.js castle and all DOM title text.
+    // Composite the left rendered silhouette onto the right for exact screen-space symmetry.
+    // The standalone ending and playable game are not altered.
+    const symmetryCanvas=document.createElement('canvas');
+    symmetryCanvas.setAttribute('aria-hidden','true');
+    symmetryCanvas.style.cssText='position:absolute;inset:0;width:100%;height:100%;pointer-events:none';
+    stage.appendChild(symmetryCanvas);
+    const symmetryCtx=symmetryCanvas.getContext('2d');
+    function renderSymmetricPitchHeader(){
+      scene.background=null;renderer.setClearColor(0x000000,0);
+      renderer.render(scene,camera);
+      if(!symmetryCtx)return;
+      const source=renderer.domElement,w=source.width,h=source.height;
+      if(!w||!h)return;
+      if(symmetryCanvas.width!==w||symmetryCanvas.height!==h){symmetryCanvas.width=w;symmetryCanvas.height=h;}
+      symmetryCtx.setTransform(1,0,0,1,0,0);
+      symmetryCtx.clearRect(0,0,w,h);
+      symmetryCtx.drawImage(source,0,0,w,h);
+      symmetryCtx.setTransform(-1,0,0,1,w,0);
+      symmetryCtx.drawImage(source,0,0,w/2,h,0,0,w/2,h);
+      symmetryCtx.setTransform(1,0,0,1,0,0);
+    }
+    renderSymmetricPitchHeader();
+    addEventListener('resize',()=>{update(timeline);renderSymmetricPitchHeader();});
+  }else requestAnimationFrame(frame);
   window.__DIORAMA_ENDING_PREVIEW__={duration:ENDING_DURATION,setTime(v){timeline=clamp(Number(v)||0,0,ENDING_DURATION);setPlaying(false);update(timeline);},play(){setPlaying(true);},pause(){setPlaying(false);}};
 })();
 
