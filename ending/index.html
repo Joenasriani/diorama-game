@@ -19441,16 +19441,16 @@
     let enabled=false,scoreWanted=false,stepCtx=null,scoreBuffer=null,scoreSource=null,scoreGain=null,scoreLoadPromise=null,scoreRequest=0,latestScoreTime=0;
     const active=new Set(),paths={door:'./audio/door.mp3',wings:'./audio/wings.mp3',dragon:'./audio/dragon.mp3',landing:'./audio/landing.mp3',doom:'./audio/dragon-doom.mp3',boom:'./audio/dragon-boom.mp3',stomp:'./audio/stomp.mp3',princess:'./audio/princess-call.mp3'};
     const templates=Object.fromEntries(Object.entries(paths).map(([name,path])=>{const audio=new Audio(path);audio.preload='auto';return [name,audio];}));
-    const wind=new Audio('./audio/wind.mp3');wind.preload='auto';wind.loop=true;wind.volume=.3;score.volume=.62;
+    const wind=new Audio('./audio/wind.mp3');wind.preload='auto';wind.loop=true;wind.volume=.3;score.volume=.26;
     const scoreBytesPromise=fetch('./audio/hero-score-bed.mp3',{cache:'force-cache'}).then(response=>{if(!response.ok)throw new Error(`Score load failed: ${response.status}`);return response.arrayBuffer();});
     function play(name,volume=1,rate=1,offset=0,maxDuration=0){if(!enabled)return;const audio=templates[name].cloneNode();audio.volume=volume;audio.playbackRate=rate;audio.currentTime=offset;active.add(audio);audio.addEventListener('ended',()=>active.delete(audio),{once:true});audio.play().then(()=>{if(maxDuration)setTimeout(()=>{audio.pause();active.delete(audio);},maxDuration*1000);}).catch(()=>active.delete(audio));}
     // This is the gameplay cue verbatim: a 300 Hz triangle oscillator with a
     // 75 ms exponential envelope. Only its gain follows camera perspective.
     function unlockStepContext(){try{if(!stepCtx)stepCtx=new (window.AudioContext||window.webkitAudioContext)();if(stepCtx.state==='suspended')stepCtx.resume().catch(()=>{});}catch(e){}}
-    function playGameStep(gain=.034){if(!enabled)return;try{unlockStepContext();const now=stepCtx.currentTime,master=stepCtx.createGain(),osc=stepCtx.createOscillator();master.gain.setValueAtTime(1e-4,now);master.gain.exponentialRampToValueAtTime(gain,now+.012);master.gain.exponentialRampToValueAtTime(1e-4,now+.075);osc.type='triangle';osc.frequency.setValueAtTime(300,now);osc.connect(master);master.connect(stepCtx.destination);osc.start(now);osc.stop(now+.115);}catch(e){}}
+    function playGameStep(gain=.068){if(!enabled)return;try{unlockStepContext();const now=stepCtx.currentTime,master=stepCtx.createGain(),osc=stepCtx.createOscillator();master.gain.setValueAtTime(1e-4,now);master.gain.exponentialRampToValueAtTime(gain,now+.012);master.gain.exponentialRampToValueAtTime(1e-4,now+.075);osc.type='triangle';osc.frequency.setValueAtTime(300,now);osc.connect(master);master.connect(stepCtx.destination);osc.start(now);osc.stop(now+.115);}catch(e){}}
     function ensureScoreBuffer(){unlockStepContext();if(scoreBuffer)return Promise.resolve(scoreBuffer);if(!scoreLoadPromise)scoreLoadPromise=scoreBytesPromise.then(bytes=>stepCtx.decodeAudioData(bytes.slice(0))).then(buffer=>(scoreBuffer=buffer));return scoreLoadPromise;}
     function stopScore(){scoreRequest++;if(scoreSource){try{scoreSource.stop();}catch(e){}scoreSource.disconnect();scoreSource=null;}score.pause();}
-    function startScore(t){scoreWanted=true;latestScoreTime=t;const request=++scoreRequest;ensureScoreBuffer().then(buffer=>{if(!enabled||!scoreWanted||request!==scoreRequest)return;if(scoreSource){try{scoreSource.stop();}catch(e){}scoreSource.disconnect();}if(!scoreGain){scoreGain=stepCtx.createGain();scoreGain.gain.value=.62;scoreGain.connect(stepCtx.destination);}const source=stepCtx.createBufferSource();source.buffer=buffer;source.connect(scoreGain);scoreSource=source;source.onended=()=>{if(scoreSource===source)scoreSource=null;};source.start(0,clamp(latestScoreTime,0,Math.min(SCORE_END,buffer.duration-.02)));}).catch(()=>{if(!enabled||!scoreWanted||request!==scoreRequest)return;score.muted=false;score.currentTime=clamp(latestScoreTime,0,SCORE_END);score.play().catch(()=>{});});}
+    function startScore(t){scoreWanted=true;latestScoreTime=t;const request=++scoreRequest;ensureScoreBuffer().then(buffer=>{if(!enabled||!scoreWanted||request!==scoreRequest)return;if(scoreSource){try{scoreSource.stop();}catch(e){}scoreSource.disconnect();}if(!scoreGain){scoreGain=stepCtx.createGain();scoreGain.gain.value=.26;scoreGain.connect(stepCtx.destination);}const source=stepCtx.createBufferSource();source.buffer=buffer;source.connect(scoreGain);scoreSource=source;source.onended=()=>{if(scoreSource===source)scoreSource=null;};source.start(0,clamp(latestScoreTime,0,Math.min(SCORE_END,buffer.duration-.02)));}).catch(()=>{if(!enabled||!scoreWanted||request!==scoreRequest)return;score.muted=false;score.currentTime=clamp(latestScoreTime,0,SCORE_END);score.play().catch(()=>{});});}
     function mix(t){
       // The airy exterior bed disappears gradually as the hero reaches the
       // door. Music remains uninterrupted through every story cue and keeps
@@ -19458,7 +19458,10 @@
       const windTarget=.3*(1-span(t,1.2,10.15));wind.volume=lerp(wind.volume,windTarget,.085);
       // The score asset now contains real music through 60s. Hold its intended
       // level through the title, then ease the final 2.5 seconds to silence.
-      const scoreLevel=.62*(1-span(t,57.5,60));
+      // Smooth music ducking leaves space for footsteps and dragon impacts.
+      const steps = Math.max(span(t,.5,.8)*(1-span(t,10,10.5)), span(t,18,18.28)*(1-span(t,19.2,19.6)));
+      const impacts = Math.max(span(t,21.35,21.60)*(1-span(t,22.6,23.5)), span(t,39.65,40.45)*(1-span(t,41.2,42.4)));
+      const scoreLevel=.26*(1-.25*steps)*(1-.6*impacts)*(1-span(t,57.5,60));
       if(scoreGain)scoreGain.gain.setTargetAtTime(scoreLevel,stepCtx.currentTime,.05);
       score.volume=scoreLevel;
     }
@@ -19469,14 +19472,14 @@
     for(let i=0;i<42;i++){
       const cueTime=.8+i/ROBOT_SPEED;
       const perspective=span(cueTime,3.4,9.35);
-      const cueGain=lerp(.034,.052,perspective);
+      const cueGain=lerp(.068,.085,perspective);
       events.push({t:cueTime,fn:()=>playGameStep(cueGain)});
     }
     // Let the fully opened gate register for a beat before the first interior
     // hop. Starting the route on the exact 18s shot-label boundary made the
     // actor appear to jump-cut onto the white hall tiles on narrow screens.
-    for(let i=0;i<3;i++)events.push({t:18.28+i/ROBOT_SPEED,fn:()=>playGameStep(.048)});
-    events.push({t:15.02,fn:()=>play('door',.78)},{t:20.56,fn:()=>play('wings',.72)},{t:21.62,fn:()=>play('landing',.95)},{t:22.08,fn:()=>play('dragon',.78)},{t:29.05,fn:()=>play('princess',.58)},{t:39.92,fn:()=>play('doom',.82)},{t:40.50,fn:()=>play('boom',1)});events.sort((a,b)=>a.t-b.t);
+    for(let i=0;i<3;i++)events.push({t:18.28+i/ROBOT_SPEED,fn:()=>playGameStep(.08)});
+    events.push({t:15.02,fn:()=>play('door',.78)},{t:20.56,fn:()=>play('wings',.72)},{t:21.62,fn:()=>play('landing',.95)},{t:22.08,fn:()=>play('dragon',.78)},{t:29.05,fn:()=>play('princess',.58)},{t:39.92,fn:()=>play('doom',.82)},{t:40.50,fn:()=>{play('stomp',.65);play('boom',.85);}});events.sort((a,b)=>a.t-b.t);
     function sync(t,playing){if(!enabled)return;mix(t);scoreWanted=playing;if(playing){startScore(t);wind.play().catch(()=>{});}else{stopScore();wind.pause();}}
     return {
       get enabled(){return enabled;},
