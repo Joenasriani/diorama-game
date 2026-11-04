@@ -1,0 +1,78 @@
+name: Package DIORAMA for itch.io
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/itchio-dist.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Validate game level data
+        run: node scripts/validate-levels.cjs
+      - name: Build clean HTML5 distribution ZIP
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib, zipfile
+          root=Path('.')
+          required=['index.html','ending/index.html','invest/index.html',
+                    'assets/fonts/AmaticSC-Bold.ttf','assets/fonts/AmaticSC-Regular.ttf',
+                    'assets/music/hitslab-game-gaming-music-295075.mp3',
+                    'LICENSE','THIRD_PARTY_LICENSES.md']
+          for rel in required:
+              if not (root/rel).is_file():
+                  raise SystemExit(f'Missing required runtime or license file: {rel}')
+          chosen=[Path('index.html'),Path('LICENSE'),Path('THIRD_PARTY_LICENSES.md')]
+          for folder in ('assets','ending','invest'):
+              chosen += sorted(p for p in Path(folder).rglob('*') if p.is_file()
+                  and not any(x.startswith('.') or x in ('__MACOSX','node_modules') for x in p.parts)
+                  and p.name not in ('Thumbs.db','desktop.ini'))
+          names=[p.as_posix() for p in chosen]
+          if len(names)!=len(set(names)):
+              raise SystemExit('Duplicate ZIP paths')
+          out=Path('dist')
+          out.mkdir(exist_ok=True)
+          target=out/'diorama-game-itchio.zip'
+          with zipfile.ZipFile(target,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=9) as z:
+              for p in chosen:
+                  data=p.read_bytes()
+                  info=zipfile.ZipInfo(p.as_posix(),date_time=(2026,1,1,0,0,0))
+                  info.compress_type=zipfile.ZIP_DEFLATED
+                  info.create_system=3
+                  info.external_attr=(0o100644 << 16)
+                  info.comment=b''
+                  info.extra=b''
+                  z.writestr(info,data,compress_type=zipfile.ZIP_DEFLATED,compresslevel=9)
+              z.comment=b''
+          with zipfile.ZipFile(target) as z:
+              if z.testzip() is not None:
+                  raise SystemExit('ZIP CRC check failed')
+              if z.namelist()!=names:
+                  raise SystemExit('ZIP file listing mismatch')
+              for p in chosen:
+                  if hashlib.sha256(p.read_bytes()).digest()!=hashlib.sha256(z.read(p.as_posix())).digest():
+                      raise SystemExit('File content mismatch: '+str(p))
+              if not z.namelist()[0]=='index.html':
+                  raise SystemExit('index.html is not at archive root')
+          print('Created:',target,'bytes=',target.stat().st_size,'files=',len(chosen))
+          print('SHA256:',hashlib.sha256(target.read_bytes()).hexdigest())
+          print('Source commit:')
+          PY
+          git rev-parse HEAD
+      - name: Upload itch.io distribution
+        uses: actions/upload-artifact@v4
+        with:
+          name: diorama-game-itchio-dist
+          path: dist/diorama-game-itchio.zip
+          if-no-files-found: error
+          retention-days: 30
