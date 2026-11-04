@@ -30,7 +30,7 @@
     #skipEnding{display:none}body.embedded-ending #skipEnding{display:inline-block}
     @media(prefers-reduced-motion:reduce){#controls{background:rgba(30,65,74,.68)}}
     #diagnostic{display:none;position:fixed;z-index:20;inset:18px 18px auto;padding:16px 18px;border-radius:18px;background:rgba(116,42,42,.94);color:#fff;font:700 20px/1.2 system-ui,sans-serif;white-space:pre-wrap;box-shadow:0 12px 32px rgba(0,0,0,.2)}
-  html.pitch-header,body.pitch-header{background:transparent}body.pitch-header #vignette{display:none}
+  html.pitch-header,body.pitch-header{background:#5b777d}body.pitch-header #vignette{display:none}
   body.pitch-header #controls,body.pitch-header #finalActions,body.pitch-header #shotLabel{display:none!important}
 </style>
 </head>
@@ -19958,7 +19958,7 @@
     // The standalone ending and playable game are not altered.
     const symmetryCanvas=document.createElement('canvas');
     symmetryCanvas.setAttribute('aria-hidden','true');
-    symmetryCanvas.style.cssText='position:absolute;inset:0;width:100%;height:100%;pointer-events:none';
+    symmetryCanvas.style.cssText='position:absolute;inset:0;width:100%;height:100%;background:#5b777d;pointer-events:none';
     stage.appendChild(symmetryCanvas);
     const symmetryCtx=symmetryCanvas.getContext('2d');
     function renderSymmetricPitchHeader(){
@@ -19969,11 +19969,16 @@
       if(!w||!h)return;
       if(symmetryCanvas.width!==w||symmetryCanvas.height!==h){symmetryCanvas.width=w;symmetryCanvas.height=h;}
       symmetryCtx.setTransform(1,0,0,1,0,0);
-      symmetryCtx.clearRect(0,0,w,h);
-      symmetryCtx.drawImage(source,0,0,w,h);
+      // Paint an opaque canvas first: transparent pixels may not expose
+      // the unsymmetrical WebGL render underneath.
+      symmetryCtx.fillStyle='#5b777d';
+      symmetryCtx.fillRect(0,0,w,h);
+      const half=Math.floor(w/2);
+      symmetryCtx.drawImage(source,0,0,half,h,0,0,half,h);
       symmetryCtx.setTransform(-1,0,0,1,w,0);
-      symmetryCtx.drawImage(source,0,0,w/2,h,0,0,w/2,h);
+      symmetryCtx.drawImage(source,0,0,half,h,0,0,half,h);
       symmetryCtx.setTransform(1,0,0,1,0,0);
+      source.style.visibility='hidden';
     }
     renderSymmetricPitchHeader();
     addEventListener('resize',()=>{update(timeline);renderSymmetricPitchHeader();});
