@@ -44,7 +44,7 @@
     footer{margin-top:42px;font-size:22px;color:rgba(255,255,255,.7)}
     @media(max-width:650px){.hero{min-height:620px}.castle{height:520px}.lockup{padding-top:190px}.features{grid-template-columns:1fr}.story{margin-top:-28px}.eyebrow{letter-spacing:.11em}}
     @media(max-height:650px) and (orientation:landscape){.hero{min-height:500px}.castle{height:460px}.lockup{padding-top:135px}h1{font-size:120px}.story{margin-top:-20px}}
-  .hero{height:min(56vh,530px);min-height:350px;padding:0;overflow:hidden}.ending-hero{position:absolute;top:-95px;left:0;width:100%;height:calc(max(520px,min(85vh,800px)) + 95px);border:0;background:var(--sky);pointer-events:none}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+  .hero{height:min(56vh,530px);min-height:350px;padding:0;overflow:hidden}.ending-hero{position:absolute;top:-95px;left:0;width:100%;height:calc(max(520px,min(85vh,800px)) + 95px);border:0;background:var(--sky);visibility:hidden;pointer-events:none}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
 </style>
 <link rel="preload" href="../assets/fonts/AmaticSC-Regular.ttf" as="font" type="font/ttf" crossorigin>
 <link rel="preload" href="../assets/fonts/AmaticSC-Bold.ttf" as="font" type="font/ttf" crossorigin>
@@ -70,7 +70,7 @@
   <main>
     <section class="hero" aria-labelledby="page-title">
       <h1 id="page-title" class="sr-only">DIORAMA 2 – The journey continues</h1>
-      <iframe class="ending-hero" src="../ending/index.html?view=pitch-header" title="DIORAMA 2 – final castle scene" tabindex="-1" onload="try{const d=this.contentDocument;d.documentElement.style.setProperty('background','#5b777d','important');d.body.style.setProperty('background','#5b777d','important')}catch(e){console.warn('Scene background could not be synchronized',e)}"></iframe>
+      <iframe class="ending-hero" src="../ending/index.html?view=pitch-header" title="DIORAMA 2 – final castle scene" tabindex="-1" onload="this.style.visibility='visible'"></iframe>
     </section>
 
     <section class="story" aria-labelledby="next-title">
