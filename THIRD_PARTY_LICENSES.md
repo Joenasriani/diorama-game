@@ -29,6 +29,15 @@ DIORAMA's root [MIT LICENSE](LICENSE) applies to original code and documentation
 - **Use in DIORAMA:** Pixabay's content terms permit incorporating music in creative projects, including games, subject to their conditions. DIORAMA credits the creator in-game as **Music HitLabs**; attribution does not replace license compliance.
 - **Separate redistribution boundary:** The track is **not MIT-licensed**, and the Pixabay terms restrict standalone distribution of substantially unchanged content. Because the repository exposes the original MP3 as an individual file, permission for that mode of redistribution remains unconfirmed. Do not offer the track as a reusable standalone asset. No change to the game's music is required.
 
+## Ending cinematic audio
+
+- **Location:** `ending/audio/`
+- **Score bed:** `hero-score-bed.mp3`, prepared from the user-supplied `nastelbom-hero-heroic-patriotic-436876.mp3` source.
+- **Princess call:** `princess-call.mp3`, prepared from the user-supplied Runway-generated distress-call source.
+- **Sound effects:** wind, door, wings, dragon vocal, landing, stomp, doom and boom assets supplied or generated during production of the ending cinematic.
+- **Boundary:** These audio files are bundled only for playback inside DIORAMA. They are not relicensed by the game's original-code license and must not be represented as reusable standalone assets.
+- **Verification:** Preserve the user's source receipts, generation records and applicable service/license terms with the release archive. Public redistribution rights should be confirmed against those records before commercial publication.
+
 ## Game identity, branding and other materials
 
 The DIORAMA title, logos, marks and original art are not granted trademark rights merely by the MIT software license. No separate trademark or artwork permission is implied by this document. Rights in any third-party artwork and other embedded media require individual verification.

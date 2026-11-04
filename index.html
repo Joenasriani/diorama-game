@@ -2358,26 +2358,13 @@ body.game-started #versionPill{
 <div id="tutorialPulse"></div>
 
 <div id="endPage" aria-hidden="true">
-  <div id="endText" aria-live="polite">
-    <div id="endPanelOne" class="endPanel">
-      <span class="line">To Be</span>
-      <span class="line">Continued</span>
-    </div>
-    <div id="endPanelTwo" class="endPanel">
-      <span class="line label">Dev</span>
-      <span class="line name">ApexInnovate.ae</span>
-      <span class="line label">Music</span>
-      <span class="line name">HitLabs</span>
-      <span class="line label">Version</span>
-      <span class="line name">v1.0</span>
-    </div>
-    <div id="endPanelThree" class="endPanel">
-      <span class="line">You solved</span>
-      <span class="line">the tiny machine.</span>
-    </div>
-  </div>
-  <button id="endRestart" type="button" aria-label="Restart game">Restart</button>
+  <iframe id="endCinematic" title="DIORAMA ending cinematic" data-src="./ending/index.html" allow="autoplay; fullscreen" loading="eager"></iframe>
 </div>
+<style>
+  #endPage{padding:0;gap:0;background:#55afe8}
+  #endPage::before,#endPage::after{display:none}
+  #endCinematic{display:block;width:100%;height:100%;border:0;background:#55afe8}
+</style>
 
 
 
@@ -21766,6 +21753,7 @@ document.addEventListener('DOMContentLoaded', () => {
   var startPage = document.getElementById("startPage");
   var endPage = document.getElementById("endPage");
   var endRestart = document.getElementById("endRestart");
+  var endCinematic = document.getElementById("endCinematic");
   var endSequenceTimers = [];
   var musicToggle = document.getElementById("musicToggle");
   var fullscreenBtn = document.getElementById("fullscreenBtn");
@@ -25859,18 +25847,17 @@ document.addEventListener('DOMContentLoaded', () => {
     setEndSequenceStep(0);
     if (endPage) endPage.setAttribute("aria-hidden", "true");
     if (endRestart) endRestart.classList.remove("visible");
+    if (endCinematic && endCinematic.getAttribute("src") !== "about:blank") endCinematic.setAttribute("src", "about:blank");
   }
   function showEndPage() {
     clearEndSequenceTimers();
+    if (bgMusic) bgMusic.pause();
     document.body.classList.add("game-ended");
-    setEndSequenceStep(1);
     if (endPage) endPage.setAttribute("aria-hidden", "false");
-    if (endRestart) endRestart.classList.remove("visible");
-    endSequenceTimers.push(setTimeout(() => setEndSequenceStep(2), 2400));
-    endSequenceTimers.push(setTimeout(() => setEndSequenceStep(3), 5200));
-    endSequenceTimers.push(setTimeout(() => {
-      if (endRestart) endRestart.classList.add("visible");
-    }, 7600));
+    if (endCinematic) {
+      const src = endCinematic.dataset.src || "./ending/index.html";
+      endCinematic.setAttribute("src", `${src}?completed=${Date.now()}`);
+    }
   }
   function loadLevel(index) {
     hideEndPage();
@@ -28384,14 +28371,18 @@ document.addEventListener('DOMContentLoaded', () => {
     mechanicLegendPanel.addEventListener("click", (e) => e.stopPropagation());
   }
 
-  if (endRestart) {
-    endRestart.addEventListener("click", () => {
-      playTone(220, 0.08, "triangle", 0.032);
-      current = 0;
-      loadLevel(0);
-      restartBackgroundMusicFromBeginning();
-    });
+  function restartAfterEnding() {
+    playTone(220, 0.08, "triangle", 0.032);
+    current = 0;
+    loadLevel(0);
+    restartBackgroundMusicFromBeginning();
   }
+  if (endRestart) endRestart.addEventListener("click", restartAfterEnding);
+  window.addEventListener("message", (event) => {
+    if (event.source !== (endCinematic && endCinematic.contentWindow)) return;
+    if (!event.data || event.data.type !== "diorama-ending-restart") return;
+    restartAfterEnding();
+  });
   restartBtn.addEventListener("click", () => {
     playTone(220, 0.08, "triangle", 0.032);
     loadLevel(current);
@@ -28591,6 +28582,13 @@ document.addEventListener('DOMContentLoaded', () => {
   function animate(now) {
     requestAnimationFrame(animate);
     if (document.hidden) {
+      last = now;
+      return;
+    }
+    // The bundled ending owns the screen and GPU after the final win. Pause
+    // the game scene underneath it so mobile devices render only one Three.js
+    // experience; loading Level 1 removes game-ended and resumes this loop.
+    if (document.body.classList.contains("game-ended")) {
       last = now;
       return;
     }

@@ -2,6 +2,15 @@
 
 This file records **verified repository changes**. Older game-release history is not reconstructed or invented.
 
+## Integrated final-level ending – 4 November 2026
+
+- Added the locally bundled 60-second DIORAMA ending cinematic, invoked only after the verified Level 25 completion branch.
+- Added isolated ending audio, automatic score start with browser gesture fallback, and a clean production presentation without preview transport controls.
+- Added the DIORAMA 2 coming-soon and project-support information page.
+- Added an explicit `PLAY AGAIN FROM LEVEL 1` action that preserves completion records and best-move data.
+- Preserved existing non-final progression, save behavior, game music restoration, and the parent game render-loop pause during the cinematic.
+- Added integration and third-party audio documentation.
+
 ## Gameplay and mobile-usability revision batch – 2 November 2026
 
 - Revised Levels 7, 8, 9, 12, 13, 14 and 15 for solvability, clearer cause-and-effect, reduced redundant mechanisms and more readable crown approaches.

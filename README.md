@@ -38,6 +38,8 @@ The existing level data describes tile layouts, start and goal cells, hints, dif
 
 The current distribution keeps the level definitions and engine logic together in `index.html`. There is **not yet** a separate level-file format or automated solvability test suite. A [level-authoring reference](docs/LEVEL_AUTHORING.md) and a read-only [structural validator](scripts/validate-levels.cjs) are available. Please do not assume that adding a level is plug-and-play.
 
+After verified completion of Level 25, the current repository build launches a locally bundled 60-second ending cinematic. The ending preserves the recorded final win, pauses the underlying game renderer and background music, and provides clear routes to play again from Level 1 or view the DIORAMA 2 project page. See [ENDING_INTEGRATION_NOTES.md](ENDING_INTEGRATION_NOTES.md) for the integration boundary and validation record.
+
 **Version distinction (verified 2 November 2026):** The repository's `main` branch `index.html` contains **25** named level definitions, numbered 01 through 25. The gameplay and mobile-usability revision batch is merged at [`e8bdb44`](https://github.com/Joenasriani/diorama-game/commit/e8bdb44a609350d0bdcb50729fab0b9e68b43368). The [itch.io game page](https://joenasr.itch.io/diorama) has advertised a **50-level** version, so this repository should not be assumed to match that separate edition. The Vercel production alias was intentionally not redeployed during this revision batch; its parity with `main` remains unverified.
 
 ## Current revision state
@@ -80,6 +82,13 @@ The current repository is a self-contained browser distribution:
 │   │   └── AmaticSC-Regular.ttf
 │   └── music/
 │       └── hitslab-game-gaming-music-295075.mp3
+├── ending/
+│   ├── index.html
+│   └── audio/
+│       └── ending score and sound effects
+├── invest/
+│   └── index.html
+├── ENDING_INTEGRATION_NOTES.md
 ├── docs/
 │   ├── LEVEL_AUTHORING.md
 │   └── UPGRADE_LEVELS_AND_FIXES.md
@@ -105,6 +114,8 @@ No package-manager install or application build step is required for the checked
 | Progress persistence | `localStorage` |
 | SFX | Web Audio API synthesis |
 | Background music | Local MP3 asset |
+| Final-level ending | Local 60-second Three.js cinematic in `ending/` |
+| Sequel information | Local responsive page in `invest/` |
 | Fonts | Local Amatic SC font files |
 
 ## Puzzle model
