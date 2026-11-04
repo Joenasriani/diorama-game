@@ -6,6 +6,10 @@
 
 **A playable 3D mechanical puzzle game built around route planning, moving architecture, and interactive mechanisms.**
 
+> [!NOTE]
+> **Continuing DIORAMA in a new AI thread?** Start with [AI_HANDOFF_DIORAMA.md](AI_HANDOFF_DIORAMA.md) – current architecture, protected game/film decisions, funding page, verified deployment baseline, unresolved QA and safe continuation steps.
+
+
 [**Play DIORAMA on itch.io**](https://joenasr.itch.io/diorama) · [**Play the browser deployment**](https://diorama-game.vercel.app)
 
 Explore compact isometric structures, operate bridges, lifts, gates, and switches, and guide a robot through routes whose connectivity changes as the puzzle responds.
@@ -57,7 +61,7 @@ The current distribution keeps the level definitions and engine logic together i
 
 After verified completion of Level 25, the current repository build launches a locally bundled 60-second ending cinematic. The ending preserves the recorded final win, pauses the underlying game renderer and background music, and provides clear routes to play again from Level 1 or view the DIORAMA 2 project page. See [ENDING_INTEGRATION_NOTES.md](ENDING_INTEGRATION_NOTES.md) for the integration boundary and validation record.
 
-**Current Vercel production source (4 November 2026):** [`8f6128fdaa33ce900ac3b80b6a8f3cbeafc50c2e`](https://github.com/Joenasriani/diorama-game/commit/8f6128fdaa33ce900ac3b80b6a8f3cbeafc50c2e) on `main`, confirmed by Vercel as `READY` for [diorama-game.vercel.app](https://diorama-game.vercel.app/). This repository contains 25 levels, the integrated 60-second ending, and the [DIORAMA 2 support page](https://diorama-game.vercel.app/invest/). The in-game version label remains **v1.0**; deployment identifiers are not semantic game versions. The earlier owner-private Sites version **82** (Sites source `da14ef41b3bc54b0841c76a37173414d5b499215`) was previously matched to GitHub commit `956d01cef6423877bd114936f0fc3e974c503db9` by HTML Git blob hash. That is a historical verification record, **not the current Vercel source**. The itch.io distribution has not been compared with the current Vercel deployment.
+**Vercel production verification snapshot (4 November 2026, before this documentation handoff):** [`2602eb0765b86d10d427d410cd031cb8d2907a33`](https://github.com/Joenasriani/diorama-game/commit/2602eb0765b86d10d427d410cd031cb8d2907a33) on `main` was reported by Vercel as `READY` for [diorama-game.vercel.app](https://diorama-game.vercel.app/). Later documentation-only commits may advance HEAD and deployment; verify current state rather than treating this historical snapshot as live metadata. This repository contains 25 levels, the integrated 60-second ending, and the [DIORAMA 2 support page](https://diorama-game.vercel.app/invest/). The in-game version label remains **v1.0**; deployment identifiers are not semantic game versions. The earlier owner-private Sites version **82** (Sites source `da14ef41b3bc54b0841c76a37173414d5b499215`) was previously matched to GitHub commit `956d01cef6423877bd114936f0fc3e974c503db9` by HTML Git blob hash. That is a historical verification record, **not the current Vercel source**. The itch.io distribution has not been compared with the current Vercel deployment.
 
 ## Current revision state
 
