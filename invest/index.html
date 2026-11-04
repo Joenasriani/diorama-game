@@ -39,7 +39,8 @@
     footer{margin-top:42px;font-size:22px;color:rgba(255,255,255,.7)}
     @media(max-width:650px){.hero{min-height:620px}.castle{height:520px}.lockup{padding-top:190px}.features{grid-template-columns:1fr}.story{margin-top:-28px}.eyebrow{letter-spacing:.11em}}
     @media(max-height:650px) and (orientation:landscape){.hero{min-height:500px}.castle{height:460px}.lockup{padding-top:135px}h1{font-size:120px}.story{margin-top:-20px}}
-  </style>
+  .hero{height: min(85vh,800px);min-height:520px;padding:0}.ending-hero{width:100%;height:100%;border:0;pointer-events:none}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+</style>
 <link rel="preload" href="../assets/fonts/AmaticSC-Regular.ttf" as="font" type="font/ttf" crossorigin>
 <link rel="preload" href="../assets/fonts/AmaticSC-Bold.ttf" as="font" type="font/ttf" crossorigin>
 <style>html.diorama-fonts-pending main{visibility:hidden!important}</style>
@@ -63,19 +64,13 @@
 <body>
   <main>
     <section class="hero" aria-labelledby="page-title">
-      <div class="castle" aria-hidden="true">
-        <div class="tower left"></div><div class="tower mid-left"></div><div class="keep"></div><div class="tower mid-right"></div><div class="tower right"></div><div class="base"></div>
-      </div>
-      <div class="lockup">
-        <p class="eyebrow">THE JOURNEY CONTINUES</p>
-        <h1 id="page-title">DIORAMA 2</h1>
-        <p class="soon">COMING SOON</p>
-      </div>
+      <h1 id="page-title" class="sr-only">DIORAMA 2 – The journey continues</h1>
+      <iframe class="ending-hero" src="../ending/index.html?view=pitch-header" title="DIORAMA 2 – final castle scene" tabindex="-1"></iframe>
     </section>
 
     <section class="story" aria-labelledby="next-title">
-      <h2 id="next-title">A NEW DIORAMA IS TAKING SHAPE</h2>
-      <p>DIORAMA 2 will carry the little robot beyond the castle into a new handcrafted world – with original puzzle ideas, unfamiliar mechanisms, and new ways to read and transform each miniature environment.</p>
+      <h2 id="next-title">HELP CREATE THE NEXT CHAPTER</h2>
+      <p>DIORAMA began with a simple idea: a small world can hold a meaningful challenge. Across 25 puzzles, the first game turns observation, movement and changing architecture into a journey. DIORAMA 2 aims to take that foundation further: new environments, original mechanisms and puzzles that reward curiosity.</p>
       <div class="features" aria-label="What is planned">
         <div class="feature">NEW PUZZLES<span>Fresh spatial challenges designed around observation, timing, and discovery.</span></div>
         <div class="feature">NEW IDEAS<span>New interactive rules and surprising connections between the world’s moving parts.</span></div>
@@ -84,7 +79,14 @@
       <p>Thank you for playing DIORAMA all the way to the end – and for taking the time to reach this page. Your interest is what gives the next journey a chance to exist.</p>
       <div class="support">
         <div class="support-title">HELP BUILD DIORAMA 2</div>
-        <p>A PayPal support link will be added here later.</p>
+        <p>Support would help fund puzzle design, art and animation, audio, and testing across desktop and mobile browsers. The goal is a carefully built next chapter, with time for iteration and player feedback.</p>
+        <h2>PROPOSED BACKER REWARDS</h2>
+        <p>Early Explorer – proposed $15: access to a playable preview before the public launch, when available.</p>
+        <p>Founding Supporter – proposed $35: Early Explorer access plus an optional name in the supporter credits, subject to name approval.</p>
+        <p>Patron – proposed $100: Founding Supporter rewards plus an optional name in a dedicated Patron credits section.</p>
+        <p>These tiers are proposals, not open purchases. Delivery dates, fulfilment and refund terms will be published before checkout opens. Backer rewards do not include ownership or revenue sharing.</p>
+        <h2>INVESTMENT PARTNERSHIPS</h2>
+        <p>Revenue participation would be considered separately under a written agreement defining the funding amount, revenue calculation, reporting, payment schedule and duration. No investment or revenue-share offer is currently open.</p>
         <div class="paypal-placeholder" aria-disabled="true">SUPPORT OPTION COMING SOON</div>
       </div>
       <a class="back" href="../index.html" target="_top">RETURN TO DIORAMA</a>
