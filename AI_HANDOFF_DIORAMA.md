@@ -1,0 +1,154 @@
+# DIORAMA – AUTHORITATIVE AI CONTINUATION HANDOFF
+
+> **Read this file first when continuing DIORAMA in a new ChatGPT/AI thread.**
+> Snapshot: **4 November 2026**. Project: [Joenasriani/diorama-game](https://github.com/Joenasriani/diorama-game), default branch `main`.
+> This document is a navigation and operational handoff, **not** proof that every game path has been played or a replacement for live source and deployment verification.
+> **Source hierarchy:** live repository code and deployment metadata for implementation facts; this handoff for decisions and priorities; [UPGRADE_LEVELS_AND_FIXES](docs/UPGRADE_LEVELS_AND_FIXES.md) for per-level revision history; other project documents for focused scopes. If sources disagree, recheck current code/commit and report the conflict.
+
+## 1. Immediate orientation
+
+DIORAMA is an authored, tactile, minimalist 3D mechanical route-puzzle game using Three.js. Its core identity: calm miniature worlds, moving architecture, clear cause and effect, visually readable valid routes, puzzle difficulty from spatial reasoning rather than repeated taps or ornamental tricks. It is **not** a generic low-poly template. User-facing mechanics, cinematography, sound and typography should feel like one game.
+
+**Repository:** https://github.com/Joenasriani/diorama-game
+
+**Hosted browser game:** https://diorama-game.vercel.app/
+
+**Standalone 60-second ending movie:** https://diorama-game.vercel.app/ending/
+
+**DIORAMA 2 coming-soon and backing page:** https://diorama-game.vercel.app/invest/
+
+**itch.io:** https://joenasr.itch.io/diorama – **not confirmed byte-for-byte equivalent** to current Vercel release.
+
+**Latest verified code/deployment baseline before writing this handoff:**
+- `main` HEAD: `2602eb0765b86d10d427d410cd031cb8d2907a33`; README cinematic/funding callout.
+- Vercel production deployment for `diorama-game` reported `READY` with that exact commit. This verifies the build/deployment record, **not** successful device playback.
+- Game UI displays **v1.0**, which is a product label and **not** the Git commit, hosting version or guaranteed semantic version.
+- This handoff and any follow-up README edits create later documentation-only commits. **Always query the latest HEAD and production SHA afresh** instead of treating the above as permanently current.
+
+## 2. Where to look first
+
+| Path | Purpose | Sensitivity |
+| --- | --- | --- |
+| `index.html` | Main game, bundled Three.js runtime, all 25 level definitions, input, rendering, routing, save data, music, end-trigger and embedding | **HIGH**. Self-contained, >1 MB. Never casually reformat/rebuild. |
+| `ending/index.html` | 60-second authored Three.js film, camera/timeline, characters, score/effects, playback controls, final title and actions, initial loading screen | **HIGH**. Large bundled HTML. Preserve film timing/shot order. |
+| `ending/audio/` | Movie soundtrack and effects | Preserve names, rights and sync. |
+| `invest/index.html` | DIORAMA 2 support/coming-soon page; noninteractive iframe of movie in `?view=pitch-header` | Preserve Three.js castle, intended color, tiers and links. |
+| `assets/fonts/` | Amatic SC regular/bold | Keep preload and typography timing stable. |
+| `assets/music/` | Game music | Keep separate from ending score; protect mute preferences. |
+| `scripts/validate-levels.cjs` | Structural/regression checks, NOT an end-to-end solution solver | Run after any level/runtime change. |
+| `docs/UPGRADE_LEVELS_AND_FIXES.md` | Detailed level-by-level revisions, frozen constraints and pending audit | Historical status labels may be superseded. |
+| `ENDING_INTEGRATION_NOTES.md` | Level-25 trigger, music/render isolation and restart contract | Older verification snapshot. |
+| `docs/RELEASE_PROCESS.md` | Release procedure and required manual QA | Follow before production changes. |
+| `ROADMAP.md` | Proposed tracks and still-open level audit | Not permission to implement everything. |
+| `CHANGELOG.md` | Dated committed changes | Update for meaningful releases. |
+| `THIRD_PARTY_LICENSES.md` | Rights boundaries for Three.js, fonts, game soundtrack and ending media | Never treat bundled third-party music as MIT. |
+| `README.md` | Public introduction, play/cinematic/backing callout, architecture and caveats | Avoid stale current-commit claims. |
+
+## 3. Implemented game and protected mechanics
+
+- **25 embedded levels**, designed around readable valid paths and stateful mechanisms including bridges, lifts, switches, keys/locks, transfer pads, gates, route stamps, moving blocks and combinations.
+- Navigation is reachable-route constrained rather than arbitrary click-to-coordinate movement. Do not accidentally permit tier jumps, locked-route bypasses, invisible structural supports or navigation through decorative geometry.
+- Existing tap assistance prioritizes immediately reachable elevated neighbors for small-screen touch; maintains legal movement only.
+- Touch camera: one-finger orbit; two-finger horizontal tracking and vertical pedestal movement; pinch zoom independently preserved. Touch camera gestures must never issue robot movement.
+- Existing portal disappearance/reappearance effects, enlarged electrical strikes, timing and synchronized sounds are protected.
+- Folding-bridge stems align with their actual neighboring route anchor; validator checks direction data.
+- Important specific revision work: Level 25 missing polarity-switch host tile and malformed one-way vector corrected; focused revisions to Levels 7, 8, 9, 12, 13, 14 and 15, with regression contracts in validator and detail in the upgrade register.
+- Pending: one-by-one **Level 16 onward** gameplay/design audit and full 1–25 human playthrough. Never equate the structural validator with logical/mechanical/human solvability.
+- Save state uses browser `localStorage`; Level 1 replay after the ending should retain completion/best-move records, whereas explicit reset has separate behavior.
+
+**Gameplay design rules:** one readable route, visibly coherent mechanisms, no false-affordance symbols or fake click targets, no merged dynamic/static bricks, no invisible support geometry, no accidental double-toggle/latching errors, no trigger softlocks, and one-click travel along already established safe linear paths where intended. Distinct level silhouettes and decision patterns matter more than geometry shuffling.
+
+## 4. Ending integration – exact boundaries
+
+The game records the Level 25 final win and plays completion feedback. Approximately **1.25 seconds later**, `showEndPage()` opens the bundled `ending/index.html` movie. The parent enters ending mode and pauses its rendering and music watchdog; otherwise two render loops/audio tracks can conflict. It passes music preference into the ending. Restart returns to Level 1 without clearing previously recorded completion/best-move state.
+
+The movie is a **60-second authored cinematic**. Do not adjust timeline keyframes, camera distance/easing, character actions, title/button timings or sound sync as collateral to loader/README changes. Standalone movie and integrated-game iframe have distinct controls. Embedded finale has Pause/Play, Sound, Skip and Replay Diorama routes; preview scrubber/chapter shortcuts are not for ordinary players. At the finale, users can replay or open the DIORAMA 2 page.
+
+### 4 November startup-flicker correction
+
+User observed an initial brown geometric flash before the opening scene. Initial render gating reduced it but did not fully eliminate it according to the user's device observation. A second change added a **movie-only loading-screen overlay matching the game's slim rounded white-outline and warm ivory/gold loading bar** on blue, with **no heading, percentage or extra controls**. It stays above unready WebGL content; the scene renders at timeline zero behind it, waits for the document fonts readiness promise, then hides the loader, signals parent readiness and starts the movie clock. Pitch-header variant retains the funding-page castle background `#5b777d` and suppresses the movie loading bar in that static header.
+
+The funding page waits for the same-origin `diorama-ending-scene-ready` message from its iframe rather than displaying it immediately on `onload`. The original intro composition, castle, title, camera, 60-second sequence and music should remain unchanged.
+
+**Verification boundary:** This gate was committed as `44ed82434807a297b17aaa75d3fd5abebae96957`; JavaScript syntax and repository checks passed and Vercel reported READY. **No verified frame-by-frame real-device test proving the flash is completely gone.** Browser onload, source parsing and Vercel READY are not visual QA. On follow-up, ask for a reproduction only if actual device inspection is unavailable and do not declare this visually fixed without evidence.
+
+### Practical reminder for editing large HTML
+
+GitHub `fetch_file` may return **empty `content`** for `index.html` and `ending/index.html` due to size. Retrieve a concrete blob SHA from the repo tree or `fetch_file` metadata and then use GitHub `fetch_blob` to access the entire text. Do not interpret an empty fetch result as an empty source file or overwrite the file. For updates use the **full original text and the correct current blob SHA** and check for concurrent commits before replacing. Avoid broad replacements of the bundled Three.js code.
+
+## 5. DIORAMA 2 funding page – current intent
+
+`invest/index.html` is a **coming-soon/sequel support page**, not a launched sequel or an open equity investment. It embeds the actual ending scene as a Three.js castle/title header (`view=pitch-header`), not an invented CSS castle. Preserve the approved flat backdrop **castle-muted blue `#5b777d`**, rather than sky blue, and check portrait/landscape centering. The static pitch-header uses a mirrored render for an intentionally symmetric castle. Do not expose video controls or unrelated decorative geometry in this view.
+
+Current displayed optional supporter tiers, **not equity**:
+- **Early Explorer – US$15:** a playable preview before public launch, when available.
+- **Founding Supporter – US$35:** Early Explorer access plus optional name in supporter credits subject to approval.
+- **Patron – US$100:** Early Explorer access plus optional name in dedicated Patron credits subject to approval.
+
+PayPal link present in markup: https://www.paypal.com/ncp/payment/NYRC4Q6FTYXBJ. **Payment flow, provider configuration and digital-reward fulfillment are not independently verified.** No preview release date. No investor revenue share or ownership is currently being offered; hypothetical future investment partnerships are separate written agreements. Never imply Patreon-like tier automation or successful transaction handling without testing.
+
+The `Choose your backing tier` CTA is intended to be prominent and unambiguous. If adjusting layout/graphics, preserve original film branding and do not create misleading interactive effects.
+
+## 6. README and discoverability
+
+The root README features the game plus screenshots, a cinematic preview and a native GitHub callout titled **THE JOURNEY CONTINUES** linking to:
+- Ending: https://diorama-game.vercel.app/ending/
+- DIORAMA 2 support page: https://diorama-game.vercel.app/invest/
+
+GitHub Markdown **cannot run WebGL/Three.js inline or embed a playable iframe**. The current preview uses `docs/screenshots/social-preview.png`, which is **not an authenticated frame from the ending cinematic**. Do not claim that it is. An actual animated GIF or movie-thumbnail frame requires a separate genuine capture, rights check and GitHub-compatible presentation.
+
+The callout was committed in `2602eb0765b86d10d427d410cd031cb8d2907a33` directly on `main`. There was no PR to merge. Future AI agents should not propose merging already committed `main` changes or invent a missing branch.
+
+## 7. What has and has not been verified
+
+**Observed/verified at snapshot:**
+- Files for game, ending and funding page are in GitHub `main`; Vercel production metadata identified same `2602eb0` commit as READY.
+- The ending loader/ready-message source exists and passes syntax checks performed during the change.
+- The repo contains a structural validator and GitHub Actions validation workflow.
+- Links and tiers were verified in markup.
+
+**Still NOT verified:**
+- Full actual-device playthrough and solvability/UX of all 25 levels, including Level 16–25 review.
+- End-to-end player journey: Level 25 completion -> parent transitions -> movie with audio -> skip/pause/resume -> funding page/replay -> saved progression.
+- Cold-cache startup on mobile/desktop and explicit evidence that the brown opening flash is eliminated.
+- Portrait/landscape camera/title/character framing and footer/CTA clearance on real device, including static funding castle symmetry seam.
+- WebGL context-loss/failure fallback and audio autoplay restrictions across browsers.
+- Successful real PayPal checkout and corresponding supporter identification, fulfillment and legal/payment settings.
+- The current public itch.io package matching the GitHub/Vercel release.
+- Complete rights provenance for some bundled SFX/fonts and redistributability of individual MP3 files. Read `THIRD_PARTY_LICENSES.md`.
+
+**Important:** No amount of parse success, remote READY status or structural CI can be substituted for these manual browser tests.
+
+## 8. Work protocol for the next AI thread
+
+1. **Read this file, README, ENDING_INTEGRATION_NOTES, ROADMAP, release procedure, upgrade register and relevant current HTML before edits.** Locate the exact currently authoritative branch/commit and Vercel SHA. Note any drift since the snapshot.
+2. Identify whether the requested change targets gameplay, cinematic, funding, public README or release packaging. Freeze unrelated systems.
+3. Reproduce the defect or inspect a demonstrable code path before choosing a fix. Separate **observed fact**, **hypothesis**, **code-only validation** and **visual/device verification** in reports.
+4. State the smallest affected surface and regression risk. Do not silently make unrelated visual redesigns or performance rewrites. For larger work, use a branch/PR and stage/test before merging; preserve backups or revertable commits.
+5. Run syntax and `node scripts/validate-levels.cjs` after game modifications; check all changed files and references. For ending/invest, check actual frame readiness, no stuck loaders, exact intro time zero and message origin/source validation.
+6. Test the changed route from the real player's perspective. On portrait and landscape check camera composition, background colors, typography, clickable interactions, music preference, pause, replay, navigation and cold cache. State when a browser/device test is unavailable.
+7. Before any release, follow `docs/RELEASE_PROCESS.md`, record commit, build status and remaining manual QA. Never say “fixed”, “fully verified” or “ready” based only on compilation/deployment.
+8. Update README/CHANGELOG/handoff selectively after accepted changes; distinguish historical deployment SHA from latest code. Preserve asset rights notices.
+9. If user says **“next”**, continue the current approved sequence. Do not restart an old review or re-propose already committed changes. If the user says **“merge”**, first check if the commit is already on `main` and whether any open PR exists.
+10. Deliver **one clear result** with changed files, commit/deployment facts, observed tests and open blockers. Do not claim work completed if only proposed.
+
+### Non-negotiable visual/design constraints
+
+- Keep the cinematic's exact story, camera choreography and music synchronization unless explicitly asked to change them.
+- Background at the funding page's very back must be the **castle muted blue**, not the brighter movie sky blue.
+- Keep graphic hierarchy centered independently in desktop landscape and mobile portrait.
+- Avoid ambiguous indicators, fake interactive shapes, redundant click counters, generic cards and unrelated ornament.
+- The movie loader is a minimalist **bar only**, with visual treatment from original game, until actual readiness; no arbitrary minimum-time delays.
+- Preserve stable 25-level progression and existing save data.
+
+## 9. Suggested next QA pass (NOT completed)
+
+In a real browser with network throttling/cache disabled, capture the **first 2 seconds** of the standalone movie, embedded finale and funding header at mobile portrait and desktop landscape sizes. Confirm no brown fragment/blank flash, a visible bar while assets initialize, that playback starts at 0 seconds after readiness, and that no scene is covered forever on failed WebGL. Then run the Level 25 completion/replay/music journey and inspect tiers/CTA. Only after observed pass, consider polishing the README preview with a genuine cinematic still.
+
+---
+
+**Continuity command for a new thread:**
+
+> Read `AI_HANDOFF_DIORAMA.md` in `Joenasriani/diorama-game` on GitHub line by line, verify current `main` and production against it, review the linked implementation/history documents, identify any drift and unverified items, then continue my specific DIORAMA request with the smallest safe change. Do not assume README metadata is current; do not rewrite gameplay, the cinematic or the investor page without explicit scope. Report verification separately from deployment.
+
+*This is a dated handoff, not a mandate to implement every suggestion in it.*
