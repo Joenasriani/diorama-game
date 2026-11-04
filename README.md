@@ -40,7 +40,7 @@ The current distribution keeps the level definitions and engine logic together i
 
 After verified completion of Level 25, the current repository build launches a locally bundled 60-second ending cinematic. The ending preserves the recorded final win, pauses the underlying game renderer and background music, and provides clear routes to play again from Level 1 or view the DIORAMA 2 project page. See [ENDING_INTEGRATION_NOTES.md](ENDING_INTEGRATION_NOTES.md) for the integration boundary and validation record.
 
-**Current deployed release (4 November 2026):** 25 levels plus the integrated ending and DIORAMA 2 page. GitHub release source: `956d01cef6423877bd114936f0fc3e974c503db9`. The owner-private Sites deployment is version **82**, built from Sites source commit `da14ef41b3bc54b0841c76a37173414d5b499215`; its three HTML pages match the GitHub release by Git blob hash. The in-game label remains **v1.0**; the deployment number is not a semantic game version. Private deployment URLs are intentionally omitted here. The public itch.io and Vercel links above are separate destinations whose parity with this release has not been verified.
+**Current Vercel production source (4 November 2026):** [`8f6128fdaa33ce900ac3b80b6a8f3cbeafc50c2e`](https://github.com/Joenasriani/diorama-game/commit/8f6128fdaa33ce900ac3b80b6a8f3cbeafc50c2e) on `main`, confirmed by Vercel as `READY` for [diorama-game.vercel.app](https://diorama-game.vercel.app/). This repository contains 25 levels, the integrated 60-second ending, and the [DIORAMA 2 support page](https://diorama-game.vercel.app/invest/). The in-game version label remains **v1.0**; deployment identifiers are not semantic game versions. The earlier owner-private Sites version **82** (Sites source `da14ef41b3bc54b0841c76a37173414d5b499215`) was previously matched to GitHub commit `956d01cef6423877bd114936f0fc3e974c503db9` by HTML Git blob hash. That is a historical verification record, **not the current Vercel source**. The itch.io distribution has not been compared with the current Vercel deployment.
 
 ## Current revision state
 
@@ -48,8 +48,10 @@ The 4 November 2026 release adds:
 
 - a final-level cinematic with Pause, Sound, Skip ending, and Play Again controls;
 - game-music watchdog isolation during the ending, with the game's music preference passed to the cinematic;
-- a DIORAMA 2 coming-soon page; PayPal support is not yet active;
+- a DIORAMA 2 coming-soon and backing page with a linked PayPal checkout; the three displayed contribution tiers describe proposed digital rewards, not investment equity;
 - regular/bold font preloads and bounded readiness gates for startup lettering and the sequel page.
+
+**Current DIORAMA 2 support page:** [Open the live page](https://diorama-game.vercel.app/invest/). The page reuses the original Three.js ending scene in a non-interactive embedded header and retains the castle/title artwork rather than replacing it with a CSS approximation. The header's investor-only presentation uses a mirrored left-half render, a solid muted-blue backdrop (`#5b777d`), a startup visibility gate and adjusted framing. The page currently displays **Early Explorer – $15**, **Founding Supporter – $35**, and **Patron – $100**, along with a prominent **Choose your backing tier** link to [PayPal checkout](https://www.paypal.com/ncp/payment/NYRC4Q6FTYXBJ). The link's presence is verified in repository HTML; successful checkout, reward fulfillment and payment-provider configuration have **not** been independently verified. Supporter backing is not an offer of equity or revenue participation. The castle's final centre-seam and lower-edge appearance still require visual confirmation on real devices.
 
 The earlier 2 November gameplay revision includes:
 
@@ -359,7 +361,7 @@ Run `node scripts/validate-levels.cjs` before publication, then follow [the rele
 
 The repository demonstrates implemented pathfinding, mechanism state transitions, persistence, responsive input assistance, and 25 level definitions.
 
-For the 4 November release, syntax, focused audio/control/font checks and level structure passed. The coming-soon page rendered in the test browser. Gameplay and cinematic browser testing remained blocked by a WebGL-context creation failure in that browser; cold-load font transition and real-device audio remain unverified.
+For the earlier 4 November integration release, syntax, focused audio/control/font checks and level structure passed. The coming-soon page rendered in the test browser, but gameplay and cinematic testing in that environment was blocked by a WebGL-context creation failure. Later investor-header commits have been published to Vercel and their production commit IDs verified. That **does not establish** real-device visual correctness: header flicker, mirrored-centre seam, lower-edge clearance, cold-load font transitions and real-device audio must be checked in the browser. No complete 25-level playthrough or end-to-end PayPal payment test is claimed here.
 
 Those implementation facts do not by themselves establish exhaustive cross-browser compatibility, accessibility conformance, performance targets, or device-store certification.
 
