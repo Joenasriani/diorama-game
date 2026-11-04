@@ -40,6 +40,25 @@
     @media(max-width:650px){.hero{min-height:620px}.castle{height:520px}.lockup{padding-top:190px}.features{grid-template-columns:1fr}.story{margin-top:-28px}.eyebrow{letter-spacing:.11em}}
     @media(max-height:650px) and (orientation:landscape){.hero{min-height:500px}.castle{height:460px}.lockup{padding-top:135px}h1{font-size:120px}.story{margin-top:-20px}}
   </style>
+<link rel="preload" href="../assets/fonts/AmaticSC-Regular.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="../assets/fonts/AmaticSC-Bold.ttf" as="font" type="font/ttf" crossorigin>
+<style>html.diorama-fonts-pending main{visibility:hidden!important}</style>
+<script>
+(function () {
+  if (!document.fonts || !document.fonts.load) return;
+  var root = document.documentElement;
+  root.classList.add('diorama-fonts-pending');
+  var timer = setTimeout(reveal, 4500);
+  function reveal() {
+    clearTimeout(timer);
+    root.classList.remove('diorama-fonts-pending');
+  }
+  window.dioramaFontsReady = Promise.all([
+    document.fonts.load('400 24px "Amatic SC"'),
+    document.fonts.load('700 24px "Amatic SC"')
+  ]).then(reveal, reveal);
+})();
+</script>
 </head>
 <body>
   <main>

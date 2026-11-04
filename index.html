@@ -2293,6 +2293,25 @@ body.game-started #versionPill{
   #startPage #startInstruction { display:none !important; }
 }
 </style>
+<link rel="preload" href="./assets/fonts/AmaticSC-Regular.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="./assets/fonts/AmaticSC-Bold.ttf" as="font" type="font/ttf" crossorigin>
+<style>html.diorama-fonts-pending #startTitle, html.diorama-fonts-pending #startFooter, html.diorama-fonts-pending #startupStartPrompt, html.diorama-fonts-pending #versionPill{visibility:hidden!important}</style>
+<script>
+(function () {
+  if (!document.fonts || !document.fonts.load) return;
+  var root = document.documentElement;
+  root.classList.add('diorama-fonts-pending');
+  var timer = setTimeout(reveal, 4500);
+  function reveal() {
+    clearTimeout(timer);
+    root.classList.remove('diorama-fonts-pending');
+  }
+  window.dioramaFontsReady = Promise.all([
+    document.fonts.load('400 24px "Amatic SC"'),
+    document.fonts.load('700 24px "Amatic SC"')
+  ]).then(reveal, reveal);
+})();
+</script>
 </head>
 <body class="diorama-booting">
 <div id="stage"></div>
@@ -22148,7 +22167,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!document.fonts || !document.fonts.ready) return Promise.resolve(false);
     const loads = [];
     if (document.fonts.load) {
-      // Runtime-only package uses system font fallback; no bundled font files required.
+      loads.push(document.fonts.load('400 24px "Amatic SC"'));
+      loads.push(document.fonts.load('700 24px "Amatic SC"'));
     }
     loads.push(document.fonts.ready);
     return Promise.all(loads).then(() => true);
