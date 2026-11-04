@@ -25,7 +25,9 @@
     /* The transport, chapter shortcuts and scrubber are review tools. Keep
        them in the standalone preview, but present a clean authored finale
        when this page is embedded after the completed game. */
-    body.embedded-ending #controls{display:none}
+    body.embedded-ending #controls .shotButton,body.embedded-ending #scrub,body.embedded-ending #time{display:none}
+    body.embedded-ending #controls button{min-height:44px}
+    #skipEnding{display:none}body.embedded-ending #skipEnding{display:inline-block}
     @media(prefers-reduced-motion:reduce){#controls{background:rgba(30,65,74,.68)}}
     #diagnostic{display:none;position:fixed;z-index:20;inset:18px 18px auto;padding:16px 18px;border-radius:18px;background:rgba(116,42,42,.94);color:#fff;font:700 20px/1.2 system-ui,sans-serif;white-space:pre-wrap;box-shadow:0 12px 32px rgba(0,0,0,.2)}
   </style>
@@ -34,7 +36,8 @@
   <audio id="score" preload="auto" playsinline src="./audio/hero-score-bed.mp3"></audio>
   <div id="stage"></div><div id="vignette"></div><div id="shotTransition" aria-hidden="true"></div><div id="shotLabel" aria-live="polite"></div><div id="diagnostic" role="alert"></div>
   <div id="card"><div class="small">THE JOURNEY CONTINUES</div><div class="title">DIORAMA 2</div><div class="soon">COMING SOON</div><div id="finalActions"><button id="restart" type="button" aria-label="Play DIORAMA again from Level 1">PLAY AGAIN FROM LEVEL 1</button><button id="invest" type="button" aria-describedby="investorStatus">INVEST IN DIORAMA 2</button><div id="investorStatus" aria-live="polite"></div></div></div>
-  <div id="controls" aria-label="Ending preview controls">
+  <div id="controls" aria-label="Ending playback controls">
+    <button id="skipEnding" type="button">Skip ending</button>
     <button id="play" type="button">Pause</button>
     <button id="sound" type="button" aria-pressed="false">Sound Off</button>
     <button class="shotButton" data-time="0">Castle</button><button class="shotButton" data-time="6">Jumps</button><button class="shotButton" data-time="10">Door</button><button class="shotButton" data-time="18">Hall</button><button class="shotButton" data-time="21">Dragon</button><button class="shotButton" data-time="28">Princess</button><button class="shotButton" data-time="37">Tableau</button>
@@ -19447,7 +19450,7 @@
     function playGameStep(gain=.034){if(!enabled)return;try{unlockStepContext();const now=stepCtx.currentTime,master=stepCtx.createGain(),osc=stepCtx.createOscillator();master.gain.setValueAtTime(1e-4,now);master.gain.exponentialRampToValueAtTime(gain,now+.012);master.gain.exponentialRampToValueAtTime(1e-4,now+.075);osc.type='triangle';osc.frequency.setValueAtTime(300,now);osc.connect(master);master.connect(stepCtx.destination);osc.start(now);osc.stop(now+.115);}catch(e){}}
     function ensureScoreBuffer(){unlockStepContext();if(scoreBuffer)return Promise.resolve(scoreBuffer);if(!scoreLoadPromise)scoreLoadPromise=scoreBytesPromise.then(bytes=>stepCtx.decodeAudioData(bytes.slice(0))).then(buffer=>(scoreBuffer=buffer));return scoreLoadPromise;}
     function stopScore(){scoreRequest++;if(scoreSource){try{scoreSource.stop();}catch(e){}scoreSource.disconnect();scoreSource=null;}score.pause();}
-    function startScore(t){scoreWanted=true;latestScoreTime=t;const request=++scoreRequest;ensureScoreBuffer().then(buffer=>{if(!enabled||!scoreWanted||request!==scoreRequest)return;if(scoreSource){try{scoreSource.stop();}catch(e){}scoreSource.disconnect();}if(!scoreGain){scoreGain=stepCtx.createGain();scoreGain.gain.value=.62;scoreGain.connect(stepCtx.destination);}const source=stepCtx.createBufferSource();source.buffer=buffer;source.connect(scoreGain);scoreSource=source;source.onended=()=>{if(scoreSource===source)scoreSource=null;};source.start(0,clamp(latestScoreTime,0,Math.min(SCORE_END,buffer.duration-.02)));}).catch(()=>{score.muted=false;score.currentTime=clamp(latestScoreTime,0,SCORE_END);score.play().catch(()=>{});});}
+    function startScore(t){scoreWanted=true;latestScoreTime=t;const request=++scoreRequest;ensureScoreBuffer().then(buffer=>{if(!enabled||!scoreWanted||request!==scoreRequest)return;if(scoreSource){try{scoreSource.stop();}catch(e){}scoreSource.disconnect();}if(!scoreGain){scoreGain=stepCtx.createGain();scoreGain.gain.value=.62;scoreGain.connect(stepCtx.destination);}const source=stepCtx.createBufferSource();source.buffer=buffer;source.connect(scoreGain);scoreSource=source;source.onended=()=>{if(scoreSource===source)scoreSource=null;};source.start(0,clamp(latestScoreTime,0,Math.min(SCORE_END,buffer.duration-.02)));}).catch(()=>{if(!enabled||!scoreWanted||request!==scoreRequest)return;score.muted=false;score.currentTime=clamp(latestScoreTime,0,SCORE_END);score.play().catch(()=>{});});}
     function mix(t){
       // The airy exterior bed disappears gradually as the hero reaches the
       // door. Music remains uninterrupted through every story cue and keeps
@@ -19488,7 +19491,7 @@
   // ending mix immediately instead of making the player discover a silent
   // "Sound Off" state midway through the finale. The existing first-gesture
   // unlock below remains as a fallback for stricter browser policies.
-  if(embedded) soundDirector.setEnabled(true,0,true);
+  if(embedded) soundDirector.setEnabled(new URLSearchParams(location.search).get("sound") === "1",0,true);
 
   const scene = new Scene();
   scene.background = new Color(0x58afe8);
@@ -19928,8 +19931,9 @@
   let playing=true, timeline=0, last=performance.now();
   function frame(now){const dt=Math.min(.05,(now-last)/1000),previousTimeline=timeline;last=now;if(playing){timeline+=dt;if(timeline>=ENDING_DURATION){timeline=ENDING_DURATION;setPlaying(false);}}soundDirector.tick(previousTimeline,timeline);update(timeline);scrub.value=timeline.toFixed(2);timeReadout.textContent=timeline.toFixed(2);renderer.render(scene,camera);requestAnimationFrame(frame);}
   function setPlaying(v){playing=v;playButton.textContent=v?'Pause':'Play';playButton.setAttribute('aria-pressed',String(v));soundDirector.sync(timeline,v);}
-  function unlockAudioOnFirstGesture(event){if(event.target.closest&&event.target.closest('#sound'))return;if(embedded||!soundDirector.enabled)soundDirector.setEnabled(true,timeline,playing);removeEventListener('pointerdown',unlockAudioOnFirstGesture,true);}
+  function unlockAudioOnFirstGesture(event){if(event.target.closest&&event.target.closest('#sound'))return;if(soundDirector.enabled)soundDirector.setEnabled(true,timeline,playing);removeEventListener('pointerdown',unlockAudioOnFirstGesture,true);}
   addEventListener('pointerdown',unlockAudioOnFirstGesture,true);
+  document.getElementById('skipEnding').addEventListener('click',()=>{timeline=ENDING_DURATION;setPlaying(false);update(timeline);});
   playButton.addEventListener('click',()=>setPlaying(!playing));
   soundButton.addEventListener('click',()=>soundDirector.setEnabled(!soundDirector.enabled,timeline,playing));
   restartButton.addEventListener('click',()=>{

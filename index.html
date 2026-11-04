@@ -22943,7 +22943,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function requestBackgroundMusicPlayback(reason = "music") {
-    if (!bgMusic || !musicEnabled || document.hidden) {
+    if (!bgMusic || !musicEnabled || document.hidden || document.body.classList.contains("game-ended")) {
       updateMusicToggle();
       return false;
     }
@@ -22978,7 +22978,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return requestBackgroundMusicPlayback("resume");
   }
   function startBackgroundMusicWithLevelOne() {
-    if (!bgMusic || !musicEnabled || document.hidden) {
+    if (!bgMusic || !musicEnabled || document.hidden || document.body.classList.contains("game-ended")) {
       updateMusicToggle();
       return false;
     }
@@ -23010,7 +23010,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function shouldKeepBackgroundMusicAlive() {
-    return !!(started && musicEnabled && bgMusic && !document.hidden);
+    return !!(started && musicEnabled && bgMusic && !document.hidden && !document.body.classList.contains("game-ended"));
   }
   function recoverBackgroundMusic(reason = "music recovery") {
     if (!shouldKeepBackgroundMusicAlive()) {
@@ -25851,12 +25851,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   function showEndPage() {
     clearEndSequenceTimers();
-    if (bgMusic) bgMusic.pause();
     document.body.classList.add("game-ended");
+    clearTimeout(musicRecoveryTimer);
+    musicStartPending = false;
+    if (bgMusic) bgMusic.pause();
     if (endPage) endPage.setAttribute("aria-hidden", "false");
     if (endCinematic) {
       const src = endCinematic.dataset.src || "./ending/index.html";
-      endCinematic.setAttribute("src", `${src}?completed=${Date.now()}`);
+      endCinematic.setAttribute("src", `${src}?completed=${Date.now()}&sound=${musicEnabled ? "1" : "0"}`);
     }
   }
   function loadLevel(index) {
