@@ -70,7 +70,7 @@
   <main>
     <section class="hero" aria-labelledby="page-title">
       <h1 id="page-title" class="sr-only">DIORAMA 2 – The journey continues</h1>
-      <iframe class="ending-hero" src="../ending/index.html?view=pitch-header" title="DIORAMA 2 – final castle scene" tabindex="-1" onload="this.style.visibility='visible'"></iframe>
+      <iframe class="ending-hero" src="../ending/index.html?view=pitch-header" title="DIORAMA 2 – final castle scene" tabindex="-1"></iframe>
     </section>
 
     <section class="story" aria-labelledby="next-title">
@@ -101,5 +101,25 @@
     </section>
     <footer>Created by Joe Nasr</footer>
   </main>
+<script>
+(function(){
+  const hero=document.querySelector('iframe.ending-hero');
+  // A loaded iframe is not necessarily a rendered WebGL scene.
+  window.addEventListener('message',function(event){
+    if(event.origin!==location.origin || event.source!==hero.contentWindow)return;
+    if(!event.data || event.data.type!=='diorama-ending-scene-ready')return;
+    hero.style.visibility='visible';
+  });
+  // Fail visibly rather than keeping an indefinite blank header on WebGL failure.
+  setTimeout(function(){
+    if(hero.style.visibility==='visible')return;
+    const fallback=document.createElement('a');
+    fallback.href='../ending/index.html';
+    fallback.textContent='VIEW THE DIORAMA ENDING';
+    fallback.style.cssText='position:absolute;top:40%;left:50%;transform:translate(-50%,-50%);color:#ffe064;font:700 32px "Amatic SC",sans-serif;text-align:center';
+    hero.parentNode.appendChild(fallback);
+  },12000);
+})();
+</script>
 </body>
 </html>
