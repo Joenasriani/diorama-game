@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#667f84">
+  <meta name="theme-color" content="#5b777d">
   <title>DIORAMA 2 – Coming Soon</title>
   <style>
     @font-face{font-family:"Amatic SC";src:url("../assets/fonts/AmaticSC-Regular.ttf") format("truetype");font-weight:400;font-display:swap}
     @font-face{font-family:"Amatic SC";src:url("../assets/fonts/AmaticSC-Bold.ttf") format("truetype");font-weight:700;font-display:swap}
-    :root{color-scheme:dark;--sky:#667f84;--blue:#31afe0;--blue-deep:#168dbd;--gold:#ffe064;--paper:#f7f2df}
+    :root{color-scheme:dark;--sky:#5b777d;--blue:#31afe0;--blue-deep:#168dbd;--gold:#ffe064;--paper:#f7f2df}
     *{box-sizing:border-box}
     html{background:var(--sky);scroll-behavior:smooth}
-    body{margin:0;min-height:100vh;background:linear-gradient(180deg,#617b80 0%,#6f898d 44%,#587277 100%);color:white;font-family:"Amatic SC",sans-serif;letter-spacing:.055em}
+    body{margin:0;min-height:100vh;background:var(--sky);color:white;font-family:"Amatic SC",sans-serif;letter-spacing:.055em}
     main{width:min(100%,1080px);margin:0 auto;padding:clamp(20px,4vw,52px) clamp(18px,5vw,64px) 70px;text-align:center}
     .hero{position:relative;min-height:min(72vh,720px);display:grid;place-items:start center;padding-top:clamp(20px,4vh,44px);isolation:isolate}
     .castle{position:absolute;z-index:-1;top:0;left:50%;width:min(92vw,850px);height:min(67vh,650px);transform:translateX(-50%);filter:drop-shadow(0 22px 0 rgba(17,73,87,.14));opacity:.98}
@@ -28,6 +28,7 @@
     .soon{margin:.18em 0 0;font-size:clamp(38px,7.5vw,82px);font-weight:400;letter-spacing:.18em;line-height:1}
     .story{position:relative;margin:-2vh auto 0;width:min(100%,820px);padding:clamp(28px,5vw,55px);border:1px solid rgba(255,255,255,.24);border-radius:clamp(24px,5vw,46px);background:rgba(29,91,105,.38);backdrop-filter:blur(15px);box-shadow:0 24px 70px rgba(19,54,61,.16)}
     .story h2{margin:0 0 .3em;color:var(--gold);font-size:clamp(43px,7vw,72px);line-height:.95}
+    .story h3{margin:1em 0 .2em;color:var(--gold);font-size:clamp(34px,5.5vw,54px);font-weight:700;line-height:1.1}
     .story p{max-width:680px;margin:.65em auto;font-family:system-ui,-apple-system,sans-serif;font-size:clamp(16px,2vw,20px);line-height:1.65;letter-spacing:.005em;color:rgba(255,255,255,.92)}
     .features{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:30px 0}
     .feature{padding:20px 12px;border-radius:20px;background:rgba(49,175,224,.18);border:1px solid rgba(255,224,100,.28);font-size:clamp(27px,3.4vw,39px);line-height:.95}
@@ -81,9 +82,12 @@
         <div class="support-title">HELP BUILD DIORAMA 2</div>
         <p>Support would help fund puzzle design, art and animation, audio, and testing across desktop and mobile browsers. The goal is a carefully built next chapter, with time for iteration and player feedback.</p>
         <h2>BACKER REWARDS</h2>
-        <p>Early Explorer – $15: access to a playable preview before the public launch, when available.</p>
-        <p>Founding Supporter – $35: Early Explorer access plus an optional name in the supporter credits, subject to name approval.</p>
-        <p>Patron – $100: Early Explorer access plus an optional name in a dedicated Patron credits section, subject to name approval.</p>
+        <h3>Early Explorer – $15</h3>
+        <p>Access to a playable preview before the public launch, when available.</p>
+        <h3>Founding Supporter – $35</h3>
+        <p>Early Explorer access plus an optional name in the supporter credits, subject to name approval.</p>
+        <h3>Patron – $100</h3>
+        <p>Early Explorer access plus an optional name in a dedicated Patron credits section, subject to name approval.</p>
         <p>All rewards are digital. Credit names are subject to approval. No preview release date has been announced. Backer rewards do not include ownership, revenue sharing or financial returns.</p>
         <h2>INVESTMENT PARTNERSHIPS</h2>
         <p>Revenue participation would be considered separately under a written agreement defining the funding amount, revenue calculation, reporting, payment schedule and duration. No investment or revenue-share offer is currently open.</p>

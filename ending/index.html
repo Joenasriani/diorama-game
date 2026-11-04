@@ -30,6 +30,7 @@
     #skipEnding{display:none}body.embedded-ending #skipEnding{display:inline-block}
     @media(prefers-reduced-motion:reduce){#controls{background:rgba(30,65,74,.68)}}
     #diagnostic{display:none;position:fixed;z-index:20;inset:18px 18px auto;padding:16px 18px;border-radius:18px;background:rgba(116,42,42,.94);color:#fff;font:700 20px/1.2 system-ui,sans-serif;white-space:pre-wrap;box-shadow:0 12px 32px rgba(0,0,0,.2)}
+  html.pitch-header,body.pitch-header{background:transparent}body.pitch-header #vignette{display:none}
   body.pitch-header #controls,body.pitch-header #finalActions,body.pitch-header #shotLabel{display:none!important}
 </style>
 </head>
@@ -19407,7 +19408,7 @@
   'use strict';
   const embedded = window.parent !== window;
   const pitchHeader = new URLSearchParams(location.search).get('view') === 'pitch-header';
-  if(pitchHeader) document.body.classList.add('pitch-header');
+  if(pitchHeader){document.body.classList.add('pitch-header');document.documentElement.classList.add('pitch-header');}
   const stage = document.getElementById('stage');
   const shotLabel = document.getElementById('shotLabel');
   const shotTransition = document.getElementById('shotTransition');
@@ -19503,7 +19504,7 @@
   scene.background = new Color(0x58afe8);
   scene.fog = new Fog(0x58afe8, 28, 65);
   const camera = new PerspectiveCamera(42, innerWidth / innerHeight, .18, 180);
-  const renderer = new WebGLRenderer({ antialias: true, alpha: false, powerPreference: 'high-performance' });
+  const renderer = new WebGLRenderer({ antialias: true, alpha: pitchHeader, powerPreference: 'high-performance' });
   const pixelRatio = () => Math.min(devicePixelRatio || 1, innerWidth < 900 ? 1.25 : 1.5);
   renderer.setPixelRatio(pixelRatio());
   renderer.setSize(innerWidth, innerHeight);
@@ -19585,7 +19586,7 @@
       // route so slower, weightier hops still reach the gate on schedule.
       visibleArrivalPath.push(cell);if(z<=43)arrivalPath.push(cell);
     }
-    for(const cell of visibleArrivalPath) tile(cell[0],cell[1],cell[2],false);
+    if(!pitchHeader) for(const cell of visibleArrivalPath) tile(cell[0],cell[1],cell[2],false);
     for (let y = 1; y <= 22; y++) for (let x = -10; x <= 10; x++) if (Math.abs(x) > 2 || y > 17) tile(x, y * .45, 1.5, true);
     const sideGeo=new RoundedBoxGeometry(.72,10.6,17,5,.12); const sideL=cast(new Mesh(sideGeo,MAT.stoneSide));sideL.position.set(-10.35,5.05,-7.0);scene.add(sideL);const sideR=sideL.clone();sideR.position.x=10.35;scene.add(sideR);
     const back=cast(new Mesh(new RoundedBoxGeometry(20.7,10.6,.72,5,.12),MAT.stoneSide));back.position.set(0,5.05,-15.35);scene.add(back);
@@ -19951,7 +19952,7 @@
   document.querySelectorAll('[data-time]').forEach(b=>b.addEventListener('click',()=>{timeline=Number(b.dataset.time);setPlaying(false);update(timeline);}));
   if(!embedded)addEventListener('keydown',e=>{if(e.code==='Space'){e.preventDefault();setPlaying(!playing);}if(e.key==='ArrowRight'){timeline=clamp(timeline+.1,0,ENDING_DURATION);setPlaying(false);}if(e.key==='ArrowLeft'){timeline=clamp(timeline-.1,0,ENDING_DURATION);setPlaying(false);}});
   addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);renderer.setPixelRatio(pixelRatio());});
-  update(timeline); if(pitchHeader){renderer.render(scene,camera);addEventListener('resize',()=>{update(timeline);renderer.render(scene,camera);});}else requestAnimationFrame(frame);
+  update(timeline); if(pitchHeader){scene.background=null;renderer.setClearColor(0x000000,0);renderer.render(scene,camera);addEventListener('resize',()=>{update(timeline);scene.background=null;renderer.render(scene,camera);});}else requestAnimationFrame(frame);
   window.__DIORAMA_ENDING_PREVIEW__={duration:ENDING_DURATION,setTime(v){timeline=clamp(Number(v)||0,0,ENDING_DURATION);setPlaying(false);update(timeline);},play(){setPlaying(true);},pause(){setPlaying(false);}};
 })();
 
