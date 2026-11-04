@@ -44,7 +44,7 @@
     footer{margin-top:42px;font-size:22px;color:rgba(255,255,255,.7)}
     @media(max-width:650px){.hero{min-height:620px}.castle{height:520px}.lockup{padding-top:190px}.features{grid-template-columns:1fr}.story{margin-top:-28px}.eyebrow{letter-spacing:.11em}}
     @media(max-height:650px) and (orientation:landscape){.hero{min-height:500px}.castle{height:460px}.lockup{padding-top:135px}h1{font-size:120px}.story{margin-top:-20px}}
-  .hero{height:clamp(340px,53vh,510px);min-height:340px;padding:0;overflow:hidden;place-items:center;isolation:isolate}.hero .castle{z-index:0;top:clamp(30px,6vh,65px);width:min(86%,630px);height:clamp(260px,44vh,390px);filter:drop-shadow(0 12px 0 rgba(17,73,87,.14))}.hero .lockup{position:relative;z-index:1;padding-top:clamp(105px,17vh,165px);pointer-events:none}.hero .eyebrow{font-size:clamp(25px,4vw,43px)}.hero h1{font-size:clamp(76px,13.5vw,142px)}.hero .soon{font-size:clamp(34px,5.5vw,62px)}@media(max-width:650px){.hero{height:430px;min-height:430px}.hero .castle{top:48px;height:320px;width:90%}.hero .lockup{padding-top:155px}}@media(max-height:650px) and (orientation:landscape){.hero{height:350px;min-height:350px}.hero .castle{top:12px;height:290px}.hero .lockup{padding-top:110px}}
+  .hero{height:min(56vh,530px);min-height:350px;padding:0;overflow:hidden}.ending-hero{position:absolute;top:-95px;left:0;width:100%;height:calc(max(520px,min(85vh,800px)) + 95px);border:0;background:var(--sky);pointer-events:none}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
 </style>
 <link rel="preload" href="../assets/fonts/AmaticSC-Regular.ttf" as="font" type="font/ttf" crossorigin>
 <link rel="preload" href="../assets/fonts/AmaticSC-Bold.ttf" as="font" type="font/ttf" crossorigin>
@@ -69,16 +69,8 @@
 <body>
   <main>
     <section class="hero" aria-labelledby="page-title">
-      <div class="castle" aria-hidden="true">
-        <div class="tower left"></div><div class="tower mid-left"></div>
-        <div class="keep"></div><div class="tower mid-right"></div>
-        <div class="tower right"></div><div class="base"></div>
-      </div>
-      <div class="lockup">
-        <p class="eyebrow">THE JOURNEY CONTINUES</p>
-        <h1 id="page-title">DIORAMA 2</h1>
-        <p class="soon">COMING SOON</p>
-      </div>
+      <h1 id="page-title" class="sr-only">DIORAMA 2 – The journey continues</h1>
+      <iframe class="ending-hero" src="../ending/index.html?view=pitch-header" title="DIORAMA 2 – final castle scene" tabindex="-1" onload="try{const d=this.contentDocument;d.documentElement.style.setProperty('background','#5b777d','important');d.body.style.setProperty('background','#5b777d','important')}catch(e){console.warn('Scene background could not be synchronized',e)}"></iframe>
     </section>
 
     <section class="story" aria-labelledby="next-title">
