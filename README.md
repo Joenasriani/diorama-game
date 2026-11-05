@@ -7,7 +7,7 @@
 **A playable 3D mechanical puzzle game built around route planning, moving architecture, and interactive mechanisms.**
 
 > [!NOTE]
-> **Continuing DIORAMA in a new AI thread?** Start with [AI_HANDOFF_DIORAMA.md](AI_HANDOFF_DIORAMA.md) – current architecture, protected game/film decisions, funding page, verified deployment baseline, unresolved QA and safe continuation steps.
+> **Continuing DIORAMA in a new AI thread?** Start with [AI_HANDOFF_DIORAMA.md](AI_HANDOFF_DIORAMA.md) and [REPOSITORY_MAINTENANCE_PROTOCOL.md](REPOSITORY_MAINTENANCE_PROTOCOL.md) – current architecture, protected game/film decisions, funding page, dated deployment evidence, open QA and safe change-reconciliation steps.
 
 
 [**Play DIORAMA on itch.io**](https://joenasr.itch.io/diorama) · [**Play the browser deployment**](https://diorama-game.vercel.app)
@@ -21,7 +21,7 @@ Explore compact isometric structures, operate bridges, lifts, gates, and switche
 
 <p align="center">
   <a href="https://diorama-game.vercel.app/ending/" title="Watch the DIORAMA ending cinematic">
-    <img src="docs/screenshots/social-preview.png" width="760" alt="DIORAMA cinematic preview – open the original Three.js ending experience">
+    <img src="docs/screenshots/social-preview.png" width="760" alt="DIORAMA game artwork – select to open the original Three.js ending cinematic">
   </a>
 </p>
 
@@ -32,7 +32,7 @@ Explore compact isometric structures, operate bridges, lifts, gates, and switche
 >
 > **[EXPLORE DIORAMA 2 · SUPPORT THE NEXT CHAPTER](https://diorama-game.vercel.app/invest/)** – Discover the sequel plans and optional supporter backing tiers. Contributions are not equity investments.
 
-The 60-second ending is an interactive Three.js experience with its original camera choreography and soundtrack. GitHub READMEs cannot execute the scene inline, so the preview opens the hosted cinematic. **Spoiler:** this reveals the game's finale without completing Level 25. The DIORAMA 2 page introduces the sequel and its optional, non-equity supporter tiers.
+The 60-second ending is an interactive Three.js experience with its original camera choreography and soundtrack. The linked image is existing DIORAMA **game/social artwork**, not a frame captured from the cinematic. GitHub READMEs cannot execute the scene inline, so it links to the hosted film. **Spoiler:** this reveals the game's finale without completing Level 25. The DIORAMA 2 page introduces the sequel and its optional, non-equity supporter tiers.
 
 ## Gameplay screenshots
 
@@ -73,6 +73,9 @@ The 4 November 2026 release adds:
 - regular/bold font preloads and bounded readiness gates for startup lettering and the sequel page.
 
 **Current DIORAMA 2 support page:** [Open the live page](https://diorama-game.vercel.app/invest/). The page reuses the original Three.js ending scene in a non-interactive embedded header and retains the castle/title artwork rather than replacing it with a CSS approximation. The header's investor-only presentation uses a mirrored left-half render, a solid muted-blue backdrop (`#5b777d`), a startup visibility gate and adjusted framing. The page currently displays **Early Explorer – $15**, **Founding Supporter – $35**, and **Patron – $100**, along with a prominent **Choose your backing tier** link to [PayPal checkout](https://www.paypal.com/ncp/payment/NYRC4Q6FTYXBJ). The link's presence is verified in repository HTML; successful checkout, reward fulfillment and payment-provider configuration have **not** been independently verified. Supporter backing is not an offer of equity or revenue participation. The castle's final centre-seam and lower-edge appearance still require visual confirmation on real devices.
+
+
+**Cinematic loading behavior:** The movie shows a bar-only loading overlay matching the game-start loading bar, masking its WebGL opening frame until document fonts and a rendered frame are ready. Its 60-second timeline starts afterward. The backing-page castle iframe is revealed only on the same-origin `diorama-ending-scene-ready` message, not simply its `onload`; an unresolved-load fallback is linked. **Real-device elimination of the previously observed brief brown flash is still unverified.** See [ending integration notes](ENDING_INTEGRATION_NOTES.md).
 
 The earlier 2 November gameplay revision includes:
 
@@ -118,6 +121,8 @@ The current repository is a self-contained browser distribution:
 │       └── ending score and sound effects
 ├── invest/
 │   └── index.html
+├── AI_HANDOFF_DIORAMA.md
+├── REPOSITORY_MAINTENANCE_PROTOCOL.md
 ├── ENDING_INTEGRATION_NOTES.md
 ├── docs/
 │   ├── LEVEL_AUTHORING.md
@@ -366,7 +371,7 @@ Using an HTTP server is preferred over opening the page directly with `file://`,
 
 Publish the repository's `index.html`, `assets/`, `ending/` and `invest/` together on a static HTTP(S) host, preserving their relative paths. No dependency installation or build command is required. Uploading only `index.html` omits required fonts, audio and ending pages.
 
-Run `node scripts/validate-levels.cjs` before publication, then follow [the release checklist](docs/RELEASE_PROCESS.md). The existing GitHub workflow validates level structure; it does not deploy. Verify the actual hosted files against the release commit before claiming parity.
+Run `node scripts/validate-levels.cjs` before publication, then follow [the release checklist](docs/RELEASE_PROCESS.md). The level-validation GitHub workflow tests structure, not gameplay. A separate manually dispatched GitHub Actions workflow packages an itch.io-compatible ZIP **artifact** but does not publish to itch.io. Vercel and GitHub Pages hosting deployments are separate from those workflows and must be checked against the intended commit. Verify the actual hosted files against the release commit before claiming parity.
 
 ## Technical characteristics
 
@@ -381,6 +386,8 @@ Run `node scripts/validate-levels.cjs` before publication, then follow [the rele
 ## Verification boundary
 
 The repository demonstrates implemented pathfinding, mechanism state transitions, persistence, responsive input assistance, and 25 level definitions.
+
+**Reconciliation status (5 November 2026):** The current README, roadmap, changelog, integration and release documentation were reconciled with the recent ending/funding changes. See [maintenance protocol](REPOSITORY_MAINTENANCE_PROTOCOL.md) and [AI handoff](AI_HANDOFF_DIORAMA.md) for the source hierarchy and unresolved tests. GitHub/Vercel deployment status alone does not validate playback or the payment journey.
 
 For the earlier 4 November integration release, syntax, focused audio/control/font checks and level structure passed. The coming-soon page rendered in the test browser, but gameplay and cinematic testing in that environment was blocked by a WebGL-context creation failure. Later investor-header commits have been published to Vercel and their production commit IDs verified. That **does not establish** real-device visual correctness: header flicker, mirrored-centre seam, lower-edge clearance, cold-load font transitions and real-device audio must be checked in the browser. No complete 25-level playthrough or end-to-end PayPal payment test is claimed here.
 
