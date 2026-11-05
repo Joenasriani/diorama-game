@@ -5,6 +5,16 @@
 > This document is a navigation and operational handoff, **not** proof that every game path has been played or a replacement for live source and deployment verification.
 > **Source hierarchy:** live repository code and deployment metadata for implementation facts; this handoff for decisions and priorities; [UPGRADE_LEVELS_AND_FIXES](docs/UPGRADE_LEVELS_AND_FIXES.md) for per-level revision history; other project documents for focused scopes. If sources disagree, recheck current code/commit and report the conflict.
 
+## 0. Reconciliation status – 5 November 2026
+
+A repository-wide change reconciliation was completed for the recently modified game-ending loader, funding header and README. **Read the [dated audit report](docs/RECONCILIATION_AUDIT_2026-11-05.md) and [repository maintenance protocol](REPOSITORY_MAINTENANCE_PROTOCOL.md) before any new change.** The reconciliation corrected current-documentation drift in `README.md`, `CHANGELOG.md`, `ENDING_INTEGRATION_NOTES.md`, `ROADMAP.md` and `docs/RELEASE_PROCESS.md`; linked the audit and a permanent maintenance SOP. The game `index.html`, film `ending/index.html`, backing page `invest/index.html`, audio, fonts, levels and original game assets **were not changed by this documentation audit**.
+
+Specific corrections: the README now identifies the linked game artwork correctly (not a captured movie frame); the cinematic's slim bar-only loader and `diorama-ending-scene-ready` funding-page handshake have written contracts; GitHub Actions `itchio-dist.yml` creates a ZIP **artifact only**, not an itch.io publication; and hosting deployments are distinct from validator CI. The nine localized short overviews and historical per-level approval register were deliberately preserved.
+
+The audit inspected the source blobs and literal HTML asset references, reconciled the seven principal Markdown documents' relative links against GitHub's tree, and saw no missing tracked paths in those subsets. **This does not establish complete external-link reachability or device/browser playback.** Do not mark the initial flash, WebGL resilience, 25-level playthrough, PayPal checkout or itch.io parity as solved.
+
+**Authority boundary:** dated commit hashes in sections below refer to the pre-reconciliation 4 November baseline; they are historical evidence, **not current HEAD**. The reconciliation itself creates later documentation commits and automated deployments. Query `main`, status and Vercel afresh before future changes. Review actual SHA of `index.html`, `ending/index.html`, and `invest/index.html` to ensure the original protected runtime was preserved.
+
 ## 1. Immediate orientation
 
 DIORAMA is an authored, tactile, minimalist 3D mechanical route-puzzle game using Three.js. Its core identity: calm miniature worlds, moving architecture, clear cause and effect, visually readable valid routes, puzzle difficulty from spatial reasoning rather than repeated taps or ornamental tricks. It is **not** a generic low-poly template. User-facing mechanics, cinematography, sound and typography should feel like one game.
@@ -43,6 +53,8 @@ DIORAMA is an authored, tactile, minimalist 3D mechanical route-puzzle game usin
 | `CHANGELOG.md` | Dated committed changes | Update for meaningful releases. |
 | `THIRD_PARTY_LICENSES.md` | Rights boundaries for Three.js, fonts, game soundtrack and ending media | Never treat bundled third-party music as MIT. |
 | `README.md` | Public introduction, play/cinematic/backing callout, architecture and caveats | Avoid stale current-commit claims. |
+| `REPOSITORY_MAINTENANCE_PROTOCOL.md` | Repeatable impact assessment, repository-wide reconciliation and test/deployment evidence standard | Read before making changes; not standing feature authorization. |
+| `docs/RECONCILIATION_AUDIT_2026-11-05.md` | Dated findings, reconciled files, preserved historical states and open tests | Audit evidence, not current live deployment metadata. |
 
 ## 3. Implemented game and protected mechanics
 
@@ -121,7 +133,7 @@ The callout was committed in `2602eb0765b86d10d427d410cd031cb8d2907a33` directly
 
 ## 8. Work protocol for the next AI thread
 
-1. **Read this file, README, ENDING_INTEGRATION_NOTES, ROADMAP, release procedure, upgrade register and relevant current HTML before edits.** Locate the exact currently authoritative branch/commit and Vercel SHA. Note any drift since the snapshot.
+1. **Read this handoff, the maintenance protocol, dated reconciliation audit, README, ENDING_INTEGRATION_NOTES, ROADMAP, release procedure, upgrade register and relevant current HTML before edits.** Locate the exact currently authoritative branch/commit and Vercel SHA. Note any drift since the snapshot.
 2. Identify whether the requested change targets gameplay, cinematic, funding, public README or release packaging. Freeze unrelated systems.
 3. Reproduce the defect or inspect a demonstrable code path before choosing a fix. Separate **observed fact**, **hypothesis**, **code-only validation** and **visual/device verification** in reports.
 4. State the smallest affected surface and regression risk. Do not silently make unrelated visual redesigns or performance rewrites. For larger work, use a branch/PR and stage/test before merging; preserve backups or revertable commits.
@@ -149,6 +161,6 @@ In a real browser with network throttling/cache disabled, capture the **first 2 
 
 **Continuity command for a new thread:**
 
-> Read `AI_HANDOFF_DIORAMA.md` in `Joenasriani/diorama-game` on GitHub line by line, verify current `main` and production against it, review the linked implementation/history documents, identify any drift and unverified items, then continue my specific DIORAMA request with the smallest safe change. Do not assume README metadata is current; do not rewrite gameplay, the cinematic or the investor page without explicit scope. Report verification separately from deployment.
+> Read `AI_HANDOFF_DIORAMA.md`, `REPOSITORY_MAINTENANCE_PROTOCOL.md` and `docs/RECONCILIATION_AUDIT_2026-11-05.md` in `Joenasriani/diorama-game` on GitHub; verify current `main`, runtime source blob SHAs, CI and Vercel production against them. Reconcile any subsequent drift, then continue my specific DIORAMA task with the smallest safe change. Preserve protected gameplay, the 60-second cinematic, the bar-only loader and the funding page unless explicitly authorized. Report source, test and deployment verification separately.
 
 *This is a dated handoff, not a mandate to implement every suggestion in it.*
