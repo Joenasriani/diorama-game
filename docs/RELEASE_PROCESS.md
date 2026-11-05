@@ -19,10 +19,15 @@ No semantic-version contract or backward-compatible community-level format is ye
 
 ## Publishing boundary
 
-No GitHub Action in this repository automatically publishes a release or deploys a new game build as part of this documentation change.
+The repository has two distinct workflows:
+
+- `.github/workflows/validate-levels.yml` runs the **structural level validator** on pushes to `main` and pull requests. Its success is not a playable or solvability test.
+- `.github/workflows/itchio-dist.yml` packages a clean HTML5 ZIP, tests its file integrity, and uploads the archive as a GitHub Actions artifact on manual dispatch (and when its workflow file changes). **It does not upload/publish to itch.io.** Its artifact is not proof that the actual itch.io listing has been updated. Before treating an artifact as a publishable game, confirm all bundled media redistribution permissions, game operation and the intended release commit.
+
+GitHub Pages may run its own separate `pages build and deployment` workflow. Vercel is Git-integrated and also creates deployments from pushes; verify the resulting target and source SHA through Vercel. A documentation push may cause hosting builds, but must not be reported as a new verified gameplay release. No game-specific GitHub workflow here automatically publishes to itch.io.
 
 ## Static deployment contents
 
 Publish `index.html`, `assets/`, `ending/` and `invest/` together, retaining relative paths. No package install or build is required. For Sites, map these runtime files into the configured static directory and preserve its hosting manifest. Keep host-specific identity and credentials out of the public repository.
 
-Verify startup font loading (cold cache and failed request), normal level transitions, final-goal completion, game-music suppression, muted/unmuted ending entry, Pause/Play, Skip, Play Again and sequel-page navigation. Record source SHA and deployment version separately; v1.0 is currently the visible game label.
+Verify startup font loading (cold cache and failed request), normal level transitions, final-goal completion, game-music suppression, muted/unmuted ending entry, Pause/Play, Skip, Play Again and sequel-page navigation. For the ending specifically, verify the **bar-only** loading screen masks first-frame rendering, retains the film at timeline 0 until ready, respects reduced motion, never remains indefinitely without a visible recovery path, and preserves camera/audio choreography. For `invest/`, check the iframe's `diorama-ending-scene-ready` handshake (origin and window source), fallback link, mirrored castle seam, blue `#5b777d`, CTA and tiers in portrait/landscape. Record source SHA and deployment version separately; v1.0 is currently the visible game label.
