@@ -10,7 +10,17 @@ This is a **proposal and prioritization guide**, not a promise of release dates.
 - Extend the regression checklist from real defects before changing any mechanics. Current guards cover revised route contracts, elevated touch targets, crown stacking and folding-bridge stem alignment.
 - Document browser and touch-device coverage using observed results, not assumptions.
 
-Completed in the 2 November 2026 revision batch: focused revisions for Levels 7–15 where selected, Level 25 route-integrity protection, two-finger touch-camera translation, global upward-step touch assistance and route-aligned folding-bridge stems. Completed on 4 November 2026: the integrated 60-second ending, sequel information page, audio isolation/preference fixes, player playback controls and startup font-loading gates. Remaining real-device verification is tracked in README.md.
+Completed in the 2 November 2026 revision batch: focused revisions for Levels 7–15 where selected, Level 25 route-integrity protection, two-finger touch-camera translation, global upward-step touch assistance and route-aligned folding-bridge stems. Completed on 4 November 2026: the integrated 60-second ending, sequel information page, audio isolation/preference fixes, player playback controls, startup font-loading gates, bar-only movie loader, explicit rendered-scene readiness signal for the funding-page iframe, and GitHub README cinematic/backing callout. On 5 November the relevant documentation was reconciled. Remaining real-device verification is tracked in README.md and AI_HANDOFF_DIORAMA.md.
+
+## Verification debt – release priority
+
+- Verify the **new cinematic loader on actual cold-cache desktop and mobile devices**: no brown intermediate geometry, indeterminate bar visible only while waiting, no premature start, no stuck loader, and unchanged 60-second pacing.
+- Verify final-level transition, standalone and embedded playback, audio state, Pause/Play, Skip, Replay, and intact local progress.
+- Verify the funding-page Three.js mirrored castle, centered framing, flat castle-blue `#5b777d`, supporter tiers, PayPal link behavior and the iframe ready/error fallback.
+- Reconcile actual itch.io distributed package and metadata with the GitHub/Vercel source. The GitHub Actions ZIP packager does **not** publish to itch.io.
+- Resolve third-party font/audio provenance and separate redistribution rights before commercial redistribution.
+
+These items are **open until evidenced**, even if structural CI and Vercel report success.
 
 ## Track B – Make contributions easier (priority)
 
