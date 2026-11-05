@@ -7,7 +7,7 @@
 ## Baseline and inventory
 
 - At audit start, `main` HEAD was `23e58f354c18a2b44295a8697902e032c96163d7`. No open pull requests were returned.
-- The tree contained **64 tracked files before this reconciliation** (count from the queried recursive inventory; additional documentation files increase that number). The runtime source and bundled movie were both >1 MB.
+- The tree contained **57 tracked files before this reconciliation** (count from the queried recursive inventory; additional documentation files increase that number). The runtime source and bundled movie were both >1 MB.
 - The main `index.html` embeds 25 puzzle levels and Three.js. `ending/index.html` provides a 60-second cinematic and the recently introduced bar-only loader. `invest/index.html` embeds the finished Three.js castle and uses a scene-ready iframe signal.
 - Existing source SHA boundaries at the time of audit: `index.html` blob `dc13b37e2578bf8965b827a25c994e1d2ab2a038`; `ending/index.html` blob `c9e186fa39a2ee1362b17418942de25df016c68a`; `invest/index.html` blob `11102c8ec371cd8a09e9552e4b910980e7249771`. These were **left untouched**.
 - A Vercel production deployment for audit-start commit `23e58f3` was reported `READY`. Hosting readiness is not runtime or device verification.
