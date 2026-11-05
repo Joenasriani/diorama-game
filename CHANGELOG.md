@@ -1,5 +1,21 @@
 # Changelog
 
+## Repository reconciliation and cinematic startup documentation – 5 November 2026
+
+- Reconciled the 4 November production changes against the README, ending integration notes, roadmap, release procedure and AI handoff. This is a documentation/maintenance synchronization; **no game, cinematic, funding page or audio runtime was modified** by the reconciliation.
+- Recorded the movie's game-style, bar-only first-frame loading screen, timeline-zero start, font-readiness gate and same-origin `diorama-ending-scene-ready` signal.
+- Documented the DIORAMA 2 funding iframe readiness handshake, its fallback link, the public README ending/sequel callout and the correct Vercel/GitHub commit distinctions.
+- Clarified that the level validator runs on pushes/PRs and a **manual GitHub Actions workflow can produce an itch.io ZIP artifact**; it does not itself publish the artifact to itch.io. Hosting Git integration and GitHub Pages status must be checked separately.
+- Added a repeatable repository maintenance protocol and updated the AI continuation handoff. Existing technical QA and third-party asset rights gaps remain open; GitHub/Vercel success is **not** end-to-end gameplay verification.
+
+## Ending loading screen and README callout – 4 November 2026
+
+- `2028bb1`: first-frame render gating added to the cinematic; `89c95f0`: funding-page iframe changed from onload exposure to explicit scene-readiness messaging.
+- `44ed824`: added a slim white-outline, warm ivory/gold **bar-only** loading overlay to the cinematic, hiding intermediate Three.js frames until fonts and an opening render are ready, then starting the film at 0 seconds.
+- `f2db2ba` and `2602eb0`: added and converted cinematic and sequel/support links into a GitHub README callout. GitHub hosts a static preview image and links, **not** an embedded playable Three.js video.
+- `11e1e4d` and `23e58f3`: introduced a new-thread handoff, linked it prominently from README, and corrected a stale production-commit claim.
+- The user's observation after the first gating patch was that the brown flash became significantly shorter; **disappearance after the subsequent loading-screen change has not been confirmed by a controlled device test**.
+
 This file records **verified repository changes**. Older game-release history is not reconstructed or invented.
 
 ## Music credit correction – 4 November 2026
