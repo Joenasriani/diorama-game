@@ -31,7 +31,7 @@ DIORAMA is an authored, tactile, minimalist 3D mechanical route-puzzle game usin
 
 **DIORAMA 2 coming-soon and backing page:** https://diorama-game.vercel.app/invest/
 
-**itch.io:** https://joenasr.itch.io/diorama – **not confirmed byte-for-byte equivalent** to current Vercel release.
+**itch.io:** https://joenasr.itch.io/diorama – external listing may still advertise an outdated count. The **authoritative DIORAMA game has 25 levels**, not a separate larger edition. Updating itch.io copy and comparing its distributed package against Vercel are **deferred external tasks**; no itch.io change is authorized by this repository reconciliation.
 
 **Latest verified code/deployment baseline before writing this handoff:**
 - `main` HEAD: `2602eb0765b86d10d427d410cd031cb8d2907a33`; README cinematic/funding callout.
