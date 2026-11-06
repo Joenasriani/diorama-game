@@ -5,6 +5,10 @@
 > This document is a navigation and operational handoff, **not** proof that every game path has been played or a replacement for live source and deployment verification.
 > **Source hierarchy:** live repository code and deployment metadata for implementation facts; this handoff for decisions and priorities; [UPGRADE_LEVELS_AND_FIXES](docs/UPGRADE_LEVELS_AND_FIXES.md) for per-level revision history; other project documents for focused scopes. If sources disagree, recheck current code/commit and report the conflict.
 
+## Latest audio-only revision – 6 November 2026
+
+**Runtime commit `0a57ed6cb1e16c7919e61c684fd2c8f02ea0560a`:** `ending/index.html` audio mixer only. Film music base increased from 0.26 to 0.60; step ducking relaxed from 25% to 12% and impact ducking from 60% to 35%; far-to-near outdoor jump gain now interpolates 0.028 → 0.115 using the existing authored shot-time perspective ramp; three interior jump sounds now 0.11 rather than 0.08. Original oscillator pitch/envelope, cue times, entire cinematic, choreography, score file, final fade and game/funding runtimes are preserved. Vercel production reported **READY** for the runtime commit. Syntax/source checks passed; **real-device mix listening still unverified**. See `CHANGELOG.md`. Subsequent documentation commits advance HEAD without changing this audio code.
+
 ## 0. Reconciliation status – 5 November 2026
 
 A repository-wide change reconciliation was completed for the recently modified game-ending loader, funding header and README. **Read the [dated audit report](docs/RECONCILIATION_AUDIT_2026-11-05.md) and [repository maintenance protocol](REPOSITORY_MAINTENANCE_PROTOCOL.md) before any new change.** The reconciliation corrected current-documentation drift in `README.md`, `CHANGELOG.md`, `ENDING_INTEGRATION_NOTES.md`, `ROADMAP.md` and `docs/RELEASE_PROCESS.md`; linked the audit and a permanent maintenance SOP. The game `index.html`, film `ending/index.html`, backing page `invest/index.html`, audio, fonts, levels and original game assets **were not changed by this documentation audit**.
