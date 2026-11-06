@@ -1,5 +1,13 @@
 # Changelog
 
+## Repository-wide authoritative-state reconciliation – 6 November 2026
+
+- Rechecked live GitHub `main` and Vercel production before any edits, with both aligned to `0a1cfe986b4c5b3cc9a227c06730af0d1717aa91` and production `READY`. Historical earlier commits retained without reinterpretation.
+- Reconciled the active README, ending integration contract, roadmap, contribution and release instructions, maintenance protocol, nine localized project overviews and AI handoff against the implemented 6 November cinematic. Older 0.60/0.78 soundtrack configurations are now explicitly **historical**, superseded by the current 0.85 baseline.
+- Confirmed authoritative **25 levels**; any contrary count in the itch.io listing is outdated publication metadata to correct **later**. Did not change the itch.io listing or downloaded package, and did not invent a second edition.
+- Documented existing 0.075–0.230 camera-perspective exterior jump cues, 0.200 interior jumps, 33.55s reaction turn, and both ground-contact dragon dust corrections at 21.62/40.50s. Visual and auditory device acceptance remains open.
+- Reconciliation changes are **documentation only**. No `index.html`, `ending/index.html`, `invest/index.html`, soundtrack, SFX, level data, visual choreography or payment configuration was modified. See the new dated audit for evidence and verification limits.
+
 ## Dragon impact dust contact correction – 6 November 2026
 
 - Commit `7c9d3ed`: corrected the existing dust puff layer in both dragon floor impacts (21.62s and 40.50s) so its group originates just above tile surface and spreads horizontally, with thin vertical scale instead of airborne sine-wave lift.
