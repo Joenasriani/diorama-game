@@ -12,6 +12,10 @@ This is a **proposal and prioritization guide**, not a promise of release dates.
 
 Completed in the 2 November 2026 revision batch: focused revisions for Levels 7–15 where selected, Level 25 route-integrity protection, two-finger touch-camera translation, global upward-step touch assistance and route-aligned folding-bridge stems. Completed on 4 November 2026: the integrated 60-second ending, sequel information page, audio isolation/preference fixes, player playback controls, startup font-loading gates, bar-only movie loader, explicit rendered-scene readiness signal for the funding-page iframe, and GitHub README cinematic/backing callout. On 5 November the relevant documentation was reconciled. Remaining real-device verification is tracked in README.md and AI_HANDOFF_DIORAMA.md.
 
+## Latest completed cinematic refinements – 6 November 2026
+
+Following the earlier 4 November integration, the current `ending/index.html` implements a music baseline of **0.85**, reduced ducking (8% steps, 18% major impacts), exterior jump SFX gain **0.075–0.230** from far to close camera shots, and three interior cues at **0.200**. The hero's princess-reaction animation starts at 33.55s; both dragon-contact dust layers are grounded at tile height at 21.62s and 40.50s. The 60-second timeline, movie loader, game levels, game music, funding page and original sound assets remain protected. **These source-level implementations do not imply approved listening or visual playback.** See `CHANGELOG.md`, `ENDING_INTEGRATION_NOTES.md` and `AI_HANDOFF_DIORAMA.md`.
+
 ## Verification debt – release priority
 
 - Verify the **new cinematic loader on actual cold-cache desktop and mobile devices**: no brown intermediate geometry, indeterminate bar visible only while waiting, no premature start, no stuck loader, and unchanged 60-second pacing.
