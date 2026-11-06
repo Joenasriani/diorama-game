@@ -1,5 +1,11 @@
 # Changelog
 
+## Ending cinematic audio balance – 6 November 2026 (follow-up)
+
+- Commit `66c9ef4`: raised ending score base from 0.60 to 0.78, reduced step/impact music ducking from 12%/35% to 8%/18%, increased outdoor jump perspective gain from 0.028–0.115 to 0.040–0.150 and interior jumps from 0.11 to 0.14.
+- Lowered door (0.78 → 0.43), wings (0.72 → 0.48), landing (0.95 → 0.55), dragon (0.78 → 0.48), princess (0.58 → 0.43), doom (0.82 → 0.49), stomp (0.65 → 0.43), and boom (0.85 → 0.50).
+- Audio-only scope: `ending/index.html` mixer and cue gains; no asset replacements, film timing, camera, gameplay or visual changes. Actual perceived mix still requires device listening.
+
 ## Ending cinematic audio rebalance – 6 November 2026
 
 - `0a57ed6`: Adjusted **only** the ending film's audio mix: music base 0.26 → 0.60; footstep ducking 25% → 12%; major-impact ducking 60% → 35%; distant/close jump oscillator gain from 0.068–0.085 to 0.028–0.115 and three interior jumps 0.08 → 0.11.
