@@ -36,6 +36,14 @@ In `?view=pitch-header` mode, used only for the sequel support page, the movie s
 
 **Timing/proof boundary:** This is source-level implementation intent, not measured proof that the flash is absent on every device. Test the initial two seconds under cold cache and WebGL failure, and confirm that the movie clock does not advance during loading, the title/buttons and music stay synchronized, the game renderer remains paused, and no loader remains indefinitely.
 
+## Latest cinematic sound and impact refinements (6 November 2026)
+
+The active ending mix **supersedes** the initial 60% audio configuration described in historical commits. The current source (`ending/index.html` at audit-start blob `d4534c76ead499a5fe70f08143826d9853bdd77a`) sets the score baseline to **0.85**, with **8% step** and **18% major-impact** ducking, plus the original 57.5–60-second end fade. The same gain is used for decoded Web Audio playback and the HTML audio fallback. The 42 exterior step/jump cues increase smoothly from **0.075 (distant shot)** to **0.230 (close shot)** using the established shot-timing interpolation; the three interior cues use **0.200**. Sound assets and event timings remain unchanged. These are mixer levels, not independent sound-pressure/loudness measurements.
+
+The hero's reaction to the princess begins at **33.55 seconds**, rather than 34 seconds, ahead of the editorial shot change. Dragon impact dust at **21.62** and **40.50 seconds** now keeps both dust layers near the tile plane, spreading horizontally from foot-contact points. The correction followed earlier dust and reaction changes; see `CHANGELOG.md` for the historical commits.
+
+**Scope and verification:** These are existing source-verified changes, not new modifications in this reconciliation. Audio listening, the reaction cut and floor-impact visuals still need direct mobile and desktop playback review. Preserve the original sixty-second movie timeline, authored shot edits, music track and pause/replay behavior unless an explicit new request warrants changes.
+
 ## Validation performed
 
 - Game and cinematic JavaScript parse successfully.
