@@ -19901,8 +19901,8 @@
     dragon.visible=t>=20.55; for(const object of princessRevealObjects) object.visible=t>=27.95;
     const shadowReveal=span(t,19.15,21.55);dragonShadow.visible=t>=19.15&&t<21.85;dragonShadow.position.z=lerp(-6.2,-7,shadowReveal);dragonShadow.scale.set(lerp(.8,2.4,shadowReveal),.015,lerp(.42,1.15,shadowReveal));dragonShadow.material.opacity=lerp(0,.24,shadowReveal);
     // Two distinct floor contacts share the dust rig: the arrival at centre
-    // and the later front-foot stomp. The blocking burst begins on the exact
-    // frame the lifted foot returns to y=.12, then rises and rolls outward.
+    // and the later front-foot stomp. Both layers originate at tile height,
+    // spreading from beneath the feet rather than materializing in midair.
     const stompDust=t>=40.50;
     const dustAge=(t-(stompDust?40.50:21.62))/(stompDust?1.55:1.35),dustVisible=dustAge>=0&&dustAge<=1;
     landingDust.visible=dustVisible;
@@ -19914,7 +19914,15 @@
       floorDust.scale.set(lerp(.4,lerp(2.65,3.35,impactWeight),groundSpread),.72,lerp(.4,lerp(2.65,3.35,impactWeight),groundSpread));
       floorDustMat.opacity=(1-smooth(dustAge))*lerp(.48,.60,impactWeight);
     }
-    if(dustVisible){const dustSpread=smooth(dustAge),impactWeight=stompDust?1:0;landingDust.position.x=lerp(0,1.99,impactWeight);landingDust.position.z=lerp(-7,-5.98,impactWeight);landingDust.scale.setScalar(lerp(.28,lerp(2.8,3.8,impactWeight),dustSpread));landingDust.position.y=.29+Math.sin(dustAge*Math.PI)*lerp(.34,.58,impactWeight);landingDustMat.opacity=(1-smooth(dustAge))*lerp(.64,.82,impactWeight);}
+    if(dustVisible){
+      const dustSpread=smooth(dustAge),impactWeight=stompDust?1:0;
+      const radius=lerp(.28,lerp(2.8,3.8,impactWeight),dustSpread);
+      landingDust.position.set(lerp(0,1.99,impactWeight),TILE_TOP_Y+.052,lerp(-7,-5.98,impactWeight));
+      // Preserve the authored puff layer, but flatten it into an outward ground
+      // shockwave. The former tall Y scale and sine-wave lift made it float.
+      landingDust.scale.set(radius,.18,radius);
+      landingDustMat.opacity=(1-smooth(dustAge))*lerp(.56,.70,impactWeight);
+    }
     lowClouds.forEach((cloud,i)=>{cloud.position.x=cloud.userData.baseX+Math.sin(t*.075+cloud.userData.phase)*.5;cloud.position.z=cloud.userData.baseZ+Math.sin(t*.045+i)*.12;});
     highClouds.forEach((cloud,i)=>{cloud.position.x=cloud.userData.baseX+Math.sin(t*.055+cloud.userData.phase)*1.05;cloud.position.z=cloud.userData.baseZ+Math.cos(t*.035+i)*.18;});
     const cloudPart=span(t,.65,5.8);diveClouds.forEach((cloud,i)=>{const side=i%2?1:-1,nearVeil=cloud.userData.nearVeil;cloud.position.x=cloud.userData.baseX+side*cloudPart*((nearVeil?9:6)+(i%3)*1.4)+Math.sin(t*.045+cloud.userData.phase)*.7;cloud.position.y=cloud.userData.baseY+Math.sin(t*.035+cloud.userData.phase)*.35+cloudPart*(i%2?.55:-.35);cloud.position.z=cloud.userData.baseZ+Math.cos(t*.03+i)*.22;});
