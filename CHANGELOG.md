@@ -1,5 +1,11 @@
 # Changelog
 
+## Ending jumping SFX perspective increase – 6 November 2026
+
+- Commit `c65d739`: raised the exterior jump gain endpoints from 0.040–0.150 to **0.075–0.230**, retaining the existing continuous far-to-near camera-shot progression and unchanged 300 Hz triangle sound envelope and cue timing.
+- Raised three interior jump gains from 0.140 to **0.200**.
+- Only `ending/index.html` jump gain values changed. Music, door/dragon effects, camera movement, visuals, levels and timing were untouched. Real-device listening and deployment playback remain unverified.
+
 ## Ending cinematic audio balance – 6 November 2026 (follow-up)
 
 - Commit `66c9ef4`: raised ending score base from 0.60 to 0.78, reduced step/impact music ducking from 12%/35% to 8%/18%, increased outdoor jump perspective gain from 0.028–0.115 to 0.040–0.150 and interior jumps from 0.11 to 0.14.
