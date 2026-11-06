@@ -1,6 +1,6 @@
 # Contributing to DIORAMA
 
-Thank you for helping improve DIORAMA. The checked-in game currently has **25 levels**; the separately published itch.io edition advertises more levels. Confirm the target version before proposing changes.
+Thank you for helping improve DIORAMA. **25 levels is the authoritative game count.** Any different count on itch.io is outdated listing metadata awaiting correction, not evidence of a distinct larger edition. Confirm the current repository source before proposing changes.
 
 ## Before contributing
 
