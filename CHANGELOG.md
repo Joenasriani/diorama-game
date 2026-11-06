@@ -1,5 +1,11 @@
 # Changelog
 
+## Dragon impact dust contact correction – 6 November 2026
+
+- Commit `7c9d3ed`: corrected the existing dust puff layer in both dragon floor impacts (21.62s and 40.50s) so its group originates just above tile surface and spreads horizontally, with thin vertical scale instead of airborne sine-wave lift.
+- Preserved the separate ground-hugging dust layer, existing impact event times and foot placement. Did not modify music, SFX, camera, character choreography or gameplay.
+- Source-only validation; real-browser rendered impact frames still need visual confirmation.
+
 ## Ending cinematic three-point refinement – 6 November 2026
 
 - `8371cd9`: raised the soundtrack baseline 0.78 → 0.85 (including decoded-buffer and fallback playback, retaining existing ducks and end fade).
