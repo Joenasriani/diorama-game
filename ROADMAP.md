@@ -1,6 +1,6 @@
 # DIORAMA roadmap
 
-This is a **proposal and prioritization guide**, not a promise of release dates. The checked-in browser game currently contains 25 levels; the public itch.io listing has advertised a different count. Contributors should always identify the specific build they are discussing.
+This is a **proposal and prioritization guide**, not a promise of release dates. **DIORAMA has 25 levels.** Any different level count advertised on the itch.io listing is outdated publication metadata and must be corrected separately; do not infer or create a second game edition.
 
 ## Track A â€“ Maintain the existing game (priority)
 
@@ -17,7 +17,7 @@ Completed in the 2 November 2026 revision batch: focused revisions for Levels 7â
 - Verify the **new cinematic loader on actual cold-cache desktop and mobile devices**: no brown intermediate geometry, indeterminate bar visible only while waiting, no premature start, no stuck loader, and unchanged 60-second pacing.
 - Verify final-level transition, standalone and embedded playback, audio state, Pause/Play, Skip, Replay, and intact local progress.
 - Verify the funding-page Three.js mirrored castle, centered framing, flat castle-blue `#5b777d`, supporter tiers, PayPal link behavior and the iframe ready/error fallback.
-- Reconcile actual itch.io distributed package and metadata with the GitHub/Vercel source. The GitHub Actions ZIP packager does **not** publish to itch.io.
+- **Deferred external publishing task:** correct itch.io listing to **25 levels** and separately verify its distributed package against current GitHub/Vercel. The GitHub Actions ZIP packager does **not** publish to itch.io. Do not edit itch.io as part of routine GitHub documentation reconciliation.
 - Resolve third-party font/audio provenance and separate redistribution rights before commercial redistribution.
 
 These items are **open until evidenced**, even if structural CI and Vercel report success.
