@@ -1,5 +1,12 @@
 # Changelog
 
+## Ending cinematic three-point refinement – 6 November 2026
+
+- `8371cd9`: raised the soundtrack baseline 0.78 → 0.85 (including decoded-buffer and fallback playback, retaining existing ducks and end fade).
+- Added a separate, shallow floor-level dust ring on the original 21.62s dragon landing and 40.50s stomp; kept the existing rising dust effect and contact times unchanged.
+- Started the hero's princess-reaction turn at 33.55s rather than 34s so the 34s princess-to-hero editorial cut enters an already moving turn; other shots unchanged.
+- Only `ending/index.html` runtime changed; sound effect gains, gameplay, camera framing, other choreography and audio files are untouched. Source-level verification is not real-device visual/audio playback verification.
+
 ## Ending jumping SFX perspective increase – 6 November 2026
 
 - Commit `c65d739`: raised the exterior jump gain endpoints from 0.040–0.150 to **0.075–0.230**, retaining the existing continuous far-to-near camera-shot progression and unchanged 300 Hz triangle sound envelope and cue timing.
