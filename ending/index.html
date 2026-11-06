@@ -19458,7 +19458,7 @@
     let enabled=false,scoreWanted=false,stepCtx=null,scoreBuffer=null,scoreSource=null,scoreGain=null,scoreLoadPromise=null,scoreRequest=0,latestScoreTime=0;
     const active=new Set(),paths={door:'./audio/door.mp3',wings:'./audio/wings.mp3',dragon:'./audio/dragon.mp3',landing:'./audio/landing.mp3',doom:'./audio/dragon-doom.mp3',boom:'./audio/dragon-boom.mp3',stomp:'./audio/stomp.mp3',princess:'./audio/princess-call.mp3'};
     const templates=Object.fromEntries(Object.entries(paths).map(([name,path])=>{const audio=new Audio(path);audio.preload='auto';return [name,audio];}));
-    const wind=new Audio('./audio/wind.mp3');wind.preload='auto';wind.loop=true;wind.volume=.3;score.volume=.78;
+    const wind=new Audio('./audio/wind.mp3');wind.preload='auto';wind.loop=true;wind.volume=.3;score.volume=.85;
     const scoreBytesPromise=fetch('./audio/hero-score-bed.mp3',{cache:'force-cache'}).then(response=>{if(!response.ok)throw new Error(`Score load failed: ${response.status}`);return response.arrayBuffer();});
     function play(name,volume=1,rate=1,offset=0,maxDuration=0){if(!enabled)return;const audio=templates[name].cloneNode();audio.volume=volume;audio.playbackRate=rate;audio.currentTime=offset;active.add(audio);audio.addEventListener('ended',()=>active.delete(audio),{once:true});audio.play().then(()=>{if(maxDuration)setTimeout(()=>{audio.pause();active.delete(audio);},maxDuration*1000);}).catch(()=>active.delete(audio));}
     // This is the gameplay cue verbatim: a 300 Hz triangle oscillator with a
@@ -19467,7 +19467,7 @@
     function playGameStep(gain=.068){if(!enabled)return;try{unlockStepContext();const now=stepCtx.currentTime,master=stepCtx.createGain(),osc=stepCtx.createOscillator();master.gain.setValueAtTime(1e-4,now);master.gain.exponentialRampToValueAtTime(gain,now+.012);master.gain.exponentialRampToValueAtTime(1e-4,now+.075);osc.type='triangle';osc.frequency.setValueAtTime(300,now);osc.connect(master);master.connect(stepCtx.destination);osc.start(now);osc.stop(now+.115);}catch(e){}}
     function ensureScoreBuffer(){unlockStepContext();if(scoreBuffer)return Promise.resolve(scoreBuffer);if(!scoreLoadPromise)scoreLoadPromise=scoreBytesPromise.then(bytes=>stepCtx.decodeAudioData(bytes.slice(0))).then(buffer=>(scoreBuffer=buffer));return scoreLoadPromise;}
     function stopScore(){scoreRequest++;if(scoreSource){try{scoreSource.stop();}catch(e){}scoreSource.disconnect();scoreSource=null;}score.pause();}
-    function startScore(t){scoreWanted=true;latestScoreTime=t;const request=++scoreRequest;ensureScoreBuffer().then(buffer=>{if(!enabled||!scoreWanted||request!==scoreRequest)return;if(scoreSource){try{scoreSource.stop();}catch(e){}scoreSource.disconnect();}if(!scoreGain){scoreGain=stepCtx.createGain();scoreGain.gain.value=.78;scoreGain.connect(stepCtx.destination);}const source=stepCtx.createBufferSource();source.buffer=buffer;source.connect(scoreGain);scoreSource=source;source.onended=()=>{if(scoreSource===source)scoreSource=null;};source.start(0,clamp(latestScoreTime,0,Math.min(SCORE_END,buffer.duration-.02)));}).catch(()=>{if(!enabled||!scoreWanted||request!==scoreRequest)return;score.muted=false;score.currentTime=clamp(latestScoreTime,0,SCORE_END);score.play().catch(()=>{});});}
+    function startScore(t){scoreWanted=true;latestScoreTime=t;const request=++scoreRequest;ensureScoreBuffer().then(buffer=>{if(!enabled||!scoreWanted||request!==scoreRequest)return;if(scoreSource){try{scoreSource.stop();}catch(e){}scoreSource.disconnect();}if(!scoreGain){scoreGain=stepCtx.createGain();scoreGain.gain.value=.85;scoreGain.connect(stepCtx.destination);}const source=stepCtx.createBufferSource();source.buffer=buffer;source.connect(scoreGain);scoreSource=source;source.onended=()=>{if(scoreSource===source)scoreSource=null;};source.start(0,clamp(latestScoreTime,0,Math.min(SCORE_END,buffer.duration-.02)));}).catch(()=>{if(!enabled||!scoreWanted||request!==scoreRequest)return;score.muted=false;score.currentTime=clamp(latestScoreTime,0,SCORE_END);score.play().catch(()=>{});});}
     function mix(t){
       // The airy exterior bed disappears gradually as the hero reaches the
       // door. Music remains uninterrupted through every story cue and keeps
@@ -19478,7 +19478,7 @@
       // Subtle score ducking keeps footsteps and dragon impacts audible without burying the soundtrack.
       const steps = Math.max(span(t,.5,.8)*(1-span(t,10,10.5)), span(t,18,18.28)*(1-span(t,19.2,19.6)));
       const impacts = Math.max(span(t,21.35,21.60)*(1-span(t,22.6,23.5)), span(t,39.65,40.45)*(1-span(t,41.2,42.4)));
-      const scoreLevel=.78*(1-.08*steps)*(1-.18*impacts)*(1-span(t,57.5,60));
+      const scoreLevel=.85*(1-.08*steps)*(1-.18*impacts)*(1-span(t,57.5,60));
       if(scoreGain)scoreGain.gain.setTargetAtTime(scoreLevel,stepCtx.currentTime,.05);
       score.volume=scoreLevel;
     }
@@ -19686,6 +19686,21 @@
     puff.scale.set(1.8,.48,1.18);landingDust.add(puff);
   }
   landingDust.position.set(0,.29,-7);landingDust.visible=false;scene.add(landingDust);
+  // A separate thin ring stays at the tile surface during both dragon impacts.
+  // Unlike the existing airborne dust, this layer never lifts from the floor.
+  const floorDustMat=new MeshBasicMaterial({color:0xcfc6ad,transparent:true,opacity:0,depthWrite:false});
+  const floorDust=new Group();
+  for(let i=0;i<24;i++){
+    const angle=(i+.35)/24*Math.PI*2;
+    const radius=.24+(i%4)*.105;
+    const puff=new Mesh(new SphereGeometry(.20+(i%3)*.035,9,6),floorDustMat);
+    puff.position.set(Math.cos(angle)*radius,0,Math.sin(angle)*radius);
+    puff.scale.set(1.85,.065,1.25);
+    floorDust.add(puff);
+  }
+  floorDust.position.set(0,TILE_TOP_Y+.021,-7);
+  floorDust.visible=false;
+  scene.add(floorDust);
 
   const cloudMat=toon(0xffffff,{transparent:true,opacity:.98,depthWrite:false}), lowClouds=[], highClouds=[], diveClouds=[];
   // The castle rests on one enormous white cloud rather than floating over an
@@ -19891,6 +19906,14 @@
     const stompDust=t>=40.50;
     const dustAge=(t-(stompDust?40.50:21.62))/(stompDust?1.55:1.35),dustVisible=dustAge>=0&&dustAge<=1;
     landingDust.visible=dustVisible;
+    floorDust.visible=dustVisible;
+    if(dustVisible){
+      const groundSpread=smooth(dustAge),impactWeight=stompDust?1:0;
+      floorDust.position.set(lerp(0,1.99,impactWeight),TILE_TOP_Y+.021,lerp(-7,-5.98,impactWeight));
+      // Spread along the tile plane only; retain a constant shallow height.
+      floorDust.scale.set(lerp(.4,lerp(2.65,3.35,impactWeight),groundSpread),.72,lerp(.4,lerp(2.65,3.35,impactWeight),groundSpread));
+      floorDustMat.opacity=(1-smooth(dustAge))*lerp(.48,.60,impactWeight);
+    }
     if(dustVisible){const dustSpread=smooth(dustAge),impactWeight=stompDust?1:0;landingDust.position.x=lerp(0,1.99,impactWeight);landingDust.position.z=lerp(-7,-5.98,impactWeight);landingDust.scale.setScalar(lerp(.28,lerp(2.8,3.8,impactWeight),dustSpread));landingDust.position.y=.29+Math.sin(dustAge*Math.PI)*lerp(.34,.58,impactWeight);landingDustMat.opacity=(1-smooth(dustAge))*lerp(.64,.82,impactWeight);}
     lowClouds.forEach((cloud,i)=>{cloud.position.x=cloud.userData.baseX+Math.sin(t*.075+cloud.userData.phase)*.5;cloud.position.z=cloud.userData.baseZ+Math.sin(t*.045+i)*.12;});
     highClouds.forEach((cloud,i)=>{cloud.position.x=cloud.userData.baseX+Math.sin(t*.055+cloud.userData.phase)*1.05;cloud.position.z=cloud.userData.baseZ+Math.cos(t*.035+i)*.18;});
@@ -19929,7 +19952,7 @@
     princess.userData.head.rotation.y=lerp(0,-.38,princessNotice)+boundPulse*.07;princess.userData.head.rotation.z=-boundPulse*.045;
     princess.userData.armL.rotation.x=boundPulse*.032;princess.userData.armR.rotation.x=-boundPulse*.032;
     princess.userData.eyeL.scale.set(1+princessNotice*.18,1+princessNotice*.08,1); princess.userData.eyeR.scale.copy(princess.userData.eyeL.scale);
-    const heroNotice=span(t,34,36.15); hero.rotation.y=lerp(Math.PI,Math.PI-.47,heroNotice); hero.userData.head.rotation.y=heroNotice*.13;hero.userData.antenna.rotation.z=-heroNotice*.1;hero.userData.bead.position.x=-heroNotice*.018; hero.userData.eyeL.scale.set(1+heroNotice*.22,1+heroNotice*.12,1); hero.userData.eyeR.scale.copy(hero.userData.eyeL.scale);
+    const heroNotice=span(t,33.55,35.7); hero.rotation.y=lerp(Math.PI,Math.PI-.47,heroNotice); hero.userData.head.rotation.y=heroNotice*.13;hero.userData.antenna.rotation.z=-heroNotice*.1;hero.userData.bead.position.x=-heroNotice*.018; hero.userData.eyeL.scale.set(1+heroNotice*.22,1+heroNotice*.12,1); hero.userData.eyeR.scale.copy(hero.userData.eyeL.scale);
     hero.userData.armL.rotation.x*=1-heroNotice; hero.userData.armR.rotation.x*=1-heroNotice;
     const titleIn=portrait?span(t,45.75,46.55):span(t,43.2,44.0);
     card.style.opacity=String(titleIn); shotLabel.style.opacity=String(1-(portrait?span(t,45.25,45.6):span(t,42.75,43.1)));
