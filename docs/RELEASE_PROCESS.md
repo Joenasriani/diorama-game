@@ -2,8 +2,8 @@
 
 This is the repeatable release checklist. The 4 November 2026 release is recorded in README.md and CHANGELOG.md; completing deployment does not imply every manual QA item below has passed.
 
-1. Confirm which source edition is being released: the checked-in 25-level game or a separately maintained newer edition.
-2. Record the exact commit, release scope and level count. Do not merge a newer distribution simply to synchronize counts.
+1. Confirm the intended release source: **DIORAMA has 25 levels** in the authoritative checked-in game. An outdated number on itch.io is a separate listing correction, not a second edition.
+2. Record the exact commit, release scope and authoritative **25-level** count. Do not create or merge a speculative alternate edition to match outdated external marketing.
 3. Review the diff for gameplay, level, dependency, and asset changes.
 4. Run GitHub Actions structural validation and record the run URL.
 5. In a real browser, play every changed level from start to goal; verify alternate mechanism states, blocked routes, mobile tap targets, elevated-step selection, folding-bridge stem direction, one-finger orbit, two-finger tracking/pedestal movement, pinch zoom, and camera framing.
