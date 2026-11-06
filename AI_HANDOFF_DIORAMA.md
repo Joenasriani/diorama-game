@@ -7,6 +7,8 @@
 
 ## Current verified implementation – 6 November 2026
 
+**Latest reconciliation evidence:** [6 November authoritative-state audit](docs/RECONCILIATION_AUDIT_2026-11-06.md). Read it with the [maintenance protocol](REPOSITORY_MAINTENANCE_PROTOCOL.md) and verify GitHub/Vercel HEAD each time. The [5 November audit](docs/RECONCILIATION_AUDIT_2026-11-05.md) is retained as historical evidence, not as the latest working-state instruction.
+
 **This section is the active runtime baseline for future AI threads. Historical sections below are kept for traceability, not as active instructions.** At the start of the repository-wide reconciliation, GitHub `main` and the Vercel production domain both identified commit `0a1cfe986b4c5b3cc9a227c06730af0d1717aa91` (`READY`). Later documentation-only commits will advance `main` and may redeploy unchanged runtime assets; verify deployment HEAD afresh.
 
 **Authoritative game:** **25 levels**. Treat any different advertised level count on itch.io as **outdated listing metadata to update later**, not evidence of a distinct edition. Do **not** change itch.io listings, release packages or gameplay in a documentation synchronization.
@@ -189,6 +191,6 @@ In a real browser with network throttling/cache disabled, capture the **first 2 
 
 **Continuity command for a new thread:**
 
-> Read `AI_HANDOFF_DIORAMA.md`, `REPOSITORY_MAINTENANCE_PROTOCOL.md` and `docs/RECONCILIATION_AUDIT_2026-11-05.md` in `Joenasriani/diorama-game` on GitHub; verify current `main`, runtime source blob SHAs, CI and Vercel production against them. Reconcile any subsequent drift, then continue my specific DIORAMA task with the smallest safe change. Preserve protected gameplay, the 60-second cinematic, the bar-only loader and the funding page unless explicitly authorized. Report source, test and deployment verification separately.
+> Read `AI_HANDOFF_DIORAMA.md`, `REPOSITORY_MAINTENANCE_PROTOCOL.md` and **`docs/RECONCILIATION_AUDIT_2026-11-06.md`** in `Joenasriani/diorama-game` on GitHub; verify current `main`, runtime source blob SHAs, CI and Vercel production against them. Reconcile any subsequent drift, then continue my specific DIORAMA task with the smallest safe change. Preserve protected gameplay, the 60-second cinematic, the bar-only loader and the funding page unless explicitly authorized. Report source, test and deployment verification separately.
 
 *This is a dated, source-based handoff, not a mandate to implement every suggestion in it. For the current implementation, prefer the topmost **Current verified implementation** section; do not treat older dated snapshots as live state.*
