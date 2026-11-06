@@ -19489,13 +19489,13 @@
     for(let i=0;i<42;i++){
       const cueTime=.8+i/ROBOT_SPEED;
       const perspective=span(cueTime,3.4,9.35);
-      const cueGain=lerp(.04,.15,perspective);
+      const cueGain=lerp(.075,.23,perspective);
       events.push({t:cueTime,fn:()=>playGameStep(cueGain)});
     }
     // Let the fully opened gate register for a beat before the first interior
     // hop. Starting the route on the exact 18s shot-label boundary made the
     // actor appear to jump-cut onto the white hall tiles on narrow screens.
-    for(let i=0;i<3;i++)events.push({t:18.28+i/ROBOT_SPEED,fn:()=>playGameStep(.14)});
+    for(let i=0;i<3;i++)events.push({t:18.28+i/ROBOT_SPEED,fn:()=>playGameStep(.20)});
     events.push({t:15.02,fn:()=>play('door',.43)},{t:20.56,fn:()=>play('wings',.48)},{t:21.62,fn:()=>play('landing',.55)},{t:22.08,fn:()=>play('dragon',.48)},{t:29.05,fn:()=>play('princess',.43)},{t:39.92,fn:()=>play('doom',.49)},{t:40.50,fn:()=>{play('stomp',.43);play('boom',.50);}});events.sort((a,b)=>a.t-b.t);
     function sync(t,playing){if(!enabled)return;mix(t);scoreWanted=playing;if(playing){startScore(t);wind.play().catch(()=>{});}else{stopScore();wind.pause();}}
     return {
