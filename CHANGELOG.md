@@ -1,5 +1,11 @@
 # Changelog
 
+## Ending cinematic audio rebalance – 6 November 2026
+
+- `0a57ed6`: Adjusted **only** the ending film's audio mix: music base 0.26 → 0.60; footstep ducking 25% → 12%; major-impact ducking 60% → 35%; distant/close jump oscillator gain from 0.068–0.085 to 0.028–0.115 and three interior jumps 0.08 → 0.11.
+- Preserved the existing jump cue times, score source file, original music/sound choreography and final 57.5–60-second fade. No changes to game engine, level data, camera, animations, movie loader or backing page.
+- GitHub source checks and JavaScript parsing passed; Vercel showed production `READY` for `0a57ed6`. **Perceived audio balance has not been measured/listened to on a real device**; listener approval remains open.
+
 ## Repository reconciliation and cinematic startup documentation – 5 November 2026
 
 - Reconciled the 4 November production changes against the README, ending integration notes, roadmap, release procedure and AI handoff. This is a documentation/maintenance synchronization; **no game, cinematic, funding page or audio runtime was modified** by the reconciliation.
