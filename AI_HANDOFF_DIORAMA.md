@@ -1,7 +1,7 @@
 # DIORAMA – AUTHORITATIVE AI CONTINUATION HANDOFF
 
 > **Read this file first when continuing DIORAMA in a new ChatGPT/AI thread.**
-> Snapshot: **4 November 2026**. Project: [Joenasriani/diorama-game](https://github.com/Joenasriani/diorama-game), default branch `main`.
+> Current reconciliation: **6 November 2026**. Historical baselines are labeled below. Project: [Joenasriani/diorama-game](https://github.com/Joenasriani/diorama-game), default branch `main`.
 > This document is a navigation and operational handoff, **not** proof that every game path has been played or a replacement for live source and deployment verification.
 > **Source hierarchy:** live repository code and deployment metadata for implementation facts; this handoff for decisions and priorities; [UPGRADE_LEVELS_AND_FIXES](docs/UPGRADE_LEVELS_AND_FIXES.md) for per-level revision history; other project documents for focused scopes. If sources disagree, recheck current code/commit and report the conflict.
 
