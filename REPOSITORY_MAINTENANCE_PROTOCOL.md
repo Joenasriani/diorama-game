@@ -2,7 +2,7 @@
 
 > **Status:** Working procedure for future AI threads and maintainers. A scope/reconciliation rule, not standing permission to change gameplay or publish.
 > **Read with:** [AI_HANDOFF_DIORAMA.md](AI_HANDOFF_DIORAMA.md), [README.md](README.md), [docs/RELEASE_PROCESS.md](docs/RELEASE_PROCESS.md), [ENDING_INTEGRATION_NOTES.md](ENDING_INTEGRATION_NOTES.md), [ROADMAP.md](ROADMAP.md) and [docs/UPGRADE_LEVELS_AND_FIXES.md](docs/UPGRADE_LEVELS_AND_FIXES.md).
-> This procedure was introduced during a repository-wide reconciliation on **5 November 2026**. Check the actual Git state before relying on any versioned fact.
+> This procedure was introduced during a repository-wide reconciliation on **5 November 2026** and re-applied on **6 November 2026**. See the [latest reconciliation audit](docs/RECONCILIATION_AUDIT_2026-11-06.md); retain the [5 November audit](docs/RECONCILIATION_AUDIT_2026-11-05.md) as history. Check actual Git state before relying on any dated version fact.
 
 ## Authority and scope
 
