@@ -1,5 +1,19 @@
 <p align="left"><img src="docs/screenshots/logo.png" width="130" alt="DIORAMA logo"></p>
 
+## Current ending release – 7 November 2026
+
+The ending matches ChatGPT Sites **Diorama Game, version 7**, source `2ee765eae973b0af8d391491848dc3ba6de8fa53`. Ending file Git blob: `8501ea003692149ed816e96170d377335f02f785`. This section supersedes older ending settings below.
+
+- Music baseline **0.72**; exterior jump gains **0.0165–0.069**; three interior jumps **0.060**.
+- Princess help gain **1.6** at **29.05s**, with a brief additional **35% music duck** underneath.
+- Score, wind and sampled effects are predecoded and share Web Audio playback. The font/audio/scene warmup gate is retained; blocked automatic audio presents **Tap to play with sound** before the clock starts.
+- Dragon dust clears the tile-cap surface, spreads sooner, holds opacity briefly and follows the animated front foot during the stomp.
+- The investment CTA opens [the external DIORAMA 2 backing page](https://diorama-game.vercel.app/invest/) in a new tab.
+- The sixty-second timeline, camera choreography, cue timestamps, assets and gameplay are unchanged.
+
+All 19 deployed runtime/license/assets files were compared by Git blob hash: only the ending required synchronization. JavaScript parsing and 25-level structural checks passed. Device listening, rendered visual acceptance, Vercel production parity and itch.io package parity require separate verification. No SEO indexing claim is made.
+
+
 # DIORAMA
 
 **Languages:** English · [简体中文](docs/i18n/README.zh-CN.md) · [日本語](docs/i18n/README.ja.md) · [한국어](docs/i18n/README.ko.md) · [Español](docs/i18n/README.es.md) · [Português (Brasil)](docs/i18n/README.pt-BR.md) · [Deutsch](docs/i18n/README.de.md) · [Français](docs/i18n/README.fr.md) · [العربية](docs/i18n/README.ar.md) · [繁體中文](docs/i18n/README.zh-TW.md)
@@ -65,7 +79,7 @@ After verified completion of Level 25, the current repository build launches a l
 
 ## Current implementation and release history
 
-**Latest verified runtime snapshot – 6 November 2026 (before subsequent documentation-only commits).** The 25-level game retains its original game source. The standalone and Level 25 ending remains a **60-second cinematic**, with a bar-only WebGL readiness overlay. The most recent ending revisions are: **soundtrack gain 0.85**, music ducking of **8% during steps** and **18% during dragon impacts** (plus the existing 57.5–60s fade); jump-cue gain **0.075 → 0.230** as the outdoor camera moves nearer, and **0.200** for the three interior jumps. These numbers are JavaScript mixer/envelope settings, **not measured MP3 loudness or perceived volume**. The score/source assets, game engine and funding-page source are unchanged by these movie-only refinements.
+**Historical runtime snapshot – 6 November 2026 (superseded by the current ending release above).** The 25-level game retains its original game source. The standalone and Level 25 ending remains a **60-second cinematic**, with a bar-only WebGL readiness overlay. The most recent ending revisions are: **soundtrack gain 0.85**, music ducking of **8% during steps** and **18% during dragon impacts** (plus the existing 57.5–60s fade); jump-cue gain **0.075 → 0.230** as the outdoor camera moves nearer, and **0.200** for the three interior jumps. These numbers are JavaScript mixer/envelope settings, **not measured MP3 loudness or perceived volume**. The score/source assets, game engine and funding-page source are unchanged by these movie-only refinements.
 
 **Cinematic staging updates:** the hero's princess-reaction animation begins at **33.55s**; at the dragon's **21.62s landing** and **40.50s stomp**, both existing contact dust layers originate at tile height and spread laterally, instead of showing an elevated airborne puff. These are source-verified implementations, **not visually approved real-device captures**. See [CHANGELOG.md](CHANGELOG.md) and [AI_HANDOFF_DIORAMA.md](AI_HANDOFF_DIORAMA.md). Vercel production was independently confirmed `READY` at runtime commit `0a1cfe986b4c5b3cc9a227c06730af0d1717aa91` before this documentation reconciliation; subsequent documentation commits require fresh source/deployment verification.
 
@@ -81,7 +95,7 @@ The 4 November 2026 release added:
 **Current DIORAMA 2 support page:** [Open the live page](https://diorama-game.vercel.app/invest/). The page reuses the original Three.js ending scene in a non-interactive embedded header and retains the castle/title artwork rather than replacing it with a CSS approximation. The header's investor-only presentation uses a mirrored left-half render, a solid muted-blue backdrop (`#5b777d`), a startup visibility gate and adjusted framing. The page currently displays **Early Explorer – $15**, **Founding Supporter – $35**, and **Patron – $100**, along with a prominent **Choose your backing tier** link to [PayPal checkout](https://www.paypal.com/ncp/payment/NYRC4Q6FTYXBJ). The link's presence is verified in repository HTML; successful checkout, reward fulfillment and payment-provider configuration have **not** been independently verified. Supporter backing is not an offer of equity or revenue participation. The castle's final centre-seam and lower-edge appearance still require visual confirmation on real devices.
 
 
-**Cinematic loading behavior:** The movie shows a bar-only loading overlay matching the game-start loading bar, masking its WebGL opening frame until document fonts and a rendered frame are ready. Its 60-second timeline starts afterward. The backing-page castle iframe is revealed only on the same-origin `diorama-ending-scene-ready` message, not simply its `onload`; an unresolved-load fallback is linked. **Real-device elimination of the previously observed brief brown flash is still unverified.** See [ending integration notes](ENDING_INTEGRATION_NOTES.md).
+**Cinematic loading behavior:** The movie shows a bar-only loading overlay until fonts, all decoded audio, and representative scene/shader warmup are complete. Its 60-second timeline and enabled sound start together afterward; a tap prompt handles blocked automatic audio. The backing-page castle iframe is revealed only on the same-origin `diorama-ending-scene-ready` message, not simply its `onload`; an unresolved-load fallback is linked. **Real-device elimination of the previously observed brief brown flash is still unverified.** See [ending integration notes](ENDING_INTEGRATION_NOTES.md).
 
 The earlier 2 November gameplay revision includes:
 

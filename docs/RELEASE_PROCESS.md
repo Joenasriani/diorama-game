@@ -1,5 +1,7 @@
 # DIORAMA release procedure
 
+Current ending baseline: see [ending integration notes](../ENDING_INTEGRATION_NOTES.md). Check the quieter jump mix, princess-call music duck, above-tile dragon dust and external CTA; verify production commit and artifact hashes separately from source checks.
+
 This is the repeatable release checklist. The 4 November 2026 release is recorded in README.md and CHANGELOG.md; completing deployment does not imply every manual QA item below has passed.
 
 1. Confirm the intended release source: **DIORAMA has 25 levels** in the authoritative checked-in game. An outdated number on itch.io is a separate listing correction, not a second edition.

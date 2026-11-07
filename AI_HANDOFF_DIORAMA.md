@@ -1,20 +1,34 @@
 # DIORAMA – AUTHORITATIVE AI CONTINUATION HANDOFF
 
+## Current ending release – 7 November 2026
+
+The ending matches ChatGPT Sites **Diorama Game, version 7**, source `2ee765eae973b0af8d391491848dc3ba6de8fa53`. Ending file Git blob: `8501ea003692149ed816e96170d377335f02f785`. This section supersedes older ending settings below.
+
+- Music baseline **0.72**; exterior jump gains **0.0165–0.069**; three interior jumps **0.060**.
+- Princess help gain **1.6** at **29.05s**, with a brief additional **35% music duck** underneath.
+- Score, wind and sampled effects are predecoded and share Web Audio playback. The font/audio/scene warmup gate is retained; blocked automatic audio presents **Tap to play with sound** before the clock starts.
+- Dragon dust clears the tile-cap surface, spreads sooner, holds opacity briefly and follows the animated front foot during the stomp.
+- The investment CTA opens [the external DIORAMA 2 backing page](https://diorama-game.vercel.app/invest/) in a new tab.
+- The sixty-second timeline, camera choreography, cue timestamps, assets and gameplay are unchanged.
+
+All 19 deployed runtime/license/assets files were compared by Git blob hash: only the ending required synchronization. JavaScript parsing and 25-level structural checks passed. Device listening, rendered visual acceptance, Vercel production parity and itch.io package parity require separate verification. No SEO indexing claim is made.
+
+
 ## 7 November 2026 – cinematic preparation and Sites synchronization
 
 Restored the current GitHub runtime to the stale Sites edition, including the .85 score mix, updated footstep/effect balance and movie loader. The ending now waits for complete audio downloads/decoding, fonts and representative shader/render warmup before starting picture and enabled sound at zero. Preparation failures offer retry instead of playing incomplete content. See ENDING_INTEGRATION_NOTES.md. Parser, readiness-state and structural checks passed; WebGL creation failed in the available browser, so visual/audio device QA remains open. Vercel and itch.io production parity is not established.
 
 
 > **Read this file first when continuing DIORAMA in a new ChatGPT/AI thread.**
-> Current reconciliation: **6 November 2026**. Historical baselines are labeled below. Project: [Joenasriani/diorama-game](https://github.com/Joenasriani/diorama-game), default branch `main`.
+> Current ending reconciliation: **7 November 2026**; see the current ending release above. Historical baselines are labeled below. Project: [Joenasriani/diorama-game](https://github.com/Joenasriani/diorama-game), default branch `main`.
 > This document is a navigation and operational handoff, **not** proof that every game path has been played or a replacement for live source and deployment verification.
 > **Source hierarchy:** live repository code and deployment metadata for implementation facts; this handoff for decisions and priorities; [UPGRADE_LEVELS_AND_FIXES](docs/UPGRADE_LEVELS_AND_FIXES.md) for per-level revision history; other project documents for focused scopes. If sources disagree, recheck current code/commit and report the conflict.
 
-## Current verified implementation – 6 November 2026
+## Historical verified implementation – 6 November 2026
 
 **Latest reconciliation evidence:** [6 November authoritative-state audit](docs/RECONCILIATION_AUDIT_2026-11-06.md). Read it with the [maintenance protocol](REPOSITORY_MAINTENANCE_PROTOCOL.md) and verify GitHub/Vercel HEAD each time. The [5 November audit](docs/RECONCILIATION_AUDIT_2026-11-05.md) is retained as historical evidence, not as the latest working-state instruction.
 
-**This section is the active runtime baseline for future AI threads. Historical sections below are kept for traceability, not as active instructions.** At the start of the repository-wide reconciliation, GitHub `main` and the Vercel production domain both identified commit `0a1cfe986b4c5b3cc9a227c06730af0d1717aa91` (`READY`). Later documentation-only commits will advance `main` and may redeploy unchanged runtime assets; verify deployment HEAD afresh.
+**Historical snapshot. The current ending release above supersedes its ending mix, dust, playback and CTA details.** At the start of the repository-wide reconciliation, GitHub `main` and the Vercel production domain both identified commit `0a1cfe986b4c5b3cc9a227c06730af0d1717aa91` (`READY`). Later documentation-only commits will advance `main` and may redeploy unchanged runtime assets; verify deployment HEAD afresh.
 
 **Authoritative game:** **25 levels**. Treat any different advertised level count on itch.io as **outdated listing metadata to update later**, not evidence of a distinct edition. Do **not** change itch.io listings, release packages or gameplay in a documentation synchronization.
 
@@ -24,7 +38,7 @@ Restored the current GitHub runtime to the stale Sites edition, including the .8
 - `invest/index.html`: `11102c8ec371cd8a09e9552e4b910980e7249771` – DIORAMA 2 supporter page and embedded Three.js castle, unchanged.
 - Source asset references, soundtrack file and audio/SFX assets are not changed by the documentation reconciliation.
 
-**Current film audio (supersedes historical 60% and 78% settings):**
+**Historical film audio (superseded by the 7 November release above):**
 - Music baseline **0.85** for Web Audio score and fallback; step ducking **8%**, major-impact ducking **18%**; fade during **57.5–60 seconds**.
 - Outdoor jump/step oscillator gain **0.075** in distant shots, interpolating smoothly to **0.230** for close shots along the existing authored perspective ramp; three interior jumps use **0.200**.
 - Door `0.43`, wings `0.48`, landing `0.55`, dragon `0.48`, princess `0.43`, doom `0.49`, stomp `0.43`, boom `0.50`. These are code amplitude settings, **not** measured recording loudness.
@@ -198,4 +212,4 @@ In a real browser with network throttling/cache disabled, capture the **first 2 
 
 > Read `AI_HANDOFF_DIORAMA.md`, `REPOSITORY_MAINTENANCE_PROTOCOL.md` and **`docs/RECONCILIATION_AUDIT_2026-11-06.md`** in `Joenasriani/diorama-game` on GitHub; verify current `main`, runtime source blob SHAs, CI and Vercel production against them. Reconcile any subsequent drift, then continue my specific DIORAMA task with the smallest safe change. Preserve protected gameplay, the 60-second cinematic, the bar-only loader and the funding page unless explicitly authorized. Report source, test and deployment verification separately.
 
-*This is a dated, source-based handoff, not a mandate to implement every suggestion in it. For the current implementation, prefer the topmost **Current verified implementation** section; do not treat older dated snapshots as live state.*
+*This is a dated, source-based handoff, not a mandate to implement every suggestion in it. For the current implementation, prefer the topmost **Current ending release** section; do not treat older dated snapshots as live state.*

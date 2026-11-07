@@ -1,5 +1,19 @@
 # Changelog
 
+## Current ending release – 7 November 2026
+
+The ending matches ChatGPT Sites **Diorama Game, version 7**, source `2ee765eae973b0af8d391491848dc3ba6de8fa53`. Ending file Git blob: `8501ea003692149ed816e96170d377335f02f785`. This section supersedes older ending settings below.
+
+- Music baseline **0.72**; exterior jump gains **0.0165–0.069**; three interior jumps **0.060**.
+- Princess help gain **1.6** at **29.05s**, with a brief additional **35% music duck** underneath.
+- Score, wind and sampled effects are predecoded and share Web Audio playback. The font/audio/scene warmup gate is retained; blocked automatic audio presents **Tap to play with sound** before the clock starts.
+- Dragon dust clears the tile-cap surface, spreads sooner, holds opacity briefly and follows the animated front foot during the stomp.
+- The investment CTA opens [the external DIORAMA 2 backing page](https://diorama-game.vercel.app/invest/) in a new tab.
+- The sixty-second timeline, camera choreography, cue timestamps, assets and gameplay are unchanged.
+
+All 19 deployed runtime/license/assets files were compared by Git blob hash: only the ending required synchronization. JavaScript parsing and 25-level structural checks passed. Device listening, rendered visual acceptance, Vercel production parity and itch.io package parity require separate verification. No SEO indexing claim is made.
+
+
 ## 7 November 2026 – cinematic preparation and Sites synchronization
 
 Restored the current GitHub runtime to the stale Sites edition, including the .85 score mix, updated footstep/effect balance and movie loader. The ending now waits for complete audio downloads/decoding, fonts and representative shader/render warmup before starting picture and enabled sound at zero. Preparation failures offer retry instead of playing incomplete content. See ENDING_INTEGRATION_NOTES.md. Parser, readiness-state and structural checks passed; WebGL creation failed in the available browser, so visual/audio device QA remains open. Vercel and itch.io production parity is not established.

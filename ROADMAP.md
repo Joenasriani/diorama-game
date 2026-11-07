@@ -1,5 +1,19 @@
 # DIORAMA roadmap
 
+## Current ending release – 7 November 2026
+
+The ending matches ChatGPT Sites **Diorama Game, version 7**, source `2ee765eae973b0af8d391491848dc3ba6de8fa53`. Ending file Git blob: `8501ea003692149ed816e96170d377335f02f785`. This section supersedes older ending settings below.
+
+- Music baseline **0.72**; exterior jump gains **0.0165–0.069**; three interior jumps **0.060**.
+- Princess help gain **1.6** at **29.05s**, with a brief additional **35% music duck** underneath.
+- Score, wind and sampled effects are predecoded and share Web Audio playback. The font/audio/scene warmup gate is retained; blocked automatic audio presents **Tap to play with sound** before the clock starts.
+- Dragon dust clears the tile-cap surface, spreads sooner, holds opacity briefly and follows the animated front foot during the stomp.
+- The investment CTA opens [the external DIORAMA 2 backing page](https://diorama-game.vercel.app/invest/) in a new tab.
+- The sixty-second timeline, camera choreography, cue timestamps, assets and gameplay are unchanged.
+
+All 19 deployed runtime/license/assets files were compared by Git blob hash: only the ending required synchronization. JavaScript parsing and 25-level structural checks passed. Device listening, rendered visual acceptance, Vercel production parity and itch.io package parity require separate verification. No SEO indexing claim is made.
+
+
 This is a **proposal and prioritization guide**, not a promise of release dates. **DIORAMA has 25 levels.** Any different level count advertised on the itch.io listing is outdated publication metadata and must be corrected separately; do not infer or create a second game edition.
 
 ## Track A – Maintain the existing game (priority)
@@ -12,9 +26,9 @@ This is a **proposal and prioritization guide**, not a promise of release dates.
 
 Completed in the 2 November 2026 revision batch: focused revisions for Levels 7–15 where selected, Level 25 route-integrity protection, two-finger touch-camera translation, global upward-step touch assistance and route-aligned folding-bridge stems. Completed on 4 November 2026: the integrated 60-second ending, sequel information page, audio isolation/preference fixes, player playback controls, startup font-loading gates, bar-only movie loader, explicit rendered-scene readiness signal for the funding-page iframe, and GitHub README cinematic/backing callout. On 5 November the relevant documentation was reconciled. Remaining real-device verification is tracked in README.md and AI_HANDOFF_DIORAMA.md.
 
-## Latest completed cinematic refinements – 6 November 2026
+## Historical completed cinematic refinements – 6 November 2026
 
-Following the earlier 4 November integration, the current `ending/index.html` implements a music baseline of **0.85**, reduced ducking (8% steps, 18% major impacts), exterior jump SFX gain **0.075–0.230** from far to close camera shots, and three interior cues at **0.200**. The hero's princess-reaction animation starts at 33.55s; both dragon-contact dust layers are grounded at tile height at 21.62s and 40.50s. The 60-second timeline, movie loader, game levels, game music, funding page and original sound assets remain protected. **These source-level implementations do not imply approved listening or visual playback.** See `CHANGELOG.md`, `ENDING_INTEGRATION_NOTES.md` and `AI_HANDOFF_DIORAMA.md`.
+Following the earlier 4 November integration, the historical 6 November `ending/index.html` implemented a music baseline of **0.85**, reduced ducking (8% steps, 18% major impacts), exterior jump SFX gain **0.075–0.230** from far to close camera shots, and three interior cues at **0.200**. The hero's princess-reaction animation starts at 33.55s; both dragon-contact dust layers are grounded at tile height at 21.62s and 40.50s. The 60-second timeline, movie loader, game levels, game music, funding page and original sound assets remain protected. **These source-level implementations do not imply approved listening or visual playback.** See `CHANGELOG.md`, `ENDING_INTEGRATION_NOTES.md` and `AI_HANDOFF_DIORAMA.md`.
 
 ## Verification debt – release priority
 

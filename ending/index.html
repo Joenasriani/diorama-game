@@ -16,9 +16,10 @@
     #card{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;opacity:0;pointer-events:none;text-shadow:0 5px 20px rgba(35,55,53,.28)}
     #card .small{font-size:clamp(28px,6vw,54px);letter-spacing:.12em}#card .title{font-weight:700;font-size:clamp(70px,17vw,170px);line-height:.72;letter-spacing:.05em;color:#ffe36b}#card .soon{font-weight:700;font-size:clamp(30px,7vw,62px);letter-spacing:.16em;margin-top:.2em}
     #finalActions{display:flex;flex-direction:column;align-items:stretch;gap:8px;margin-top:clamp(18px,4vh,38px);opacity:0;transform:translateY(10px);pointer-events:none;text-shadow:none}
-    #finalActions button{min-width:min(78vw,320px);padding:10px 18px;font-size:clamp(22px,5vw,32px);background:rgba(34,65,72,.52);backdrop-filter:blur(10px)}#finalActions #restart{border-color:#ffe36b;color:#ffe36b}#investorStatus{min-height:1.1em;font-size:18px;letter-spacing:.08em}
+    #finalActions button,#finalActions #invest{min-width:min(78vw,320px);padding:10px 18px;font-size:clamp(22px,5vw,32px);background:rgba(34,65,72,.52);backdrop-filter:blur(10px)}#finalActions #restart{border-color:#ffe36b;color:#ffe36b}#investorStatus{min-height:1.1em;font-size:18px;letter-spacing:.08em}
+    #invest{text-decoration:none;display:flex;align-items:center;justify-content:center}
     #controls{position:fixed;left:50%;bottom:max(14px,env(safe-area-inset-bottom));transform:translateX(-50%);display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:22px;background:rgba(30,65,74,.32);backdrop-filter:blur(10px);max-width:calc(100vw - 20px)}
-    button{border:1px solid rgba(255,255,255,.46);background:rgba(255,255,255,.18);color:#fff;border-radius:15px;min-height:36px;padding:6px 12px;font:700 20px/1 "Amatic SC",sans-serif;letter-spacing:.04em;cursor:pointer}button[aria-pressed=true]{background:rgba(255,227,107,.45);border-color:#ffe36b}
+    button,#invest{border:1px solid rgba(255,255,255,.46);background:rgba(255,255,255,.18);color:#fff;border-radius:15px;min-height:36px;padding:6px 12px;font:700 20px/1 "Amatic SC",sans-serif;letter-spacing:.04em;cursor:pointer}button[aria-pressed=true]{background:rgba(255,227,107,.45);border-color:#ffe36b}
     input[type=range]{width:min(32vw,280px);accent-color:#ffe36b}.time{font:700 18px/1 monospace;min-width:58px;text-align:center}
     @media(max-width:700px){#controls{width:calc(100vw - 16px);flex-wrap:wrap;justify-content:center}input[type=range]{order:3;width:78vw}.shotButton{display:none}}
     @media(orientation:portrait){#shotLabel{top:max(18px,env(safe-area-inset-top));font-size:clamp(19px,6vw,30px)}#card{padding:12vh 7vw 18vh}#card .title{font-size:clamp(66px,22vw,132px)}}
@@ -50,7 +51,7 @@
   <div id="movieLoading" role="status" aria-label="Loading the DIORAMA cinematic"><div id="movieLoadingBarFrame" aria-hidden="true"><div id="movieLoadingBar"></div></div></div>
   <audio id="score" preload="auto" playsinline src="./audio/hero-score-bed.mp3"></audio>
   <div id="stage"></div><div id="vignette"></div><div id="shotTransition" aria-hidden="true"></div><div id="shotLabel" aria-live="polite"></div><div id="diagnostic" role="alert"></div>
-  <div id="card"><div class="small">THE JOURNEY CONTINUES</div><div class="title">DIORAMA 2</div><div class="soon">COMING SOON</div><div id="finalActions"><button id="restart" type="button" aria-label="Play DIORAMA again from Level 1">Replay Diorama</button><button id="invest" type="button" aria-describedby="investorStatus">INVEST IN DIORAMA 2</button><div id="investorStatus" aria-live="polite"></div></div></div>
+  <div id="card"><div class="small">THE JOURNEY CONTINUES</div><div class="title">DIORAMA 2</div><div class="soon">COMING SOON</div><div id="finalActions"><button id="restart" type="button" aria-label="Play DIORAMA again from Level 1">Replay Diorama</button><a id="invest" href="https://diorama-game.vercel.app/invest/" target="_blank" rel="noopener noreferrer" aria-describedby="investorStatus">INVEST IN DIORAMA 2</a><div id="investorStatus" aria-live="polite"></div></div></div>
   <div id="controls" aria-label="Ending playback controls">
     <button id="skipEnding" type="button">Skip ending</button>
     <button id="play" type="button">Pause</button>
@@ -19431,7 +19432,6 @@
   const score = document.getElementById('score');
   const finalActions = document.getElementById('finalActions');
   const restartButton = document.getElementById('restart');
-  const investButton = document.getElementById('invest');
   const investorStatus = document.getElementById('investorStatus');
   const scrub = document.getElementById('scrub');
   const timeReadout = document.getElementById('time');
@@ -19457,28 +19457,54 @@
   function makeSoundDirector(){
     let enabled=false,scoreWanted=false,stepCtx=null,scoreBuffer=null,scoreSource=null,scoreGain=null,scoreLoadPromise=null,scoreRequest=0,latestScoreTime=0;
     const active=new Set(),paths={door:'./audio/door.mp3',wings:'./audio/wings.mp3',dragon:'./audio/dragon.mp3',landing:'./audio/landing.mp3',doom:'./audio/dragon-doom.mp3',boom:'./audio/dragon-boom.mp3',stomp:'./audio/stomp.mp3',princess:'./audio/princess-call.mp3'};
-    const templates=Object.fromEntries(Object.entries(paths).map(([name,path])=>{const audio=new Audio(path);audio.preload='auto';return [name,audio];}));
-    const wind=new Audio('./audio/wind.mp3');wind.preload='auto';wind.loop=true;wind.volume=.3;score.volume=.85;
-    let scoreBytesPromise=null;
-    function play(name,volume=1,rate=1,offset=0,maxDuration=0){if(!enabled)return;const audio=templates[name].cloneNode();audio.volume=volume;audio.playbackRate=rate;audio.currentTime=offset;active.add(audio);audio.addEventListener('ended',()=>active.delete(audio),{once:true});audio.play().then(()=>{if(maxDuration)setTimeout(()=>{audio.pause();active.delete(audio);},maxDuration*1000);}).catch(()=>active.delete(audio));}
+    const buffers=new Map();
+    const wind={volume:.3,pause(){if(this.source){try{this.source.stop();}catch(e){}this.source=null;}},play(){if(this.source)return Promise.resolve();const source=stepCtx.createBufferSource(),gain=stepCtx.createGain();source.buffer=buffers.get('wind');source.loop=true;gain.gain.value=this.volume;source.connect(gain);gain.connect(stepCtx.destination);this.source=source;this.gain=gain;source.start();return Promise.resolve();}};
+    score.volume=.72;
+    let readyPromise=null;
+    function prepare(onProgress=()=>{}){
+      if(readyPromise)return readyPromise;
+      unlockStepContext();
+      const files={...paths,wind:'./audio/wind.mp3',score:'./audio/hero-score-bed.mp3'};
+      let loaded=0;
+      readyPromise=Promise.all(Object.entries(files).map(async([name,path])=>{
+        const response=await fetch(path,{cache:'force-cache',signal:AbortSignal.timeout(45000)});
+        if(!response.ok)throw new Error(`Audio load failed: ${path} (${response.status})`);
+        const buffer=await stepCtx.decodeAudioData(await response.arrayBuffer());
+        buffers.set(name,buffer);
+        if(name==='score')scoreBuffer=buffer;
+        const bar=document.getElementById('movieLoadingBar');
+        loaded++;onProgress(loaded/Object.keys(files).length);
+      }));
+      return readyPromise;
+    }
+    function play(name,volume=1,rate=1,offset=0,maxDuration=0){
+      if(!enabled)return;
+      const buffer=buffers.get(name);if(!buffer)return;
+      const source=stepCtx.createBufferSource(),gain=stepCtx.createGain();
+      source.buffer=buffer;source.playbackRate.value=rate;gain.gain.value=volume;
+      source.connect(gain);gain.connect(stepCtx.destination);active.add(source);
+      source.onended=()=>{active.delete(source);source.disconnect();gain.disconnect();};
+      if(maxDuration)source.start(0,offset,maxDuration);else source.start(0,offset);
+    }
     // This is the gameplay cue verbatim: a 300 Hz triangle oscillator with a
     // 75 ms exponential envelope. Only its gain follows camera perspective.
     function unlockStepContext(){try{if(!stepCtx)stepCtx=new (window.AudioContext||window.webkitAudioContext)();if(stepCtx.state==='suspended')stepCtx.resume().catch(()=>{});}catch(e){}}
-    function playGameStep(gain=.068){if(!enabled)return;try{unlockStepContext();const now=stepCtx.currentTime,master=stepCtx.createGain(),osc=stepCtx.createOscillator();master.gain.setValueAtTime(1e-4,now);master.gain.exponentialRampToValueAtTime(gain,now+.012);master.gain.exponentialRampToValueAtTime(1e-4,now+.075);osc.type='triangle';osc.frequency.setValueAtTime(300,now);osc.connect(master);master.connect(stepCtx.destination);osc.start(now);osc.stop(now+.115);}catch(e){}}
-    function ensureScoreBuffer(){unlockStepContext();if(scoreBuffer)return Promise.resolve(scoreBuffer);if(!scoreLoadPromise)scoreLoadPromise=(scoreBytesPromise||(scoreBytesPromise=fetch('./audio/hero-score-bed.mp3').then(response=>{if(!response.ok)throw new Error('Score load failed');return response.arrayBuffer();}))).then(bytes=>stepCtx.decodeAudioData(bytes.slice(0))).then(buffer=>(scoreBuffer=buffer));return scoreLoadPromise;}
+    function playGameStep(gain=.0204){if(!enabled)return;try{unlockStepContext();const now=stepCtx.currentTime,master=stepCtx.createGain(),osc=stepCtx.createOscillator();master.gain.setValueAtTime(1e-4,now);master.gain.exponentialRampToValueAtTime(gain,now+.012);master.gain.exponentialRampToValueAtTime(1e-4,now+.075);osc.type='triangle';osc.frequency.setValueAtTime(300,now);osc.connect(master);master.connect(stepCtx.destination);osc.start(now);osc.stop(now+.115);}catch(e){}}
+    function ensureScoreBuffer(){unlockStepContext();if(scoreBuffer)return Promise.resolve(scoreBuffer);if(!scoreLoadPromise)scoreLoadPromise=prepare().then(()=>scoreBuffer);return scoreLoadPromise;}
     function stopScore(){scoreRequest++;if(scoreSource){try{scoreSource.stop();}catch(e){}scoreSource.disconnect();scoreSource=null;}score.pause();}
-    function startScore(t){scoreWanted=true;latestScoreTime=t;const request=++scoreRequest;ensureScoreBuffer().then(buffer=>{if(!enabled||!scoreWanted||request!==scoreRequest)return;if(scoreSource){try{scoreSource.stop();}catch(e){}scoreSource.disconnect();}if(!scoreGain){scoreGain=stepCtx.createGain();scoreGain.gain.value=.85;scoreGain.connect(stepCtx.destination);}const source=stepCtx.createBufferSource();source.buffer=buffer;source.connect(scoreGain);scoreSource=source;source.onended=()=>{if(scoreSource===source)scoreSource=null;};source.start(0,clamp(latestScoreTime,0,Math.min(SCORE_END,buffer.duration-.02)));}).catch(()=>{if(!enabled||!scoreWanted||request!==scoreRequest)return;score.muted=false;score.currentTime=clamp(latestScoreTime,0,SCORE_END);score.play().catch(()=>{});});}
+    function startScore(t){scoreWanted=true;latestScoreTime=t;const request=++scoreRequest;ensureScoreBuffer().then(buffer=>{if(!enabled||!scoreWanted||request!==scoreRequest)return;if(scoreSource){try{scoreSource.stop();}catch(e){}scoreSource.disconnect();}if(!scoreGain){scoreGain=stepCtx.createGain();scoreGain.gain.value=.72;scoreGain.connect(stepCtx.destination);}const source=stepCtx.createBufferSource();source.buffer=buffer;source.connect(scoreGain);scoreSource=source;source.onended=()=>{if(scoreSource===source)scoreSource=null;};source.start(0,clamp(latestScoreTime,0,Math.min(SCORE_END,buffer.duration-.02)));}).catch(()=>{if(!enabled||!scoreWanted||request!==scoreRequest)return;score.muted=false;score.currentTime=clamp(latestScoreTime,0,SCORE_END);score.play().catch(()=>{});});}
     function mix(t){
       // The airy exterior bed disappears gradually as the hero reaches the
       // door. Music remains uninterrupted through every story cue and keeps
       // its original timing and authored ending.
-      const windTarget=.3*(1-span(t,1.2,10.15));wind.volume=lerp(wind.volume,windTarget,.085);
+      const windTarget=.3*(1-span(t,1.2,10.15));wind.volume=lerp(wind.volume,windTarget,.085);if(wind.gain)wind.gain.gain.setTargetAtTime(wind.volume,stepCtx.currentTime,.05);
       // The score asset now contains real music through 60s. Hold its intended
       // level through the title, then ease the final 2.5 seconds to silence.
       // Subtle score ducking keeps footsteps and dragon impacts audible without burying the soundtrack.
       const steps = Math.max(span(t,.5,.8)*(1-span(t,10,10.5)), span(t,18,18.28)*(1-span(t,19.2,19.6)));
       const impacts = Math.max(span(t,21.35,21.60)*(1-span(t,22.6,23.5)), span(t,39.65,40.45)*(1-span(t,41.2,42.4)));
-      const scoreLevel=.85*(1-.08*steps)*(1-.18*impacts)*(1-span(t,57.5,60));
+      const helpCall=span(t,28.85,29.05)*(1-span(t,31.45,31.7));
+      const scoreLevel=.72*(1-.35*helpCall)*(1-.08*steps)*(1-.18*impacts)*(1-span(t,57.5,60));
       if(scoreGain)scoreGain.gain.setTargetAtTime(scoreLevel,stepCtx.currentTime,.05);
       score.volume=scoreLevel;
     }
@@ -19489,36 +19515,20 @@
     for(let i=0;i<42;i++){
       const cueTime=.8+i/ROBOT_SPEED;
       const perspective=span(cueTime,3.4,9.35);
-      const cueGain=lerp(.075,.23,perspective);
+      const cueGain=lerp(.0165,.069,perspective);
       events.push({t:cueTime,fn:()=>playGameStep(cueGain)});
     }
     // Let the fully opened gate register for a beat before the first interior
     // hop. Starting the route on the exact 18s shot-label boundary made the
     // actor appear to jump-cut onto the white hall tiles on narrow screens.
-    for(let i=0;i<3;i++)events.push({t:18.28+i/ROBOT_SPEED,fn:()=>playGameStep(.20)});
-    events.push({t:15.02,fn:()=>play('door',.43)},{t:20.56,fn:()=>play('wings',.48)},{t:21.62,fn:()=>play('landing',.55)},{t:22.08,fn:()=>play('dragon',.48)},{t:29.05,fn:()=>play('princess',.43)},{t:39.92,fn:()=>play('doom',.49)},{t:40.50,fn:()=>{play('stomp',.43);play('boom',.50);}});events.sort((a,b)=>a.t-b.t);
+    for(let i=0;i<3;i++)events.push({t:18.28+i/ROBOT_SPEED,fn:()=>playGameStep(.060)});
+    events.push({t:15.02,fn:()=>play('door',.43)},{t:20.56,fn:()=>play('wings',.48)},{t:21.62,fn:()=>play('landing',.55)},{t:22.08,fn:()=>play('dragon',.48)},{t:29.05,fn:()=>play('princess',1.6)},{t:39.92,fn:()=>play('doom',.49)},{t:40.50,fn:()=>{play('stomp',.43);play('boom',.50);}});events.sort((a,b)=>a.t-b.t);
     function sync(t,playing){if(!enabled)return;mix(t);scoreWanted=playing;if(playing){startScore(t);wind.play().catch(()=>{});}else{stopScore();wind.pause();}}
     return {
-      async prepare(onProgress){
-        // Fully download and decode every authored cue before allowing the clock to run.
-        unlockStepContext();
-        const cues=[['score',score],['wind',wind],...Object.entries(templates)];
-        let completed=0;
-        await Promise.all(cues.map(async([name,element])=>{
-          const response=await fetch(element.getAttribute('src'),{cache:'force-cache',signal:AbortSignal.timeout(45000)});
-          if(!response.ok)throw new Error(`Audio load failed: ${name}`);
-          const bytes=await response.arrayBuffer();
-          if(!stepCtx)throw new Error('Audio decoding is unavailable');
-          const decoded=await stepCtx.decodeAudioData(bytes.slice(0));
-          if(name==='score'){scoreBuffer=decoded;scoreBytesPromise=Promise.resolve(bytes);}
-          // Cloned SFX now read a complete local blob, never a partial network stream.
-          element.src=URL.createObjectURL(new Blob([bytes],{type:'audio/mpeg'}));
-          element.load();
-          onProgress(++completed/cues.length);
-        }));
-      },
+      prepare,
+      async unlock(){unlockStepContext();await Promise.race([stepCtx.resume(),new Promise(resolve=>setTimeout(resolve,250))]);return stepCtx.state==='running';},
       get enabled(){return enabled;},
-      setEnabled(value,t,playing){enabled=value;if(value){unlockStepContext();sync(t,playing);}else{scoreWanted=false;stopScore();wind.pause();for(const audio of active)audio.pause();active.clear();}soundButton.textContent=value?'Sound On':'Sound Off';soundButton.setAttribute('aria-pressed',String(value));},
+      setEnabled(value,t,playing){enabled=value;if(value){unlockStepContext();sync(t,playing);}else{scoreWanted=false;stopScore();wind.pause();for(const source of active){try{source.stop();}catch(e){}}active.clear();}soundButton.textContent=value?'Sound On':'Sound Off';soundButton.setAttribute('aria-pressed',String(value));},
       tick(from,to){if(!enabled||to<=from)return;latestScoreTime=to;mix(to);for(const e of events)if(e.t>from&&e.t<=to)e.fn();},
       sync
     };
@@ -19529,7 +19539,8 @@
   // ending mix immediately instead of making the player discover a silent
   // "Sound Off" state midway through the finale. The existing first-gesture
   // unlock below remains as a fallback for stricter browser policies.
-  if(embedded && !pitchHeader) soundDirector.setEnabled(new URLSearchParams(location.search).get("sound") === "1",0,false);
+  const initialSound=embedded && !pitchHeader && new URLSearchParams(location.search).get("sound") === "1";
+  if(initialSound)soundDirector.setEnabled(true,0,false);
 
   const scene = new Scene();
   scene.background = new Color(0x58afe8);
@@ -19696,6 +19707,9 @@
   }
   const dragon = makeDragon(); dragon.position.z=-7; scene.add(dragon);
   const dragonShadow=new Mesh(new SphereGeometry(1,20,10),MAT.shadow);dragonShadow.scale.set(2.4,.015,1.15);dragonShadow.position.set(0,.27,-4.5);dragonShadow.visible=false;scene.add(dragonShadow);
+  // The .07-high cap is centred on TILE_TOP_Y; clear its upper surface.
+  const DUST_FLOOR_Y=TILE_TOP_Y+.035;
+  const dustContact=new Vector3();
   const landingDustMat=new MeshBasicMaterial({color:0xd9d0b4,transparent:true,opacity:0,depthWrite:false});
   const landingDust=new Group();
   for(let i=0;i<28;i++){
@@ -19918,29 +19932,6 @@
     shotTransition.style.opacity=String(cutVeil);
     dragon.visible=t>=20.55; for(const object of princessRevealObjects) object.visible=t>=27.95;
     const shadowReveal=span(t,19.15,21.55);dragonShadow.visible=t>=19.15&&t<21.85;dragonShadow.position.z=lerp(-6.2,-7,shadowReveal);dragonShadow.scale.set(lerp(.8,2.4,shadowReveal),.015,lerp(.42,1.15,shadowReveal));dragonShadow.material.opacity=lerp(0,.24,shadowReveal);
-    // Two distinct floor contacts share the dust rig: the arrival at centre
-    // and the later front-foot stomp. Both layers originate at tile height,
-    // spreading from beneath the feet rather than materializing in midair.
-    const stompDust=t>=40.50;
-    const dustAge=(t-(stompDust?40.50:21.62))/(stompDust?1.55:1.35),dustVisible=dustAge>=0&&dustAge<=1;
-    landingDust.visible=dustVisible;
-    floorDust.visible=dustVisible;
-    if(dustVisible){
-      const groundSpread=smooth(dustAge),impactWeight=stompDust?1:0;
-      floorDust.position.set(lerp(0,1.99,impactWeight),TILE_TOP_Y+.021,lerp(-7,-5.98,impactWeight));
-      // Spread along the tile plane only; retain a constant shallow height.
-      floorDust.scale.set(lerp(.4,lerp(2.65,3.35,impactWeight),groundSpread),.72,lerp(.4,lerp(2.65,3.35,impactWeight),groundSpread));
-      floorDustMat.opacity=(1-smooth(dustAge))*lerp(.48,.60,impactWeight);
-    }
-    if(dustVisible){
-      const dustSpread=smooth(dustAge),impactWeight=stompDust?1:0;
-      const radius=lerp(.28,lerp(2.8,3.8,impactWeight),dustSpread);
-      landingDust.position.set(lerp(0,1.99,impactWeight),TILE_TOP_Y+.052,lerp(-7,-5.98,impactWeight));
-      // Preserve the authored puff layer, but flatten it into an outward ground
-      // shockwave. The former tall Y scale and sine-wave lift made it float.
-      landingDust.scale.set(radius,.18,radius);
-      landingDustMat.opacity=(1-smooth(dustAge))*lerp(.56,.70,impactWeight);
-    }
     lowClouds.forEach((cloud,i)=>{cloud.position.x=cloud.userData.baseX+Math.sin(t*.075+cloud.userData.phase)*.5;cloud.position.z=cloud.userData.baseZ+Math.sin(t*.045+i)*.12;});
     highClouds.forEach((cloud,i)=>{cloud.position.x=cloud.userData.baseX+Math.sin(t*.055+cloud.userData.phase)*1.05;cloud.position.z=cloud.userData.baseZ+Math.cos(t*.035+i)*.18;});
     const cloudPart=span(t,.65,5.8);diveClouds.forEach((cloud,i)=>{const side=i%2?1:-1,nearVeil=cloud.userData.nearVeil;cloud.position.x=cloud.userData.baseX+side*cloudPart*((nearVeil?9:6)+(i%3)*1.4)+Math.sin(t*.045+cloud.userData.phase)*.7;cloud.position.y=cloud.userData.baseY+Math.sin(t*.035+cloud.userData.phase)*.35+cloudPart*(i%2?.55:-.35);cloud.position.z=cloud.userData.baseZ+Math.cos(t*.03+i)*.22;});
@@ -19965,6 +19956,33 @@
     const storyWingL=lerp(.8,1.15,turn),storyWingR=turn>0?lerp(-.45,-1.02,turn):lerp(-.8,-.45,princessReveal);
     dragon.userData.wingL.rotation.z=lerp(storyWingL,lerp(.28,1.28,flapOpen),flightWing);dragon.userData.wingR.rotation.z=lerp(storyWingR,lerp(-.28,-1.28,flapOpen),flightWing); dragon.userData.frontLeg.position.y=.43+plant*.24; dragon.userData.frontFoot.position.y=.12+plant*.24;
     dragon.userData.eyeL.scale.set(1+turn*.12,lerp(1,.5,dragonWake),1); dragon.userData.eyeR.scale.copy(dragon.userData.eyeL.scale);
+    // Two distinct floor contacts share the dust rig: the arrival at centre
+    // and the later front-foot stomp. Both layers originate at tile height,
+    // spreading from beneath the feet rather than materializing in midair.
+    const stompDust=t>=40.50;
+    const dustAge=(t-(stompDust?40.50:21.62))/(stompDust?1.55:1.35),dustVisible=dustAge>=0&&dustAge<=1;
+    landingDust.visible=dustVisible;
+    floorDust.visible=dustVisible;
+    if(dustVisible){
+      // Use the animated foot's world position after the dragon transform is current.
+      dragon.updateMatrixWorld(true);
+      if(stompDust)dragon.userData.frontFoot.getWorldPosition(dustContact);
+      else dustContact.set(0,DUST_FLOOR_Y,-7);
+      const groundSpread=span(dustAge,0,.65),impactWeight=stompDust?1:0;
+      floorDust.position.set(dustContact.x,DUST_FLOOR_Y+.025,dustContact.z);
+      // Spread along the tile plane only; retain a constant shallow height.
+      floorDust.scale.set(lerp(.4,lerp(2.65,3.35,impactWeight),groundSpread),.72,lerp(.4,lerp(2.65,3.35,impactWeight),groundSpread));
+      floorDustMat.opacity=(1-span(dustAge,.25,1))*lerp(.48,.60,impactWeight);
+    }
+    if(dustVisible){
+      const dustSpread=span(dustAge,0,.65),impactWeight=stompDust?1:0;
+      const radius=lerp(.28,lerp(2.8,3.8,impactWeight),dustSpread);
+      landingDust.position.set(dustContact.x,DUST_FLOOR_Y+.075,dustContact.z);
+      // Preserve the authored puff layer, but flatten it into an outward ground
+      // shockwave. The former tall Y scale and sine-wave lift made it float.
+      landingDust.scale.set(radius,.65,radius);
+      landingDustMat.opacity=(1-span(dustAge,.25,1))*lerp(.56,.70,impactWeight);
+    }
     const princessNotice=span(t,28.4,33.5),callStrain=span(t,29.05,29.28)*(1-span(t,31.15,31.48));
     // The post and rope loops remain rigid. She never relaxes into a stopped
     // pose after reveal: several mismatched micro-rhythms create continuous,
@@ -20012,7 +20030,6 @@
     if(embedded){window.parent.postMessage({type:'diorama-ending-restart'},'*');return;}
     timeline=0;investorStatus.textContent='';setPlaying(true);update(timeline);
   });
-  investButton.addEventListener('click',()=>{location.href='../invest/index.html';});
   scrub.addEventListener('input',()=>{timeline=Number(scrub.value);setPlaying(false);update(timeline);});
   document.querySelectorAll('[data-time]').forEach(b=>b.addEventListener('click',()=>{timeline=Number(b.dataset.time);setPlaying(false);update(timeline);}));
   if(!embedded)addEventListener('keydown',e=>{if(e.code==='Space'){e.preventDefault();setPlaying(!playing);}if(e.key==='ArrowRight'){timeline=clamp(timeline+.1,0,ENDING_DURATION);setPlaying(false);}if(e.key==='ArrowLeft'){timeline=clamp(timeline-.1,0,ENDING_DURATION);setPlaying(false);}});
@@ -20042,6 +20059,12 @@
       }
       await nextFrame();await nextFrame();
       progress(1);await nextFrame();
+      if(initialSound && !(await soundDirector.unlock())){
+        const button=document.createElement('button');
+        button.type='button';button.textContent='Tap to play with sound';
+        loading.replaceChildren(button);
+        await new Promise(resolve=>button.addEventListener('click',async()=>{if(await soundDirector.unlock())resolve();}));
+      }
       movieReady=true;
       document.documentElement.classList.add('diorama-scene-ready');
       loading.hidden=true;
@@ -20106,4 +20129,3 @@
 </script>
 </body>
 </html>
-
