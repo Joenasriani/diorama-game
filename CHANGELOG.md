@@ -1,5 +1,10 @@
 # Changelog
 
+## 7 November 2026 – DIORAMA favicon
+
+Added a favicon derived directly from the user-supplied robot image, cropping the lettering for small-size legibility. Root favicon.ico includes 16, 32, 48, 64, 128 and 256 pixel entries; assets/icons contains 32, 180, 192 and 512 pixel PNGs. Game, ending and investor pages link the ICO, PNG and Apple touch icon with relative paths and a cache version. No gameplay, audio, movie timing or payment behavior changed. Matching favicon assets and links are prepared for the current ChatGPT Sites project appgprj_6aeed8d514dc8191bf1a39cdc7932e2d; deployment is recorded separately.
+
+
 ## 7 November 2026 – AI continuity reconciliation
 
 Added AGENTS.md, a concise authoritative handoff, machine-readable release state, llms.txt index, file inventory and current audit. Archived superseded handoff/integration narratives and unused screenshot material. Reconciled README, roadmap, maintenance/release/contribution instructions and all nine localized overviews with the completed Sites/GitHub/itch.io work. Clarified the historical level-register ending freeze and old deployment rules. No runtime, level, asset, license or workflow behavior changed; real-device and served-byte verification limits remain explicit.

@@ -1,5 +1,10 @@
 # DIORAMA – Current AI continuation handoff
 
+## 7 November 2026 – DIORAMA favicon
+
+Added a favicon derived directly from the user-supplied robot image, cropping the lettering for small-size legibility. Root favicon.ico includes 16, 32, 48, 64, 128 and 256 pixel entries; assets/icons contains 32, 180, 192 and 512 pixel PNGs. Game, ending and investor pages link the ICO, PNG and Apple touch icon with relative paths and a cache version. No gameplay, audio, movie timing or payment behavior changed. Matching favicon assets and links are prepared for the current ChatGPT Sites project appgprj_6aeed8d514dc8191bf1a39cdc7932e2d; deployment is recorded separately.
+
+
 Updated 7 November 2026. Start here in a new thread; also read [AGENTS.md](AGENTS.md). This is current project guidance. Older narratives are retained in [the archive](docs/archive/README.md) and dated audits, not mixed into this baseline.
 
 ## Source of truth and release evidence
