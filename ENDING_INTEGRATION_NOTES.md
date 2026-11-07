@@ -28,9 +28,9 @@ Earlier levels continue to load the next level normally.
 - Existing non-final level transitions are unchanged.
 - The standalone cinematic remains independently runnable from `ending/index.html`.
 
-## Current cinematic readiness gate (4 November 2026)
+## Current cinematic readiness gate (7 November 2026)
 
-The standalone/embedded `ending/index.html` has a dedicated **bar-only** loading overlay. It deliberately resembles the main game's narrow, rounded white-outlined loading bar with warm ivory/gold fill, against movie blue. The title, percentage, buttons, and extra loading copy are not shown. The movie sets the timeline to **0 seconds** and renders an opening Three.js frame while the overlay is present. The loader remains until document-font readiness and a subsequent animation-frame callback, at which point `diorama-scene-ready` is set, the overlay is hidden, and the movie clock starts.
+The standalone/embedded ending retains its bar-only blue loading overlay, now showing preparation progress. Normal playback downloads and decodes the score, wind and all eight authored SFX before revealing the film, including when sound is muted. SFX use complete local blob URLs. Fonts resolve and seven representative scene states compile/render behind the overlay to warm geometry, materials and shadow passes. The opening frame is restored and presented before the overlay is removed; only then do the clock and enabled audio start together at zero. Preparation failure does not bypass the gate; a retry control is shown. Audio downloads and shader compilation have 45-second limits. Browser autoplay restrictions still require a player gesture on some devices.
 
 In `?view=pitch-header` mode, used only for the sequel support page, the movie seeks to its finished castle view, retains muted castle-blue `#5b777d` and hides the animated loading bar. The header renders its mirrored canvas before signaling readiness. The parent `invest/index.html` keeps the iframe hidden until it receives `{type:'diorama-ending-scene-ready'}` from the expected iframe window with matching same-origin; it offers a link to the movie if readiness is not received within 12 seconds. Do not replace the event with an iframe `onload` visibility change. The same type of readiness message is emitted in normal embedded playback, but the game parent does not currently depend on that message.
 
@@ -54,3 +54,7 @@ The hero's reaction to the princess begins at **33.55 seconds**, rather than 34 
 ## Release verification boundary
 
 Sites version 82 uses source `da14ef41b3bc54b0841c76a37173414d5b499215`; the three HTML pages match GitHub release `956d01cef6423877bd114936f0fc3e974c503db9`. Focused checks covered watchdog suppression, preference handling and skip-to-final-state behavior. Live cinematic playback, audio and restart still require browser/device verification; the test browser failed to create a WebGL context.
+
+## Sites reconciliation (7 November 2026)
+
+Sites source d0d70a5986b0e6d95a995884aa89876ecb553408 was behind GitHub: game, ending, investor page and integration notes differed. All bundled audio/font/license assets matched. Restored GitHub runtime pages, preserving the current .85 score mix, step perspective, effects ducking, reaction and dust refinements. Added the full preparation gate described above to the ending. Parser checks and focused readiness tests passed; the 25-level structural validator passed. The available browser cannot create a WebGL context, so audible playback, first-frame appearance, full completion and replay remain unverified on real devices. No Vercel or itch.io deployment parity is claimed.
