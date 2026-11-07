@@ -1,5 +1,10 @@
 # DIORAMA – AUTHORITATIVE AI CONTINUATION HANDOFF
 
+## 7 November 2026 – cinematic preparation and Sites synchronization
+
+Restored the current GitHub runtime to the stale Sites edition, including the .85 score mix, updated footstep/effect balance and movie loader. The ending now waits for complete audio downloads/decoding, fonts and representative shader/render warmup before starting picture and enabled sound at zero. Preparation failures offer retry instead of playing incomplete content. See ENDING_INTEGRATION_NOTES.md. Parser, readiness-state and structural checks passed; WebGL creation failed in the available browser, so visual/audio device QA remains open. Vercel and itch.io production parity is not established.
+
+
 > **Read this file first when continuing DIORAMA in a new ChatGPT/AI thread.**
 > Current reconciliation: **6 November 2026**. Historical baselines are labeled below. Project: [Joenasriani/diorama-game](https://github.com/Joenasriani/diorama-game), default branch `main`.
 > This document is a navigation and operational handoff, **not** proof that every game path has been played or a replacement for live source and deployment verification.
