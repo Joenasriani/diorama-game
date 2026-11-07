@@ -9,7 +9,7 @@
 - [Version navigateur](https://diorama-game.vercel.app)
 
 ## Code et contributions
-La version du dépôt GitHub comprend **25 niveaux**. Les définitions des niveaux et le moteur Three.js sont intégrés dans `index.html`, sans étape de compilation. DIORAMA comporte bien 25 niveaux ; toute autre indication sur itch.io est une description obsolète à corriger ultérieurement, et non une version distincte du jeu.
+La version du dépôt GitHub comprend **25 niveaux**. Les définitions des niveaux et le moteur Three.js sont intégrés dans `index.html`, sans étape de compilation. DIORAMA comporte 25 niveaux ; la page itch.io indique également 25 niveaux depuis le 7 novembre 2026. Consultez la README principale en anglais pour la version actuelle.
 
 Vous pouvez proposer des niveaux, signaler des bugs reproductibles et suggérer des améliorations des commandes tactiles, de l'accessibilité et des mécaniques. Consultez les [consignes de contribution](../../CONTRIBUTING.md) et le [guide de conception des niveaux](../LEVEL_AUTHORING.md). Aucun système de chargement de packs externes n'est encore disponible ; les tests structurels ne prouvent pas la résolubilité d'un niveau.
 

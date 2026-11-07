@@ -9,7 +9,7 @@
 - [Versão para navegador](https://diorama-game.vercel.app)
 
 ## Código e contribuições
-A edição disponível no GitHub contém **25 fases**. As definições de fases e o runtime Three.js estão incorporados ao `index.html`, sem etapa de compilação. DIORAMA possui oficialmente 25 fases; qualquer número diferente exibido no itch.io é informação desatualizada que será corrigida depois, e não outra edição do jogo.
+A edição disponível no GitHub contém **25 fases**. As definições de fases e o runtime Three.js estão incorporados ao `index.html`, sem etapa de compilação. DIORAMA tem 25 fases; a página no itch.io também informa 25 fases desde 7 de novembro de 2026. Consulte a README principal em inglês para o estado atual da versão.
 
 Você pode propor novas fases, relatar problemas reproduzíveis e sugerir melhorias de controles móveis, acessibilidade e mecânicas. Consulte o [guia de contribuição](../../CONTRIBUTING.md) e a [documentação de fases](../LEVEL_AUTHORING.md). Ainda não existe um carregador de pacotes externos; a validação estrutural não comprova que uma fase possa ser resolvida.
 

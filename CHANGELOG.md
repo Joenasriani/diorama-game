@@ -1,5 +1,9 @@
 # Changelog
 
+## 7 November 2026 – AI continuity reconciliation
+
+Added AGENTS.md, a concise authoritative handoff, machine-readable release state, llms.txt index, file inventory and current audit. Archived superseded handoff/integration narratives and unused screenshot material. Reconciled README, roadmap, maintenance/release/contribution instructions and all nine localized overviews with the completed Sites/GitHub/itch.io work. Clarified the historical level-register ending freeze and old deployment rules. No runtime, level, asset, license or workflow behavior changed; real-device and served-byte verification limits remain explicit.
+
 ## Current ending release – 7 November 2026
 
 The ending matches ChatGPT Sites **Diorama Game, version 7**, source `2ee765eae973b0af8d391491848dc3ba6de8fa53`. Ending file Git blob: `8501ea003692149ed816e96170d377335f02f785`. This section supersedes older ending settings below.

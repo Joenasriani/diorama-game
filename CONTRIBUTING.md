@@ -1,6 +1,8 @@
 # Contributing to DIORAMA
 
-Thank you for helping improve DIORAMA. **25 levels is the authoritative game count.** Any different count on itch.io is outdated listing metadata awaiting correction, not evidence of a distinct larger edition. Confirm the current repository source before proposing changes.
+Thank you for helping improve DIORAMA. **25 levels is the authoritative game count.** The current itch.io listing also states 25 levels. Do not infer another edition from historical metadata. Confirm the current repository source before proposing changes.
+
+Start AI-assisted work with [AGENTS.md](AGENTS.md) and [the current handoff](AI_HANDOFF_DIORAMA.md).
 
 ## Before contributing
 

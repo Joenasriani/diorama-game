@@ -1,30 +1,11 @@
 <p align="left"><img src="docs/screenshots/logo.png" width="130" alt="DIORAMA logo"></p>
 
-## Current ending release – 7 November 2026
+A free, buildless browser 3D mechanical puzzle game with **25 levels** and a **60-second ending**. Current implementation and release evidence: [AI handoff](AI_HANDOFF_DIORAMA.md) · [release state](docs/RELEASE_STATE.json) · [7 November audit](docs/RECONCILIATION_AUDIT_2026-11-07.md).
 
-The ending matches ChatGPT Sites **Diorama Game, version 7**, source `2ee765eae973b0af8d391491848dc3ba6de8fa53`. Ending file Git blob: `8501ea003692149ed816e96170d377335f02f785`. This section supersedes older ending settings below.
-
-- Music baseline **0.72**; exterior jump gains **0.0165–0.069**; three interior jumps **0.060**.
-- Princess help gain **1.6** at **29.05s**, with a brief additional **35% music duck** underneath.
-- Score, wind and sampled effects are predecoded and share Web Audio playback. The font/audio/scene warmup gate is retained; blocked automatic audio presents **Tap to play with sound** before the clock starts.
-- Dragon dust clears the tile-cap surface, spreads sooner, holds opacity briefly and follows the animated front foot during the stomp.
-- The investment CTA opens [the external DIORAMA 2 backing page](https://diorama-game.vercel.app/invest/) in a new tab.
-- The sixty-second timeline, camera choreography, cue timestamps, assets and gameplay are unchanged.
-
-All 19 deployed runtime/license/assets files were compared by Git blob hash: only the ending required synchronization. JavaScript parsing and 25-level structural checks passed. Device listening, rendered visual acceptance, Vercel production parity and itch.io package parity require separate verification. No SEO indexing claim is made.
-
-
-# DIORAMA
-
-**Languages:** English · [简体中文](docs/i18n/README.zh-CN.md) · [日本語](docs/i18n/README.ja.md) · [한국어](docs/i18n/README.ko.md) · [Español](docs/i18n/README.es.md) · [Português (Brasil)](docs/i18n/README.pt-BR.md) · [Deutsch](docs/i18n/README.de.md) · [Français](docs/i18n/README.fr.md) · [العربية](docs/i18n/README.ar.md) · [繁體中文](docs/i18n/README.zh-TW.md)
-
-**A playable 3D mechanical puzzle game built around route planning, moving architecture, and interactive mechanisms.**
-
-> [!NOTE]
 > **Continuing DIORAMA in a new AI thread?** Start with [AI_HANDOFF_DIORAMA.md](AI_HANDOFF_DIORAMA.md) and [REPOSITORY_MAINTENANCE_PROTOCOL.md](REPOSITORY_MAINTENANCE_PROTOCOL.md) – current architecture, protected game/film decisions, funding page, dated deployment evidence, open QA and safe change-reconciliation steps.
 
 
-[**Play DIORAMA on itch.io**](https://joenasr.itch.io/diorama) · [**Play the browser deployment**](https://diorama-game.vercel.app)
+[**Play DIORAMA on itch.io**](https://joenasr.itch.io/diorama) · [**Play the browser deployment**](https://diorama-game.vercel.app) · [**Play on ChatGPT Sites**](https://diorama-native-game.joenasr.chatgpt.site)
 
 Explore compact isometric structures, operate bridges, lifts, gates, and switches, and guide a robot through routes whose connectivity changes as the puzzle responds.
 
@@ -75,22 +56,13 @@ The current distribution keeps the level definitions and engine logic together i
 
 After verified completion of Level 25, the current repository build launches a locally bundled 60-second ending cinematic. The ending preserves the recorded final win, pauses the underlying game renderer and background music, and provides clear routes to play again from Level 1 or view the DIORAMA 2 project page. See [ENDING_INTEGRATION_NOTES.md](ENDING_INTEGRATION_NOTES.md) for the integration boundary and validation record.
 
-**Historical Vercel production verification snapshot (4 November 2026, superseded by later releases):** [`2602eb0765b86d10d427d410cd031cb8d2907a33`](https://github.com/Joenasriani/diorama-game/commit/2602eb0765b86d10d427d410cd031cb8d2907a33) on `main` was reported by Vercel as `READY` for [diorama-game.vercel.app](https://diorama-game.vercel.app/). Later documentation-only commits may advance HEAD and deployment; verify current state rather than treating this historical snapshot as live metadata. This repository contains 25 levels, the integrated 60-second ending, and the [DIORAMA 2 support page](https://diorama-game.vercel.app/invest/). The in-game version label remains **v1.0**; deployment identifiers are not semantic game versions. The earlier owner-private Sites version **82** (Sites source `da14ef41b3bc54b0841c76a37173414d5b499215`) was previously matched to GitHub commit `956d01cef6423877bd114936f0fc3e974c503db9` by HTML Git blob hash. That is a historical verification record, **not the current Vercel source**. The itch.io publication and download package have not been verified against current Vercel. **The authoritative game has 25 levels; any contradictory itch.io level count is outdated listing metadata to fix later**, not a second game edition.
+## Current implementation and publication state
 
-## Current implementation and release history
+Runtime baseline: `230168317db7c8d566a06d314788c167ff8ca051`; later documentation commits may advance HEAD. All 19 runtime/assets/license files matched public ChatGPT Sites version 7 by Git blob hash. Vercel reported success; GitHub validation, Pages and packaging succeeded. Sites publishes separately from GitHub; a push does not update it automatically. See [release procedure](docs/RELEASE_PROCESS.md).
 
-**Historical runtime snapshot – 6 November 2026 (superseded by the current ending release above).** The 25-level game retains its original game source. The standalone and Level 25 ending remains a **60-second cinematic**, with a bar-only WebGL readiness overlay. The most recent ending revisions are: **soundtrack gain 0.85**, music ducking of **8% during steps** and **18% during dragon impacts** (plus the existing 57.5–60s fade); jump-cue gain **0.075 → 0.230** as the outdoor camera moves nearer, and **0.200** for the three interior jumps. These numbers are JavaScript mixer/envelope settings, **not measured MP3 loudness or perceived volume**. The score/source assets, game engine and funding-page source are unchanged by these movie-only refinements.
+The latest itch.io ZIP matches the Actions checksum; its upload was selected for browser play. The live page now lists 25 levels, links to Sites and includes the [7 November devlog](https://joenasr.itch.io/diorama/devlog/1759746/diorama-3d-puzzle-game-update-ending-audio-and-browser-play). Hosted-byte parity and full gameplay are separate, unverified checks.
 
-**Cinematic staging updates:** the hero's princess-reaction animation begins at **33.55s**; at the dragon's **21.62s landing** and **40.50s stomp**, both existing contact dust layers originate at tile height and spread laterally, instead of showing an elevated airborne puff. These are source-verified implementations, **not visually approved real-device captures**. See [CHANGELOG.md](CHANGELOG.md) and [AI_HANDOFF_DIORAMA.md](AI_HANDOFF_DIORAMA.md). Vercel production was independently confirmed `READY` at runtime commit `0a1cfe986b4c5b3cc9a227c06730af0d1717aa91` before this documentation reconciliation; subsequent documentation commits require fresh source/deployment verification.
-
-### Earlier 4 November integration
-
-The 4 November 2026 release added:
-
-- a final-level cinematic with Pause, Sound, Skip ending, and Play Again controls;
-- game-music watchdog isolation during the ending, with the game's music preference passed to the cinematic;
-- a DIORAMA 2 coming-soon and backing page with a linked PayPal checkout; the three displayed contribution tiers describe proposed digital rewards, not investment equity;
-- regular/bold font preloads and bounded readiness gates for startup lettering and the sequel page.
+The current movie uses .72 music, .0165–.069 exterior jumps, .060 interior jumps and a 1.6 princess call with a brief additional 35% music duck. All audio is predecoded; fonts/audio/scene warmup precede playback from zero. A tap prompt handles blocked enabled audio. Dragon landing/stomp dust clears the tiles; stomp dust follows the foot. The final support link opens externally in a new tab. See [ending contract](ENDING_INTEGRATION_NOTES.md) for current behavior and [CHANGELOG.md](CHANGELOG.md) for history.
 
 **Current DIORAMA 2 support page:** [Open the live page](https://diorama-game.vercel.app/invest/). The page reuses the original Three.js ending scene in a non-interactive embedded header and retains the castle/title artwork rather than replacing it with a CSS approximation. The header's investor-only presentation uses a mirrored left-half render, a solid muted-blue backdrop (`#5b777d`), a startup visibility gate and adjusted framing. The page currently displays **Early Explorer – $15**, **Founding Supporter – $35**, and **Patron – $100**, along with a prominent **Choose your backing tier** link to [PayPal checkout](https://www.paypal.com/ncp/payment/NYRC4Q6FTYXBJ). The link's presence is verified in repository HTML; successful checkout, reward fulfillment and payment-provider configuration have **not** been independently verified. Supporter backing is not an offer of equity or revenue participation. The castle's final centre-seam and lower-edge appearance still require visual confirmation on real devices.
 
@@ -111,7 +83,7 @@ The detailed approval register is maintained in [`docs/UPGRADE_LEVELS_AND_FIXES.
 
 ## Screenshots and gameplay footage
 
-The [itch.io game page](https://joenasr.itch.io/diorama) remains a published listing; its level-count copy needs correction to **25** and its downloadable build has not been independently matched to the current production release. Five actual gameplay screenshots are available in the [gallery above](#gameplay-screenshots), along with a [social-preview asset](docs/screenshots/social-preview.png).
+The [itch.io game page](https://joenasr.itch.io/diorama) publicly lists **25 levels** and the latest uploaded package is selected for browser play. The generated package matches the release checksum; hosted-byte comparison remains open. Five actual gameplay screenshots are available in the [gallery above](#gameplay-screenshots), along with a [social-preview asset](docs/screenshots/social-preview.png).
 
 ## GitHub participation
 
@@ -141,10 +113,15 @@ The current repository is a self-contained browser distribution:
 │       └── ending score and sound effects
 ├── invest/
 │   └── index.html
+├── AGENTS.md
+├── llms.txt
 ├── AI_HANDOFF_DIORAMA.md
 ├── REPOSITORY_MAINTENANCE_PROTOCOL.md
 ├── ENDING_INTEGRATION_NOTES.md
 ├── docs/
+│   ├── RELEASE_STATE.json
+│   ├── FILE_INVENTORY.md
+│   ├── archive/
 │   ├── LEVEL_AUTHORING.md
 │   └── UPGRADE_LEVELS_AND_FIXES.md
 ├── scripts/
@@ -391,7 +368,7 @@ Using an HTTP server is preferred over opening the page directly with `file://`,
 
 Publish the repository's `index.html`, `assets/`, `ending/` and `invest/` together on a static HTTP(S) host, preserving their relative paths. No dependency installation or build command is required. Uploading only `index.html` omits required fonts, audio and ending pages.
 
-Run `node scripts/validate-levels.cjs` before publication, then follow [the release checklist](docs/RELEASE_PROCESS.md). The level-validation GitHub workflow tests structure, not gameplay. A separate manually dispatched GitHub Actions workflow packages an itch.io-compatible ZIP **artifact** but does not publish to itch.io. Vercel and GitHub Pages hosting deployments are separate from those workflows and must be checked against the intended commit. Verify the actual hosted files against the release commit before claiming parity.
+Run `node scripts/validate-levels.cjs` before publication, then follow [the release checklist](docs/RELEASE_PROCESS.md). The level-validation GitHub workflow tests structure, not gameplay. A separate GitHub Actions workflow runs on manual dispatch and matching runtime/package-path pushes to `main`, packages an itch.io-compatible ZIP **artifact** but does not publish to itch.io. Vercel and GitHub Pages hosting deployments are separate from those workflows and must be checked against the intended commit. Verify the actual hosted files against the release commit before claiming parity.
 
 ## Technical characteristics
 
@@ -407,9 +384,7 @@ Run `node scripts/validate-levels.cjs` before publication, then follow [the rele
 
 The repository demonstrates implemented pathfinding, mechanism state transitions, persistence, responsive input assistance, and 25 level definitions.
 
-**Latest documentation reconciliation (6 November 2026):** The [6 November authoritative-state audit](docs/RECONCILIATION_AUDIT_2026-11-06.md) supersedes the [5 November historical reconciliation record](docs/RECONCILIATION_AUDIT_2026-11-05.md). The active handoff now prioritizes the 25-level game and the latest film mix/impact refinements. **Historical 5 November reconciliation:** The current README, roadmap, changelog, integration and release documentation were reconciled with the recent ending/funding changes. See the [5 November repository audit](docs/RECONCILIATION_AUDIT_2026-11-05.md), [maintenance protocol](REPOSITORY_MAINTENANCE_PROTOCOL.md) and [AI handoff](AI_HANDOFF_DIORAMA.md) for the change register, source hierarchy and unresolved tests. GitHub/Vercel deployment status alone does not validate playback or the payment journey.
-
-For the earlier 4 November integration release, syntax, focused audio/control/font checks and level structure passed. The coming-soon page rendered in the test browser, but gameplay and cinematic testing in that environment was blocked by a WebGL-context creation failure. Later investor-header commits have been published to Vercel and their production commit IDs verified. That **does not establish** real-device visual correctness: header flicker, mirrored-centre seam, lower-edge clearance, cold-load font transitions and real-device audio must be checked in the browser. No complete 25-level playthrough or end-to-end PayPal payment test is claimed here.
+**Latest documentation reconciliation – 7 November 2026:** [audit](docs/RECONCILIATION_AUDIT_2026-11-07.md). Current guidance is in [AGENTS.md](AGENTS.md), [the handoff](AI_HANDOFF_DIORAMA.md) and [release state](docs/RELEASE_STATE.json). Historical audits and superseded handoffs remain evidence only. The available browser has WebGL disabled; device playback, complete 25-level solvability, first-frame behavior and payment fulfillment remain unverified. Publication/CI success is not gameplay or rights certification.
 
 Those implementation facts do not by themselves establish exhaustive cross-browser compatibility, accessibility conformance, performance targets, or device-store certification.
 

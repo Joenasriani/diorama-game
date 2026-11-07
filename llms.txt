@@ -1,0 +1,26 @@
+# DIORAMA
+
+> A static browser-based 3D mechanical puzzle game with 25 levels and a 60-second ending. GitHub main is the development source. This index points to current documentation; it does not certify indexing by AI/search services.
+
+## Current documentation
+
+- [AI entry instructions](AGENTS.md): read first for repository work.
+- [Current AI handoff](AI_HANDOFF_DIORAMA.md): architecture, protected decisions, current ending mix, publications and open verification.
+- [Release state](docs/RELEASE_STATE.json): dated runtime commit, asset hashes, Sites identity, itch.io package evidence and limitations.
+- [README](README.md): project overview and developer architecture.
+- [Ending contract](ENDING_INTEGRATION_NOTES.md): current audio/readiness/dust/replay/CTA behavior.
+- [File inventory](docs/FILE_INVENTORY.md): active, historical, asset and tooling roles.
+- [Latest audit](docs/RECONCILIATION_AUDIT_2026-11-07.md): reconciliation evidence.
+- [Release procedure](docs/RELEASE_PROCESS.md): separate Vercel, Sites and itch.io publishing steps.
+- [Level authoring](docs/LEVEL_AUTHORING.md): existing embedded level schema and validation limits.
+
+## Public game
+
+- [itch.io](https://joenasr.itch.io/diorama)
+- [Vercel](https://diorama-game.vercel.app/)
+- [ChatGPT Sites](https://diorama-native-game.joenasr.chatgpt.site)
+
+## History
+
+- [Changelog](CHANGELOG.md): historical changes, not active orders.
+- [Archive](docs/archive/README.md): superseded guidance; never use as current implementation instructions.

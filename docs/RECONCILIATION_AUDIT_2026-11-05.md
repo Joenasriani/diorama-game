@@ -1,3 +1,5 @@
+> HISTORICAL AUDIT – not current implementation guidance. See [7 November audit](RECONCILIATION_AUDIT_2026-11-07.md), [current handoff](../AI_HANDOFF_DIORAMA.md), and [release state](RELEASE_STATE.json).
+
 # DIORAMA – Repository-Wide Reconciliation Audit
 
 **Audit date:** 5 November 2026  

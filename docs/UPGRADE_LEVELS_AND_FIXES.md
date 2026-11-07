@@ -1,8 +1,6 @@
 # DIORAMA – Upgrade Levels and Fixes
 
-> Release status, 4 November 2026: this register preserves historical per-revision notes. Its frozen-ending and pending-deployment statements describe those earlier checkpoints, not the current build. The ending and subsequent audio/font fixes are deployed in Sites version 82; see README.md and CHANGELOG.md for current status. Historical player-approval notes are not retroactively marked verified.
-
-This register is the approval gate for gameplay revisions. Revisions are implemented and verified locally one at a time. Joe will preview and approve the selected batch after a single final deployment.
+> Historical revision/approval register. Current release and instructions are [the AI handoff](../AI_HANDOFF_DIORAMA.md) and [release state](RELEASE_STATE.json). Earlier locally verified, awaiting preview, frozen-ending and pending-deployment notes describe their dated checkpoints; they are not current tasks or proof of player approval. The selected 2 November revisions were integrated; Level 16 onward remains proposed review work.
 
 ## Protected baseline
 
@@ -12,10 +10,10 @@ This register is the approval gate for gameplay revisions. Revisions are impleme
 - Folding-bridge stem alignment: every grey bridge stem must point toward its actual adjacent source-route brick; fixed default directions and decorative stems that contradict traversal are prohibited.
 - Level 12 remains fully visible with the staged appear/disappear reveal removed.
 - Levels not named in the active item must not be redesigned incidentally.
-- Each change receives its own local commit and verification note. No intermediate Vercel or GitHub Pages deployment; deploy once after the selected revision batch is complete.
-- **[ENDING] is frozen and parked:** the castle, dragon, captured robot-princess reveal and DIORAMA 2 coming-soon sequence will be developed only after the gameplay revision batch.
+- **Historical batch procedure:** each change received a local commit/verification note and deployment was held until the selected batch. Follow current user scope and release procedure for new work.
+- **Historical ending deferral – superseded:** the ending was parked during that batch. It is now implemented and published; preserve the current ending contract rather than restarting it.
 
-## Revision sequence
+## Historical revision sequence
 
 | Order | Scope | Status | Intended revision |
 |---:|---|---|---|
