@@ -22,4 +22,4 @@ Dust contacts at 21.62s and 40.50s sit above the .07-high tile cap, expand near 
 
 ## Validation boundary
 
-Source/syntax, cue contracts, readiness ordering, dust clearance and structural checks passed. GitHub runtime files match Sites version 7; generated ZIP checksum matches the Actions package. itch.io upload selection and public description/devlog were observed. Served-byte parity, audible/visual mobile acceptance, cold-cache flash elimination, full playthrough and complete end-to-end controls remain unverified. The available browser could not create WebGL.
+Source/syntax, cue contracts, readiness ordering, dust clearance and structural checks passed. The earlier runtime at `2301683` matched Sites version 7, and its ZIP checksum matched the Actions package. Later artwork/favicon metadata changes preserve movie code but change the HTML hashes; current cross-host branding parity is unverified. itch.io upload selection and public description/devlog were observed. Served-byte parity, audible/visual mobile acceptance, cold-cache flash elimination, full playthrough and complete end-to-end controls remain unverified. The available browser could not create WebGL.

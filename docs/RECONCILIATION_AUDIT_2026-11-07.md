@@ -28,3 +28,7 @@ All 19 runtime/assets/license blobs match the Sites 7 source. Runtime baseline V
 JavaScript parsing, 25-level structural validation, Markdown/HTML local-reference checks, release-manifest hashes, JSON syntax and active-state consistency are checked before committing. No runtime file or workflow changed. Archive links are kept resolvable. Old screenshots, licenses, music notices and revision history are retained.
 
 The available browser reports WebGL disabled. Human playthrough/solvability, device listening, dust/framing/first-frame behavior, full ending/replay regression, public indexing, served-byte parity and payment/asset-rights gaps remain open. Do not claim a code audit resolves them. The historical backup branch has commits outside main and is left untouched.
+
+## Follow-up – artwork/favicon synchronization
+
+Rechecked main at `0640153`. Updated release hashes, inventory, README, handoff, integration/release notes and changelog for six branding assets and metadata-only HTML changes. ZIP workflow now requires/includes root favicon.ico and triggers on its changes; current distribution is 25 files. Historical 19-file Sites/itch.io evidence remains dated, not current parity proof. JavaScript parsing, level structure, local Markdown paths and deterministic package integrity are rechecked. No gameplay or movie code changed. Current Sites/itch.io branding publication remains unverified.

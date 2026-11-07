@@ -7,6 +7,7 @@ on:
     paths:
       - '.github/workflows/itchio-dist.yml'
       - 'index.html'
+      - 'favicon.ico'
       - 'ending/**'
       - 'invest/**'
       - 'assets/**'
@@ -33,14 +34,14 @@ jobs:
           from pathlib import Path
           import hashlib, zipfile
           root=Path('.')
-          required=['index.html','ending/index.html','invest/index.html',
+          required=['favicon.ico','index.html','ending/index.html','invest/index.html',
                     'assets/fonts/AmaticSC-Bold.ttf','assets/fonts/AmaticSC-Regular.ttf',
                     'assets/music/hitslab-game-gaming-music-295075.mp3',
                     'LICENSE','THIRD_PARTY_LICENSES.md']
           for rel in required:
               if not (root/rel).is_file():
                   raise SystemExit(f'Missing required runtime or license file: {rel}')
-          chosen=[Path('index.html'),Path('LICENSE'),Path('THIRD_PARTY_LICENSES.md')]
+          chosen=[Path('index.html'),Path('favicon.ico'),Path('LICENSE'),Path('THIRD_PARTY_LICENSES.md')]
           for folder in ('assets','ending','invest'):
               chosen += sorted(p for p in Path(folder).rglob('*') if p.is_file()
                   and not any(x.startswith('.') or x in ('__MACOSX','node_modules') for x in p.parts)

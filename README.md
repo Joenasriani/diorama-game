@@ -58,7 +58,7 @@ After verified completion of Level 25, the current repository build launches a l
 
 ## Current implementation and publication state
 
-Runtime baseline: `230168317db7c8d566a06d314788c167ff8ca051`; later documentation commits may advance HEAD. All 19 runtime/assets/license files matched public ChatGPT Sites version 7 by Git blob hash. Vercel reported success; GitHub validation, Pages and packaging succeeded. Sites publishes separately from GitHub; a push does not update it automatically. See [release procedure](docs/RELEASE_PROCESS.md).
+Current runtime source baseline: `06401531142d8f2dce37a3724113a9252a2b1827`, including artwork/favicon metadata. The earlier 19-file release at `2301683` matched public ChatGPT Sites version 7 by Git blob hash; that historical comparison does not establish current branding parity. Current ZIP packaging includes 25 files. Vercel reported success; GitHub validation, Pages and packaging succeeded. Sites publishes separately from GitHub; a push does not update it automatically. See [release procedure](docs/RELEASE_PROCESS.md).
 
 The latest itch.io ZIP matches the Actions checksum; its upload was selected for browser play. The live page now lists 25 levels, links to Sites and includes the [7 November devlog](https://joenasr.itch.io/diorama/devlog/1759746/diorama-3d-puzzle-game-update-ending-audio-and-browser-play). Hosted-byte parity and full gameplay are separate, unverified checks.
 

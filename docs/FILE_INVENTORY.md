@@ -1,6 +1,6 @@
 # DIORAMA file inventory
 
-Audited 7 November 2026. Use [current handoff](../AI_HANDOFF_DIORAMA.md) and [release state](RELEASE_STATE.json) before historical material. Runtime has 19 packaged files. No unused runtime/audio asset is deleted merely because it is not currently called.
+Audited 7 November 2026. Use [current handoff](../AI_HANDOFF_DIORAMA.md) and [release state](RELEASE_STATE.json) before historical material. Current packaging includes 25 runtime/assets/license files; the earlier uploaded itch.io release contained 19. No unused runtime/audio asset is deleted merely because it is not currently called.
 
 | Path | Role |
 | --- | --- |
@@ -72,3 +72,9 @@ Audited 7 November 2026. Use [current handoff](../AI_HANDOFF_DIORAMA.md) and [re
 | `invest/index.html` | Current runtime – unchanged by this audit |
 | `llms.txt` | Active guidance / release evidence |
 | `scripts/validate-levels.cjs` | Structural checker – does not prove solvability |
+| `favicon.ico` | Runtime branding asset – included in distribution |
+| `assets/icons/apple-touch-icon.png` | Runtime branding asset – included in distribution |
+| `assets/icons/favicon-32.png` | Runtime branding asset – included in distribution |
+| `assets/icons/icon-192.png` | Runtime branding asset – included in distribution |
+| `assets/icons/icon-512.png` | Runtime branding asset – included in distribution |
+| `assets/images/diorama-preview.jpg` | Runtime branding asset – included in distribution |

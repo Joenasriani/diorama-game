@@ -14,12 +14,14 @@ Updated 7 November 2026. Start here in a new thread; also read [AGENTS.md](AGENT
 
 ## Source of truth and release evidence
 
+Current distribution packaging includes 25 files, including root favicon.ico. The historical Sites/itch.io evidence below predates the branding changes; do not describe those origins as synchronized with current main without a fresh comparison.
+
 - Repository: [Joenasriani/diorama-game](https://github.com/Joenasriani/diorama-game), branch `main`. Verify HEAD before work.
-- Runtime baseline: `230168317db7c8d566a06d314788c167ff8ca051`. Later documentation commits may advance HEAD without changing the game.
+- Runtime source baseline: `06401531142d8f2dce37a3724113a9252a2b1827`, including artwork/favicon metadata. Gameplay/movie code is unchanged from `2301683`. Later maintenance commits may advance HEAD.
 - Machine-readable state: [docs/RELEASE_STATE.json](docs/RELEASE_STATE.json). Latest audit: [7 November audit](docs/RECONCILIATION_AUDIT_2026-11-07.md). File responsibilities: [inventory](docs/FILE_INVENTORY.md).
-- All 19 runtime/assets/license files matched Sites version 7 by Git blob hash. The ending blob is `8501ea003692149ed816e96170d377335f02f785`.
+- At historical baseline `2301683`, all 19 runtime/assets/license files matched Sites version 7 by Git blob hash. Current HTML hashes and six added branding assets are listed in RELEASE_STATE.json; current Sites branding parity has not been reverified.
 - Vercel reported success for the baseline. GitHub validation, Pages and ZIP packaging succeeded. These statuses do not prove full gameplay.
-- The deterministic itch.io ZIP contains 19 files, 5,341,891 bytes, SHA-256 `e19c1456b66d7b54ceadaf58399fd8fea122dc5dfcda0d59360c7ef993f9310e`. It matches GitHub Actions' package checksum. The user uploaded it; the itch.io editor showed that filename selected for browser play, and the live iframe used upload 20340283. Hosted bytes were not downloaded and hash-compared.
+- The historical uploaded itch.io ZIP contains 19 files, 5,341,891 bytes, SHA-256 `e19c1456b66d7b54ceadaf58399fd8fea122dc5dfcda0d59360c7ef993f9310e`. It matches GitHub Actions' package checksum. The user uploaded it; the itch.io editor showed that filename selected for browser play, and the live iframe used upload 20340283. Hosted bytes were not downloaded and hash-compared.
 - The itch.io description now says 25 levels, links to ChatGPT Sites, and lists the latest fixes. [Published devlog](https://joenasr.itch.io/diorama/devlog/1759746/diorama-3d-puzzle-game-update-ending-audio-and-browser-play). No follower-notification delivery or search ranking claim.
 
 ## Live destinations and synchronization

@@ -3,16 +3,23 @@
   "as_of": "2026-11-07",
   "repository": "Joenasriani/diorama-game",
   "authoritative_branch": "main",
-  "runtime_baseline_commit": "230168317db7c8d566a06d314788c167ff8ca051",
+  "runtime_baseline_commit": "06401531142d8f2dce37a3724113a9252a2b1827",
   "head_policy": "Resolve live main HEAD; documentation commits can advance without changing the runtime baseline.",
   "level_count": 25,
   "ending_duration_seconds": 60,
   "visible_game_version": "v1.0",
   "runtime_git_blobs": {
+    "index.html": "60b91e33fdaed8a026b525d4014a93042a0c0d99",
     "LICENSE": "8c97ea196bc1a7a45c604ef24ff3c9371f9846b5",
     "THIRD_PARTY_LICENSES.md": "a3e15608addc9a6bdb48ff2e29471d272275e8ce",
+    "favicon.ico": "df5c76c5693b0be4c7a16059f87fdb11edfde153",
     "assets/fonts/AmaticSC-Bold.ttf": "b80128b823ae836cd6bfdf4a26c1911a99a5c754",
     "assets/fonts/AmaticSC-Regular.ttf": "b860368bec2246d3c268c075167c9d7333d454d0",
+    "assets/icons/apple-touch-icon.png": "61302d8d3e50511762a8b35f8f0060944a252d8e",
+    "assets/icons/favicon-32.png": "a1b509e7e8a3623e82e611c2fe36e7b4932737a1",
+    "assets/icons/icon-192.png": "81add1255946f56330e0d40e300dbf60c1a1b54a",
+    "assets/icons/icon-512.png": "94a07e13a0d153df4d02185fac0384cfcc70ac34",
+    "assets/images/diorama-preview.jpg": "b950b9dee7b6f773c8f6b6c1d993653ecd2bcd5a",
     "assets/music/hitslab-game-gaming-music-295075.mp3": "80b6a017b7d71348662220d0260b57414bcd02ec",
     "ending/audio/door.mp3": "bdba55d82a8259bfc0024f453e059b09b89a1a51",
     "ending/audio/dragon-boom.mp3": "c72bc1795bde54b3cc87af431e87760aa63f6edb",
@@ -25,9 +32,8 @@
     "ending/audio/stomp.mp3": "73e64a311d4b142817fabaf296b2c3a89c662781",
     "ending/audio/wind.mp3": "816a4ca6ab530ec5515b969e2ee4d8f01320a5bb",
     "ending/audio/wings.mp3": "ec303e3ffd17432fc606c3ae4fe77f823933ab93",
-    "ending/index.html": "8501ea003692149ed816e96170d377335f02f785",
-    "index.html": "dc13b37e2578bf8965b827a25c994e1d2ab2a038",
-    "invest/index.html": "11102c8ec371cd8a09e9552e4b910980e7249771"
+    "ending/index.html": "de501eca349b550b27b497162861c8e8c953bc2c",
+    "invest/index.html": "fa0afa85932a4328567325951c76390c0df5e0c8"
   },
   "ending_mix": {
     "music": 0.72,
@@ -45,7 +51,8 @@
     "version": 7,
     "source_commit": "2ee765eae973b0af8d391491848dc3ba6de8fa53",
     "access": "public",
-    "automatic_github_sync": false
+    "automatic_github_sync": false,
+    "verification_scope": "Historical version 7 comparison at 2301683; latest artwork/favicon parity not reverified."
   },
   "itchio": {
     "url": "https://joenasr.itch.io/diorama",
@@ -55,10 +62,11 @@
     "file_count": 19,
     "observed_upload_id": 20340283,
     "evidence": "User uploaded; editor selected this file for browser play; live iframe used upload ID. Hosted bytes not downloaded/hash-compared.",
-    "devlog": "https://joenasr.itch.io/diorama/devlog/1759746/diorama-3d-puzzle-game-update-ending-audio-and-browser-play"
+    "devlog": "https://joenasr.itch.io/diorama/devlog/1759746/diorama-3d-puzzle-game-update-ending-audio-and-browser-play",
+    "verification_scope": "Historical uploaded package at 2301683; excludes subsequent artwork/favicon changes."
   },
   "verified": [
-    "19 runtime/assets/license Git blobs matched Sites source",
+    "Historical baseline: 19 runtime/assets/license Git blobs matched Sites version 7 source",
     "ZIP checksum equals GitHub Actions package",
     "JavaScript syntax and 25-level structural validator passed",
     "Vercel commit status and GitHub validation/Pages/package runs succeeded for runtime baseline",
@@ -71,6 +79,8 @@
     "hosted-byte parity across all origins",
     "follower notification delivery or search rankings",
     "PayPal checkout/fulfillment",
-    "remaining asset provenance and redistribution permissions"
-  ]
+    "remaining asset provenance and redistribution permissions",
+    "Latest artwork/favicon parity and publication across Sites and itch.io"
+  ],
+  "runtime_file_count": 25
 }

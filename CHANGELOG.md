@@ -1,5 +1,9 @@
 # Changelog
 
+## 7 November 2026 – branding synchronization records and packaging
+
+Updated current runtime hashes and the 25-file inventory for artwork/favicon changes. Added root favicon.ico to the ZIP contents, required-file checks and workflow triggers. Distinguished historical Sites/itch.io evidence from current unverified branding parity. No gameplay/movie code changed.
+
 ## 7 November 2026 – preview-image metadata
 
 Added the supplied complete DIORAMA artwork at assets/images/diorama-preview.jpg (1536 × 1219). Game, ending and investor pages declare Open Graph image/type/dimensions/alt text and Twitter large-image card metadata. GitHub source uses the Vercel origin; the ChatGPT Sites edition uses its own origin for the same image. Existing favicon links are preserved. These tags support link previews; use by the ChatGPT Sites-list thumbnail remains unverified. No gameplay, audio or payment behavior changed.
