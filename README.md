@@ -1,16 +1,43 @@
-<p align="left"><img src="docs/screenshots/logo.png" width="130" alt="DIORAMA logo"></p>
+# DIORAMA – Free 3D Mechanical Puzzle Game
 
-A free, buildless browser 3D mechanical puzzle game with **25 levels** and a **60-second ending**. Current implementation and release evidence: [AI handoff](AI_HANDOFF_DIORAMA.md) · [release state](docs/RELEASE_STATE.json) · [7 November audit](docs/RECONCILIATION_AUDIT_2026-11-07.md).
+<p align="left"><img src="docs/screenshots/logo.png" width="130" alt="DIORAMA 3D puzzle game logo" /></p>
 
-> **Continuing DIORAMA in a new AI thread?** Start with [AI_HANDOFF_DIORAMA.md](AI_HANDOFF_DIORAMA.md) and [REPOSITORY_MAINTENANCE_PROTOCOL.md](REPOSITORY_MAINTENANCE_PROTOCOL.md) – current architecture, protected game/film decisions, funding page, dated deployment evidence, open QA and safe change-reconciliation steps.
+**DIORAMA** is a free 3D browser puzzle game by **Joe Nasr**. Guide a small robot through **25 levels** of miniature, isometric-style structures. Operate bridges, lifts, switches and gates to reshape the route, solve spatial logic puzzles and reach the goal. Complete the final level to unlock a **60-second cinematic ending**.
 
+**[Play DIORAMA on itch.io](https://joenasr.itch.io/diorama)** · **[Play on ChatGPT Sites](https://diorama-native-game.joenasr.chatgpt.site)** · **[Play in your browser](https://diorama-game.vercel.app/)**
 
-[**Play DIORAMA on itch.io**](https://joenasr.itch.io/diorama) · [**Play the browser deployment**](https://diorama-game.vercel.app) · [**Play on ChatGPT Sites**](https://diorama-native-game.joenasr.chatgpt.site)
+No download or account is required to play. DIORAMA uses Three.js and WebGL, with mouse and touch controls for desktop, tablet and mobile browsers. Progress is saved locally in each browser.
 
-Explore compact isometric structures, operate bridges, lifts, gates, and switches, and guide a robot through routes whose connectivity changes as the puzzle responds.
+## Choose your play link
 
-**Interested in the project?** Star the repository to bookmark its development. Developers can explore the game code and contribute improvements. Contribution guidelines, issue templates, a pull request checklist, and a structural level validator are available. See [CONTRIBUTING.md](CONTRIBUTING.md) before proposing a change.
+| Platform | Game link |
+| --- | --- |
+| itch.io | [DIORAMA – play the HTML5 puzzle game](https://joenasr.itch.io/diorama) |
+| ChatGPT Sites | [DIORAMA – play the 3D robot puzzle game](https://diorama-native-game.joenasr.chatgpt.site) |
+| Direct browser edition | [DIORAMA – play online](https://diorama-game.vercel.app/) |
 
+Joe confirmed on 7 November 2026 that the itch.io and ChatGPT Sites links work. Release comparisons and technical QA are tracked separately in [release state](docs/RELEASE_STATE.json).
+
+## About the game
+
+- **25 handcrafted levels:** explore layered miniature structures and changing routes.
+- **Mechanical and spatial puzzles:** connect paths using bridges, lifts, crates, keys, switches and gates.
+- **Click or tap navigation:** move the robot along reachable tiles and interact with puzzle mechanisms.
+- **3D camera controls:** orbit to inspect the structure; touch controls also support two-finger camera movement and pinch zoom.
+- **Local progress:** return to unlocked levels and track best move counts in the same browser.
+- **Cinematic finale:** finish Level 25 to reveal the ending, or watch it directly below with spoilers.
+
+## Languages
+
+[English](README.md) · [العربية](docs/i18n/README.ar.md) · [Deutsch](docs/i18n/README.de.md) · [Español](docs/i18n/README.es.md) · [Français](docs/i18n/README.fr.md) · [日本語](docs/i18n/README.ja.md) · [한국어](docs/i18n/README.ko.md) · [Português (Brasil)](docs/i18n/README.pt-BR.md) · [简体中文](docs/i18n/README.zh-CN.md) · [繁體中文](docs/i18n/README.zh-TW.md)
+
+These links introduce the project in each language; they do not indicate translated in-game interfaces.
+
+## Developer documentation
+
+DIORAMA is a static, buildless Three.js game. The repository includes the playable distribution, local assets, level-authoring notes and a structural level validator.
+
+[Run locally](#running-locally) · [Controls](#controls) · [Contribute](CONTRIBUTING.md) · [Level authoring](docs/LEVEL_AUTHORING.md) · [Release process](docs/RELEASE_PROCESS.md) · [Current AI handoff](AI_HANDOFF_DIORAMA.md)
 
 ## The ending cinematic
 
@@ -27,7 +54,7 @@ Explore compact isometric structures, operate bridges, lifts, gates, and switche
 >
 > **[EXPLORE DIORAMA 2 · SUPPORT THE NEXT CHAPTER](https://diorama-game.vercel.app/invest/)** – Discover the sequel plans and optional supporter backing tiers. Contributions are not equity investments.
 
-The 60-second ending is an interactive Three.js experience with its original camera choreography and soundtrack. The linked image is existing DIORAMA **game/social artwork**, not a frame captured from the cinematic. GitHub READMEs cannot execute the scene inline, so it links to the hosted film. **Spoiler:** this reveals the game's finale without completing Level 25. The DIORAMA 2 page introduces the sequel and its optional, non-equity supporter tiers.
+The 60-second ending is a Three.js cinematic with playback controls, original camera choreography and soundtrack. The linked image is existing DIORAMA **game/social artwork**, not a frame captured from the cinematic. GitHub READMEs cannot execute the scene inline, so it links to the hosted film. **Spoiler:** this reveals the game's finale without completing Level 25. The DIORAMA 2 page introduces the sequel and its optional, non-equity supporter tiers.
 
 ## Gameplay screenshots
 
@@ -39,7 +66,7 @@ The 60-second ending is an interactive Three.js experience with its original cam
   <a href="docs/screenshots/level-10.jpg"><img src="docs/screenshots/level-10.jpg" width="125" alt="DIORAMA Level 10"></a>
 </p>
 
-<sub>Existing gameplay captures, not newly captured for the 4 November release. Select a thumbnail to view the full image.</sub>
+<sub>Gameplay screenshots from DIORAMA. Select a thumbnail to view the full image.</sub>
 
 ## Exploring and extending DIORAMA
 
@@ -56,34 +83,13 @@ The current distribution keeps the level definitions and engine logic together i
 
 After verified completion of Level 25, the current repository build launches a locally bundled 60-second ending cinematic. The ending preserves the recorded final win, pauses the underlying game renderer and background music, and provides clear routes to play again from Level 1 or view the DIORAMA 2 project page. See [ENDING_INTEGRATION_NOTES.md](ENDING_INTEGRATION_NOTES.md) for the integration boundary and validation record.
 
-## Current implementation and publication state
+## Release and publication information
 
-Current runtime source baseline: `06401531142d8f2dce37a3724113a9252a2b1827`, including artwork/favicon metadata. The earlier 19-file release at `2301683` matched public ChatGPT Sites version 7 by Git blob hash; that historical comparison does not establish current branding parity. Current ZIP packaging includes 25 files. Vercel reported success; GitHub validation, Pages and packaging succeeded. Sites publishes separately from GitHub; a push does not update it automatically. See [release procedure](docs/RELEASE_PROCESS.md).
+The repository contains 25 levels, the 60-second ending and the DIORAMA 2 support page. itch.io and ChatGPT Sites are working play destinations, confirmed by Joe on 7 November 2026. Vercel hosts the direct browser edition.
 
-The latest itch.io ZIP matches the Actions checksum; its upload was selected for browser play. The live page now lists 25 levels, links to Sites and includes the [7 November devlog](https://joenasr.itch.io/diorama/devlog/1759746/diorama-3d-puzzle-game-update-ending-audio-and-browser-play). Hosted-byte parity and full gameplay are separate, unverified checks.
+The runtime baseline and packaging details are maintained in [release state](docs/RELEASE_STATE.json), with changes in [CHANGELOG.md](CHANGELOG.md). Sites and itch.io publish separately from GitHub. Link availability does not establish identical hosted files; current cross-host byte comparison remains a separate release check.
 
-The current movie uses .72 music, .0165–.069 exterior jumps, .060 interior jumps and a 1.6 princess call with a brief additional 35% music duck. All audio is predecoded; fonts/audio/scene warmup precede playback from zero. A tap prompt handles blocked enabled audio. Dragon landing/stomp dust clears the tiles; stomp dust follows the foot. The final support link opens externally in a new tab. See [ending contract](ENDING_INTEGRATION_NOTES.md) for current behavior and [CHANGELOG.md](CHANGELOG.md) for history.
-
-**Current DIORAMA 2 support page:** [Open the live page](https://diorama-game.vercel.app/invest/). The page reuses the original Three.js ending scene in a non-interactive embedded header and retains the castle/title artwork rather than replacing it with a CSS approximation. The header's investor-only presentation uses a mirrored left-half render, a solid muted-blue backdrop (`#5b777d`), a startup visibility gate and adjusted framing. The page currently displays **Early Explorer – $15**, **Founding Supporter – $35**, and **Patron – $100**, along with a prominent **Choose your backing tier** link to [PayPal checkout](https://www.paypal.com/ncp/payment/NYRC4Q6FTYXBJ). The link's presence is verified in repository HTML; successful checkout, reward fulfillment and payment-provider configuration have **not** been independently verified. Supporter backing is not an offer of equity or revenue participation. The castle's final centre-seam and lower-edge appearance still require visual confirmation on real devices.
-
-
-**Cinematic loading behavior:** The movie shows a bar-only loading overlay until fonts, all decoded audio, and representative scene/shader warmup are complete. Its 60-second timeline and enabled sound start together afterward; a tap prompt handles blocked automatic audio. The backing-page castle iframe is revealed only on the same-origin `diorama-ending-scene-ready` message, not simply its `onload`; an unresolved-load fallback is linked. **Real-device elimination of the previously observed brief brown flash is still unverified.** See [ending integration notes](ENDING_INTEGRATION_NOTES.md).
-
-The earlier 2 November gameplay revision includes:
-
-- corrected and simplified routes for Levels 7, 8, 9, 12, 13, 14 and 15;
-- restored Level 25 route integrity checks;
-- visible route-stamp/gate unlock feedback;
-- portal disappearance/reappearance timing with enlarged electrical strikes and transition audio;
-- two-finger touch-camera tracking and pedestal movement while preserving pinch zoom;
-- global reachable-upward-step assistance for small elevated mobile targets;
-- route-aligned folding-bridge stems with structural validation for every bridge.
-
-The detailed approval register is maintained in [`docs/UPGRADE_LEVELS_AND_FIXES.md`](docs/UPGRADE_LEVELS_AND_FIXES.md). Structural validation does not replace manual playthroughs; remaining level audits continue separately.
-
-## Screenshots and gameplay footage
-
-The [itch.io game page](https://joenasr.itch.io/diorama) publicly lists **25 levels** and the latest uploaded package is selected for browser play. The generated package matches the release checksum; hosted-byte comparison remains open. Five actual gameplay screenshots are available in the [gallery above](#gameplay-screenshots), along with a [social-preview asset](docs/screenshots/social-preview.png).
+For implementation details and remaining device QA, see the [AI handoff](AI_HANDOFF_DIORAMA.md), [ending integration notes](ENDING_INTEGRATION_NOTES.md) and [upgrade register](docs/UPGRADE_LEVELS_AND_FIXES.md).
 
 ## GitHub participation
 
@@ -366,7 +372,7 @@ Using an HTTP server is preferred over opening the page directly with `file://`,
 
 ## Deploying
 
-Publish the repository's `index.html`, `assets/`, `ending/` and `invest/` together on a static HTTP(S) host, preserving their relative paths. No dependency installation or build command is required. Uploading only `index.html` omits required fonts, audio and ending pages.
+Publish the repository's `index.html`, `favicon.ico`, `assets/`, `ending/`, `invest/`, `LICENSE` and `THIRD_PARTY_LICENSES.md` together on a static HTTP(S) host, preserving their relative paths. No dependency installation or build command is required. Uploading only `index.html` omits required fonts, audio and ending pages.
 
 Run `node scripts/validate-levels.cjs` before publication, then follow [the release checklist](docs/RELEASE_PROCESS.md). The level-validation GitHub workflow tests structure, not gameplay. A separate GitHub Actions workflow runs on manual dispatch and matching runtime/package-path pushes to `main`, packages an itch.io-compatible ZIP **artifact** but does not publish to itch.io. Vercel and GitHub Pages hosting deployments are separate from those workflows and must be checked against the intended commit. Verify the actual hosted files against the release commit before claiming parity.
 

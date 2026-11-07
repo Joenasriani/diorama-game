@@ -1,10 +1,12 @@
-<div dir="ltr" align="left">
+<div dir="rtl" align="right">
 <p><a href="../../README.md">English</a> · <a href="README.zh-CN.md">简体中文</a> · <a href="README.ja.md">日本語</a> · <a href="README.ko.md">한국어</a> · <a href="README.es.md">Español</a> · <a href="README.pt-BR.md">Português (Brasil)</a> · <a href="README.de.md">Deutsch</a> · <a href="README.fr.md">Français</a> · <a href="README.ar.md">العربية</a> · <a href="README.zh-TW.md">繁體中文</a></p>
-<h1>DIORAMA – دليل باللغة العربية</h1>
+<h1>DIORAMA – لعبة ألغاز ميكانيكية ثلاثية الأبعاد مجانية</h1>
+<p>لعبة مجانية تضم 25 مستوى ونهاية سينمائية مدتها 60 ثانية.</p>
 <p><strong>DIORAMA</strong> لعبة ألغاز ميكانيكية ثلاثية الأبعاد تعمل مباشرة في المتصفح. وجّه روبوتًا صغيرًا عبر عوالم مصغّرة، واستخدم الجسور والمصاعد والمفاتيح والبوابات للوصول إلى الهدف.</p>
 <h2>العب الآن</h2>
 <p>• <a href="https://joenasr.itch.io/diorama">صفحة اللعبة على itch.io</a></p>
 <p>• <a href="https://diorama-game.vercel.app">نسخة المتصفح</a></p>
+<p>• <a href="https://diorama-native-game.joenasr.chatgpt.site">العب على ChatGPT Sites</a></p>
 <h2>المشروع والمساهمة</h2>
 <p>تحتوي نسخة مستودع GitHub على <strong>25 مستوى</strong>. توجد بيانات المستويات ومحرك Three.js داخل ملف <code>index.html</code>، ولا تحتاج إلى عملية بناء. تحتوي DIORAMA على 25 مستوى، وقد حُدّث وصف itch.io ليذكر العدد نفسه في 7 نوفمبر 2026. راجع ملف README الرئيسي باللغة الإنجليزية لمعرفة حالة الإصدار الحالية.</p>
 <p>يمكنك اقتراح مستويات جديدة، والإبلاغ عن الأخطاء القابلة لإعادة الإنتاج، وتحسين التحكم باللمس وإمكانية الوصول. راجع <a href="../../CONTRIBUTING.md">دليل المساهمة</a> و<a href="../LEVEL_AUTHORING.md">وثيقة تصميم المستويات</a>. لم تُنفّذ بعد ميزة استيراد حزم مستويات مستقلة، ولا يعني نجاح الاختبار البنيوي أن اللغز قابل للحل.</p>

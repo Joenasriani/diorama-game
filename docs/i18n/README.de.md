@@ -1,12 +1,16 @@
 [English](../../README.md) · [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [Español](README.es.md) · [Português (Brasil)](README.pt-BR.md) · [Deutsch](README.de.md) · [Français](README.fr.md) · [العربية](README.ar.md) · [繁體中文](README.zh-TW.md)
 
-# DIORAMA – Deutschsprachige Übersicht
+# DIORAMA – Kostenloses 3D-Mechanik-Puzzlespiel
+
+Ein kostenloses Browser-Puzzlespiel mit 25 Leveln und einem 60-sekündigen Filmfinale.
 
 **DIORAMA** ist ein browserbasiertes 3D-Mechanikrätsel. Steuere einen kleinen Roboter durch Miniaturwelten und nutze Brücken, Aufzüge, Schalter und Tore, um den richtigen Weg zu finden.
 
 ## Spielen
+
 - [itch.io](https://joenasr.itch.io/diorama)
 - [Browserversion](https://diorama-game.vercel.app)
+- [Auf ChatGPT Sites spielen](https://diorama-native-game.joenasr.chatgpt.site)
 
 ## Quellcode und Beiträge
 Die im GitHub-Repository enthaltene Ausgabe umfasst **25 Level**. Leveldefinitionen und Three.js-Laufzeit befinden sich gemeinsam in `index.html`; ein Build-Schritt ist nicht erforderlich. DIORAMA hat 25 Level; die itch.io-Seite nennt seit dem 7. November 2026 ebenfalls 25 Level. Den aktuellen Veröffentlichungsstand dokumentiert die englische Haupt-README.
@@ -14,6 +18,7 @@ Die im GitHub-Repository enthaltene Ausgabe umfasst **25 Level**. Leveldefinitio
 Willkommen sind Vorschläge für neue Level, nachvollziehbare Fehlerberichte sowie Ideen zur Verbesserung von Touch-Steuerung, Barrierefreiheit und Mechaniken. Siehe [Beitragsrichtlinien](../../CONTRIBUTING.md) und [Level-Dokumentation](../LEVEL_AUTHORING.md). Ein Import externer Levelpakete existiert noch nicht; strukturelle Tests beweisen nicht die Lösbarkeit eines Rätsels.
 
 ## Lokal starten
+
 ```sh
 python3 -m http.server 8080
 ```

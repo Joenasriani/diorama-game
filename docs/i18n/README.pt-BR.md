@@ -1,12 +1,16 @@
 [English](../../README.md) · [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [Español](README.es.md) · [Português (Brasil)](README.pt-BR.md) · [Deutsch](README.de.md) · [Français](README.fr.md) · [العربية](README.ar.md) · [繁體中文](README.zh-TW.md)
 
-# DIORAMA – Guia em português (Brasil)
+# DIORAMA – Jogo gratuito de quebra-cabeças mecânicos em 3D
+
+Um jogo gratuito para navegador com 25 fases e uma cinemática final de 60 segundos.
 
 **DIORAMA** é um jogo de quebra-cabeças mecânicos em 3D para navegador. Guie um pequeno robô por estruturas em miniatura, usando pontes, elevadores, interruptores e portões para encontrar o caminho correto.
 
 ## Jogar
+
 - [Página no itch.io](https://joenasr.itch.io/diorama)
 - [Versão para navegador](https://diorama-game.vercel.app)
+- [Jogar no ChatGPT Sites](https://diorama-native-game.joenasr.chatgpt.site)
 
 ## Código e contribuições
 A edição disponível no GitHub contém **25 fases**. As definições de fases e o runtime Three.js estão incorporados ao `index.html`, sem etapa de compilação. DIORAMA tem 25 fases; a página no itch.io também informa 25 fases desde 7 de novembro de 2026. Consulte a README principal em inglês para o estado atual da versão.
@@ -14,6 +18,7 @@ A edição disponível no GitHub contém **25 fases**. As definições de fases 
 Você pode propor novas fases, relatar problemas reproduzíveis e sugerir melhorias de controles móveis, acessibilidade e mecânicas. Consulte o [guia de contribuição](../../CONTRIBUTING.md) e a [documentação de fases](../LEVEL_AUTHORING.md). Ainda não existe um carregador de pacotes externos; a validação estrutural não comprova que uma fase possa ser resolvida.
 
 ## Executar localmente
+
 ```sh
 python3 -m http.server 8080
 ```

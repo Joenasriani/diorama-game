@@ -1,12 +1,16 @@
 [English](../../README.md) · [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [Español](README.es.md) · [Português (Brasil)](README.pt-BR.md) · [Deutsch](README.de.md) · [Français](README.fr.md) · [العربية](README.ar.md) · [繁體中文](README.zh-TW.md)
 
-# DIORAMA – 日本語ガイド
+# DIORAMA – 無料の3Dメカニカルパズルゲーム
+
+25レベルと60秒のエンディング映像を備えた、無料のブラウザーパズルゲームです。
 
 **DIORAMA** は、ブラウザーで遊べる 3D メカニカルパズルゲームです。小さなロボットを操作し、橋、リフト、スイッチ、ゲートなどの仕掛けを使ってゴールへの道を見つけます。
 
 ## プレイする
+
 - [itch.io](https://joenasr.itch.io/diorama)
 - [ブラウザー版](https://diorama-game.vercel.app)
+- [ChatGPT Sitesでプレイ](https://diorama-native-game.joenasr.chatgpt.site)
 
 ## ソースと参加方法
 GitHub にあるゲームは **25 レベル**構成です。レベル定義と Three.js ランタイムは `index.html` に含まれ、ビルド作業は不要です。DIORAMA は25レベルです。2026年11月7日現在、itch.io の説明も25レベルに更新されています。最新の公開状況は英語版 README を参照してください。
@@ -14,6 +18,7 @@ GitHub にあるゲームは **25 レベル**構成です。レベル定義と T
 新しいレベルの提案、バグ報告、モバイル操作性やアクセシビリティの改善案を歓迎します。[貢献ガイド](../../CONTRIBUTING.md) と [レベル設計資料](../LEVEL_AUTHORING.md) を参照してください。独立したレベルパックの読み込み機能は未実装で、構造検証だけではクリア可能性は保証されません。
 
 ## ローカル起動
+
 ```sh
 python3 -m http.server 8080
 ```

@@ -1,5 +1,9 @@
 # Changelog
 
+## 7 November 2026 – README discoverability and play links
+
+Added a descriptive game title, player-focused introduction, features, language navigation and clear play links to the main README. Updated all nine localized introductions with descriptive titles, 25-level/60-second summaries and ChatGPT Sites links; corrected Arabic reading direction. Recorded Joe’s confirmation that itch.io and Sites links work, separately from hosted-byte parity. Preserved archived README snapshots and runtime files.
+
 ## 7 November 2026 – branding synchronization records and packaging
 
 Updated current runtime hashes and the 25-file inventory for artwork/favicon changes. Added root favicon.ico to the ZIP contents, required-file checks and workflow triggers. Distinguished historical Sites/itch.io evidence from current unverified branding parity. No gameplay/movie code changed.

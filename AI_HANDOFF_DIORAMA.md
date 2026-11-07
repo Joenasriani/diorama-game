@@ -1,5 +1,9 @@
 # DIORAMA – Current AI continuation handoff
 
+## 7 November 2026 – README and play-link clarification
+
+Joe confirmed that the itch.io and ChatGPT Sites links work. Treat both as working play destinations; link availability does not establish current hosted-byte parity. Main README now leads with the game description, features and play links; all nine localized overviews include Sites. Archived README material remains historical. Descriptive search wording improves clarity without claiming indexing or rankings. No runtime changes or republishing required.
+
 ## 7 November 2026 – preview-image metadata
 
 Added the supplied complete DIORAMA artwork at assets/images/diorama-preview.jpg (1536 × 1219). Game, ending and investor pages declare Open Graph image/type/dimensions/alt text and Twitter large-image card metadata. GitHub source uses the Vercel origin; the ChatGPT Sites edition uses its own origin for the same image. Existing favicon links are preserved. These tags support link previews; use by the ChatGPT Sites-list thumbnail remains unverified. No gameplay, audio or payment behavior changed.

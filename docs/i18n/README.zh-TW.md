@@ -1,12 +1,16 @@
 [English](../../README.md) · [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [Español](README.es.md) · [Português (Brasil)](README.pt-BR.md) · [Deutsch](README.de.md) · [Français](README.fr.md) · [العربية](README.ar.md) · [繁體中文](README.zh-TW.md)
 
-# DIORAMA – 繁體中文簡介
+# DIORAMA – 免費 3D 機械解謎遊戲
+
+免費瀏覽器解謎遊戲，包含 25 個關卡與 60 秒結局動畫。
 
 **DIORAMA** 是一款能在瀏覽器遊玩的 3D 機械解謎遊戲。引導小型機器人穿越微縮場景，操作橋樑、升降台、開關與閘門，找出通往目標的路線。
 
 ## 開始遊玩
+
 - [itch.io 遊戲頁面](https://joenasr.itch.io/diorama)
 - [瀏覽器版本](https://diorama-game.vercel.app)
+- [在 ChatGPT Sites 遊玩](https://diorama-native-game.joenasr.chatgpt.site)
 
 ## 專案與參與
 GitHub 儲存庫中的版本包含 **25 個關卡**。關卡資料與 Three.js 執行程式均位於 `index.html`，不需要額外建置程序。DIORAMA 共 25 關；截至 2026 年 11 月 7 日，itch.io 頁面也已註明 25 關。最新發布狀態請參閱英文主 README。
@@ -14,6 +18,7 @@ GitHub 儲存庫中的版本包含 **25 個關卡**。關卡資料與 Three.js �
 歡迎提出新關卡構想、回報可重現的錯誤，以及建議改進觸控操作、無障礙體驗與遊戲機制。請參閱 [貢獻指南](../../CONTRIBUTING.md) 與 [關卡設計文件](../LEVEL_AUTHORING.md)。目前沒有獨立關卡套件匯入功能；結構驗證通過不代表謎題一定能完成。
 
 ## 本機執行
+
 ```sh
 python3 -m http.server 8080
 ```

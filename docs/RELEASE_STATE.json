@@ -52,7 +52,11 @@
     "source_commit": "2ee765eae973b0af8d391491848dc3ba6de8fa53",
     "access": "public",
     "automatic_github_sync": false,
-    "verification_scope": "Historical version 7 comparison at 2301683; latest artwork/favicon parity not reverified."
+    "verification_scope": "Historical version 7 comparison at 2301683; latest artwork/favicon parity not reverified.",
+    "link_availability": {
+      "status": "working",
+      "evidence": "Confirmed by Joe in conversation on 7 November 2026; not a hosted-byte parity check."
+    }
   },
   "itchio": {
     "url": "https://joenasr.itch.io/diorama",
@@ -63,7 +67,11 @@
     "observed_upload_id": 20340283,
     "evidence": "User uploaded; editor selected this file for browser play; live iframe used upload ID. Hosted bytes not downloaded/hash-compared.",
     "devlog": "https://joenasr.itch.io/diorama/devlog/1759746/diorama-3d-puzzle-game-update-ending-audio-and-browser-play",
-    "verification_scope": "Historical uploaded package at 2301683; excludes subsequent artwork/favicon changes."
+    "verification_scope": "Historical uploaded package at 2301683; excludes subsequent artwork/favicon changes.",
+    "link_availability": {
+      "status": "working",
+      "evidence": "Confirmed by Joe in conversation on 7 November 2026; not a hosted-byte parity check."
+    }
   },
   "verified": [
     "Historical baseline: 19 runtime/assets/license Git blobs matched Sites version 7 source",
