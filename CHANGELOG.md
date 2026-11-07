@@ -1,5 +1,10 @@
 # Changelog
 
+## 7 November 2026 – cinematic preparation and Sites synchronization
+
+Restored the current GitHub runtime to the stale Sites edition, including the .85 score mix, updated footstep/effect balance and movie loader. The ending now waits for complete audio downloads/decoding, fonts and representative shader/render warmup before starting picture and enabled sound at zero. Preparation failures offer retry instead of playing incomplete content. See ENDING_INTEGRATION_NOTES.md. Parser, readiness-state and structural checks passed; WebGL creation failed in the available browser, so visual/audio device QA remains open. Vercel and itch.io production parity is not established.
+
+
 ## Repository-wide authoritative-state reconciliation – 6 November 2026
 
 - Rechecked live GitHub `main` and Vercel production before any edits, with both aligned to `0a1cfe986b4c5b3cc9a227c06730af0d1717aa91` and production `READY`. Historical earlier commits retained without reinterpretation.
