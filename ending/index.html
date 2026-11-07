@@ -36,9 +36,9 @@
   #movieLoading{position:fixed;inset:0;z-index:2147483647;display:grid;place-items:center;background:#58afe8;pointer-events:auto}
   #movieLoading[hidden]{display:none!important}
   #movieLoadingBarFrame{position:relative;width:min(156px,calc(100vw - 48px));height:clamp(14px,2.2vw,18px);border:2px solid rgba(255,255,255,.88);border-radius:999px;background:rgba(255,255,255,.28);overflow:hidden;box-shadow:0 4px 10px rgba(4,45,91,.14)}
-  #movieLoadingBar{position:absolute;left:2px;top:2px;bottom:2px;width:35%;border-radius:999px;background:linear-gradient(180deg,rgba(255,255,255,.98),rgba(255,240,186,.98) 60%,rgba(255,219,118,.98));animation:dioramaMovieLoad 1.1s ease-in-out infinite alternate}
+  #movieLoadingBar{position:absolute;left:2px;top:2px;bottom:2px;width:0%;border-radius:999px;background:linear-gradient(180deg,rgba(255,255,255,.98),rgba(255,240,186,.98) 60%,rgba(255,219,118,.98));transition:width .15s linear}
   @keyframes dioramaMovieLoad{from{transform:translateX(-110%)}to{transform:translateX(280%)}}
-  @media(prefers-reduced-motion:reduce){#movieLoadingBar{animation:none;width:60%;transform:none}}
+  @media(prefers-reduced-motion:reduce){#movieLoadingBar{transition:none}}
   html.pitch-header #movieLoading{background:#5b777d}
   html.pitch-header #movieLoadingBarFrame{display:none}
   html.diorama-scene-ready #movieLoading{display:none}
@@ -59,7 +59,7 @@
     <input id="scrub" type="range" min="0" max="60" step="0.01" value="0" aria-label="Ending timeline"><span class="time" id="time">0.00</span>
   </div>
   <script>
-    window.addEventListener('error',function(event){var box=document.getElementById('diagnostic');if(!box)return;box.style.display='block';box.textContent='Ending preview failed to start:\n'+(event.message||'Unknown JavaScript error');});
+    window.addEventListener('error',function(event){var box=document.getElementById('diagnostic');if(!box)return;box.style.display='block';box.textContent='Ending preview failed to start:\n'+(event.message||'Unknown JavaScript error');var loading=document.getElementById('movieLoading');if(loading){loading.replaceChildren();var retry=document.createElement('button');retry.type='button';retry.textContent='Unable to start ending. Tap to retry';retry.addEventListener('click',function(){location.reload();});loading.appendChild(retry);}});
   </script>
   <script>
 /**
@@ -19459,13 +19459,13 @@
     const active=new Set(),paths={door:'./audio/door.mp3',wings:'./audio/wings.mp3',dragon:'./audio/dragon.mp3',landing:'./audio/landing.mp3',doom:'./audio/dragon-doom.mp3',boom:'./audio/dragon-boom.mp3',stomp:'./audio/stomp.mp3',princess:'./audio/princess-call.mp3'};
     const templates=Object.fromEntries(Object.entries(paths).map(([name,path])=>{const audio=new Audio(path);audio.preload='auto';return [name,audio];}));
     const wind=new Audio('./audio/wind.mp3');wind.preload='auto';wind.loop=true;wind.volume=.3;score.volume=.85;
-    const scoreBytesPromise=fetch('./audio/hero-score-bed.mp3',{cache:'force-cache'}).then(response=>{if(!response.ok)throw new Error(`Score load failed: ${response.status}`);return response.arrayBuffer();});
+    let scoreBytesPromise=null;
     function play(name,volume=1,rate=1,offset=0,maxDuration=0){if(!enabled)return;const audio=templates[name].cloneNode();audio.volume=volume;audio.playbackRate=rate;audio.currentTime=offset;active.add(audio);audio.addEventListener('ended',()=>active.delete(audio),{once:true});audio.play().then(()=>{if(maxDuration)setTimeout(()=>{audio.pause();active.delete(audio);},maxDuration*1000);}).catch(()=>active.delete(audio));}
     // This is the gameplay cue verbatim: a 300 Hz triangle oscillator with a
     // 75 ms exponential envelope. Only its gain follows camera perspective.
     function unlockStepContext(){try{if(!stepCtx)stepCtx=new (window.AudioContext||window.webkitAudioContext)();if(stepCtx.state==='suspended')stepCtx.resume().catch(()=>{});}catch(e){}}
     function playGameStep(gain=.068){if(!enabled)return;try{unlockStepContext();const now=stepCtx.currentTime,master=stepCtx.createGain(),osc=stepCtx.createOscillator();master.gain.setValueAtTime(1e-4,now);master.gain.exponentialRampToValueAtTime(gain,now+.012);master.gain.exponentialRampToValueAtTime(1e-4,now+.075);osc.type='triangle';osc.frequency.setValueAtTime(300,now);osc.connect(master);master.connect(stepCtx.destination);osc.start(now);osc.stop(now+.115);}catch(e){}}
-    function ensureScoreBuffer(){unlockStepContext();if(scoreBuffer)return Promise.resolve(scoreBuffer);if(!scoreLoadPromise)scoreLoadPromise=scoreBytesPromise.then(bytes=>stepCtx.decodeAudioData(bytes.slice(0))).then(buffer=>(scoreBuffer=buffer));return scoreLoadPromise;}
+    function ensureScoreBuffer(){unlockStepContext();if(scoreBuffer)return Promise.resolve(scoreBuffer);if(!scoreLoadPromise)scoreLoadPromise=(scoreBytesPromise||(scoreBytesPromise=fetch('./audio/hero-score-bed.mp3').then(response=>{if(!response.ok)throw new Error('Score load failed');return response.arrayBuffer();}))).then(bytes=>stepCtx.decodeAudioData(bytes.slice(0))).then(buffer=>(scoreBuffer=buffer));return scoreLoadPromise;}
     function stopScore(){scoreRequest++;if(scoreSource){try{scoreSource.stop();}catch(e){}scoreSource.disconnect();scoreSource=null;}score.pause();}
     function startScore(t){scoreWanted=true;latestScoreTime=t;const request=++scoreRequest;ensureScoreBuffer().then(buffer=>{if(!enabled||!scoreWanted||request!==scoreRequest)return;if(scoreSource){try{scoreSource.stop();}catch(e){}scoreSource.disconnect();}if(!scoreGain){scoreGain=stepCtx.createGain();scoreGain.gain.value=.85;scoreGain.connect(stepCtx.destination);}const source=stepCtx.createBufferSource();source.buffer=buffer;source.connect(scoreGain);scoreSource=source;source.onended=()=>{if(scoreSource===source)scoreSource=null;};source.start(0,clamp(latestScoreTime,0,Math.min(SCORE_END,buffer.duration-.02)));}).catch(()=>{if(!enabled||!scoreWanted||request!==scoreRequest)return;score.muted=false;score.currentTime=clamp(latestScoreTime,0,SCORE_END);score.play().catch(()=>{});});}
     function mix(t){
@@ -19499,6 +19499,24 @@
     events.push({t:15.02,fn:()=>play('door',.43)},{t:20.56,fn:()=>play('wings',.48)},{t:21.62,fn:()=>play('landing',.55)},{t:22.08,fn:()=>play('dragon',.48)},{t:29.05,fn:()=>play('princess',.43)},{t:39.92,fn:()=>play('doom',.49)},{t:40.50,fn:()=>{play('stomp',.43);play('boom',.50);}});events.sort((a,b)=>a.t-b.t);
     function sync(t,playing){if(!enabled)return;mix(t);scoreWanted=playing;if(playing){startScore(t);wind.play().catch(()=>{});}else{stopScore();wind.pause();}}
     return {
+      async prepare(onProgress){
+        // Fully download and decode every authored cue before allowing the clock to run.
+        unlockStepContext();
+        const cues=[['score',score],['wind',wind],...Object.entries(templates)];
+        let completed=0;
+        await Promise.all(cues.map(async([name,element])=>{
+          const response=await fetch(element.getAttribute('src'),{cache:'force-cache',signal:AbortSignal.timeout(45000)});
+          if(!response.ok)throw new Error(`Audio load failed: ${name}`);
+          const bytes=await response.arrayBuffer();
+          if(!stepCtx)throw new Error('Audio decoding is unavailable');
+          const decoded=await stepCtx.decodeAudioData(bytes.slice(0));
+          if(name==='score'){scoreBuffer=decoded;scoreBytesPromise=Promise.resolve(bytes);}
+          // Cloned SFX now read a complete local blob, never a partial network stream.
+          element.src=URL.createObjectURL(new Blob([bytes],{type:'audio/mpeg'}));
+          element.load();
+          onProgress(++completed/cues.length);
+        }));
+      },
       get enabled(){return enabled;},
       setEnabled(value,t,playing){enabled=value;if(value){unlockStepContext();sync(t,playing);}else{scoreWanted=false;stopScore();wind.pause();for(const audio of active)audio.pause();active.clear();}soundButton.textContent=value?'Sound On':'Sound Off';soundButton.setAttribute('aria-pressed',String(value));},
       tick(from,to){if(!enabled||to<=from)return;latestScoreTime=to;mix(to);for(const e of events)if(e.t>from&&e.t<=to)e.fn();},
@@ -19511,7 +19529,7 @@
   // ending mix immediately instead of making the player discover a silent
   // "Sound Off" state midway through the finale. The existing first-gesture
   // unlock below remains as a fallback for stricter browser policies.
-  if(embedded && !pitchHeader) soundDirector.setEnabled(new URLSearchParams(location.search).get("sound") === "1",0,true);
+  if(embedded && !pitchHeader) soundDirector.setEnabled(new URLSearchParams(location.search).get("sound") === "1",0,false);
 
   const scene = new Scene();
   scene.background = new Color(0x58afe8);
@@ -19982,9 +20000,9 @@
   // halfway through the finale. Always begin the complete authored sequence
   // at 0s. Reduced-motion remains available to the browser for CSS/UI effects
   // without changing narrative progress.
-  let playing=!pitchHeader, timeline=pitchHeader?ENDING_DURATION:0, last=performance.now();
+  let movieReady=false,playing=false, timeline=pitchHeader?ENDING_DURATION:0, last=performance.now();
   function frame(now){const dt=Math.min(.05,(now-last)/1000),previousTimeline=timeline;last=now;if(playing){timeline+=dt;if(timeline>=ENDING_DURATION){timeline=ENDING_DURATION;setPlaying(false);}}soundDirector.tick(previousTimeline,timeline);update(timeline);scrub.value=timeline.toFixed(2);timeReadout.textContent=timeline.toFixed(2);renderer.render(scene,camera);requestAnimationFrame(frame);}
-  function setPlaying(v){playing=v;playButton.textContent=v?'Pause':'Play';playButton.setAttribute('aria-pressed',String(v));soundDirector.sync(timeline,v);}
+  function setPlaying(v){playing=Boolean(v&&movieReady&&!pitchHeader);v=playing;playButton.textContent=v?'Pause':'Play';playButton.setAttribute('aria-pressed',String(v));soundDirector.sync(timeline,v);}
   function unlockAudioOnFirstGesture(event){if(event.target.closest&&event.target.closest('#sound'))return;if(soundDirector.enabled)soundDirector.setEnabled(true,timeline,playing);removeEventListener('pointerdown',unlockAudioOnFirstGesture,true);}
   addEventListener('pointerdown',unlockAudioOnFirstGesture,true);
   document.getElementById('skipEnding').addEventListener('click',()=>{timeline=ENDING_DURATION;setPlaying(false);update(timeline);});
@@ -20001,20 +20019,45 @@
   addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);renderer.setPixelRatio(pixelRatio());});
   // Prevent partially composed geometry, fonts and the first WebGL frame from being shown.
   // The film's timeline remains at 0 until the loading screen is removed.
-  function revealMovieWhenReady(){
-    const fontsReady = document.fonts && document.fonts.ready ? document.fonts.ready.catch(()=>{}) : Promise.resolve();
-    fontsReady.then(()=>{
-      requestAnimationFrame(()=>{
-        document.documentElement.classList.add('diorama-scene-ready');
-        const loading=document.getElementById('movieLoading');
-        if(loading)loading.hidden=true;
-        if(embedded)window.parent.postMessage({type:'diorama-ending-scene-ready'},location.origin);
-        if(!pitchHeader){
-          last=performance.now();
-          requestAnimationFrame(frame);
+  async function revealMovieWhenReady(){
+    const loading=document.getElementById('movieLoading');
+    const bar=document.getElementById('movieLoadingBar');
+    const progress=value=>{bar.style.width=`${value*100}%`;loading.setAttribute('aria-label',`Loading the DIORAMA cinematic ${Math.round(value*100)}%`);};
+    const nextFrame=()=>new Promise(resolve=>requestAnimationFrame(resolve));
+    try{
+      progress(.05);
+      await (document.fonts?document.fonts.ready:Promise.resolve());
+      if(!pitchHeader){
+        await soundDirector.prepare(value=>progress(.1+value*.65));
+        // Warm each material/geometry and shadow pass behind the opaque loader.
+        // The authored clock and sound remain stopped throughout preparation.
+        for(const [index,t] of [0,18.3,22,30,40.5,49,60].entries()){
+          update(t);
+          if(renderer.compileAsync){let timer;try{await Promise.race([renderer.compileAsync(scene,camera),new Promise((_,reject)=>{timer=setTimeout(()=>reject(new Error('Scene preparation timed out')),45000);})]);}finally{clearTimeout(timer);}}
+          renderer.render(scene,camera);
+          progress(.75+(index+1)/7*.23);
+          await nextFrame();
         }
-      });
-    });
+        update(0);renderer.render(scene,camera);
+      }
+      await nextFrame();await nextFrame();
+      progress(1);await nextFrame();
+      movieReady=true;
+      document.documentElement.classList.add('diorama-scene-ready');
+      loading.hidden=true;
+      if(embedded)window.parent.postMessage({type:'diorama-ending-scene-ready'},location.origin);
+      if(!pitchHeader){
+        timeline=0;last=performance.now();setPlaying(true);
+        requestAnimationFrame(frame);
+      }
+    }catch(error){
+      // Never bypass failed preparation and play an incomplete movie.
+      console.error('DIORAMA cinematic preparation failed',error);
+      loading.replaceChildren();
+      const retry=document.createElement('button');
+      retry.type='button';retry.textContent='Unable to load ending. Tap to retry';
+      retry.addEventListener('click',()=>location.reload());loading.appendChild(retry);
+    }
   }
   // Construct the complete opening scene before revealing the canvas.
   update(timeline); if(pitchHeader){
