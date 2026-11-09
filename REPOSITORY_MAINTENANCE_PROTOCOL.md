@@ -1,5 +1,15 @@
 # DIORAMA – Repository Maintenance and Synchronization Protocol
 
+## Temporary game freeze – 9 November 2026
+
+Joe confirmed that DIORAMA is frozen for now. Protected baseline: commit `2ede3c700a633c85cdce1198a64befaf95529544`; runtime hashes remain in [release state](docs/RELEASE_STATE.json).
+
+- Preserve gameplay, all 25 levels, mechanisms, visuals/UI, assets, branding, controls/camera, saves, audio and the 60-second ending, including the support-page presentation.
+- Do not modify runtime files, dependencies, packaging or deployment behavior, or publish a changed game, without Joe's explicit approval for the specific change. Audit findings, roadmaps and pending QA do not authorize fixes.
+- Read-only inspection and testing may continue. Documentation edits may proceed when requested, while preserving this freeze and distinguishing findings from implemented changes.
+- The freeze has no automatic expiry. A later explicit request from Joe authorizes only its stated scope; keep the rest frozen. Lift the overall freeze only when Joe explicitly requests it.
+- This is a repository instruction/policy lock, not GitHub branch protection or a technical block on other collaborators. It does not certify gameplay or cross-host parity.
+
 > **Status:** Working procedure for future AI threads and maintainers. A scope/reconciliation rule, not standing permission to change gameplay or publish.
 > **Read with:** [AI_HANDOFF_DIORAMA.md](AI_HANDOFF_DIORAMA.md), [README.md](README.md), [docs/RELEASE_PROCESS.md](docs/RELEASE_PROCESS.md), [ENDING_INTEGRATION_NOTES.md](ENDING_INTEGRATION_NOTES.md), [ROADMAP.md](ROADMAP.md) and [docs/UPGRADE_LEVELS_AND_FIXES.md](docs/UPGRADE_LEVELS_AND_FIXES.md).
 > This procedure was introduced during a repository-wide reconciliation on **5 November 2026** and re-applied on **6 and 7 November 2026**. See the [latest reconciliation audit](docs/RECONCILIATION_AUDIT_2026-11-07.md); retain the [5 November audit](docs/RECONCILIATION_AUDIT_2026-11-05.md) as history. Check actual Git state before relying on any dated version fact.

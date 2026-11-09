@@ -1,5 +1,15 @@
 # DIORAMA – Current AI continuation handoff
 
+## Temporary game freeze – 9 November 2026
+
+Joe confirmed that DIORAMA is frozen for now. Protected baseline: commit `2ede3c700a633c85cdce1198a64befaf95529544`; runtime hashes remain in [release state](docs/RELEASE_STATE.json).
+
+- Preserve gameplay, all 25 levels, mechanisms, visuals/UI, assets, branding, controls/camera, saves, audio and the 60-second ending, including the support-page presentation.
+- Do not modify runtime files, dependencies, packaging or deployment behavior, or publish a changed game, without Joe's explicit approval for the specific change. Audit findings, roadmaps and pending QA do not authorize fixes.
+- Read-only inspection and testing may continue. Documentation edits may proceed when requested, while preserving this freeze and distinguishing findings from implemented changes.
+- The freeze has no automatic expiry. A later explicit request from Joe authorizes only its stated scope; keep the rest frozen. Lift the overall freeze only when Joe explicitly requests it.
+- This is a repository instruction/policy lock, not GitHub branch protection or a technical block on other collaborators. It does not certify gameplay or cross-host parity.
+
 ## 7 November 2026 – README and play-link clarification
 
 Joe confirmed that the itch.io and ChatGPT Sites links work. Treat both as working play destinations; link availability does not establish current hosted-byte parity. Main README now leads with the game description, features and play links; all nine localized overviews include Sites. Archived README material remains historical. Descriptive search wording improves clarity without claiming indexing or rankings. No runtime changes or republishing required.
@@ -14,7 +24,7 @@ Added the supplied complete DIORAMA artwork at assets/images/diorama-preview.jpg
 Added a favicon derived directly from the user-supplied robot image, cropping the lettering for small-size legibility. Root favicon.ico includes 16, 32, 48, 64, 128 and 256 pixel entries; assets/icons contains 32, 180, 192 and 512 pixel PNGs. Game, ending and investor pages link the ICO, PNG and Apple touch icon with relative paths and a cache version. No gameplay, audio, movie timing or payment behavior changed. Matching favicon assets and links are prepared for the current ChatGPT Sites project appgprj_6aeed8d514dc8191bf1a39cdc7932e2d; deployment is recorded separately.
 
 
-Updated 7 November 2026. Start here in a new thread; also read [AGENTS.md](AGENTS.md). This is current project guidance. Older narratives are retained in [the archive](docs/archive/README.md) and dated audits, not mixed into this baseline.
+Updated 9 November 2026. Start here in a new thread; also read [AGENTS.md](AGENTS.md). This is current project guidance. Older narratives are retained in [the archive](docs/archive/README.md) and dated audits, not mixed into this baseline.
 
 ## Source of truth and release evidence
 

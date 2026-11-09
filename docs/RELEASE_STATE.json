@@ -90,5 +90,16 @@
     "remaining asset provenance and redistribution permissions",
     "Latest artwork/favicon parity and publication across Sites and itch.io"
   ],
-  "runtime_file_count": 25
+  "runtime_file_count": 25,
+  "game_freeze": {
+    "status": "active",
+    "since": "2026-11-09",
+    "baseline_commit": "2ede3c700a633c85cdce1198a64befaf95529544",
+    "authorization": "Joe confirmed temporary freeze in conversation.",
+    "scope": "Gameplay, levels, visuals/UI, assets/branding, controls/camera, saves, audio, cinematic and support-page presentation; runtime, dependency, packaging and deployment changes require explicit scope-specific approval.",
+    "expiry": null,
+    "release_rule": "Only Joe's explicit instruction lifts the overall freeze; specific approved changes leave the remainder frozen.",
+    "enforcement": "Repository policy; not GitHub branch protection.",
+    "runtime_hashes_verified_against_commit": "2ede3c700a633c85cdce1198a64befaf95529544"
+  }
 }

@@ -1,5 +1,9 @@
 # Changelog
 
+## 9 November 2026 – temporary game freeze
+
+Recorded Joe's explicit temporary freeze in AGENTS, the current handoff, maintenance protocol and release state. Protected baseline: `2ede3c700a633c85cdce1198a64befaf95529544`. Verified all 25 recorded runtime blobs against that commit; runtime and published game content are unchanged. This is a policy lock, not GitHub branch protection. Specific game changes require Joe's explicit approval; the freeze has no automatic expiry.
+
 ## 7 November 2026 – README discoverability and play links
 
 Added a descriptive game title, player-focused introduction, features, language navigation and clear play links to the main README. Updated all nine localized introductions with descriptive titles, 25-level/60-second summaries and ChatGPT Sites links; corrected Arabic reading direction. Recorded Joe’s confirmation that itch.io and Sites links work, separately from hosted-byte parity. Preserved archived README snapshots and runtime files.
