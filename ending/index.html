@@ -19466,6 +19466,12 @@
   const TILE_TOP_Y = .045;
   const ROBOT_ON_TILE_Y = .065;
   const ROBOT_SPEED = 4.6;
+  // One route/clock definition drives both the visible hops and their SFX.
+  const heroArrivalPath=Array.from({length:42},(_,i)=>{
+    const z=43-i; return [0,z>6?-Math.ceil((z-6)/2):0,z];
+  });
+  const entryPath=[[0,0,2],[0,0,1],[0,0,0],[0,0,-1]];
+  const heroJumpTracks=[{start:.8,path:heroArrivalPath},{start:18.28,path:entryPath}];
   const STEP_ARC = .34;
   const ENDING_DURATION = 60;
   const SCORE_END = 59.95;
@@ -19528,20 +19534,18 @@
       score.volume=scoreLevel;
     }
     const events=[];
-    // Preserve the exact gameplay landing rhythm, but mix perspective into
-    // the footsteps: present (not silent) in the aerial and progressively
-    // clearer as the camera closes on the robot during the climb.
-    for(let i=0;i<42;i++){
-      const cueTime=.8+i/ROBOT_SPEED;
-      const perspective=span(cueTime,3.4,9.35);
-      const cueGain=lerp(.018,.080,perspective);
-      events.push({t:cueTime,fn:()=>playGameStep(cueGain)});
+    // Exactly one cue at each takeoff, matching the gameplay SFX trigger.
+    // Derive the count from the route: no extra cue after the final landing.
+    // The hall track retains its 280ms pause after the camera handoff.
+    for(const [trackIndex,track] of heroJumpTracks.entries()){
+      for(let i=0;i<track.path.length-1;i++){
+        const cueTime=track.start+i/ROBOT_SPEED;
+        const perspective=span(cueTime,3.4,9.35);
+        const cueGain=trackIndex===0?lerp(.018,.080,perspective):.070;
+        events.push({t:cueTime,fn:()=>playGameStep(cueGain)});
+      }
     }
-    // Let the fully opened gate register for a beat before the first interior
-    // hop. Starting the route on the exact 18s shot-label boundary made the
-    // actor appear to jump-cut onto the white hall tiles on narrow screens.
-    for(let i=0;i<3;i++)events.push({t:18.28+i/ROBOT_SPEED,fn:()=>playGameStep(.070)});
-    events.push({t:15.02,fn:()=>play('door',.43)},{t:20.56,fn:()=>play('wings',.48)},{t:21.62,fn:()=>play('landing',.55)},{t:22.08,fn:()=>play('dragon',.48)},{t:29.05,fn:()=>play('princess',1.6)},{t:39.92,fn:()=>play('doom',.49)},{t:40.50,fn:()=>{play('stomp',.43);play('boom',.50);}});events.sort((a,b)=>a.t-b.t);
+    events.push({t:15.02,fn:()=>play('door',.43)},{t:20.56,fn:()=>play('wings',.48)},{t:21.62,fn:()=>play('landing',.55)},{t:22.08,fn:()=>play('dragon',.48)},{t:29.05,fn:()=>play('princess',1.6)},{t:39.92,fn:()=>play('doom',.62)},{t:40.50,fn:()=>{play('stomp',.60);play('boom',.60);}});events.sort((a,b)=>a.t-b.t);
     function sync(t,playing){if(!enabled)return;mix(t);scoreWanted=playing;if(playing){startScore(t);wind.play().catch(()=>{});}else{stopScore();wind.pause();}}
     return {
       prepare,
@@ -19640,12 +19644,12 @@
     // framing cannot expose its lower end. The hero still begins at z=50,
     // preserving the approved distant start, speed and arrival timing.
     const visibleArrivalPath=[];
-    const arrivalPath=[];
+    const arrivalPath=heroArrivalPath;
     for(let z=70;z>=2;z--){
       const y=z>6?-Math.ceil((z-6)/2):0,cell=[0,y,z];
       // Start the cinematic performance slightly farther up the same visible
       // route so slower, weightier hops still reach the gate on schedule.
-      visibleArrivalPath.push(cell);if(z<=43)arrivalPath.push(cell);
+      visibleArrivalPath.push(cell);
     }
     if(!pitchHeader) for(const cell of visibleArrivalPath) tile(cell[0],cell[1],cell[2],false);
     for (let y = 1; y <= 22; y++) for (let x = -10; x <= 10; x++) if (Math.abs(x) > 2 || y > 17) tile(x, y * .45, 1.5, true);
@@ -19720,6 +19724,45 @@
     for(const x of [-.58,.58]) for(const z of [-.48,.48]) { const leg=cast(new Mesh(new CylinderGeometry(.2,.3,.82,10),MAT.dragon)); leg.position.set(x,.43,z); const foot=cast(new Mesh(new RoundedBoxGeometry(.46,.22,.68,3,.08),MAT.dragonDark)); foot.position.set(x,.12,z+.16); if(x>.5&&z>.4){frontLeg=leg;frontFoot=foot;} legs.push(leg,foot); g.add(leg,foot); }
     g.add(body,neck,head,snout,nostrilL,nostrilR,mouth,e1,e2,browL,browR,wingL,wingR,tail); g.position.set(0,.25,-4.9); g.rotation.y=0; g.scale.setScalar(1.82); g.userData={body,neck,head,eyeL:e1,eyeR:e2,browL,browR,wingL,wingR,tail,frontLeg,frontFoot,legs,baseRot:0}; return g;
   }
+
+  // Soft contact decals are separate from the actors: they stay on the
+  // actual tile caps, never rise with a jump or stretch across a stair riser.
+  const contactCanvas=document.createElement('canvas');contactCanvas.width=contactCanvas.height=64;
+  const contactContext=contactCanvas.getContext('2d');
+  const contactImage=contactContext.createImageData(64,64),contactPixels=contactImage.data;
+  for(let y=0;y<64;y++)for(let x=0;x<64;x++){
+    const i=(y*64+x)*4,r2=Math.pow((x+0.5)/32-1,2)+Math.pow((y+0.5)/32-1,2);
+    contactPixels[i]=contactPixels[i+1]=contactPixels[i+2]=255;
+    contactPixels[i+3]=Math.round(255*Math.pow(Math.max(0,1-r2),2));
+  }
+  contactContext.putImageData(contactImage,0,0);
+  const contactTexture=new Texture(contactCanvas);
+  contactTexture.needsUpdate=true;contactTexture.magFilter=LinearFilter;contactTexture.minFilter=LinearFilter;
+  function makeContactShadows(count){
+    return Array.from({length:count},()=>{
+      const geometry=new PlaneGeometry(1,1);geometry.rotateX(-Math.PI/2);
+      const material=new MeshBasicMaterial({color:0x263a36,map:contactTexture,transparent:true,opacity:.18,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-1,polygonOffsetUnits:-1});
+      const mesh=new Mesh(geometry,material);mesh.frustumCulled=false;mesh.visible=false;
+      scene.add(mesh);return mesh;
+    });
+  }
+  function placeContactShadow(mesh,x,z,actorY,cell,visible=true){
+    const floorY=cell[1]+TILE_TOP_Y+.035,clearance=Math.max(0,actorY-ROBOT_ON_TILE_Y-cell[1]);
+    const radiusX=.29+Math.min(.08,clearance*.18),radiusZ=.235+Math.min(.065,clearance*.15);
+    const minX=Math.max(x-radiusX,cell[0]-.42),maxX=Math.min(x+radiusX,cell[0]+.42);
+    const minZ=Math.max(z-radiusZ,cell[2]-.42),maxZ=Math.min(z+radiusZ,cell[2]+.42);
+    mesh.visible=visible&&minX<maxX&&minZ<maxZ&&floorY<=actorY+.04;
+    if(!mesh.visible)return;
+    // Clip each quad to its supporting tile; keep UVs in the original oval.
+    const position=mesh.geometry.attributes.position,uv=mesh.geometry.attributes.uv;
+    for(let i=0;i<4;i++){
+      const px=i%2?maxX:minX,pz=i<2?minZ:maxZ;
+      position.setXYZ(i,px,0,pz);uv.setXY(i,(px-x)/(2*radiusX)+.5,(pz-z)/(2*radiusZ)+.5);
+    }
+    position.needsUpdate=true;uv.needsUpdate=true;mesh.position.y=floorY+.003;
+    mesh.material.opacity=.18/(1+clearance*2.2);
+  }
+  const heroContactShadows=makeContactShadows(2),princessContactShadows=makeContactShadows(2);
 
   const castle = buildCastle();
   const hero = makeRobot(); hero.position.set(0,-4+ROBOT_ON_TILE_Y,14); scene.add(hero);
@@ -19817,7 +19860,6 @@
   // 15–21 seconds; neither handoff is an editorial cut.
   const cameraCuts=cameraKeys.slice(1).map(shot=>shot.a).filter(cut=>cut!==15&&cut!==18&&cut!==42);
   const camPos=new Vector3(), camTarget=new Vector3();
-  const entryPath=[[0,0,2],[0,0,1],[0,0,0],[0,0,-1]];
   function setVec(out,a,b,t){out.set(lerp(a[0],b[0],t),lerp(a[1],b[1],t),lerp(a[2],b[2],t));}
   function setStagedVec(out,start,lift,end,liftMix,pullMix){
     out.set(
@@ -19828,11 +19870,11 @@
   }
   function activeShot(t){return cameraKeys.find(k=>t>=k.a&&t<k.b)||cameraKeys[cameraKeys.length-1];}
   function heroRouteSample(t){
-    const path=t>=18?entryPath:castle.arrivalPath;
+    const track=heroJumpTracks[t>=18?1:0],path=track.path;
     // The camera remains continuous at 18s; only the actor waits 280ms before
     // beginning the first hall hop, so motion grows naturally out of the held
     // threshold pose instead of coinciding with the chapter-title change.
-    const localTime=Math.max(0,(t-(t>=18?18.28:.8))*ROBOT_SPEED);
+    const localTime=Math.max(0,(t-track.start)*ROBOT_SPEED);
     const stepIndex=Math.min(path.length-2,Math.floor(localTime));
     const complete=localTime>=path.length-1,flight=complete?1:localTime-stepIndex;
     const from=path[stepIndex],to=path[stepIndex+1];
@@ -19967,7 +20009,7 @@
     lowClouds.forEach((cloud,i)=>{cloud.position.x=cloud.userData.baseX+Math.sin(t*.075+cloud.userData.phase)*.5;cloud.position.z=cloud.userData.baseZ+Math.sin(t*.045+i)*.12;});
     highClouds.forEach((cloud,i)=>{cloud.position.x=cloud.userData.baseX+Math.sin(t*.055+cloud.userData.phase)*1.05;cloud.position.z=cloud.userData.baseZ+Math.cos(t*.035+i)*.18;});
     const cloudPart=span(t,.65,5.8);diveClouds.forEach((cloud,i)=>{const side=i%2?1:-1,nearVeil=cloud.userData.nearVeil;cloud.position.x=cloud.userData.baseX+side*cloudPart*((nearVeil?9:6)+(i%3)*1.4)+Math.sin(t*.045+cloud.userData.phase)*.7;cloud.position.y=cloud.userData.baseY+Math.sin(t*.035+cloud.userData.phase)*.35+cloudPart*(i%2?.55:-.35);cloud.position.z=cloud.userData.baseZ+Math.cos(t*.03+i)*.22;});
-    // Copy the gameplay hop rather than approximating it: the same 5.2 speed,
+    // Copy the gameplay hop rather than approximating it: the shared step speed,
     // quadratic ease, .34 arc, arm stride and landing squash used in index.html.
     const {from,to,flight,moveEase,hop}=heroMotion,landSquash=flight>.82?Math.sin((flight-.82)/.18*Math.PI)*.055:0;
     hero.position.set(heroMotion.x,heroMotion.y,heroMotion.z);
@@ -20025,6 +20067,13 @@
     const boundPulse=restless*.68+Math.sin((t-29.05)*Math.PI*3.1)*callStrain*.72;
     princess.position.set(4.8+boundPulse*.018,ROBOT_ON_TILE_Y,-12.35+(restless*.55+boundPulse*.45)*.007);
     princess.rotation.y=-.42+boundPulse*.022;princess.rotation.z=boundPulse*.011;
+    // The hero's source and target caps can have different heights. Project
+    // onto each separately, weakening the contact as the actor lifts away.
+    placeContactShadow(heroContactShadows[0],heroMotion.x,heroMotion.z,heroMotion.y,heroMotion.from);
+    placeContactShadow(heroContactShadows[1],heroMotion.x,heroMotion.z,heroMotion.y,heroMotion.to);
+    placeContactShadow(princessContactShadows[0],princess.position.x,princess.position.z,princess.position.y,[5,0,-12],princess.visible);
+    placeContactShadow(princessContactShadows[1],princess.position.x,princess.position.z,princess.position.y,[5,0,-13],princess.visible);
+
     princess.userData.head.rotation.y=lerp(0,-.38,princessNotice)+boundPulse*.07;princess.userData.head.rotation.z=-boundPulse*.045;
     princess.userData.armL.rotation.x=boundPulse*.032;princess.userData.armR.rotation.x=-boundPulse*.032;
     princess.userData.eyeL.scale.set(1+princessNotice*.18,1+princessNotice*.08,1); princess.userData.eyeR.scale.copy(princess.userData.eyeL.scale);
