@@ -59,6 +59,8 @@ html,body{
   pointer-events:none;
   background:radial-gradient(ellipse at 50% 42%, rgba(0,0,0,0) 58%, rgba(20,38,66,0.10) 82%, rgba(12,24,46,0.22) 100%);
 }
+/* Keep the starting page free of edge darkening. */
+body:not(.game-started) #dioramaVignette{display:none}
 canvas{display:block}
 #hud{
   position:fixed;
@@ -393,20 +395,6 @@ body{font-family:var(--game-font)}
 body:not(.game-started) #hud,
 body:not(.game-started) #bottomHelp{
   opacity:0 !important;
-}
-#cinemaVignette{
-  position:fixed;
-  inset:0;
-  z-index:22;
-  pointer-events:none;
-  background:
-    radial-gradient(circle at 50% 42%, rgba(255,255,255,.02), rgba(39,31,24,.16) 55%, rgba(39,31,24,.36) 100%),
-    linear-gradient(180deg, rgba(255,248,232,.18), rgba(255,255,255,0));
-  opacity:1;
-  transition:opacity .75s ease;
-}
-body.game-started #cinemaVignette{
-  opacity:0;
 }
 
 @media (max-width:360px){
@@ -2293,6 +2281,7 @@ body.game-started #versionPill{
   #startPage #startInstruction { display:none !important; }
 }
 </style>
+
 <link rel="preload" href="./assets/fonts/AmaticSC-Regular.ttf" as="font" type="font/ttf" crossorigin>
 <link rel="preload" href="./assets/fonts/AmaticSC-Bold.ttf" as="font" type="font/ttf" crossorigin>
 <style>html.diorama-fonts-pending #startTitle, html.diorama-fonts-pending #startFooter, html.diorama-fonts-pending #startupStartPrompt, html.diorama-fonts-pending #versionPill{visibility:hidden!important}</style>
@@ -2312,7 +2301,6 @@ body.game-started #versionPill{
   ]).then(reveal, reveal);
 })();
 </script>
-
 <link rel="icon" href="./favicon.ico?v=20261107" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="./assets/icons/favicon-32.png?v=20261107">
 <link rel="apple-touch-icon" sizes="180x180" href="./assets/icons/apple-touch-icon.png?v=20261107">
@@ -2338,7 +2326,6 @@ body.game-started #versionPill{
 <button id="musicToggle" class="hudIcon" type="button" aria-label="Toggle music" data-muted="false">♫</button>
 <button id="fullscreenBtn" class="hudIcon" type="button" aria-label="Toggle fullscreen" aria-pressed="false">⛶</button>
 <audio id="bgMusic" src="./assets/music/hitslab-game-gaming-music-295075.mp3" preload="auto" loop playsinline></audio>
-<div id="cinemaVignette"></div>
 <div id="levelTransitionOverlay" aria-hidden="true"></div>
 <div id="invalidTapCue" aria-hidden="true"><span></span></div>
 <div id="validTapCue" aria-hidden="true"><span></span></div>
@@ -22628,11 +22615,12 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
   var dioramaClouds = [];
+  var dioramaCloudMaterial = null;
   (function createDioramaClouds() {
     if (reducedMotionPreferred()) return;
     // Claude-close cloud layer: real 3D puffy lobe groups on a distant sky ring.
     // Kept restrained so it feels like atmosphere behind the diorama, not cartoon decoration.
-    const cloudMat = new MeshToonMaterial({ color: 0xffffff, transparent: true, opacity: 0.88, gradientMap: DIORAMA_TOON_GRADIENT, depthWrite: false });
+    const cloudMat = dioramaCloudMaterial = new MeshToonMaterial({ color: 0xffffff, emissive: 0xffffff, emissiveIntensity: 0.06, transparent: true, opacity: 0.92, gradientMap: DIORAMA_TOON_GRADIENT, depthWrite: false });
     for (let i = 0; i < 6; i++) {
       const g = new Group();
       const lobes = 3 + (i % 2);
@@ -22664,6 +22652,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   })();
   function updateDioramaPolish(dt) {
+    // A little neutral fill makes only the starting-page clouds whiter.
+    // Restore their original material balance as soon as gameplay begins.
+    if (dioramaCloudMaterial) {
+      dioramaCloudMaterial.emissiveIntensity = started ? 0 : 0.06;
+      dioramaCloudMaterial.opacity = started ? 0.88 : 0.92;
+    }
     updateTileSpawnAnimations(dt);
     updateDustPuffs(dt);
     for (const c of dioramaClouds) {
