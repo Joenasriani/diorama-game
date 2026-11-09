@@ -10,7 +10,7 @@
 
 - [itch.io](https://joenasr.itch.io/diorama)
 - [웹 브라우저 버전](https://diorama-game.vercel.app)
-- [ChatGPT Sites에서 플레이](https://diorama-native-game.joenasr.chatgpt.site)
+- [ChatGPT Sites에서 플레이](https://diorama-game.joenasr.chatgpt.site)
 
 ## 프로젝트 및 기여
 GitHub에 수록된 버전에는 **25개 레벨**이 있습니다. 레벨 데이터와 Three.js 런타임은 `index.html`에 포함되어 있으며 별도의 빌드 과정이 필요하지 않습니다. DIORAMA는 25개 레벨로 구성됩니다. 2026년 11월 7일 기준 itch.io 설명도 25개 레벨로 업데이트되었습니다. 최신 배포 상태는 영어 기본 README를 참조하세요.

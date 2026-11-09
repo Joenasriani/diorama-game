@@ -10,7 +10,7 @@ Ein kostenloses Browser-Puzzlespiel mit 25 Leveln und einem 60-sekündigen Filmf
 
 - [itch.io](https://joenasr.itch.io/diorama)
 - [Browserversion](https://diorama-game.vercel.app)
-- [Auf ChatGPT Sites spielen](https://diorama-native-game.joenasr.chatgpt.site)
+- [Auf ChatGPT Sites spielen](https://diorama-game.joenasr.chatgpt.site)
 
 ## Quellcode und Beiträge
 Die im GitHub-Repository enthaltene Ausgabe umfasst **25 Level**. Leveldefinitionen und Three.js-Laufzeit befinden sich gemeinsam in `index.html`; ein Build-Schritt ist nicht erforderlich. DIORAMA hat 25 Level; die itch.io-Seite nennt seit dem 7. November 2026 ebenfalls 25 Level. Den aktuellen Veröffentlichungsstand dokumentiert die englische Haupt-README.

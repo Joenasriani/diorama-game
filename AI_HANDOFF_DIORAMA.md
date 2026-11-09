@@ -1,8 +1,17 @@
 # DIORAMA – Current AI continuation handoff
 
+## Accepted ending update – 9 November 2026
+
+Joe accepted ChatGPT Sites version 12 (source `74692d784eaf393312aeba4f0ec5e424a86d3a5b`). GitHub runtime commit: `6ab5445c8cd3f5be10306166b01e8784f29f5510`; ending blob: `64c99a55b0c043f833202a9d6cd855e922cae830`.
+
+Fixed shoulder hinges keep the dragon wing membranes clear of the torso. Exterior jump gains are now .018 distant to .080 close; three interior jumps use .070. Existing flap angles, audio cue timestamps, camera choreography, music mix and the 60-second timeline are unchanged. This specifically approved update becomes the protected baseline; the overall freeze remains active.
+
+Syntax, 25-level structural checks and normalized ending-source parity passed. About 1.97 million wing surface/pose samples passed before publication. Joe's acceptance is user review evidence; the agent's browser cannot create WebGL and did not independently confirm rendered or audible playback. Current Site: https://diorama-game.joenasr.chatgpt.site. itch.io has not been republished with this update.
+
+
 ## Temporary game freeze – 9 November 2026
 
-Joe confirmed that DIORAMA is frozen for now. Protected baseline: commit `2ede3c700a633c85cdce1198a64befaf95529544`; runtime hashes remain in [release state](docs/RELEASE_STATE.json).
+Joe confirmed that DIORAMA is frozen for now. Protected baseline: commit `6ab5445c8cd3f5be10306166b01e8784f29f5510` (accepted wing/audio exception; overall freeze remains active); runtime hashes remain in [release state](docs/RELEASE_STATE.json).
 
 - Preserve gameplay, all 25 levels, mechanisms, visuals/UI, assets, branding, controls/camera, saves, audio and the 60-second ending, including the support-page presentation.
 - Do not modify runtime files, dependencies, packaging or deployment behavior, or publish a changed game, without Joe's explicit approval for the specific change. Audit findings, roadmaps and pending QA do not authorize fixes.
@@ -31,7 +40,7 @@ Updated 9 November 2026. Start here in a new thread; also read [AGENTS.md](AGENT
 Current distribution packaging includes 25 files, including root favicon.ico. The historical Sites/itch.io evidence below predates the branding changes; do not describe those origins as synchronized with current main without a fresh comparison.
 
 - Repository: [Joenasriani/diorama-game](https://github.com/Joenasriani/diorama-game), branch `main`. Verify HEAD before work.
-- Runtime source baseline: `06401531142d8f2dce37a3724113a9252a2b1827`, including artwork/favicon metadata. Gameplay/movie code is unchanged from `2301683`. Later maintenance commits may advance HEAD.
+- Runtime source baseline: `6ab5445c8cd3f5be10306166b01e8784f29f5510`, including the accepted wing pivot and jump-volume update. Gameplay remains unchanged; the ending changes are described above. Later maintenance commits may advance HEAD.
 - Machine-readable state: [docs/RELEASE_STATE.json](docs/RELEASE_STATE.json). Latest audit: [7 November audit](docs/RECONCILIATION_AUDIT_2026-11-07.md). File responsibilities: [inventory](docs/FILE_INVENTORY.md).
 - At historical baseline `2301683`, all 19 runtime/assets/license files matched Sites version 7 by Git blob hash. Current HTML hashes and six added branding assets are listed in RELEASE_STATE.json; current Sites branding parity has not been reverified.
 - Vercel reported success for the baseline. GitHub validation, Pages and ZIP packaging succeeded. These statuses do not prove full gameplay.
@@ -45,7 +54,7 @@ Current distribution packaging includes 25 files, including root favicon.ico. Th
 | Vercel game | https://diorama-game.vercel.app/ | Git-integrated; inspect commit status after pushes |
 | Ending | https://diorama-game.vercel.app/ending/ | Same runtime release |
 | DIORAMA 2 support | https://diorama-game.vercel.app/invest/ | Optional backing, not equity |
-| ChatGPT Sites | https://diorama-native-game.joenasr.chatgpt.site | Public; project `appgprj_6aeed8d514dc8191bf1a39cdc7932e2d`; version 7, source `2ee765eae973b0af8d391491848dc3ba6de8fa53` |
+| ChatGPT Sites | https://diorama-game.joenasr.chatgpt.site | Public; project `appgprj_6aeed8d514dc8191bf1a39cdc7932e2d`; version 12, source `74692d784eaf393312aeba4f0ec5e424a86d3a5b` |
 | itch.io | https://joenasr.itch.io/diorama | ZIP uploaded separately; no automatic publishing workflow |
 
 GitHub `main` is the master. Sites requires a separate source/package/deploy step; never imply a GitHub push updates it automatically. For an approved release to both, package the same runtime, preserve Sites identity/public access, verify all runtime hashes and deployment results. Do not create a duplicate Site. Saves are local to each browser/origin and do not transfer between hosts. Documentation-only audits need no game repackaging or Sites deployment.
@@ -69,8 +78,8 @@ The Level 25 win is recorded before an approximately 1.25-second transition. The
 | Mixer item | Current gain / behavior |
 | --- | --- |
 | Ending music | 0.72 baseline; 8% step and 18% impact duck; fade at 57.5–60s |
-| Exterior jumping | 0.0165 distant → 0.069 close, existing camera-perspective ramp |
-| Three interior jumps | 0.060 |
+| Exterior jumping | 0.018 distant → 0.080 close, existing camera-perspective ramp |
+| Three interior jumps | 0.070 |
 | Princess help | 1.6 at 29.05s; extra 35% music duck around the call |
 | Other effects | door .43, wings .48, landing .55, dragon .48, doom .49, stomp .43, boom .50 |
 
@@ -89,7 +98,7 @@ Optional tiers: Early Explorer $15; Founding Supporter $35; Patron $100. No laun
 ## Open work and verification limits
 
 - Full human 25-level playthrough; one-level-at-a-time Level 16 onward design review only when requested, with player preview/approval before advancing.
-- Real-device cold-cache startup, brown-flash elimination, portrait/landscape framing and dust appearance; audible mix approval; complete ending/pause/skip/replay/save regression.
+- Real-device cold-cache startup, brown-flash elimination, portrait/landscape framing and dust appearance; accepted wing/jump preview with further cross-device audio checks still open; complete ending/pause/skip/replay/save regression.
 - Cross-browser audio autoplay, WebGL failure/context-loss behavior and funding-header seam/clearance.
 - Live served-byte comparisons across hosts, payment/fulfillment, and remaining asset-rights provenance.
 - The available browser reports WebGL disabled; this blocked gameplay in both preview and itch.io. It is an environment limitation, not evidence every player's device fails.

@@ -1,8 +1,17 @@
 # DIORAMA – Repository Maintenance and Synchronization Protocol
 
+## Accepted ending update – 9 November 2026
+
+Joe accepted ChatGPT Sites version 12 (source `74692d784eaf393312aeba4f0ec5e424a86d3a5b`). GitHub runtime commit: `6ab5445c8cd3f5be10306166b01e8784f29f5510`; ending blob: `64c99a55b0c043f833202a9d6cd855e922cae830`.
+
+Fixed shoulder hinges keep the dragon wing membranes clear of the torso. Exterior jump gains are now .018 distant to .080 close; three interior jumps use .070. Existing flap angles, audio cue timestamps, camera choreography, music mix and the 60-second timeline are unchanged. This specifically approved update becomes the protected baseline; the overall freeze remains active.
+
+Syntax, 25-level structural checks and normalized ending-source parity passed. About 1.97 million wing surface/pose samples passed before publication. Joe's acceptance is user review evidence; the agent's browser cannot create WebGL and did not independently confirm rendered or audible playback. Current Site: https://diorama-game.joenasr.chatgpt.site. itch.io has not been republished with this update.
+
+
 ## Temporary game freeze – 9 November 2026
 
-Joe confirmed that DIORAMA is frozen for now. Protected baseline: commit `2ede3c700a633c85cdce1198a64befaf95529544`; runtime hashes remain in [release state](docs/RELEASE_STATE.json).
+Joe confirmed that DIORAMA is frozen for now. Protected baseline: commit `6ab5445c8cd3f5be10306166b01e8784f29f5510` (accepted wing/audio exception; overall freeze remains active); runtime hashes remain in [release state](docs/RELEASE_STATE.json).
 
 - Preserve gameplay, all 25 levels, mechanisms, visuals/UI, assets, branding, controls/camera, saves, audio and the 60-second ending, including the support-page presentation.
 - Do not modify runtime files, dependencies, packaging or deployment behavior, or publish a changed game, without Joe's explicit approval for the specific change. Audit findings, roadmaps and pending QA do not authorize fixes.

@@ -6,7 +6,7 @@
 <h2>العب الآن</h2>
 <p>• <a href="https://joenasr.itch.io/diorama">صفحة اللعبة على itch.io</a></p>
 <p>• <a href="https://diorama-game.vercel.app">نسخة المتصفح</a></p>
-<p>• <a href="https://diorama-native-game.joenasr.chatgpt.site">العب على ChatGPT Sites</a></p>
+<p>• <a href="https://diorama-game.joenasr.chatgpt.site">العب على ChatGPT Sites</a></p>
 <h2>المشروع والمساهمة</h2>
 <p>تحتوي نسخة مستودع GitHub على <strong>25 مستوى</strong>. توجد بيانات المستويات ومحرك Three.js داخل ملف <code>index.html</code>، ولا تحتاج إلى عملية بناء. تحتوي DIORAMA على 25 مستوى، وقد حُدّث وصف itch.io ليذكر العدد نفسه في 7 نوفمبر 2026. راجع ملف README الرئيسي باللغة الإنجليزية لمعرفة حالة الإصدار الحالية.</p>
 <p>يمكنك اقتراح مستويات جديدة، والإبلاغ عن الأخطاء القابلة لإعادة الإنتاج، وتحسين التحكم باللمس وإمكانية الوصول. راجع <a href="../../CONTRIBUTING.md">دليل المساهمة</a> و<a href="../LEVEL_AUTHORING.md">وثيقة تصميم المستويات</a>. لم تُنفّذ بعد ميزة استيراد حزم مستويات مستقلة، ولا يعني نجاح الاختبار البنيوي أن اللغز قابل للحل.</p>

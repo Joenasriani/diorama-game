@@ -10,7 +10,7 @@
 
 - [itch.io](https://joenasr.itch.io/diorama)
 - [ブラウザー版](https://diorama-game.vercel.app)
-- [ChatGPT Sitesでプレイ](https://diorama-native-game.joenasr.chatgpt.site)
+- [ChatGPT Sitesでプレイ](https://diorama-game.joenasr.chatgpt.site)
 
 ## ソースと参加方法
 GitHub にあるゲームは **25 レベル**構成です。レベル定義と Three.js ランタイムは `index.html` に含まれ、ビルド作業は不要です。DIORAMA は25レベルです。2026年11月7日現在、itch.io の説明も25レベルに更新されています。最新の公開状況は英語版 README を参照してください。

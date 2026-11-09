@@ -10,7 +10,7 @@ Um jogo gratuito para navegador com 25 fases e uma cinemática final de 60 segun
 
 - [Página no itch.io](https://joenasr.itch.io/diorama)
 - [Versão para navegador](https://diorama-game.vercel.app)
-- [Jogar no ChatGPT Sites](https://diorama-native-game.joenasr.chatgpt.site)
+- [Jogar no ChatGPT Sites](https://diorama-game.joenasr.chatgpt.site)
 
 ## Código e contribuições
 A edição disponível no GitHub contém **25 fases**. As definições de fases e o runtime Three.js estão incorporados ao `index.html`, sem etapa de compilação. DIORAMA tem 25 fases; a página no itch.io também informa 25 fases desde 7 de novembro de 2026. Consulte a README principal em inglês para o estado atual da versão.

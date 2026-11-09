@@ -10,7 +10,7 @@
 
 - [itch.io 遊戲頁面](https://joenasr.itch.io/diorama)
 - [瀏覽器版本](https://diorama-game.vercel.app)
-- [在 ChatGPT Sites 遊玩](https://diorama-native-game.joenasr.chatgpt.site)
+- [在 ChatGPT Sites 遊玩](https://diorama-game.joenasr.chatgpt.site)
 
 ## 專案與參與
 GitHub 儲存庫中的版本包含 **25 個關卡**。關卡資料與 Three.js 執行程式均位於 `index.html`，不需要額外建置程序。DIORAMA 共 25 關；截至 2026 年 11 月 7 日，itch.io 頁面也已註明 25 關。最新發布狀態請參閱英文主 README。

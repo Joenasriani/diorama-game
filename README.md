@@ -4,7 +4,7 @@
 
 **DIORAMA** is a free 3D browser puzzle game by **Joe Nasr**. Guide a small robot through **25 levels** of miniature, isometric-style structures. Operate bridges, lifts, switches and gates to reshape the route, solve spatial logic puzzles and reach the goal. Complete the final level to unlock a **60-second cinematic ending**.
 
-**[Play DIORAMA on itch.io](https://joenasr.itch.io/diorama)** · **[Play on ChatGPT Sites](https://diorama-native-game.joenasr.chatgpt.site)** · **[Play in your browser](https://diorama-game.vercel.app/)**
+**[Play DIORAMA on itch.io](https://joenasr.itch.io/diorama)** · **[Play on ChatGPT Sites](https://diorama-game.joenasr.chatgpt.site)** · **[Play in your browser](https://diorama-game.vercel.app/)**
 
 No download or account is required to play. DIORAMA uses Three.js and WebGL, with mouse and touch controls for desktop, tablet and mobile browsers. Progress is saved locally in each browser.
 
@@ -13,7 +13,7 @@ No download or account is required to play. DIORAMA uses Three.js and WebGL, wit
 | Platform | Game link |
 | --- | --- |
 | itch.io | [DIORAMA – play the HTML5 puzzle game](https://joenasr.itch.io/diorama) |
-| ChatGPT Sites | [DIORAMA – play the 3D robot puzzle game](https://diorama-native-game.joenasr.chatgpt.site) |
+| ChatGPT Sites | [DIORAMA – play the 3D robot puzzle game](https://diorama-game.joenasr.chatgpt.site) |
 | Direct browser edition | [DIORAMA – play online](https://diorama-game.vercel.app/) |
 
 Joe confirmed on 7 November 2026 that the itch.io and ChatGPT Sites links work. Release comparisons and technical QA are tracked separately in [release state](docs/RELEASE_STATE.json).
@@ -84,6 +84,8 @@ The current distribution keeps the level definitions and engine logic together i
 After verified completion of Level 25, the current repository build launches a locally bundled 60-second ending cinematic. The ending preserves the recorded final win, pauses the underlying game renderer and background music, and provides clear routes to play again from Level 1 or view the DIORAMA 2 project page. See [ENDING_INTEGRATION_NOTES.md](ENDING_INTEGRATION_NOTES.md) for the integration boundary and validation record.
 
 ## Release and publication information
+
+**9 November accepted update:** shoulder-based dragon wing pivots and subtly louder jumps are synchronized from ChatGPT Sites version 12. The rest of the game remains frozen. See [ending notes](ENDING_INTEGRATION_NOTES.md). itch.io has not been republished with this update.
 
 The repository contains 25 levels, the 60-second ending and the DIORAMA 2 support page. itch.io and ChatGPT Sites are working play destinations, confirmed by Joe on 7 November 2026. Vercel hosts the direct browser edition.
 

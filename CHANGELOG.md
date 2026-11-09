@@ -1,5 +1,14 @@
 # Changelog
 
+## Accepted ending update – 9 November 2026
+
+Joe accepted ChatGPT Sites version 12 (source `74692d784eaf393312aeba4f0ec5e424a86d3a5b`). GitHub runtime commit: `6ab5445c8cd3f5be10306166b01e8784f29f5510`; ending blob: `64c99a55b0c043f833202a9d6cd855e922cae830`.
+
+Fixed shoulder hinges keep the dragon wing membranes clear of the torso. Exterior jump gains are now .018 distant to .080 close; three interior jumps use .070. Existing flap angles, audio cue timestamps, camera choreography, music mix and the 60-second timeline are unchanged. This specifically approved update becomes the protected baseline; the overall freeze remains active.
+
+Syntax, 25-level structural checks and normalized ending-source parity passed. About 1.97 million wing surface/pose samples passed before publication. Joe's acceptance is user review evidence; the agent's browser cannot create WebGL and did not independently confirm rendered or audible playback. Current Site: https://diorama-game.joenasr.chatgpt.site. itch.io has not been republished with this update.
+
+
 ## 9 November 2026 – temporary game freeze
 
 Recorded Joe's explicit temporary freeze in AGENTS, the current handoff, maintenance protocol and release state. Protected baseline: `2ede3c700a633c85cdce1198a64befaf95529544`. Verified all 25 recorded runtime blobs against that commit; runtime and published game content are unchanged. This is a policy lock, not GitHub branch protection. Specific game changes require Joe's explicit approval; the freeze has no automatic expiry.
@@ -26,7 +35,7 @@ Added a favicon derived directly from the user-supplied robot image, cropping th
 
 Added AGENTS.md, a concise authoritative handoff, machine-readable release state, llms.txt index, file inventory and current audit. Archived superseded handoff/integration narratives and unused screenshot material. Reconciled README, roadmap, maintenance/release/contribution instructions and all nine localized overviews with the completed Sites/GitHub/itch.io work. Clarified the historical level-register ending freeze and old deployment rules. No runtime, level, asset, license or workflow behavior changed; real-device and served-byte verification limits remain explicit.
 
-## Current ending release – 7 November 2026
+## Historical ending release – 7 November 2026
 
 The ending matches ChatGPT Sites **Diorama Game, version 7**, source `2ee765eae973b0af8d391491848dc3ba6de8fa53`. Ending file Git blob: `8501ea003692149ed816e96170d377335f02f785`. This section supersedes older ending settings below.
 

@@ -10,7 +10,7 @@ Un jeu gratuit pour navigateur avec 25 niveaux et une cinématique finale de 60 
 
 - [Page itch.io](https://joenasr.itch.io/diorama)
 - [Version navigateur](https://diorama-game.vercel.app)
-- [Jouer sur ChatGPT Sites](https://diorama-native-game.joenasr.chatgpt.site)
+- [Jouer sur ChatGPT Sites](https://diorama-game.joenasr.chatgpt.site)
 
 ## Code et contributions
 La version du dépôt GitHub comprend **25 niveaux**. Les définitions des niveaux et le moteur Three.js sont intégrés dans `index.html`, sans étape de compilation. DIORAMA comporte 25 niveaux ; la page itch.io indique également 25 niveaux depuis le 7 novembre 2026. Consultez la README principale en anglais pour la version actuelle.
