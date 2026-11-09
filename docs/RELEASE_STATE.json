@@ -3,37 +3,37 @@
   "as_of": "2026-11-09",
   "repository": "Joenasriani/diorama-game",
   "authoritative_branch": "main",
-  "runtime_baseline_commit": "a378f579a83a56cee3e7b9732892d83d45f83972",
+  "runtime_baseline_commit": "31c7b6efa875380ec0265300c1339578af007e6d",
   "head_policy": "Resolve live main HEAD; documentation commits can advance without changing the runtime baseline.",
   "level_count": 25,
   "ending_duration_seconds": 60,
   "visible_game_version": "v1.0",
   "runtime_git_blobs": {
-    "index.html": "60b91e33fdaed8a026b525d4014a93042a0c0d99",
-    "LICENSE": "8c97ea196bc1a7a45c604ef24ff3c9371f9846b5",
     "THIRD_PARTY_LICENSES.md": "a3e15608addc9a6bdb48ff2e29471d272275e8ce",
     "favicon.ico": "df5c76c5693b0be4c7a16059f87fdb11edfde153",
-    "assets/fonts/AmaticSC-Bold.ttf": "b80128b823ae836cd6bfdf4a26c1911a99a5c754",
-    "assets/fonts/AmaticSC-Regular.ttf": "b860368bec2246d3c268c075167c9d7333d454d0",
-    "assets/icons/apple-touch-icon.png": "61302d8d3e50511762a8b35f8f0060944a252d8e",
-    "assets/icons/favicon-32.png": "a1b509e7e8a3623e82e611c2fe36e7b4932737a1",
-    "assets/icons/icon-192.png": "81add1255946f56330e0d40e300dbf60c1a1b54a",
-    "assets/icons/icon-512.png": "94a07e13a0d153df4d02185fac0384cfcc70ac34",
-    "assets/images/diorama-preview.jpg": "b950b9dee7b6f773c8f6b6c1d993653ecd2bcd5a",
-    "assets/music/hitslab-game-gaming-music-295075.mp3": "80b6a017b7d71348662220d0260b57414bcd02ec",
-    "ending/audio/door.mp3": "bdba55d82a8259bfc0024f453e059b09b89a1a51",
-    "ending/audio/dragon-boom.mp3": "c72bc1795bde54b3cc87af431e87760aa63f6edb",
-    "ending/audio/dragon-doom.mp3": "19c2d6b9244d43e2cb916c5920e21e864e3c3f43",
-    "ending/audio/dragon.mp3": "743e5f8406e9cf1a08342b706140f207beba4606",
-    "ending/audio/hero-score-bed.mp3": "fe55155e6dfab9323f91b9a8c701e2d7619ae5ad",
-    "ending/audio/jump.mp3": "23712da16eb10e5d1d60d6f538664ff4829dc914",
-    "ending/audio/landing.mp3": "8682fdc149d0efb281fa9aa746086b82cae59b06",
+    "index.html": "44ffab156c6b59355cc01ae328fa5c874beef3a2",
+    "LICENSE": "8c97ea196bc1a7a45c604ef24ff3c9371f9846b5",
+    "invest/index.html": "fa0afa85932a4328567325951c76390c0df5e0c8",
+    "ending/index.html": "833026a59c28ffe7d32f0a3130e110fcae5b1251",
     "ending/audio/princess-call.mp3": "7320a7e351b07a51895cb86e84d07b73d095d417",
+    "ending/audio/dragon-boom.mp3": "c72bc1795bde54b3cc87af431e87760aa63f6edb",
     "ending/audio/stomp.mp3": "73e64a311d4b142817fabaf296b2c3a89c662781",
     "ending/audio/wind.mp3": "816a4ca6ab530ec5515b969e2ee4d8f01320a5bb",
+    "ending/audio/jump.mp3": "23712da16eb10e5d1d60d6f538664ff4829dc914",
     "ending/audio/wings.mp3": "ec303e3ffd17432fc606c3ae4fe77f823933ab93",
-    "ending/index.html": "833026a59c28ffe7d32f0a3130e110fcae5b1251",
-    "invest/index.html": "fa0afa85932a4328567325951c76390c0df5e0c8"
+    "ending/audio/hero-score-bed.mp3": "fe55155e6dfab9323f91b9a8c701e2d7619ae5ad",
+    "ending/audio/dragon-doom.mp3": "19c2d6b9244d43e2cb916c5920e21e864e3c3f43",
+    "ending/audio/landing.mp3": "8682fdc149d0efb281fa9aa746086b82cae59b06",
+    "ending/audio/door.mp3": "bdba55d82a8259bfc0024f453e059b09b89a1a51",
+    "ending/audio/dragon.mp3": "743e5f8406e9cf1a08342b706140f207beba4606",
+    "assets/images/diorama-preview.jpg": "b950b9dee7b6f773c8f6b6c1d993653ecd2bcd5a",
+    "assets/fonts/AmaticSC-Regular.ttf": "b860368bec2246d3c268c075167c9d7333d454d0",
+    "assets/fonts/AmaticSC-Bold.ttf": "b80128b823ae836cd6bfdf4a26c1911a99a5c754",
+    "assets/icons/favicon-32.png": "a1b509e7e8a3623e82e611c2fe36e7b4932737a1",
+    "assets/icons/icon-512.png": "94a07e13a0d153df4d02185fac0384cfcc70ac34",
+    "assets/icons/apple-touch-icon.png": "61302d8d3e50511762a8b35f8f0060944a252d8e",
+    "assets/icons/icon-192.png": "81add1255946f56330e0d40e300dbf60c1a1b54a",
+    "assets/music/hitslab-game-gaming-music-295075.mp3": "80b6a017b7d71348662220d0260b57414bcd02ec"
   },
   "ending_mix": {
     "music": 0.72,
@@ -51,20 +51,20 @@
   "sites": {
     "project_id": "appgprj_6aeed8d514dc8191bf1a39cdc7932e2d",
     "url": "https://diorama-game.joenasr.chatgpt.site",
-    "version": 14,
-    "source_commit": "2907275066144bcdb71659b18fdc070bd505c069",
+    "version": 16,
+    "source_commit": "dd0df9e9266293326c91e4e85bb95de415b865fe",
     "access": "public",
     "automatic_github_sync": false,
-    "verification_scope": "All ending scripts match approved Sites v14 exactly. Only host-specific social image URLs and a blank line differ. Full cross-host bytes remain unverified.",
+    "verification_scope": "Game, ending and support scripts match Sites v16 exactly; all non-HTML runtime files match by Git blob hash. HTML differs only in host-specific social image origins and whitespace. Served response bytes not compared.",
     "link_availability": {
       "status": "working",
       "evidence": "Confirmed by Joe in conversation on 7 November 2026; not a hosted-byte parity check."
     },
     "user_acceptance": {
       "date": "2026-11-09",
-      "version": 14,
-      "scope": "Jump synchronization, louder dragon movement/stomp and hero/princess contact shadows; includes accepted v12 wing/audio",
-      "evidence": "Joe: Perfect."
+      "version": 16,
+      "scope": "Starting-page vignette removal, slight cloud white lift; prior ending acceptance retained",
+      "evidence": "Joe requested both versions synchronized and deployed."
     }
   },
   "itchio": {
@@ -76,7 +76,7 @@
     "observed_upload_id": 20340283,
     "evidence": "User uploaded; editor selected this file for browser play; live iframe used upload ID. Hosted bytes not downloaded/hash-compared.",
     "devlog": "https://joenasr.itch.io/diorama/devlog/1759746/diorama-3d-puzzle-game-update-ending-audio-and-browser-play",
-    "verification_scope": "Historical uploaded package at 2301683; excludes subsequent artwork/favicon changes. Does not include the accepted 9 November wing/audio update. The accepted v14 cue/shadow/stomp updates are not uploaded there.",
+    "verification_scope": "Historical uploaded package; does not include latest accepted branding, ending or startup updates.",
     "link_availability": {
       "status": "working",
       "evidence": "Confirmed by Joe in conversation on 7 November 2026; not a hosted-byte parity check."
@@ -89,7 +89,8 @@
     "Vercel commit status and GitHub validation/Pages/package runs succeeded for runtime baseline",
     "itch.io public description, ChatGPT link, latest ZIP selection and published devlog observed",
     "9 November: accepted Sites v12 wing/audio patch; ending scripts parse; 25-level structural check; normalized ending source parity",
-    "9 November: accepted Sites v14 ending scripts match exactly; 44 takeoff cues; 20,440 shadow quads checked; structural validation passed"
+    "9 November: accepted Sites v14 ending scripts match exactly; 44 takeoff cues; 20,440 shadow quads checked; structural validation passed",
+    "9 November: Sites v16/GitHub source parity for all 25 runtime files after documented host metadata normalization; structural validation and cloud-material reset checks passed"
   ],
   "not_verified": [
     "all-level human solvability/playthrough",
@@ -105,17 +106,17 @@
   "game_freeze": {
     "status": "active",
     "since": "2026-11-09",
-    "baseline_commit": "a378f579a83a56cee3e7b9732892d83d45f83972",
+    "baseline_commit": "31c7b6efa875380ec0265300c1339578af007e6d",
     "authorization": "Joe confirmed temporary freeze in conversation.",
     "scope": "Gameplay, levels, visuals/UI, assets/branding, controls/camera, saves, audio, cinematic and support-page presentation; runtime, dependency, packaging and deployment changes require explicit scope-specific approval.",
     "expiry": null,
     "release_rule": "Only Joe's explicit instruction lifts the overall freeze; specific approved changes leave the remainder frozen.",
     "enforcement": "Repository policy; not GitHub branch protection.",
-    "runtime_hashes_verified_against_commit": "a378f579a83a56cee3e7b9732892d83d45f83972",
+    "runtime_hashes_verified_against_commit": "31c7b6efa875380ec0265300c1339578af007e6d",
     "last_approved_exception": {
       "date": "2026-11-09",
-      "runtime_commit": "a378f579a83a56cee3e7b9732892d83d45f83972",
-      "scope": "Accepted Sites v14 ending; remainder frozen."
+      "runtime_commit": "31c7b6efa875380ec0265300c1339578af007e6d",
+      "scope": "Approved Sites v16 startup refinements; prior accepted ending retained; rest frozen."
     }
   },
   "ending_jump_sync": {
@@ -130,5 +131,17 @@
     "hero": "source/target cap projection; opacity decreases with clearance",
     "princess": "tile projection with reveal gating",
     "additional_runtime_assets": 0
+  },
+  "start_page": {
+    "startup_vignette_removed": true,
+    "stage_vignette_hidden_until_play": true,
+    "sky_gradient": "retained",
+    "cloud_material": {
+      "startup_emissive": 16777215,
+      "startup_emissive_intensity": 0.06,
+      "startup_opacity": 0.92,
+      "gameplay_emissive_intensity": 0,
+      "gameplay_opacity": 0.88
+    }
   }
 }
