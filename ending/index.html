@@ -19534,13 +19534,13 @@
     for(let i=0;i<42;i++){
       const cueTime=.8+i/ROBOT_SPEED;
       const perspective=span(cueTime,3.4,9.35);
-      const cueGain=lerp(.0165,.069,perspective);
+      const cueGain=lerp(.018,.080,perspective);
       events.push({t:cueTime,fn:()=>playGameStep(cueGain)});
     }
     // Let the fully opened gate register for a beat before the first interior
     // hop. Starting the route on the exact 18s shot-label boundary made the
     // actor appear to jump-cut onto the white hall tiles on narrow screens.
-    for(let i=0;i<3;i++)events.push({t:18.28+i/ROBOT_SPEED,fn:()=>playGameStep(.060)});
+    for(let i=0;i<3;i++)events.push({t:18.28+i/ROBOT_SPEED,fn:()=>playGameStep(.070)});
     events.push({t:15.02,fn:()=>play('door',.43)},{t:20.56,fn:()=>play('wings',.48)},{t:21.62,fn:()=>play('landing',.55)},{t:22.08,fn:()=>play('dragon',.48)},{t:29.05,fn:()=>play('princess',1.6)},{t:39.92,fn:()=>play('doom',.49)},{t:40.50,fn:()=>{play('stomp',.43);play('boom',.50);}});events.sort((a,b)=>a.t-b.t);
     function sync(t,playing){if(!enabled)return;mix(t);scoreWanted=playing;if(playing){startScore(t);wind.play().catch(()=>{});}else{stopScore();wind.pause();}}
     return {
@@ -19701,7 +19701,20 @@
     const eyeGeo=new SphereGeometry(.055,10,8); const e1=new Mesh(eyeGeo,MAT.eye); e1.position.set(-.2,2.34,1.14); const e2=e1.clone(); e2.position.x=.2;
     const browGeo=new RoundedBoxGeometry(.3,.055,.07,3,.025); const browL=new Mesh(browGeo,MAT.dragonDark); browL.position.set(-.2,2.47,1.18); browL.rotation.z=-.2; const browR=browL.clone(); browR.position.x=.2; browR.rotation.z=.2;
     for (const x of [-.25,.25]) { const horn=cast(new Mesh(new ConeGeometry(.09,.42,7),MAT.horn)); horn.position.set(x,2.7,.52); horn.rotation.x=-.25; g.add(horn); }
-    const wingGeo=new ConeGeometry(.78,1.65,3); const wingL=cast(new Mesh(wingGeo,MAT.dragonDark)); wingL.position.set(-.95,1.35,-.05); wingL.rotation.set(0,0,.8); const wingR=wingL.clone(); wingR.position.x=.95; wingR.rotation.z=-.8;
+    // Flap around a fixed shoulder joint, not the centre of a mesh that
+    // extends through the torso. Put the narrow cone tip at the hinge and
+    // keep the full wing surface outward of the breathing body.
+    const wingGeo=new ConeGeometry(.78,1.65,3);
+    wingGeo.rotateZ(Math.PI); wingGeo.translate(0,.825,0);
+    const shoulderGeo=new SphereGeometry(.13,12,8);
+    const makeWing=(side)=>{
+      const hinge=new Group(); hinge.position.set(side*.86,1.4,-.05);
+      const shoulder=cast(new Mesh(shoulderGeo,MAT.dragon));
+      const membrane=cast(new Mesh(wingGeo,MAT.dragonDark));
+      hinge.add(shoulder,membrane); hinge.rotation.z=-side*.8;
+      return hinge;
+    };
+    const wingL=makeWing(-1),wingR=makeWing(1);
     const tail=cast(new Mesh(new ConeGeometry(.28,2.4,12),MAT.dragon)); tail.position.set(0,.74,-1.6); tail.rotation.x=-Math.PI/2;
     const legs=[]; let frontLeg=null, frontFoot=null;
     for(const x of [-.58,.58]) for(const z of [-.48,.48]) { const leg=cast(new Mesh(new CylinderGeometry(.2,.3,.82,10),MAT.dragon)); leg.position.set(x,.43,z); const foot=cast(new Mesh(new RoundedBoxGeometry(.46,.22,.68,3,.08),MAT.dragonDark)); foot.position.set(x,.12,z+.16); if(x>.5&&z>.4){frontLeg=leg;frontFoot=foot;} legs.push(leg,foot); g.add(leg,foot); }
