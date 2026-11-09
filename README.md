@@ -85,7 +85,7 @@ After verified completion of Level 25, the current repository build launches a l
 
 ## Release and publication information
 
-**9 November accepted update:** shoulder-based dragon wing pivots and subtly louder jumps are synchronized from ChatGPT Sites version 12. The rest of the game remains frozen. See [ending notes](ENDING_INTEGRATION_NOTES.md). itch.io has not been republished with this update.
+**9 November accepted update:** dragon shoulder pivots, one sound per jump, louder movement/stomp effects and subtle robot/princess contact shadows are synchronized from ChatGPT Sites version 14. The rest of the game remains frozen. See [ending notes](ENDING_INTEGRATION_NOTES.md). itch.io has not been republished with this update.
 
 The repository contains 25 levels, the 60-second ending and the DIORAMA 2 support page. itch.io and ChatGPT Sites are working play destinations, confirmed by Joe on 7 November 2026. Vercel hosts the direct browser edition.
 

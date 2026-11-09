@@ -2,16 +2,15 @@
 
 ## Accepted ending update – 9 November 2026
 
-Joe accepted ChatGPT Sites version 12 (source `74692d784eaf393312aeba4f0ec5e424a86d3a5b`). GitHub runtime commit: `6ab5445c8cd3f5be10306166b01e8784f29f5510`; ending blob: `64c99a55b0c043f833202a9d6cd855e922cae830`.
+Joe accepted ChatGPT Sites version 14 (source `2907275066144bcdb71659b18fdc070bd505c069`). GitHub runtime commit: `a378f579a83a56cee3e7b9732892d83d45f83972`; ending blob: `833026a59c28ffe7d32f0a3130e110fcae5b1251`.
 
-Fixed shoulder hinges keep the dragon wing membranes clear of the torso. Exterior jump gains are now .018 distant to .080 close; three interior jumps use .070. Existing flap angles, audio cue timestamps, camera choreography, music mix and the 60-second timeline are unchanged. This specifically approved update becomes the protected baseline; the overall freeze remains active.
+The accepted ending includes the shoulder-pivot correction; shared route/animation timing with exactly 41 exterior and three interior takeoff cues; exterior jump gains .018–.080 and interior .070; movement/doom gain .62, stomp .60 and impact boom .60. Both robots have soft tile-clipped contact shadows; the hero's shadows fade with jump clearance and the princess's follow her reveal. The 60-second timeline, visible route motion, camera, music and gameplay remain unchanged. This is the protected baseline; the overall freeze remains active.
 
-Syntax, 25-level structural checks and normalized ending-source parity passed. About 1.97 million wing surface/pose samples passed before publication. Joe's acceptance is user review evidence; the agent's browser cannot create WebGL and did not independently confirm rendered or audible playback. Current Site: https://diorama-game.joenasr.chatgpt.site. itch.io has not been republished with this update.
-
+Ending scripts exactly match the approved Sites version; host-specific social image URLs are preserved. Syntax, jump cue timing, tile-shadow geometry and 25-level structural checks passed. Joe's acceptance is user review evidence. The agent could not independently render/listen because its browser cannot create WebGL. Current Site: https://diorama-game.joenasr.chatgpt.site. itch.io has not been republished with these changes.
 
 ## Temporary game freeze – 9 November 2026
 
-Joe confirmed that DIORAMA is frozen for now. Protected baseline: commit `6ab5445c8cd3f5be10306166b01e8784f29f5510` (accepted wing/audio exception; overall freeze remains active); runtime hashes remain in [release state](docs/RELEASE_STATE.json).
+Joe confirmed that DIORAMA is frozen for now. Protected baseline: commit `a378f579a83a56cee3e7b9732892d83d45f83972` (accepted version 14 ending; overall freeze remains active); runtime hashes remain in [release state](docs/RELEASE_STATE.json).
 
 - Preserve gameplay, all 25 levels, mechanisms, visuals/UI, assets, branding, controls/camera, saves, audio and the 60-second ending, including the support-page presentation.
 - Do not modify runtime files, dependencies, packaging or deployment behavior, or publish a changed game, without Joe's explicit approval for the specific change. Audit findings, roadmaps and pending QA do not authorize fixes.

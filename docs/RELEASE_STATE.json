@@ -3,7 +3,7 @@
   "as_of": "2026-11-09",
   "repository": "Joenasriani/diorama-game",
   "authoritative_branch": "main",
-  "runtime_baseline_commit": "6ab5445c8cd3f5be10306166b01e8784f29f5510",
+  "runtime_baseline_commit": "a378f579a83a56cee3e7b9732892d83d45f83972",
   "head_policy": "Resolve live main HEAD; documentation commits can advance without changing the runtime baseline.",
   "level_count": 25,
   "ending_duration_seconds": 60,
@@ -32,7 +32,7 @@
     "ending/audio/stomp.mp3": "73e64a311d4b142817fabaf296b2c3a89c662781",
     "ending/audio/wind.mp3": "816a4ca6ab530ec5515b969e2ee4d8f01320a5bb",
     "ending/audio/wings.mp3": "ec303e3ffd17432fc606c3ae4fe77f823933ab93",
-    "ending/index.html": "64c99a55b0c043f833202a9d6cd855e922cae830",
+    "ending/index.html": "833026a59c28ffe7d32f0a3130e110fcae5b1251",
     "invest/index.html": "fa0afa85932a4328567325951c76390c0df5e0c8"
   },
   "ending_mix": {
@@ -43,25 +43,28 @@
     ],
     "interior_jumps": 0.07,
     "princess": 1.6,
-    "princess_music_duck": 0.35
+    "princess_music_duck": 0.35,
+    "dragon_movement": 0.62,
+    "dragon_stomp": 0.6,
+    "dragon_impact": 0.6
   },
   "sites": {
     "project_id": "appgprj_6aeed8d514dc8191bf1a39cdc7932e2d",
     "url": "https://diorama-game.joenasr.chatgpt.site",
-    "version": 12,
-    "source_commit": "74692d784eaf393312aeba4f0ec5e424a86d3a5b",
+    "version": 14,
+    "source_commit": "2907275066144bcdb71659b18fdc070bd505c069",
     "access": "public",
     "automatic_github_sync": false,
-    "verification_scope": "Accepted ending source matches version 12 after normalizing host-specific preview image origins and one blank line. Full cross-host bytes remain unverified.",
+    "verification_scope": "All ending scripts match approved Sites v14 exactly. Only host-specific social image URLs and a blank line differ. Full cross-host bytes remain unverified.",
     "link_availability": {
       "status": "working",
       "evidence": "Confirmed by Joe in conversation on 7 November 2026; not a hosted-byte parity check."
     },
     "user_acceptance": {
       "date": "2026-11-09",
-      "version": 12,
-      "scope": "Dragon wing pivot and modest jump SFX increase",
-      "evidence": "Joe: Cool. Accept it."
+      "version": 14,
+      "scope": "Jump synchronization, louder dragon movement/stomp and hero/princess contact shadows; includes accepted v12 wing/audio",
+      "evidence": "Joe: Perfect."
     }
   },
   "itchio": {
@@ -73,7 +76,7 @@
     "observed_upload_id": 20340283,
     "evidence": "User uploaded; editor selected this file for browser play; live iframe used upload ID. Hosted bytes not downloaded/hash-compared.",
     "devlog": "https://joenasr.itch.io/diorama/devlog/1759746/diorama-3d-puzzle-game-update-ending-audio-and-browser-play",
-    "verification_scope": "Historical uploaded package at 2301683; excludes subsequent artwork/favicon changes. Does not include the accepted 9 November wing/audio update.",
+    "verification_scope": "Historical uploaded package at 2301683; excludes subsequent artwork/favicon changes. Does not include the accepted 9 November wing/audio update. The accepted v14 cue/shadow/stomp updates are not uploaded there.",
     "link_availability": {
       "status": "working",
       "evidence": "Confirmed by Joe in conversation on 7 November 2026; not a hosted-byte parity check."
@@ -85,7 +88,8 @@
     "JavaScript syntax and 25-level structural validator passed",
     "Vercel commit status and GitHub validation/Pages/package runs succeeded for runtime baseline",
     "itch.io public description, ChatGPT link, latest ZIP selection and published devlog observed",
-    "9 November: accepted Sites v12 wing/audio patch; ending scripts parse; 25-level structural check; normalized ending source parity"
+    "9 November: accepted Sites v12 wing/audio patch; ending scripts parse; 25-level structural check; normalized ending source parity",
+    "9 November: accepted Sites v14 ending scripts match exactly; 44 takeoff cues; 20,440 shadow quads checked; structural validation passed"
   ],
   "not_verified": [
     "all-level human solvability/playthrough",
@@ -101,17 +105,30 @@
   "game_freeze": {
     "status": "active",
     "since": "2026-11-09",
-    "baseline_commit": "6ab5445c8cd3f5be10306166b01e8784f29f5510",
+    "baseline_commit": "a378f579a83a56cee3e7b9732892d83d45f83972",
     "authorization": "Joe confirmed temporary freeze in conversation.",
     "scope": "Gameplay, levels, visuals/UI, assets/branding, controls/camera, saves, audio, cinematic and support-page presentation; runtime, dependency, packaging and deployment changes require explicit scope-specific approval.",
     "expiry": null,
     "release_rule": "Only Joe's explicit instruction lifts the overall freeze; specific approved changes leave the remainder frozen.",
     "enforcement": "Repository policy; not GitHub branch protection.",
-    "runtime_hashes_verified_against_commit": "6ab5445c8cd3f5be10306166b01e8784f29f5510",
+    "runtime_hashes_verified_against_commit": "a378f579a83a56cee3e7b9732892d83d45f83972",
     "last_approved_exception": {
       "date": "2026-11-09",
-      "runtime_commit": "6ab5445c8cd3f5be10306166b01e8784f29f5510",
-      "scope": "Dragon shoulder pivots; exterior jump gains .018-.080; interior .070; rest frozen."
+      "runtime_commit": "a378f579a83a56cee3e7b9732892d83d45f83972",
+      "scope": "Accepted Sites v14 ending; remainder frozen."
     }
+  },
+  "ending_jump_sync": {
+    "exterior_hops": 41,
+    "interior_hops": 3,
+    "total_cues": 44,
+    "trigger": "takeoff",
+    "shared_route_timing": true
+  },
+  "robot_contact_shadows": {
+    "style": "soft procedural contact texture, clipped to each supporting tile",
+    "hero": "source/target cap projection; opacity decreases with clearance",
+    "princess": "tile projection with reveal gating",
+    "additional_runtime_assets": 0
   }
 }
