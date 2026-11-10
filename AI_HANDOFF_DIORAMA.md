@@ -1,60 +1,24 @@
-# DIORAMA – Current AI continuation handoff
+# DIORAMA: current AI continuation handoff
 
-## Accepted synchronized release – 9 November 2026
+Updated 10 November 2026. This is the only current handoff. Start with [AGENTS.md](AGENTS.md); exact hashes/publication evidence are in [release state](docs/RELEASE_STATE.json). Audit: [10 November reconciliation](docs/RECONCILIATION_AUDIT_2026-11-10.md). Old narratives and level revision records are [historical](docs/archive/README.md).
 
-Joe approved synchronization and deployment of ChatGPT Sites version 16 (source `dd0df9e9266293326c91e4e85bb95de415b865fe`). GitHub runtime baseline: `31c7b6efa875380ec0265300c1339578af007e6d`. The starting page has no vignette and slightly whiter clouds (white emissive fill .06, opacity .92 before play; original cloud settings restored during gameplay). The sky gradient remains. The accepted version 14 ending, jump synchronization, dragon sounds and robot shadows are retained.
+## Current source and accepted release
 
-Game, ending and support-page scripts match the Sites source exactly; fonts, audio, icons, artwork and licenses match by Git blob hash. HTML retains host-specific social-preview image origins and insignificant whitespace differences. Source parity is verified, not a claim that live response bytes were downloaded and compared. Syntax and all 25 level structures pass; the cloud-material startup/gameplay reset was checked. Sites version 16 deployment succeeded. The agent browser cannot create WebGL; prior user visual acceptance is preserved as user evidence. itch.io has not been republished. The overall freeze remains active at this baseline.
+- Repository: `Joenasriani/diorama-game`, authoritative branch `main`. Audited HEAD: `6bc082035f4bb0c9bd51b0b8e7d0adc88d35322f`. Resolve live HEAD each time; documentation commits may advance it without changing the game.
+- Runtime baseline: `31c7b6efa875380ec0265300c1339578af007e6d`, 25 packaged runtime/assets/license files, 25 levels, visible product label v1.0, 60-second ending. These identifiers describe different things, not conflicting versions.
+- Accepted changes: dragon shoulder pivots; 41 exterior and three interior takeoff sound cues; stronger dragon movement/stomp; soft tile-clipped contact shadows under hero/princess; starting-page vignette removed and clouds slightly whiter. Blue sky gradient retained; original cloud material restored during gameplay.
+- The overall freeze remains active. This audit authorizes documentation fixes only. Proposed level reviews and unresolved QA do not authorize runtime work.
 
-## Temporary game freeze – 9 November 2026
+## Publications and evidence
 
-Joe confirmed that DIORAMA is frozen for now. Protected baseline: commit `31c7b6efa875380ec0265300c1339578af007e6d` (accepted version 16 startup and retained ending; overall freeze remains active); runtime hashes remain in [release state](docs/RELEASE_STATE.json).
+| Destination | Current recorded state |
+| --- | --- |
+| [Vercel](https://diorama-game.vercel.app/) | Production READY at `6bc0820` was verified during the latest release; query production again before a new release. |
+| [ChatGPT Sites](https://diorama-game.joenasr.chatgpt.site/) | Public project `appgprj_6aeed8d514dc8191bf1a39cdc7932e2d`, version 16, source `dd0df9e9266293326c91e4e85bb95de415b865fe`. Scripts exactly match; other runtime files match Git blobs; HTML has only documented host preview origins/whitespace differences. |
+| [itch.io](https://joenasr.itch.io/diorama) | Joe uploaded `DIORAMA_itchio_2026-11-10_6bc0820.zip`; browser-play selection observed on 10 November. 25 files, 5,734,059 bytes; SHA-256 in release state. Packaged files match GitHub. |
+| [Latest devlog](https://joenasr.itch.io/diorama/devlog/1766913/diorama-3d-puzzle-game-update-the-dragon-has-discovered-anatomy) | Published 10 November with latest ZIP attached. Listing description, links, controls, saves and metadata corrected. |
 
-- Preserve gameplay, all 25 levels, mechanisms, visuals/UI, assets, branding, controls/camera, saves, audio and the 60-second ending, including the support-page presentation.
-- Do not modify runtime files, dependencies, packaging or deployment behavior, or publish a changed game, without Joe's explicit approval for the specific change. Audit findings, roadmaps and pending QA do not authorize fixes.
-- Read-only inspection and testing may continue. Documentation edits may proceed when requested, while preserving this freeze and distinguishing findings from implemented changes.
-- The freeze has no automatic expiry. A later explicit request from Joe authorizes only its stated scope; keep the rest frozen. Lift the overall freeze only when Joe explicitly requests it.
-- This is a repository instruction/policy lock, not GitHub branch protection or a technical block on other collaborators. It does not certify gameplay or cross-host parity.
-
-## 7 November 2026 – README and play-link clarification
-
-Joe confirmed that the itch.io and ChatGPT Sites links work. Treat both as working play destinations; link availability does not establish current hosted-byte parity. Main README now leads with the game description, features and play links; all nine localized overviews include Sites. Archived README material remains historical. Descriptive search wording improves clarity without claiming indexing or rankings. No runtime changes or republishing required.
-
-## 7 November 2026 – preview-image metadata
-
-Added the supplied complete DIORAMA artwork at assets/images/diorama-preview.jpg (1536 × 1219). Game, ending and investor pages declare Open Graph image/type/dimensions/alt text and Twitter large-image card metadata. GitHub source uses the Vercel origin; the ChatGPT Sites edition uses its own origin for the same image. Existing favicon links are preserved. These tags support link previews; use by the ChatGPT Sites-list thumbnail remains unverified. No gameplay, audio or payment behavior changed.
-
-
-## 7 November 2026 – DIORAMA favicon
-
-Added a favicon derived directly from the user-supplied robot image, cropping the lettering for small-size legibility. Root favicon.ico includes 16, 32, 48, 64, 128 and 256 pixel entries; assets/icons contains 32, 180, 192 and 512 pixel PNGs. Game, ending and investor pages link the ICO, PNG and Apple touch icon with relative paths and a cache version. No gameplay, audio, movie timing or payment behavior changed. Matching favicon assets and links are prepared for the current ChatGPT Sites project appgprj_6aeed8d514dc8191bf1a39cdc7932e2d; deployment is recorded separately.
-
-
-Updated 9 November 2026. Start here in a new thread; also read [AGENTS.md](AGENTS.md). This is current project guidance. Older narratives are retained in [the archive](docs/archive/README.md) and dated audits, not mixed into this baseline.
-
-## Source of truth and release evidence
-
-Current distribution packaging includes 25 files, including root favicon.ico. The historical Sites/itch.io evidence below predates the branding changes; do not describe those origins as synchronized with current main without a fresh comparison.
-
-- Repository: [Joenasriani/diorama-game](https://github.com/Joenasriani/diorama-game), branch `main`. Verify HEAD before work.
-- Runtime source baseline: `31c7b6efa875380ec0265300c1339578af007e6d`, including the accepted version 16 startup refinements and prior ending update. Gameplay remains unchanged; the ending changes are described above. Later maintenance commits may advance HEAD.
-- Machine-readable state: [docs/RELEASE_STATE.json](docs/RELEASE_STATE.json). Latest audit: [7 November audit](docs/RECONCILIATION_AUDIT_2026-11-07.md). File responsibilities: [inventory](docs/FILE_INVENTORY.md).
-- At historical baseline `2301683`, all 19 runtime/assets/license files matched Sites version 7 by Git blob hash. Current HTML hashes and six added branding assets are listed in RELEASE_STATE.json; current Sites branding parity has not been reverified.
-- Vercel reported success for the baseline. GitHub validation, Pages and ZIP packaging succeeded. These statuses do not prove full gameplay.
-- The historical uploaded itch.io ZIP contains 19 files, 5,341,891 bytes, SHA-256 `e19c1456b66d7b54ceadaf58399fd8fea122dc5dfcda0d59360c7ef993f9310e`. It matches GitHub Actions' package checksum. The user uploaded it; the itch.io editor showed that filename selected for browser play, and the live iframe used upload 20340283. Hosted bytes were not downloaded and hash-compared.
-- The itch.io description now says 25 levels, links to ChatGPT Sites, and lists the latest fixes. [Published devlog](https://joenasr.itch.io/diorama/devlog/1759746/diorama-3d-puzzle-game-update-ending-audio-and-browser-play). No follower-notification delivery or search ranking claim.
-
-## Live destinations and synchronization
-
-| Destination | Address / identity | Publishing behavior |
-| --- | --- | --- |
-| Vercel game | https://diorama-game.vercel.app/ | Git-integrated; inspect commit status after pushes |
-| Ending | https://diorama-game.vercel.app/ending/ | Same runtime release |
-| DIORAMA 2 support | https://diorama-game.vercel.app/invest/ | Optional backing, not equity |
-| ChatGPT Sites | https://diorama-game.joenasr.chatgpt.site | Public; project `appgprj_6aeed8d514dc8191bf1a39cdc7932e2d`; version 16, source `dd0df9e9266293326c91e4e85bb95de415b865fe` |
-| itch.io | https://joenasr.itch.io/diorama | ZIP uploaded separately; no automatic publishing workflow |
-
-GitHub `main` is the master. Sites requires a separate source/package/deploy step; never imply a GitHub push updates it automatically. For an approved release to both, package the same runtime, preserve Sites identity/public access, verify all runtime hashes and deployment results. Do not create a duplicate Site. Saves are local to each browser/origin and do not transfer between hosts. Documentation-only audits need no game repackaging or Sites deployment.
+Source/package comparisons do not prove downloaded live response equality. Served-byte parity remains open. GitHub pushes do not automatically publish Sites or itch.io. Documentation-only work needs no new ZIP or Sites deployment. Saves are local to the browser and origin, with no cross-host transfer.
 
 ## Architecture and protected gameplay
 
@@ -64,7 +28,7 @@ GitHub `main` is the master. Sites requires a separate source/package/deploy ste
 - Preserve reachable-route movement; no tier jumps, locked-route bypasses, invisible supports, false click targets, merged dynamic/static bricks, accidental double toggles or trigger softlocks.
 - Immediate legal elevated-step tap assistance; one-finger orbit; two-finger tracking/pedestal movement plus pinch zoom. Camera gestures must not issue robot movement.
 - Preserve portal disappearance/reappearance, enlarged electrical strikes, pauses and synchronized audio; folding stems align with actual route anchors. Level 12 remains visible without the removed staged reveal.
-- Existing focused revisions cover Levels 7, 8, 9, 12, 13, 14, 15 and Level 25 route integrity. Details are historical records in [the upgrade register](docs/UPGRADE_LEVELS_AND_FIXES.md). Do not restart them as new work.
+- Existing focused revisions cover Levels 7, 8, 9, 12, 13, 14, 15 and Level 25 route integrity. Details are historical records in [the upgrade register](docs/archive/UPGRADE_LEVELS_AND_FIXES.md). Do not restart them as new work.
 - One readable intended route and coherent cause/effect are design requirements, not proof of unique solvability. Established safe linear paths can auto-traverse.
 - Replay returns to Level 1 while retaining completion/best-move records. Explicit reset is a separate action.
 
@@ -80,7 +44,7 @@ The Level 25 win is recorded before an approximately 1.25-second transition. The
 | Princess help | 1.6 at 29.05s; extra 35% music duck around the call |
 | Other effects | door .43, wings .48, landing .55, dragon .48, doom .62, stomp .60, boom .60 |
 
-These are code amplitude gains, not perceived-loudness measurements. The old .85 music and .075–.230/.200 jumps are historical and must not be restored accidentally. Gameplay music is separate (0.18 in the main game).
+These are code amplitude gains, not perceived-loudness measurements. Gameplay music is separate (0.18 in the main game).
 
 Score, wind and eight sampled effects are decoded into a shared Web Audio engine before playback. The slim bar on blue remains until fonts/audio and seven scene/shader warmups are ready. The opening frame, timeline and enabled audio start at zero together. Blocked enabled audio shows a tap-to-play prompt; preparation failure shows retry. Do not bypass the loading gate or alter the 60-second story/camera/cue timings as collateral work.
 
@@ -100,6 +64,6 @@ Optional tiers: Early Explorer $15; Founding Supporter $35; Patron $100. No laun
 - Live served-byte comparisons across hosts, payment/fulfillment, and remaining asset-rights provenance.
 - The available browser reports WebGL disabled; this blocked gameplay in both preview and itch.io. It is an environment limitation, not evidence every player's device fails.
 
-## Work sequence
+## Continue safely
 
-Read the current state and relevant source, inspect live HEAD/open PRs, identify the authorized scope, reproduce or trace the issue, make a narrow change, run syntax/structural/relevant behavior checks, and state device limitations. Update affected records and release evidence; verify publications separately. If asked to merge, first check whether changes already landed on `main`. Do not merge the protected historical backup just because it exists. No speculative redesign or optional dependency is part of a maintenance fix.
+Read the current task and relevant source; inspect live HEAD and open PRs. Preserve unrelated work. Reproduce or trace the issue, make the smallest authorized edit, run appropriate checks, and report each verification layer honestly. Update release evidence and focused records, then this handoff. No speculative redesign, backup-branch merge or optional dependency is part of maintenance.

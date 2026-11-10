@@ -1,29 +1,18 @@
-# DIORAMA – AI contributor entry point
+# DIORAMA contributor instructions
 
-## Accepted synchronized release – 9 November 2026
+Read [the single current handoff](AI_HANDOFF_DIORAMA.md), [release state](docs/RELEASE_STATE.json), then the relevant source. GitHub `main` is authoritative; resolve live HEAD before editing. A runtime baseline is not a permanent HEAD.
 
-Joe approved synchronization and deployment of ChatGPT Sites version 16 (source `dd0df9e9266293326c91e4e85bb95de415b865fe`). GitHub runtime baseline: `31c7b6efa875380ec0265300c1339578af007e6d`. The starting page has no vignette and slightly whiter clouds (white emissive fill .06, opacity .92 before play; original cloud settings restored during gameplay). The sky gradient remains. The accepted version 14 ending, jump synchronization, dragon sounds and robot shadows are retained.
+## Active freeze
 
-Game, ending and support-page scripts match the Sites source exactly; fonts, audio, icons, artwork and licenses match by Git blob hash. HTML retains host-specific social-preview image origins and insignificant whitespace differences. Source parity is verified, not a claim that live response bytes were downloaded and compared. Syntax and all 25 level structures pass; the cloud-material startup/gameplay reset was checked. Sites version 16 deployment succeeded. The agent browser cannot create WebGL; prior user visual acceptance is preserved as user evidence. itch.io has not been republished. The overall freeze remains active at this baseline.
+Joe froze the game on 9 November 2026. The accepted runtime baseline is `31c7b6efa875380ec0265300c1339578af007e6d`; 25 runtime file hashes are recorded in release state. Preserve gameplay, levels, visuals/UI, branding/assets, controls/camera, saves, audio, the 60-second ending and support page. Runtime, dependency, packaging or deployment changes require Joe's explicit scope-specific instruction. An approved exception leaves everything else frozen. This is policy, not branch protection. Requested documentation reconciliation is authorized.
 
-## Temporary game freeze – 9 November 2026
+## Safe continuation
 
-Joe confirmed that DIORAMA is frozen for now. Protected baseline: commit `31c7b6efa875380ec0265300c1339578af007e6d` (accepted version 16 startup and retained ending; overall freeze remains active); runtime hashes remain in [release state](docs/RELEASE_STATE.json).
-
-- Preserve gameplay, all 25 levels, mechanisms, visuals/UI, assets, branding, controls/camera, saves, audio and the 60-second ending, including the support-page presentation.
-- Do not modify runtime files, dependencies, packaging or deployment behavior, or publish a changed game, without Joe's explicit approval for the specific change. Audit findings, roadmaps and pending QA do not authorize fixes.
-- Read-only inspection and testing may continue. Documentation edits may proceed when requested, while preserving this freeze and distinguishing findings from implemented changes.
-- The freeze has no automatic expiry. A later explicit request from Joe authorizes only its stated scope; keep the rest frozen. Lift the overall freeze only when Joe explicitly requests it.
-- This is a repository instruction/policy lock, not GitHub branch protection or a technical block on other collaborators. It does not certify gameplay or cross-host parity.
-
-Read [AI_HANDOFF_DIORAMA.md](AI_HANDOFF_DIORAMA.md), [docs/RELEASE_STATE.json](docs/RELEASE_STATE.json), and the current task's relevant source before editing. Use [README.md](README.md) for architecture, [ENDING_INTEGRATION_NOTES.md](ENDING_INTEGRATION_NOTES.md) for the movie, and [REPOSITORY_MAINTENANCE_PROTOCOL.md](REPOSITORY_MAINTENANCE_PROTOCOL.md) for checks and synchronization.
-
-- GitHub `main` is the authoritative development source. Verify live HEAD; a recorded release SHA is a dated runtime baseline, not a claim that HEAD never advances.
-- DIORAMA has 25 levels and a 60-second authored ending. Preserve established route logic, portal effects, touch/camera behavior, saves, film timing and branding outside the requested scope.
-- Historical audits, `docs/archive/`, CHANGELOG entries and historical sections in `docs/UPGRADE_LEVELS_AND_FIXES.md` are evidence, not active task instructions. Never reinstate their old audio settings, frozen-ending rule, deployment restrictions or pending itch.io tasks.
-- Level 16 onward review remains proposed work. Do not redesign levels or claim player approval from structural CI.
-- GitHub/Vercel and ChatGPT Sites are separate publishers. A GitHub push does not update Sites. Preserve the Site project and its current public audience; synchronize the exact approved runtime when both destinations are in scope, and verify hashes. itch.io upload is a separate action.
-- A successful deploy or structural check does not prove audible/visual behavior or solvability. Report unavailable browser/device verification explicitly.
-- Keep this handoff, release state, relevant documentation and changelog aligned with accepted changes. Keep obsolete guidance out of active documents; retain history under dated or archived headings.
-- Large HTML may return empty content from GitHub `fetch_file`; use its blob SHA with `fetch_blob`. Do not overwrite a large file from an empty retrieval. Do not reformat bundled Three.js incidentally.
-- Preserve third-party license notices. No payment or PayPal action without Joe's explicit confirmation for that action.
+- Only `AI_HANDOFF_DIORAMA.md` is the current continuation handoff. Focused contracts explain their own area; they are not competing handoffs.
+- Archive files and dated changelog entries are historical evidence, never active orders or unfinished tasks. Roadmaps are proposals. Do not revive obsolete upload tasks, audio gains or old ending restrictions.
+- Read source before changing it. Large GitHub file fetches can return empty content; use the tree/blob SHA and fetch the blob. Never overwrite from an empty retrieval or reformat bundled Three.js incidentally.
+- Preserve tight, centered switch hit zones. Movement taps remain movement commands. Failed movement clears pending switch actions; do not restore stale intent or let switches steal path/goal taps.
+- GitHub/Vercel, Sites and itch.io are separate publications. Preserve the existing public Sites project; never imply automatic GitHub-to-Sites or Actions-to-itch.io publication.
+- Syntax, structure, packaging and deploy success do not prove gameplay, visual/audio acceptance, solvability or rights. Separate user review from independent checks.
+- Preserve license notices. Do not execute payments or change payment configuration without explicit authorization for that action.
+- Follow [maintenance protocol](REPOSITORY_MAINTENANCE_PROTOCOL.md); update affected records and the handoff after accepted changes. Do not merge/delete historical backup branches incidentally.

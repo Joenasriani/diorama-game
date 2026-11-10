@@ -24,11 +24,11 @@ Restored the current GitHub runtime to the stale Sites edition, including the .8
 > **Read this file first when continuing DIORAMA in a new ChatGPT/AI thread.**
 > Current ending reconciliation: **7 November 2026**; see the current ending release above. Historical baselines are labeled below. Project: [Joenasriani/diorama-game](https://github.com/Joenasriani/diorama-game), default branch `main`.
 > This document is a navigation and operational handoff, **not** proof that every game path has been played or a replacement for live source and deployment verification.
-> **Source hierarchy:** live repository code and deployment metadata for implementation facts; this handoff for decisions and priorities; [UPGRADE_LEVELS_AND_FIXES](../../docs/UPGRADE_LEVELS_AND_FIXES.md) for per-level revision history; other project documents for focused scopes. If sources disagree, recheck current code/commit and report the conflict.
+> **Source hierarchy:** live repository code and deployment metadata for implementation facts; this handoff for decisions and priorities; [UPGRADE_LEVELS_AND_FIXES](UPGRADE_LEVELS_AND_FIXES.md) for per-level revision history; other project documents for focused scopes. If sources disagree, recheck current code/commit and report the conflict.
 
 ## Historical verified implementation – 6 November 2026
 
-**Latest reconciliation evidence:** [6 November authoritative-state audit](../../docs/RECONCILIATION_AUDIT_2026-11-06.md). Read it with the [maintenance protocol](../../REPOSITORY_MAINTENANCE_PROTOCOL.md) and verify GitHub/Vercel HEAD each time. The [5 November audit](../../docs/RECONCILIATION_AUDIT_2026-11-05.md) is retained as historical evidence, not as the latest working-state instruction.
+**Latest reconciliation evidence:** [6 November authoritative-state audit](RECONCILIATION_AUDIT_2026-11-06.md). Read it with the [maintenance protocol](../../REPOSITORY_MAINTENANCE_PROTOCOL.md) and verify GitHub/Vercel HEAD each time. The [5 November audit](RECONCILIATION_AUDIT_2026-11-05.md) is retained as historical evidence, not as the latest working-state instruction.
 
 **Historical snapshot. The current ending release above supersedes its ending mix, dust, playback and CTA details.** At the start of the repository-wide reconciliation, GitHub `main` and the Vercel production domain both identified commit `0a1cfe986b4c5b3cc9a227c06730af0d1717aa91` (`READY`). Later documentation-only commits will advance `main` and may redeploy unchanged runtime assets; verify deployment HEAD afresh.
 
@@ -58,7 +58,7 @@ Restored the current GitHub runtime to the stale Sites edition, including the .8
 
 ## Historical reconciliation record – 5 November 2026
 
-A repository-wide change reconciliation was completed for the recently modified game-ending loader, funding header and README. **Read the [dated audit report](../../docs/RECONCILIATION_AUDIT_2026-11-05.md) and [repository maintenance protocol](../../REPOSITORY_MAINTENANCE_PROTOCOL.md) before any new change.** The reconciliation corrected current-documentation drift in `README.md`, `CHANGELOG.md`, `ENDING_INTEGRATION_NOTES.md`, `ROADMAP.md` and `docs/RELEASE_PROCESS.md`; linked the audit and a permanent maintenance SOP. The game `index.html`, film `ending/index.html`, backing page `invest/index.html`, audio, fonts, levels and original game assets **were not changed by this documentation audit**.
+A repository-wide change reconciliation was completed for the recently modified game-ending loader, funding header and README. **Read the [dated audit report](RECONCILIATION_AUDIT_2026-11-05.md) and [repository maintenance protocol](../../REPOSITORY_MAINTENANCE_PROTOCOL.md) before any new change.** The reconciliation corrected current-documentation drift in `README.md`, `CHANGELOG.md`, `ENDING_INTEGRATION_NOTES.md`, `ROADMAP.md` and `docs/RELEASE_PROCESS.md`; linked the audit and a permanent maintenance SOP. The game `index.html`, film `ending/index.html`, backing page `invest/index.html`, audio, fonts, levels and original game assets **were not changed by this documentation audit**.
 
 Specific corrections: the README now identifies the linked game artwork correctly (not a captured movie frame); the cinematic's slim bar-only loader and `diorama-ending-scene-ready` funding-page handshake have written contracts; GitHub Actions `itchio-dist.yml` creates a ZIP **artifact only**, not an itch.io publication; and hosting deployments are distinct from validator CI. The nine localized short overviews and historical per-level approval register were deliberately preserved.
 
@@ -215,3 +215,4 @@ In a real browser with network throttling/cache disabled, capture the **first 2 
 > Read `AI_HANDOFF_DIORAMA.md`, `REPOSITORY_MAINTENANCE_PROTOCOL.md` and **`docs/RECONCILIATION_AUDIT_2026-11-06.md`** in `Joenasriani/diorama-game` on GitHub; verify current `main`, runtime source blob SHAs, CI and Vercel production against them. Reconcile any subsequent drift, then continue my specific DIORAMA task with the smallest safe change. Preserve protected gameplay, the 60-second cinematic, the bar-only loader and the funding page unless explicitly authorized. Report source, test and deployment verification separately.
 
 *This is a dated, source-based handoff, not a mandate to implement every suggestion in it. For the current implementation, prefer the topmost **Current ending release** section; do not treat older dated snapshots as live state.*
+

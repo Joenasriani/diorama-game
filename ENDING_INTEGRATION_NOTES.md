@@ -1,12 +1,6 @@
-# DIORAMA ending integration – current contract
+# DIORAMA ending integration contract
 
-## Accepted synchronized release – 9 November 2026
-
-Joe approved synchronization and deployment of ChatGPT Sites version 16 (source `dd0df9e9266293326c91e4e85bb95de415b865fe`). GitHub runtime baseline: `31c7b6efa875380ec0265300c1339578af007e6d`. The starting page has no vignette and slightly whiter clouds (white emissive fill .06, opacity .92 before play; original cloud settings restored during gameplay). The sky gradient remains. The accepted version 14 ending, jump synchronization, dragon sounds and robot shadows are retained.
-
-Game, ending and support-page scripts match the Sites source exactly; fonts, audio, icons, artwork and licenses match by Git blob hash. HTML retains host-specific social-preview image origins and insignificant whitespace differences. Source parity is verified, not a claim that live response bytes were downloaded and compared. Syntax and all 25 level structures pass; the cloud-material startup/gameplay reset was checked. Sites version 16 deployment succeeded. The agent browser cannot create WebGL; prior user visual acceptance is preserved as user evidence. itch.io has not been republished. The overall freeze remains active at this baseline.
-
-Updated 9 November 2026. Runtime baseline and exact hashes: [release state](docs/RELEASE_STATE.json). Current mix and project decisions: [AI handoff](AI_HANDOFF_DIORAMA.md). Older integration narratives are [archived](docs/archive/ENDING_INTEGRATION_NOTES_before_2026-11-07_audit.md).
+Current behavior only. Continuation decisions: [single handoff](AI_HANDOFF_DIORAMA.md). Exact release evidence: [release state](docs/RELEASE_STATE.json). Superseded narratives are in [the archive](docs/archive/README.md).
 
 ## Trigger, isolation and playback
 
@@ -28,4 +22,4 @@ Dust contacts at 21.62s and 40.50s sit above the .07-high tile cap, expand near 
 
 ## Validation boundary
 
-Source/syntax, cue contracts, readiness ordering, dust clearance and structural checks passed. The earlier runtime at `2301683` matched Sites version 7, and its ZIP checksum matched the Actions package. Later artwork/favicon metadata changes preserve movie code but change the HTML hashes; current cross-host branding parity is unverified. itch.io upload selection and public description/devlog were observed. Served-byte parity, audible/visual mobile acceptance, cold-cache flash elimination, full playthrough and complete end-to-end controls remain unverified. The available browser could not create WebGL.
+The ending blob is `833026a59c28ffe7d32f0a3130e110fcae5b1251` in the accepted release. Exactly 44 takeoff cues, tile-shadow geometry, syntax and readiness contracts passed source checks during release work. Joe accepted the visual/audio preview. Sites v16 source parity and the 25-file itch.io package are recorded in [release state](docs/RELEASE_STATE.json). Public upload selection and latest devlog were observed on 10 November. Live served-byte parity and full real-device playback/regression remain open; the agent browser cannot create WebGL. Do not treat publication as a full playthrough.

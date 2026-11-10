@@ -85,13 +85,13 @@ After verified completion of Level 25, the current repository build launches a l
 
 ## Release and publication information
 
-**9 November accepted update:** the starting-page vignette is removed and clouds are slightly whiter. GitHub is synchronized with ChatGPT Sites version 16, retaining the accepted dragon pivots, jump timing, impact audio and robot shadows. The game remains frozen. itch.io has not been republished with these updates.
+**Current release, 10 November 2026:** the starting-page vignette is removed and clouds are slightly whiter. GitHub and ChatGPT Sites version 16 retain the accepted dragon pivots, synchronized jumps, stronger impact audio and robot contact shadows. The matching 25-file ZIP is now selected for browser play on itch.io. [Read the update devlog](https://joenasr.itch.io/diorama/devlog/1766913/diorama-3d-puzzle-game-update-the-dragon-has-discovered-anatomy). The game remains frozen outside explicitly requested changes.
 
 The repository contains 25 levels, the 60-second ending and the DIORAMA 2 support page. itch.io and ChatGPT Sites are working play destinations, confirmed by Joe on 7 November 2026. Vercel hosts the direct browser edition.
 
 The runtime baseline and packaging details are maintained in [release state](docs/RELEASE_STATE.json), with changes in [CHANGELOG.md](CHANGELOG.md). Sites and itch.io publish separately from GitHub. Link availability does not establish identical hosted files; current cross-host byte comparison remains a separate release check.
 
-For implementation details and remaining device QA, see the [AI handoff](AI_HANDOFF_DIORAMA.md), [ending integration notes](ENDING_INTEGRATION_NOTES.md) and [upgrade register](docs/UPGRADE_LEVELS_AND_FIXES.md).
+For implementation details and remaining device QA, see the [AI handoff](AI_HANDOFF_DIORAMA.md), [ending integration notes](ENDING_INTEGRATION_NOTES.md) and [upgrade register](docs/archive/UPGRADE_LEVELS_AND_FIXES.md).
 
 ## GitHub participation
 
@@ -392,7 +392,7 @@ Run `node scripts/validate-levels.cjs` before publication, then follow [the rele
 
 The repository demonstrates implemented pathfinding, mechanism state transitions, persistence, responsive input assistance, and 25 level definitions.
 
-**Latest documentation reconciliation – 7 November 2026:** [audit](docs/RECONCILIATION_AUDIT_2026-11-07.md). Current guidance is in [AGENTS.md](AGENTS.md), [the handoff](AI_HANDOFF_DIORAMA.md) and [release state](docs/RELEASE_STATE.json). Historical audits and superseded handoffs remain evidence only. The available browser has WebGL disabled; device playback, complete 25-level solvability, first-frame behavior and payment fulfillment remain unverified. Publication/CI success is not gameplay or rights certification.
+**Latest documentation reconciliation – 10 November 2026:** [audit](docs/RECONCILIATION_AUDIT_2026-11-10.md). Current guidance is in [AGENTS.md](AGENTS.md), [the handoff](AI_HANDOFF_DIORAMA.md) and [release state](docs/RELEASE_STATE.json). Historical audits and superseded handoffs remain evidence only. The available browser has WebGL disabled; device playback, complete 25-level solvability, first-frame behavior and payment fulfillment remain unverified. Publication/CI success is not gameplay or rights certification.
 
 Those implementation facts do not by themselves establish exhaustive cross-browser compatibility, accessibility conformance, performance targets, or device-store certification.
 
@@ -409,3 +409,4 @@ DIORAMA currently includes two Amatic SC font files and an MP3 named for HitsLab
 The original-code MIT license is provided in [`LICENSE`](LICENSE). The bundled materials remain subject to separate terms and unresolved provenance or redistribution checks documented in [`THIRD_PARTY_LICENSES.md`](THIRD_PARTY_LICENSES.md).
 
 Sources: [Amatic SC upstream metadata](https://github.com/google/fonts/blob/main/ofl/amaticsc/METADATA.pb) · [Amatic SC license](https://github.com/googlefonts/AmaticSC/blob/main/OFL.txt) · [HitsLab track](https://pixabay.com/music/happy-childrens-tunes-game-gaming-music-295075/).
+

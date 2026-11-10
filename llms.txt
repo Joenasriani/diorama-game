@@ -10,7 +10,7 @@
 - [README](README.md): project overview and developer architecture.
 - [Ending contract](ENDING_INTEGRATION_NOTES.md): current audio/readiness/dust/replay/CTA behavior.
 - [File inventory](docs/FILE_INVENTORY.md): active, historical, asset and tooling roles.
-- [Latest audit](docs/RECONCILIATION_AUDIT_2026-11-07.md): reconciliation evidence.
+- [Latest audit](docs/RECONCILIATION_AUDIT_2026-11-10.md): reconciliation evidence.
 - [Release procedure](docs/RELEASE_PROCESS.md): separate Vercel, Sites and itch.io publishing steps.
 - [Level authoring](docs/LEVEL_AUTHORING.md): existing embedded level schema and validation limits.
 
@@ -18,9 +18,10 @@
 
 - [itch.io](https://joenasr.itch.io/diorama)
 - [Vercel](https://diorama-game.vercel.app/)
-- [ChatGPT Sites](https://diorama-native-game.joenasr.chatgpt.site)
+- [ChatGPT Sites](https://diorama-game.joenasr.chatgpt.site)
 
 ## History
 
 - [Changelog](CHANGELOG.md): historical changes, not active orders.
 - [Archive](docs/archive/README.md): superseded guidance; never use as current implementation instructions.
+

@@ -1,6 +1,8 @@
+> HISTORICAL RECORD: not active instructions. Current state: [AI handoff](../../AI_HANDOFF_DIORAMA.md) and [release state](../RELEASE_STATE.json).
+
 # DIORAMA – Upgrade Levels and Fixes
 
-> Historical revision/approval register. Current release and instructions are [the AI handoff](../AI_HANDOFF_DIORAMA.md) and [release state](RELEASE_STATE.json). Earlier locally verified, awaiting preview, frozen-ending and pending-deployment notes describe their dated checkpoints; they are not current tasks or proof of player approval. The selected 2 November revisions were integrated; Level 16 onward remains proposed review work.
+> Historical revision/approval register. Current release and instructions are [the AI handoff](../../AI_HANDOFF_DIORAMA.md) and [release state](../RELEASE_STATE.json). Earlier locally verified, awaiting preview, frozen-ending and pending-deployment notes describe their dated checkpoints; they are not current tasks or proof of player approval. The selected 2 November revisions were integrated; Level 16 onward remains proposed review work.
 
 ## Protected baseline
 
@@ -251,3 +253,4 @@
 - Definition isolation check: passed; Level 8 is the only changed level definition in this revision.
 - Remote deployment: intentionally deferred until the selected revision batch is complete.
 - Player preview/approval: pending final batch deployment.
+

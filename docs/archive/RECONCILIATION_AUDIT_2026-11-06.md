@@ -1,4 +1,6 @@
-> HISTORICAL AUDIT – not current implementation guidance. See [7 November audit](RECONCILIATION_AUDIT_2026-11-07.md), [current handoff](../AI_HANDOFF_DIORAMA.md), and [release state](RELEASE_STATE.json).
+> HISTORICAL RECORD: not active instructions. Current state: [AI handoff](../../AI_HANDOFF_DIORAMA.md) and [release state](../RELEASE_STATE.json).
+
+> HISTORICAL AUDIT – not current implementation guidance. See [7 November audit](RECONCILIATION_AUDIT_2026-11-07.md), [current handoff](../../AI_HANDOFF_DIORAMA.md), and [release state](../RELEASE_STATE.json).
 
 # DIORAMA – Repository-Wide Authoritative-State Reconciliation
 
@@ -58,6 +60,7 @@ The princess reaction starts at 33.55 seconds, and the dragon contact-dust layer
 
 ## Future AI continuity
 
-Start with [AI_HANDOFF_DIORAMA.md](../AI_HANDOFF_DIORAMA.md) and [REPOSITORY_MAINTENANCE_PROTOCOL.md](../REPOSITORY_MAINTENANCE_PROTOCOL.md), then inspect current GitHub HEAD and live Vercel deployment. Treat the handoff's top **Current verified implementation** section as the latest source snapshot. Older 0.60/0.78 score notes and historical player-approval wording must not be promoted into current instructions. Reconcile only justified dependencies and never infer successful browser/audio testing from CI or Vercel READY.
+Start with [AI_HANDOFF_DIORAMA.md](../../AI_HANDOFF_DIORAMA.md) and [REPOSITORY_MAINTENANCE_PROTOCOL.md](../../REPOSITORY_MAINTENANCE_PROTOCOL.md), then inspect current GitHub HEAD and live Vercel deployment. Treat the handoff's top **Current verified implementation** section as the latest source snapshot. Older 0.60/0.78 score notes and historical player-approval wording must not be promoted into current instructions. Reconcile only justified dependencies and never infer successful browser/audio testing from CI or Vercel READY.
 
 **Definition of done for this documentation audit:** Active documentation is aligned to the verified source snapshot, historical evidence is retained, runtime/source files stay untouched, and the final GitHub/Vercel synchronization check is reported with remaining real-world verification boundaries.
+

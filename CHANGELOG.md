@@ -1,5 +1,12 @@
 # Changelog
 
+Dated entries are historical release evidence, not active instructions. Current facts: [handoff](AI_HANDOFF_DIORAMA.md) and [release state](docs/RELEASE_STATE.json).
+
+## 10 November 2026: itch.io publication and documentation reconciliation
+
+Published the accepted 25-file package on itch.io; corrected listing metadata and published the anatomy devlog. Replaced stacked current guidance with one handoff, archived obsolete audits/revision narratives, repaired the retired Sites URL and updated release evidence/references. No runtime, assets, workflows, dependencies or packaging behavior changed in this documentation audit.
+
+
 ## Accepted synchronized release – 9 November 2026
 
 Joe approved synchronization and deployment of ChatGPT Sites version 16 (source `dd0df9e9266293326c91e4e85bb95de415b865fe`). GitHub runtime baseline: `31c7b6efa875380ec0265300c1339578af007e6d`. The starting page has no vignette and slightly whiter clouds (white emissive fill .06, opacity .92 before play; original cloud settings restored during gameplay). The sky gradient remains. The accepted version 14 ending, jump synchronization, dragon sounds and robot shadows are retained.
@@ -178,3 +185,4 @@ This file records **verified repository changes**. Older game-release history is
 - Added a read-only structural validator and associated CI workflow for embedded level definitions.
 
 The above entries refer to repository-documentation and tooling work; they do **not** represent new gameplay features, levels, or public game releases.
+

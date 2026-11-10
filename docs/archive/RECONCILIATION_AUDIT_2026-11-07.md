@@ -1,3 +1,5 @@
+> HISTORICAL RECORD: not active instructions. Current state: [AI handoff](../../AI_HANDOFF_DIORAMA.md) and [release state](../RELEASE_STATE.json).
+
 # DIORAMA – AI continuity audit, 7 November 2026
 
 ## Scope and baseline
@@ -32,3 +34,4 @@ The available browser reports WebGL disabled. Human playthrough/solvability, dev
 ## Follow-up – artwork/favicon synchronization
 
 Rechecked main at `0640153`. Updated release hashes, inventory, README, handoff, integration/release notes and changelog for six branding assets and metadata-only HTML changes. ZIP workflow now requires/includes root favicon.ico and triggers on its changes; current distribution is 25 files. Historical 19-file Sites/itch.io evidence remains dated, not current parity proof. JavaScript parsing, level structure, local Markdown paths and deterministic package integrity are rechecked. No gameplay or movie code changed. Current Sites/itch.io branding publication remains unverified.
+

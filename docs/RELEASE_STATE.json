@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "as_of": "2026-11-09",
+  "as_of": "2026-11-10",
   "repository": "Joenasriani/diorama-game",
   "authoritative_branch": "main",
   "runtime_baseline_commit": "31c7b6efa875380ec0265300c1339578af007e6d",
@@ -69,18 +69,14 @@
   },
   "itchio": {
     "url": "https://joenasr.itch.io/diorama",
-    "filename": "DIORAMA_itchio_2026-11-07_2301683.zip",
-    "zip_sha256": "e19c1456b66d7b54ceadaf58399fd8fea122dc5dfcda0d59360c7ef993f9310e",
-    "bytes": 5341891,
-    "file_count": 19,
-    "observed_upload_id": 20340283,
-    "evidence": "User uploaded; editor selected this file for browser play; live iframe used upload ID. Hosted bytes not downloaded/hash-compared.",
-    "devlog": "https://joenasr.itch.io/diorama/devlog/1759746/diorama-3d-puzzle-game-update-ending-audio-and-browser-play",
-    "verification_scope": "Historical uploaded package; does not include latest accepted branding, ending or startup updates.",
-    "link_availability": {
-      "status": "working",
-      "evidence": "Confirmed by Joe in conversation on 7 November 2026; not a hosted-byte parity check."
-    }
+    "filename": "DIORAMA_itchio_2026-11-10_6bc0820.zip",
+    "source_commit": "6bc082035f4bb0c9bd51b0b8e7d0adc88d35322f",
+    "zip_sha256": "db11d590faaadc95e64a687fe9eb974151b457e037bc6ff89d02a10532357333",
+    "bytes": 5734059,
+    "file_count": 25,
+    "devlog": "https://joenasr.itch.io/diorama/devlog/1766913/diorama-3d-puzzle-game-update-the-dragon-has-discovered-anatomy",
+    "evidence": "10 November: Joe confirmed upload; itch.io editor showed this ZIP selected for browser play; public devlog published with this file attached. All 25 packaged blobs matched GitHub release. Hosted ZIP bytes were not downloaded and hash-compared.",
+    "listing_review": "Description, play links, controls wording, local-save explanation, tags, orientation, AI disclosure and single-player metadata corrected on 10 November; inaccurate Textless label removed."
   },
   "verified": [
     "Historical baseline: 19 runtime/assets/license Git blobs matched Sites version 7 source",
@@ -90,7 +86,8 @@
     "itch.io public description, ChatGPT link, latest ZIP selection and published devlog observed",
     "9 November: accepted Sites v12 wing/audio patch; ending scripts parse; 25-level structural check; normalized ending source parity",
     "9 November: accepted Sites v14 ending scripts match exactly; 44 takeoff cues; 20,440 shadow quads checked; structural validation passed",
-    "9 November: Sites v16/GitHub source parity for all 25 runtime files after documented host metadata normalization; structural validation and cloud-material reset checks passed"
+    "9 November: Sites v16/GitHub source parity for all 25 runtime files after documented host metadata normalization; structural validation and cloud-material reset checks passed",
+    "10 November: latest 25-file package checked against release; itch.io upload selection and live corrected listing/devlog observed. This is not a hosted-byte or full-playthrough proof."
   ],
   "not_verified": [
     "all-level human solvability/playthrough",
@@ -99,8 +96,7 @@
     "hosted-byte parity across all origins",
     "follower notification delivery or search rankings",
     "PayPal checkout/fulfillment",
-    "remaining asset provenance and redistribution permissions",
-    "Latest artwork/favicon parity and publication across Sites and itch.io"
+    "remaining asset provenance and redistribution permissions"
   ],
   "runtime_file_count": 25,
   "game_freeze": {
@@ -143,5 +139,11 @@
       "gameplay_emissive_intensity": 0,
       "gameplay_opacity": 0.88
     }
+  },
+  "documentation_audit": {
+    "date": "2026-11-10",
+    "audited_head": "6bc082035f4bb0c9bd51b0b8e7d0adc88d35322f",
+    "report": "docs/RECONCILIATION_AUDIT_2026-11-10.md",
+    "current_handoff": "AI_HANDOFF_DIORAMA.md"
   }
 }

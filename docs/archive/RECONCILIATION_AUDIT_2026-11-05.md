@@ -1,4 +1,6 @@
-> HISTORICAL AUDIT – not current implementation guidance. See [7 November audit](RECONCILIATION_AUDIT_2026-11-07.md), [current handoff](../AI_HANDOFF_DIORAMA.md), and [release state](RELEASE_STATE.json).
+> HISTORICAL RECORD: not active instructions. Current state: [AI handoff](../../AI_HANDOFF_DIORAMA.md) and [release state](../RELEASE_STATE.json).
+
+> HISTORICAL AUDIT – not current implementation guidance. See [7 November audit](RECONCILIATION_AUDIT_2026-11-07.md), [current handoff](../../AI_HANDOFF_DIORAMA.md), and [release state](../RELEASE_STATE.json).
 
 # DIORAMA – Repository-Wide Reconciliation Audit
 
@@ -57,3 +59,4 @@
 - Keep completed and historical commits distinct from current head. Follow `REPOSITORY_MAINTENANCE_PROTOCOL.md` for future patches.
 - Use a real-device cold-load/first-frame playback run and Level 25 -> ending -> replay/support flow before declaring the cinematic issue fully resolved.
 - Update documentation after verified code changes, then the handoff last. Confirm post-write HEAD, workflows and production source before closing a reconciliation.
+

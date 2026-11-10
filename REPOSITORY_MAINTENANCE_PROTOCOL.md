@@ -1,24 +1,10 @@
-# DIORAMA – Repository Maintenance and Synchronization Protocol
+# DIORAMA repository maintenance protocol
 
-## Accepted synchronized release – 9 November 2026
-
-Joe approved synchronization and deployment of ChatGPT Sites version 16 (source `dd0df9e9266293326c91e4e85bb95de415b865fe`). GitHub runtime baseline: `31c7b6efa875380ec0265300c1339578af007e6d`. The starting page has no vignette and slightly whiter clouds (white emissive fill .06, opacity .92 before play; original cloud settings restored during gameplay). The sky gradient remains. The accepted version 14 ending, jump synchronization, dragon sounds and robot shadows are retained.
-
-Game, ending and support-page scripts match the Sites source exactly; fonts, audio, icons, artwork and licenses match by Git blob hash. HTML retains host-specific social-preview image origins and insignificant whitespace differences. Source parity is verified, not a claim that live response bytes were downloaded and compared. Syntax and all 25 level structures pass; the cloud-material startup/gameplay reset was checked. Sites version 16 deployment succeeded. The agent browser cannot create WebGL; prior user visual acceptance is preserved as user evidence. itch.io has not been republished. The overall freeze remains active at this baseline.
-
-## Temporary game freeze – 9 November 2026
-
-Joe confirmed that DIORAMA is frozen for now. Protected baseline: commit `31c7b6efa875380ec0265300c1339578af007e6d` (accepted version 16 startup and retained ending; overall freeze remains active); runtime hashes remain in [release state](docs/RELEASE_STATE.json).
-
-- Preserve gameplay, all 25 levels, mechanisms, visuals/UI, assets, branding, controls/camera, saves, audio and the 60-second ending, including the support-page presentation.
-- Do not modify runtime files, dependencies, packaging or deployment behavior, or publish a changed game, without Joe's explicit approval for the specific change. Audit findings, roadmaps and pending QA do not authorize fixes.
-- Read-only inspection and testing may continue. Documentation edits may proceed when requested, while preserving this freeze and distinguishing findings from implemented changes.
-- The freeze has no automatic expiry. A later explicit request from Joe authorizes only its stated scope; keep the rest frozen. Lift the overall freeze only when Joe explicitly requests it.
-- This is a repository instruction/policy lock, not GitHub branch protection or a technical block on other collaborators. It does not certify gameplay or cross-host parity.
+Current scope and freeze: [AGENTS.md](AGENTS.md). Current state: [single handoff](AI_HANDOFF_DIORAMA.md) and [release state](docs/RELEASE_STATE.json). This procedure does not duplicate dated release state.
 
 > **Status:** Working procedure for future AI threads and maintainers. A scope/reconciliation rule, not standing permission to change gameplay or publish.
-> **Read with:** [AI_HANDOFF_DIORAMA.md](AI_HANDOFF_DIORAMA.md), [README.md](README.md), [docs/RELEASE_PROCESS.md](docs/RELEASE_PROCESS.md), [ENDING_INTEGRATION_NOTES.md](ENDING_INTEGRATION_NOTES.md), [ROADMAP.md](ROADMAP.md) and [docs/UPGRADE_LEVELS_AND_FIXES.md](docs/UPGRADE_LEVELS_AND_FIXES.md).
-> This procedure was introduced during a repository-wide reconciliation on **5 November 2026** and re-applied on **6 and 7 November 2026**. See the [latest reconciliation audit](docs/RECONCILIATION_AUDIT_2026-11-07.md); retain the [5 November audit](docs/RECONCILIATION_AUDIT_2026-11-05.md) as history. Check actual Git state before relying on any dated version fact.
+> **Read with:** [AI_HANDOFF_DIORAMA.md](AI_HANDOFF_DIORAMA.md), [README.md](README.md), [docs/RELEASE_PROCESS.md](docs/RELEASE_PROCESS.md), [ENDING_INTEGRATION_NOTES.md](ENDING_INTEGRATION_NOTES.md), [ROADMAP.md](ROADMAP.md) and [docs/UPGRADE_LEVELS_AND_FIXES.md](docs/archive/UPGRADE_LEVELS_AND_FIXES.md).
+> This procedure was introduced during a repository-wide reconciliation on **5 November 2026** and re-applied on **6, 7 and 10 November 2026**. See the [latest reconciliation audit](docs/RECONCILIATION_AUDIT_2026-11-10.md); retain the [5 November audit](docs/archive/RECONCILIATION_AUDIT_2026-11-05.md) as history. Check actual Git state before relying on any dated version fact.
 
 ## Authority and scope
 
@@ -73,3 +59,4 @@ Joe confirmed that DIORAMA is frozen for now. Protected baseline: commit `31c7b6
 ## Current guidance and historical evidence
 
 Read AGENTS.md, AI_HANDOFF_DIORAMA.md and docs/RELEASE_STATE.json before old audit reports. Archive superseded instruction-heavy narratives rather than stacking contradictory current sections. Dated audits and CHANGELOG entries retain historical facts, not active orders. Inventory unused source/packaging material before removing it; do not delete files just because their purpose is uncertain. The retained backup branch has commits outside `main`; do not merge or delete it incidentally.
+
