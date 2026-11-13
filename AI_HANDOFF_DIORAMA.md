@@ -67,3 +67,7 @@ Optional tiers: Early Explorer $15; Founding Supporter $35; Patron $100. No laun
 ## Continue safely
 
 Read the current task and relevant source; inspect live HEAD and open PRs. Preserve unrelated work. Reproduce or trace the issue, make the smallest authorized edit, run appropriate checks, and report each verification layer honestly. Update release evidence and focused records, then this handoff. No speculative redesign, backup-branch merge or optional dependency is part of maintenance.
+
+## Android privacy hosting correction – 13 November 2026
+
+The final Android 1.0.1 candidate and source are in Quest ReQuest Drive, DIORAMA 1.0.1 – Signed Play Store Candidate. They are separate from this frozen web baseline. Canonical Android privacy policy: https://joenasriani.github.io/diorama-game/docs/privacy-policy.html (source docs/privacy-policy.html). Replace the former ChatGPT privacy-host URL in submission materials. Inspected final APK/AAB contain no ChatGPT privacy-host reference; their offline policy remains bundled. This correction does not alter gameplay or signed binaries. Play Console policy configuration remains unverified. Do not recreate a ChatGPT Sites privacy page.
